@@ -12,6 +12,9 @@
 </head>
 <body>
 
+  <!-- GRAIN TEXTURE OVERLAY — sits above everything, pointer-events off -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
   <!-- NAVIGATION -->
   <nav class="site-nav" id="site-nav">
     <div class="nav-inner">
@@ -28,7 +31,7 @@
   <main>
 
     <!-- ═══════════════════════════════════════════════════
-         HERO
+         HERO — asymmetric, text left / tall image right
     ═══════════════════════════════════════════════════ -->
     <section class="hero">
       <div class="hero-inner">
@@ -47,10 +50,26 @@
             <a href="#work" class="btn-primary">View our work</a>
             <a href="#contact" class="btn-ghost">Start a project</a>
           </div>
+
+          <div class="hero-meta-strip">
+            <div class="meta-item">
+              <span class="meta-num">47</span>
+              <span class="meta-label">Projects</span>
+            </div>
+            <div class="meta-divider"></div>
+            <div class="meta-item">
+              <span class="meta-num">12</span>
+              <span class="meta-label">Years</span>
+            </div>
+            <div class="meta-divider"></div>
+            <div class="meta-item">
+              <span class="meta-num">3</span>
+              <span class="meta-label">Countries</span>
+            </div>
+          </div>
         </div>
 
         <div class="hero-visual-col">
-          <!-- Hero image: large featured project -->
           <div class="hero-image-frame">
             <img
               src="images/casa-mouraria.jpg"
@@ -61,23 +80,6 @@
             <div class="hero-img-caption">
               <span class="caption-label">Featured</span>
               <span class="caption-title">Casa Mouraria, Lisbon — 2025</span>
-            </div>
-          </div>
-
-          <div class="hero-meta-strip">
-            <div class="meta-item">
-              <span class="meta-num">47</span>
-              <span class="meta-label">Projects delivered</span>
-            </div>
-            <div class="meta-divider"></div>
-            <div class="meta-item">
-              <span class="meta-num">12</span>
-              <span class="meta-label">Years in practice</span>
-            </div>
-            <div class="meta-divider"></div>
-            <div class="meta-item">
-              <span class="meta-num">3</span>
-              <span class="meta-label">Countries</span>
             </div>
           </div>
         </div>
@@ -91,7 +93,7 @@
     </section>
 
     <!-- ═══════════════════════════════════════════════════
-         MARQUEE TICKER
+         TICKER
     ═══════════════════════════════════════════════════ -->
     <div class="ticker-rail" aria-hidden="true">
       <div class="ticker-track">
@@ -119,136 +121,149 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════════
-         WORK
+         WORK — Editorial image sequence, not a card grid
     ═══════════════════════════════════════════════════ -->
     <section class="section-work" id="work">
-      <div class="section-header">
+
+      <div class="work-header">
         <p class="section-kicker">Selected work, 2018–2026</p>
         <h2 class="section-title">Projects</h2>
       </div>
 
-      <div class="projects-grid">
-
-        <!-- 01 Large -->
-        <article class="project-card project-card--large">
-          <div class="project-visual">
-            <img
-              src="images/biblioteca-central.jpg"
-              alt="Brutalist library interior with coffered concrete ceiling, dark timber shelves and clerestory light — Biblioteca Central, Porto"
-              loading="lazy"
-            >
-            <div class="project-overlay">
-              <span class="overlay-view">View project →</span>
+      <!-- ROW A: Full-width hero project -->
+      <div class="work-row work-row--full">
+        <article class="work-item">
+          <a href="#" class="work-img-link" tabindex="0" aria-label="View Biblioteca Central project">
+            <div class="work-img-wrap work-img-wrap--tall">
+              <img
+                src="images/biblioteca-central.jpg"
+                alt="Brutalist library interior with coffered concrete ceiling — Biblioteca Central, Porto"
+                loading="lazy"
+              >
             </div>
-          </div>
-          <div class="project-info">
-            <div class="project-meta">
-              <span class="project-num">01</span>
-              <span class="project-tag">Cultural</span>
-              <span class="project-year">2024</span>
+          </a>
+          <div class="work-caption work-caption--below">
+            <div class="work-caption-left">
+              <span class="work-num">01</span>
+              <div>
+                <h3 class="work-title">Biblioteca Central</h3>
+                <p class="work-sub">Porto, Portugal</p>
+              </div>
             </div>
-            <h3 class="project-title">Biblioteca Central</h3>
-            <p class="project-location">Porto, Portugal</p>
+            <div class="work-caption-right">
+              <span class="work-tag">Cultural</span>
+              <span class="work-year">2024</span>
+            </div>
           </div>
         </article>
-
-        <!-- 02 Small -->
-        <article class="project-card project-card--small">
-          <div class="project-visual">
-            <img
-              src="images/patio-flores.jpg"
-              alt="Heritage stone courtyard with arched passage, terracotta tile floor and fig tree — Pátio das Flores, Évora"
-              loading="lazy"
-            >
-            <div class="project-overlay">
-              <span class="overlay-view">View project →</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <div class="project-meta">
-              <span class="project-num">02</span>
-              <span class="project-tag">Heritage</span>
-              <span class="project-year">2024</span>
-            </div>
-            <h3 class="project-title">Pátio das Flores</h3>
-            <p class="project-location">Évora, Portugal</p>
-          </div>
-        </article>
-
-        <!-- 03 Small -->
-        <article class="project-card project-card--small">
-          <div class="project-visual">
-            <img
-              src="images/casa-mouraria.jpg"
-              alt="Minimal interior with afternoon light streaming across concrete floor — Casa Mouraria, Lisbon"
-              loading="lazy"
-            >
-            <div class="project-overlay">
-              <span class="overlay-view">View project →</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <div class="project-meta">
-              <span class="project-num">03</span>
-              <span class="project-tag">Residential</span>
-              <span class="project-year">2025</span>
-            </div>
-            <h3 class="project-title">Casa Mouraria</h3>
-            <p class="project-location">Lisbon, Portugal</p>
-          </div>
-        </article>
-
-        <!-- 04 Medium -->
-        <article class="project-card project-card--medium">
-          <div class="project-visual">
-            <img
-              src="images/edificio-vento.jpg"
-              alt="Double-height atrium with concrete mezzanine walkway and skylight — Edifício Vento, Cascais"
-              loading="lazy"
-            >
-            <div class="project-overlay">
-              <span class="overlay-view">View project →</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <div class="project-meta">
-              <span class="project-num">04</span>
-              <span class="project-tag">Commercial</span>
-              <span class="project-year">2023</span>
-            </div>
-            <h3 class="project-title">Edifício Vento</h3>
-            <p class="project-location">Cascais, Portugal</p>
-          </div>
-        </article>
-
-        <!-- 05 Small -->
-        <article class="project-card project-card--small">
-          <div class="project-visual">
-            <img
-              src="images/pavilhao-sereno.jpg"
-              alt="Minimalist concrete pavilion with thin slab roof in golden Alentejo wheat field — Pavilhão Sereno"
-              loading="lazy"
-            >
-            <div class="project-overlay">
-              <span class="overlay-view">View project →</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <div class="project-meta">
-              <span class="project-num">05</span>
-              <span class="project-tag">Installation</span>
-              <span class="project-year">2023</span>
-            </div>
-            <h3 class="project-title">Pavilhão Sereno</h3>
-            <p class="project-location">Alentejo, Portugal</p>
-          </div>
-        </article>
-
       </div>
 
-      <div class="section-footer">
+      <!-- ROW B: 58 / 38 split — two projects side by side, different heights -->
+      <div class="work-row work-row--split">
+        <article class="work-item work-item--wide">
+          <a href="#" class="work-img-link" tabindex="0" aria-label="View Edifício Vento project">
+            <div class="work-img-wrap work-img-wrap--medium">
+              <img
+                src="images/edificio-vento.jpg"
+                alt="Double-height atrium with concrete mezzanine — Edifício Vento, Cascais"
+                loading="lazy"
+              >
+            </div>
+          </a>
+          <div class="work-caption work-caption--below">
+            <div class="work-caption-left">
+              <span class="work-num">04</span>
+              <div>
+                <h3 class="work-title">Edifício Vento</h3>
+                <p class="work-sub">Cascais, Portugal</p>
+              </div>
+            </div>
+            <div class="work-caption-right">
+              <span class="work-tag">Commercial</span>
+              <span class="work-year">2023</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-item work-item--narrow">
+          <a href="#" class="work-img-link" tabindex="0" aria-label="View Pátio das Flores project">
+            <div class="work-img-wrap work-img-wrap--portrait">
+              <img
+                src="images/patio-flores.jpg"
+                alt="Heritage stone courtyard with terracotta tile floor — Pátio das Flores, Évora"
+                loading="lazy"
+              >
+            </div>
+          </a>
+          <div class="work-caption work-caption--below">
+            <div class="work-caption-left">
+              <span class="work-num">02</span>
+              <div>
+                <h3 class="work-title">Pátio das Flores</h3>
+                <p class="work-sub">Évora, Portugal</p>
+              </div>
+            </div>
+            <div class="work-caption-right">
+              <span class="work-tag">Heritage</span>
+              <span class="work-year">2024</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ROW C: Offset — image pushes right, big title left -->
+      <div class="work-row work-row--offset">
+        <div class="work-offset-text">
+          <span class="work-num work-num--large">03</span>
+          <h3 class="work-offset-title">Casa<br>Mouraria</h3>
+          <p class="work-offset-meta">Residential · Lisbon, Portugal · 2025</p>
+          <a href="#" class="work-offset-link">View project →</a>
+        </div>
+        <article class="work-item work-item--offset-img">
+          <a href="#" class="work-img-link" tabindex="0" aria-label="View Casa Mouraria project">
+            <div class="work-img-wrap work-img-wrap--wide">
+              <img
+                src="images/casa-mouraria.jpg"
+                alt="Minimal interior with afternoon light across concrete floor — Casa Mouraria, Lisbon"
+                loading="lazy"
+              >
+            </div>
+          </a>
+        </article>
+      </div>
+
+      <!-- ROW D: Pavilhão — centred narrow image -->
+      <div class="work-row work-row--centred">
+        <article class="work-item work-item--centred">
+          <a href="#" class="work-img-link" tabindex="0" aria-label="View Pavilhão Sereno project">
+            <div class="work-img-wrap work-img-wrap--cinematic">
+              <img
+                src="images/pavilhao-sereno.jpg"
+                alt="Minimalist concrete pavilion in golden Alentejo wheat field — Pavilhão Sereno"
+                loading="lazy"
+              >
+            </div>
+          </a>
+          <div class="work-caption work-caption--below">
+            <div class="work-caption-left">
+              <span class="work-num">05</span>
+              <div>
+                <h3 class="work-title">Pavilhão Sereno</h3>
+                <p class="work-sub">Alentejo, Portugal</p>
+              </div>
+            </div>
+            <div class="work-caption-right">
+              <span class="work-tag">Installation</span>
+              <span class="work-year">2023</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="work-footer">
         <a href="#" class="link-all-projects">All projects <span aria-hidden="true">→</span></a>
       </div>
+
     </section>
 
     <!-- ═══════════════════════════════════════════════════
@@ -333,46 +348,30 @@
         </div>
 
         <div class="studio-grid">
-
           <div class="studio-bio">
             <div class="bio-portrait">
-              <img
-                src="images/sofia-mendes.jpg"
-                alt="Sofia Mendes, Founding Principal of PLINTH"
-                loading="lazy"
-              >
+              <img src="images/sofia-mendes.jpg" alt="Sofia Mendes, Founding Principal of PLINTH" loading="lazy">
             </div>
             <h4 class="bio-name">Sofia Mendes</h4>
             <p class="bio-role">Founding Principal</p>
             <p class="bio-note">ETH Zürich, 2009. Previously Álvaro Siza Vieira studio.</p>
           </div>
-
           <div class="studio-bio">
             <div class="bio-portrait">
-              <img
-                src="images/rui-carvalho.jpg"
-                alt="Rui Carvalho, Founding Principal of PLINTH"
-                loading="lazy"
-              >
+              <img src="images/rui-carvalho.jpg" alt="Rui Carvalho, Founding Principal of PLINTH" loading="lazy">
             </div>
             <h4 class="bio-name">Rui Carvalho</h4>
             <p class="bio-role">Founding Principal</p>
             <p class="bio-note">AA London, 2010. Structural engineering background, Buro Happold.</p>
           </div>
-
           <div class="studio-bio">
             <div class="bio-portrait">
-              <img
-                src="images/ana-ribeiro.jpg"
-                alt="Ana Ribeiro, Senior Architect at PLINTH"
-                loading="lazy"
-              >
+              <img src="images/ana-ribeiro.jpg" alt="Ana Ribeiro, Senior Architect at PLINTH" loading="lazy">
             </div>
             <h4 class="bio-name">Ana Ribeiro</h4>
             <p class="bio-role">Senior Architect</p>
             <p class="bio-note">FAUP Porto, 2015. Heritage conservation specialist.</p>
           </div>
-
         </div>
 
         <blockquote class="studio-quote">
@@ -454,7 +453,6 @@
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">
