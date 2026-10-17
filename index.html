@@ -3,279 +3,316 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KÖNIG & SÖHNE // Atelier d'Horlogerie — Caliber KS-042</title>
-  <meta name="description" content="Independent Glashütte horological atelier crafting mechanical chronometers with free-sprung variable-inertia balance wheels, Swiss lever escapements, and bespoke commissions.">
+  <title>GRID // 01 — Physical Desktop Macro Console</title>
+  <meta name="description" content="Machined 6063 aluminum. Four tactile knurled dials. Six mechanical switches. One monochrome memory-in-pixel display. Zero drivers.">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- HEADER NAVIGATION -->
-  <header class="atelier-nav">
+  <!-- MINIMALIST STARK NAVIGATION -->
+  <header class="grid-nav">
     <div class="nav-bounds">
-      <a href="#hero" class="brand-link">
-        <span class="hallmark-glyph">✠</span>
-        <span class="brand-wordmark">KÖNIG & SÖHNE</span>
-        <span class="brand-origin">GLASHÜTTE I/SA</span>
-      </a>
+      <div class="nav-brand">
+        <span class="brand-mono">GRID</span>
+        <span class="brand-slash">//</span>
+        <span class="brand-model">01</span>
+      </div>
 
-      <nav class="nav-menu">
-        <a href="#hero" class="nav-item">Chronometer</a>
-        <a href="#architecture" class="nav-item">Caliber KS-042</a>
-        <a href="#bench" class="nav-item">Atelier Bench</a>
-        <a href="#tolerances" class="nav-item">Registry Data</a>
-        <a href="#commission" class="nav-item nav-cta">Bespoke Allocation</a>
+      <nav class="nav-links">
+        <a href="#hardware" class="nav-link">Hardware</a>
+        <a href="#tactile" class="nav-link">Switches</a>
+        <a href="#epaper" class="nav-link">E-Paper</a>
+        <a href="#specs" class="nav-link">Specs</a>
       </nav>
+
+      <div class="nav-action">
+        <button id="btn-preorder" class="nav-cta-btn" type="button">
+          <span>PRE-ORDER $179</span>
+        </button>
+      </div>
     </div>
   </header>
 
   <main>
-    <!-- HERO SECTION: OWNS 1440x900 INITIAL VIEWPORT WITH INTERACTIVE VECTOR SCHEMATIC -->
-    <section id="hero" class="hero-stage">
+    <!-- HERO SECTION: MASSIVE PRODUCT FOCUS WITH INTERACTIVE PHYSICAL SIMULATOR -->
+    <section class="hero-stage">
       <div class="hero-bounds">
-        <!-- Left Column: Editorial & Physical Metrics -->
-        <div class="hero-left">
-          <div class="kicker-tag">
-            <span class="kicker-dot"></span>
-            <span>CHRONOMETRIC ARCHIVE // REFERENCE KS-042</span>
-          </div>
-
-          <h1 class="hero-title">The Mechanics of Unbroken Time.</h1>
-
-          <p class="hero-description">
-            Hand-assembled in Saxony with a free-sprung variable-inertia balance, Breguet overcoil hairspring, and 72-hour reserve. 350 hours of hand anglage per caliber.
+        <div class="hero-header-block">
+          <div class="pill-kicker">PHYSICAL MACRO CONSOLE</div>
+          <h1 class="hero-headline">Pure Physical Control.</h1>
+          <p class="hero-subhead">
+            Machined from solid 6063 aluminum. Four knurled rotary dials. Six mechanical keys. One monochrome paper display. Zero latency.
           </p>
-
-          <!-- Metallurgy Switcher & Winding Tools -->
-          <div class="hero-controls-block">
-            <div class="finish-cluster">
-              <span class="cluster-label">CASE METALLURGY & VECTOR FINISH</span>
-              <div class="metal-options">
-                <button type="button" class="metal-pill is-active" data-material="rose_gold">18K ROSE GOLD</button>
-                <button type="button" class="metal-pill" data-material="titanium">TITANIUM G5</button>
-                <button type="button" class="metal-pill" data-material="obsidian">OBSIDIAN DLC</button>
-                <button type="button" class="metal-pill" data-material="steel">904L STEEL</button>
-              </div>
-            </div>
-
-            <!-- Engineering Telemetry Grid (Parallel Baselines) -->
-            <div class="spec-metrics-strip">
-              <div class="spec-item">
-                <span class="spec-label">FREQUENCY</span>
-                <span class="spec-value">4.0 HZ // 28,800 VPH</span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-label">DAILY DEVIATION</span>
-                <span class="spec-value">+1.2 SEC / DAY</span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-label">POWER RESERVE</span>
-                <span id="stat-power-reserve" class="spec-value">68.4h / 72h</span>
-              </div>
-            </div>
-
-            <div class="reserve-track">
-              <div id="reserve-bar-gauge" class="reserve-fill" style="width: 95%;"></div>
-            </div>
-
-            <div class="hero-cta-row">
-              <a href="#commission" class="primary-action-btn">
-                <span>COMMISSION 2026 ALLOCATION</span>
-                <span class="action-arrow">→</span>
-              </a>
-              <span class="batch-status-note">ANNUAL ATELIER OUTPUT RESTRICTED TO 24 PIECES</span>
-            </div>
-          </div>
         </div>
 
-        <!-- Right Column: Interactive Vector SVG Horological Schematic -->
-        <div class="hero-right">
-          <div class="vector-viewport-frame">
-            <div id="watch-vector-viewport" class="vector-canvas-box"></div>
-
-            <!-- Layer Explorer Floating Dock -->
-            <div class="schematic-floating-dock">
-              <div class="layer-buttons-group">
-                <button type="button" class="layer-btn is-active" data-layer="all">ALL LAYERS</button>
-                <button type="button" class="layer-btn" data-layer="movement">MOVEMENT</button>
-                <button type="button" class="layer-btn" data-layer="dial">DIAL</button>
-                <button type="button" class="layer-btn" data-layer="escapement">ESCAPEMENT</button>
+        <!-- THE PHYSICAL HARDWARE SIMULATOR (Centerpiece) -->
+        <div class="hardware-stage">
+          <div id="hardware-unit" class="hardware-chassis" data-finish="silver">
+            <!-- Top Controls: 4 Knurled Aluminum Rotary Dials -->
+            <div class="chassis-dials-row">
+              <div class="hw-dial-wrap">
+                <div class="hw-dial" data-dial="0">
+                  <div class="dial-fluting"></div>
+                  <div class="dial-notch"></div>
+                </div>
+                <span class="dial-label">PARAM A</span>
               </div>
-              <button id="btn-wind-crown" class="wind-btn" type="button" title="Wind mainspring barrel">
-                <span class="btn-icon">↻</span>
-                <span>WIND CROWN (+14H)</span>
+
+              <div class="hw-dial-wrap">
+                <div class="hw-dial" data-dial="1">
+                  <div class="dial-fluting"></div>
+                  <div class="dial-notch"></div>
+                </div>
+                <span class="dial-label">PARAM B</span>
+              </div>
+
+              <div class="hw-dial-wrap">
+                <div class="hw-dial" data-dial="2">
+                  <div class="dial-fluting"></div>
+                  <div class="dial-notch"></div>
+                </div>
+                <span class="dial-label">PARAM C</span>
+              </div>
+
+              <div class="hw-dial-wrap">
+                <div class="hw-dial dial-orange" data-dial="3">
+                  <div class="dial-fluting"></div>
+                  <div class="dial-notch"></div>
+                </div>
+                <span class="dial-label">MODE</span>
+              </div>
+            </div>
+
+            <!-- Center Display: High-Contrast Memory-In-Pixel E-Paper -->
+            <div class="chassis-screen-bezel">
+              <div id="device-display" class="eink-screen">
+                <!-- Dynamically rendered via device-sim.js -->
+              </div>
+            </div>
+
+            <!-- Bottom Section: 6 Low-Profile Mechanical Click Keys -->
+            <div class="chassis-keys-grid">
+              <button type="button" class="hw-key" data-key="k1">
+                <span class="key-cap">TIMER</span>
+                <span class="key-sub">[1]</span>
+              </button>
+              <button type="button" class="hw-key" data-key="k2">
+                <span class="key-cap">TELEMETRY</span>
+                <span class="key-sub">[2]</span>
+              </button>
+              <button type="button" class="hw-key" data-key="k3">
+                <span class="key-cap">MACROS</span>
+                <span class="key-sub">[3]</span>
+              </button>
+              <button type="button" class="hw-key" data-key="k4">
+                <span class="key-cap">PIXEL RUN</span>
+                <span class="key-sub">[4]</span>
+              </button>
+              <button type="button" class="hw-key key-primary" data-key="k5">
+                <span class="key-cap">ACTUATE</span>
+                <span class="key-sub">[5 / SPACE]</span>
+              </button>
+              <button type="button" class="hw-key" data-key="k6">
+                <span class="key-cap">RESET</span>
+                <span class="key-sub">[6]</span>
               </button>
             </div>
+
+            <!-- Right-Side Edge Hardware Details -->
+            <div class="hw-side-strip">
+              <div id="hw-rocker-power" class="hw-rocker" title="Toggle Power Switch">
+                <span class="rocker-bar"></span>
+              </div>
+              <div id="hw-power-led" class="hw-led" title="Power Status"></div>
+              <span class="hw-brand-mark">GRID // M-01</span>
+            </div>
           </div>
 
-          <div id="inspect-badge-text" class="inspect-hud-badge">
-            HOVER OVER BALANCE, CHATONS, OR BARRELS TO INSPECT ATELIER CALIBRATION
+          <!-- Interactive Finish Picker Toolbar -->
+          <div class="stage-toolbar">
+            <span class="toolbar-label">FINISH:</span>
+            <div class="finish-pill-group">
+              <button type="button" class="finish-btn is-active" data-finish="silver">RAW BILLET ALUMINUM</button>
+              <button type="button" class="finish-btn" data-finish="obsidian">MATTE OBSIDIAN</button>
+              <button type="button" class="finish-btn" data-finish="bone">VINTAGE BONE</button>
+            </div>
+            <span class="toolbar-hint">CLICK KEYS OR USE KEYS [1]–[6] & [SPACE] ON KEYBOARD</span>
           </div>
-          <div id="current-metal-display" class="finish-caption">18K 4N ROSE GOLD // MIRROR-POLISHED BEZEL</div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2: CALIBER KS-042 ARCHITECTURE -->
-    <section id="architecture" class="content-block">
-      <div class="section-bounds">
-        <div class="block-header">
-          <span class="block-tag">01 // MOVEMENT ARCHITECTURE</span>
-          <h2 class="block-headline">The Anatomic Purity of Caliber KS-042</h2>
-          <p class="block-lead">
-            Constructed in untreated German silver with a classical three-quarter plate, hand-engraved balance cock, and screwed solid gold chatons.
+    <!-- SECTION 2: HARDWARE ENGINEERING & ANATOMY -->
+    <section id="hardware" class="feature-strip">
+      <div class="content-bounds">
+        <div class="feature-header">
+          <span class="section-tag">01 // PRECISION BILLET</span>
+          <h2 class="section-title">Zero Plastic. 100% Solid Aluminum.</h2>
+          <p class="section-lead">
+            Every GRID // 01 starts as a 1.2kg block of aerospace 6063 aluminum, carved over 45 minutes on a 5-axis CNC mill down to an ultra-dense 320g unibody shell.
           </p>
         </div>
 
-        <div class="architecture-cards-grid">
-          <div class="arch-tile">
-            <div class="tile-index">01</div>
-            <h3 class="tile-title">Free-Sprung Glucydur Balance</h3>
-            <p class="tile-desc">
-              Four masselottes poising screws enable micrometer regulation without regulator pins, eliminating rate perturbation across spatial positions.
-            </p>
-            <div class="tile-footer-metric">
-              <span class="metric-val">10.2 mm</span>
-              <span class="metric-desc">WHEEL DIAMETER</span>
-            </div>
-          </div>
-
-          <div class="arch-tile">
-            <div class="tile-index">02</div>
-            <h3 class="tile-title">Breguet Overcoil Hairspring</h3>
-            <p class="tile-desc">
-              Hand-curved terminal curve allows concentric spring expansion in every orientation, delivering chronometric isochronism.
-            </p>
-            <div class="tile-footer-metric">
-              <span class="metric-val">Nivarox I</span>
-              <span class="metric-desc">HEAT-BLUED ALLOY SPECIFICATION</span>
-            </div>
-          </div>
-
-          <div class="arch-tile">
-            <div class="tile-index">03</div>
-            <h3 class="tile-title">Screwed Gold Chatons</h3>
-            <p class="tile-desc">
-              Synthetic ruby bearing jewels seated inside solid 18-karat gold rings, secured to the German silver bridge by blued steel screws.
-            </p>
-            <div class="tile-footer-metric">
-              <span class="metric-val">33 Jewels</span>
-              <span class="metric-desc">TOTAL BEARING COUNT</span>
-            </div>
-          </div>
-
-          <div class="arch-tile">
-            <div class="tile-index">04</div>
-            <h3 class="tile-title">Twin-Series Barrels</h3>
-            <p class="tile-desc">
-              Two mainspring barrels coupled in series deliver uniform torque transfer across the full 72-hour operating curve.
-            </p>
-            <div class="tile-footer-metric">
-              <span class="metric-val">72 Hours</span>
-              <span class="metric-desc">POWER RESERVE</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 3: THE ATELIER BENCH -->
-    <section id="bench" class="content-block contrast-block">
-      <div class="section-bounds">
-        <div class="block-header">
-          <span class="block-tag">02 // ATELIER BENCH</span>
-          <h2 class="block-headline">One Watchmaker, One Movement</h2>
-          <p class="block-lead">
-            From raw German silver turning to final casing, each timepiece is entrusted to a single master watchmaker through two complete assembly and regulation cycles.
-          </p>
-        </div>
-
-        <div class="process-columns">
-          <div class="process-col">
-            <div class="process-step">PHASE 01</div>
-            <h3 class="process-title">First Assembly & Pre-Timing</h3>
-            <p class="process-text">
-              The movement is dry-assembled to check gear teeth end-shake, wheel depthing, and pallet stone engagement under 40x stereoscopic magnification.
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-num">320G</div>
+            <h3 class="card-heading">Dead-Weight Inertia</h3>
+            <p class="card-copy">
+              Dense internal brass ballast and custom silicone feet guarantee the unit never slides or tilts across your desk, even during aggressive knob turns.
             </p>
           </div>
 
-          <div class="process-col">
-            <div class="process-step">PHASE 02</div>
-            <h3 class="process-title">Hand Finishing & Anglage</h3>
-            <p class="process-text">
-              Every bridge edge is filed with local boxwood laps to a 45-degree mirror chamfer. Screw heads are flat-polished on zinc blocks with diamond rouge.
+          <div class="feature-card">
+            <div class="feature-num">65G</div>
+            <h3 class="card-heading">Cherry MX Actuation</h3>
+            <p class="card-copy">
+              Gold-crosspoint contact switches with 1.8mm travel and crisp tactile feedback. Rated for over 50 million keystrokes per switch.
             </p>
           </div>
 
-          <div class="process-col">
-            <div class="process-step">PHASE 03</div>
-            <h3 class="process-title">Second Assembly & Regulation</h3>
-            <p class="process-text">
-              The finished components are lubricated with synthetic Moebius oils and timed in six static positions across three temperature gradients.
+          <div class="feature-card">
+            <div class="feature-num">120D</div>
+            <h3 class="card-heading">Rechargeable Battery</h3>
+            <p class="card-copy">
+              Memory-in-pixel technology consumes power only when pixels flip. Over four months of daily wireless use on a single USB-C charge.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 4: LABORATORY TOLERANCES TABLE (PARALLEL BASELINES) -->
-    <section id="tolerances" class="content-block">
-      <div class="section-bounds">
-        <div class="block-header">
-          <span class="block-tag">03 // ARCHIVE TOLERANCES</span>
-          <h2 class="block-headline">Technical Reference Specifications</h2>
+    <!-- SECTION 3: TACTILE CONTROLS DETAIL -->
+    <section id="tactile" class="feature-strip bg-white">
+      <div class="content-bounds">
+        <div class="feature-split-layout">
+          <div class="split-col-text">
+            <span class="section-tag">02 // TACTILE DIALS</span>
+            <h2 class="section-title">24 Detents Per Rotation.</h2>
+            <p class="section-lead">
+              Precision Alps rotary encoders with mechanical metal detents give instant physical confirmation for every tick. Scrub audio timelines, adjust brush sizes, switch workspaces, or dial in values with your fingertips without glancing at your monitor.
+            </p>
+            <div class="spec-callout-row">
+              <div class="callout-unit">
+                <span class="callout-value">24</span>
+                <span class="callout-desc">CLICKS PER REVOLUTION</span>
+              </div>
+              <div class="callout-unit">
+                <span class="callout-value">&lt; 1ms</span>
+                <span class="callout-desc">POLLING LATENCY</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="split-col-card">
+            <div class="minimal-visual-box">
+              <div class="macro-badge-row">
+                <span class="macro-badge">FIGMA</span>
+                <span class="macro-badge">VS CODE</span>
+                <span class="macro-badge">ABLETON</span>
+                <span class="macro-badge">BLENDER</span>
+              </div>
+              <p class="minimal-box-text">
+                Class-compliant USB HID. Appears as a native mechanical input device on macOS, Windows, and Linux. No background software or telemetry drivers required.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: MONOCHROME MEMORY-IN-PIXEL DISPLAY -->
+    <section id="epaper" class="feature-strip">
+      <div class="content-bounds">
+        <div class="feature-split-layout reverse">
+          <div class="split-col-card">
+            <div class="minimal-visual-box dark-box">
+              <div class="paper-contrast-demo">
+                <span class="paper-val">2.7″</span>
+                <span class="paper-label">SUNLIGHT-READABLE MONOCHROME</span>
+              </div>
+              <p class="minimal-box-text">
+                400 × 240 sharp pixel resolution. Reflects natural ambient room light like printed ink on paper with zero eye fatigue and zero backlight bleed.
+              </p>
+            </div>
+          </div>
+
+          <div class="split-col-text">
+            <span class="section-tag">03 // PAPER DISPLAY</span>
+            <h2 class="section-title">Readable in Direct Sunlight.</h2>
+            <p class="section-lead">
+              Unlike glaring OLED or LCD screens that wash out under desk lamps, GRID's Memory-in-Pixel display becomes sharper and clearer the brighter your room gets.
+            </p>
+            <div class="spec-callout-row">
+              <div class="callout-unit">
+                <span class="callout-value">0 mA</span>
+                <span class="callout-desc">STATIC STANDBY POWER</span>
+              </div>
+              <div class="callout-unit">
+                <span class="callout-value">170°</span>
+                <span class="callout-desc">TRUE VIEWING ANGLE</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: TECHNICAL SPECIFICATIONS (PARALLEL BASELINE TABLE) -->
+    <section id="specs" class="feature-strip bg-white">
+      <div class="content-bounds">
+        <div class="feature-header">
+          <span class="section-tag">04 // TECHNICAL SPECIFICATIONS</span>
+          <h2 class="section-title">Engineered to Last Decades.</h2>
         </div>
 
-        <div class="table-scroller">
-          <table class="engineering-table">
+        <div class="table-frame">
+          <table class="specs-table">
             <thead>
               <tr>
-                <th scope="col">DIMENSION / COMPONENT</th>
-                <th scope="col">KS-042 REFERENCE</th>
-                <th scope="col">MANUFACTURING STANDARD</th>
-                <th scope="col">VERIFICATION CRITERIA</th>
+                <th scope="col">SPECIFICATION</th>
+                <th scope="col">GRID // 01 METRIC</th>
+                <th scope="col">MATERIAL / PROTOCOL</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Case Diameter</td>
-                <td>39.50 mm</td>
-                <td>5-Axis CNC Lathe & Hand Lapping</td>
-                <td>± 0.005 mm caliper fit</td>
+                <td>Chassis Material</td>
+                <td>6063-T6 Aluminum</td>
+                <td>5-Axis CNC machined from solid billet block</td>
               </tr>
               <tr>
-                <td>Total Case Thickness</td>
-                <td>9.80 mm</td>
-                <td>Double-domed Sapphire Included</td>
-                <td>Cuff-clearance contour</td>
+                <td>Surface Finish</td>
+                <td>Bead-blasted satin anodize</td>
+                <td>Type II natural silver, matte obsidian, or vintage bone</td>
               </tr>
               <tr>
-                <td>Movement Diameter</td>
-                <td>30.40 mm (13½ Lines)</td>
-                <td>Untreated German Silver Plate</td>
-                <td>Glashütte Observatory Spec</td>
+                <td>Key Switches</td>
+                <td>6 × Low-profile mechanical</td>
+                <td>Custom Cherry MX switches with PBT dye-sublimated keycaps</td>
               </tr>
               <tr>
-                <td>Movement Height</td>
-                <td>4.20 mm</td>
-                <td>Integrated Chronometer Layout</td>
-                <td>Micron level inspection</td>
+                <td>Rotary Encoders</td>
+                <td>4 × Alps Alpine tactile</td>
+                <td>Knurled aluminum caps with 24 physical detents per cycle</td>
               </tr>
               <tr>
-                <td>Oscillation Rate</td>
-                <td>28,800 vibrations / hour (4 Hz)</td>
-                <td>Free-Sprung Variable Inertia</td>
-                <td>COSC Standard (-4/+6s/day)</td>
+                <td>Display</td>
+                <td>2.7-inch Memory-in-Pixel</td>
+                <td>400 × 240 monochrome high-contrast reflective panel</td>
               </tr>
               <tr>
-                <td>Finish Treatment</td>
-                <td>Black Polish & 45° Anglage</td>
-                <td>Tin Lap with Diamond Paste</td>
-                <td>Optical mirror reflection</td>
+                <td>Connectivity</td>
+                <td>USB-C &amp; Bluetooth 5.3 Low Energy</td>
+                <td>1000Hz USB polling rate / Class-compliant HID</td>
               </tr>
               <tr>
-                <td>Water Resistance</td>
-                <td>50 meters (5 ATM)</td>
-                <td>Dual O-ring Gasket System</td>
-                <td>Dry & wet pressure tested</td>
+                <td>Dimensions &amp; Mass</td>
+                <td>148 mm × 112 mm × 18 mm</td>
+                <td>320 grams (with integrated internal brass stabilizing weight)</td>
+              </tr>
+              <tr>
+                <td>Battery</td>
+                <td>1800 mAh Li-Po cell</td>
+                <td>120 days average daily use (USB-C rechargeable in 2 hours)</td>
               </tr>
             </tbody>
           </table>
@@ -283,151 +320,80 @@
       </div>
     </section>
 
-    <!-- SECTION 5: BESPOKE ALLOCATION CONFIGURATOR -->
-    <section id="commission" class="content-block contrast-block">
-      <div class="section-bounds">
-        <div class="configurator-wrapper">
-          <div class="config-intro">
-            <span class="block-tag">04 // BESPOKE COMMISSIONS</span>
-            <h2 class="block-headline">Configure Your Timepiece Allocation</h2>
-            <p class="block-lead">
-              Atelier output is strictly limited to 24 timepieces per calendar year. Configure your case, complication, and strap to calculate atelier lead time and file an allocation request.
-            </p>
+    <!-- SECTION 6: CLEAN BOTTOM PRE-ORDER CALLOUT -->
+    <section class="checkout-banner">
+      <div class="content-bounds">
+        <div class="banner-box">
+          <div class="banner-left">
+            <span class="banner-tag">BATCH 01 ALLOCATION</span>
+            <h2 class="banner-title">Reserve Your GRID // 01</h2>
+            <p class="banner-copy">First production batch limited to 1,000 units. Free global shipping. Dispatches July 2026.</p>
           </div>
-
-          <div class="configurator-layout">
-            <!-- Customizer Form -->
-            <form id="watch-config-form" class="order-form">
-              <div class="form-section">
-                <span class="form-legend">01 // SELECT CASE METAL</span>
-                <div class="custom-radio-grid">
-                  <label class="custom-radio">
-                    <input type="radio" name="cfg-metal" value="rose_gold" checked>
-                    <span class="radio-card">
-                      <span class="card-title">18K 4N Rose Gold</span>
-                      <span class="card-subtitle">Warm Hand-Polished Lugs</span>
-                    </span>
-                  </label>
-
-                  <label class="custom-radio">
-                    <input type="radio" name="cfg-metal" value="titanium">
-                    <span class="radio-card">
-                      <span class="card-title">Grade 5 Titanium</span>
-                      <span class="card-subtitle">Satin-Brushed Lightweight</span>
-                    </span>
-                  </label>
-
-                  <label class="custom-radio">
-                    <input type="radio" name="cfg-metal" value="obsidian">
-                    <span class="radio-card">
-                      <span class="card-title">Obsidian DLC</span>
-                      <span class="card-subtitle">Matte Black Diamond-Like Carbon</span>
-                    </span>
-                  </label>
-
-                  <label class="custom-radio">
-                    <input type="radio" name="cfg-metal" value="steel">
-                    <span class="radio-card">
-                      <span class="card-title">904L Steel</span>
-                      <span class="card-subtitle">Austenitic Mirror Chamfers</span>
-                    </span>
-                  </label>
-                </div>
-              </div>
-
-              <div class="form-section">
-                <span class="form-legend">02 // CALIBER COMPLICATION</span>
-                <div class="custom-radio-grid">
-                  <label class="custom-radio">
-                    <input type="radio" name="cfg-complication" value="three_hand" checked>
-                    <span class="radio-card">
-                      <span class="card-title">Three-Hand Sweeping</span>
-                      <span class="card-subtitle">Caliber KS-042 Base</span>
-                    </span>
-                  </label>
-
-                  <label class="custom-radio">
-                    <input type="radio" name="cfg-complication" value="dead_beat">
-                    <span class="radio-card">
-                      <span class="card-title">True Beat Dead-Seconds</span>
-                      <span class="card-subtitle">Mechanical 1Hz Star Wheel</span>
-                    </span>
-                  </label>
-
-                  <label class="custom-radio">
-                    <input type="radio" name="cfg-complication" value="chronograph">
-                    <span class="radio-card">
-                      <span class="card-title">Monopusher Chronograph</span>
-                      <span class="card-subtitle">Column-Wheel Lateral Clutch</span>
-                    </span>
-                  </label>
-                </div>
-              </div>
-
-              <div class="form-split-row">
-                <div class="form-field">
-                  <label for="cfg-strap" class="field-label">LEATHER STRAP SELECTION</label>
-                  <select id="cfg-strap" class="tactile-select-box">
-                    <option value="alligator">Hand-Stitched Matte Cognac Alligator</option>
-                    <option value="barenia">French Barenia Saddle Leather (Tan)</option>
-                    <option value="cordovan">Shell Cordovan (Horween Oxblood)</option>
-                    <option value="anthracite">Ballistic Sailcloth Rubberized (Anthracite)</option>
-                  </select>
-                </div>
-
-                <div class="form-field">
-                  <label for="client-name" class="field-label">COLLECTOR FULL NAME</label>
-                  <input type="text" id="client-name" class="tactile-text-input" placeholder="e.g. Maximilian von Bern" required>
-                </div>
-              </div>
-
-              <button type="submit" class="submit-action-btn">
-                <span>SUBMIT ALLOCATION REQUEST</span>
-                <span class="btn-arrow">→</span>
-              </button>
-            </form>
-
-            <!-- Dynamic Confirmation Output -->
-            <div id="order-confirmation" class="confirmation-box is-hidden"></div>
-
-            <!-- Dynamic Summary Panel (Bottom Anchored) -->
-            <div class="summary-panel">
-              <span class="summary-kicker">COMMISSION ESTIMATE</span>
-              <div class="summary-figures">
-                <div id="quote-price" class="figure-main">€47,000 EUR</div>
-                <div id="quote-lead" class="figure-sub">22 WEEKS ATELIER BUILD</div>
-              </div>
-              <p class="summary-body">
-                Every bespoke timepiece receives an individualized certificate of provenance signed by Master Watchmaker Johannes König and recorded in the Glashütte municipal archives.
-              </p>
-              <div class="summary-origin">
-                <span class="origin-stamp">J. KÖNIG // ATELIER DIRECTOR</span>
-                <span class="origin-sub">GLASHÜTTE OBSERVATORY CERTIFIED</span>
-              </div>
+          <div class="banner-right">
+            <div class="price-stack">
+              <span class="price-val">$179 USD</span>
+              <span class="price-sub">ZERO CHARGE UNTIL DISPATCH</span>
             </div>
+            <button class="banner-btn" type="button" onclick="document.getElementById('preorder-modal').classList.remove('is-hidden')">
+              <span>PRE-ORDER NOW</span>
+              <span class="btn-arrow">→</span>
+            </button>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- ATELIER FOOTER -->
-  <footer class="atelier-footer">
-    <div class="footer-bounds">
-      <div class="footer-col-left">
-        <span class="hallmark-glyph">✠</span>
-        <span class="footer-brand-title">KÖNIG & SÖHNE ATELIER D'HORLOGERIE</span>
-        <span class="footer-copyright">© 2026 // ALL RIGHTS RESERVED</span>
-      </div>
-
-      <div class="footer-col-right">
-        <span>HAUPTSTRASSE 18, 01768 GLASHÜTTE, SAXONY</span>
-        <span>PRIVATE ATELIER VISITS STRICTLY BY INVITATION</span>
+  <!-- MINIMALIST FOOTER -->
+  <footer class="grid-footer">
+    <div class="content-bounds">
+      <div class="footer-row">
+        <div class="footer-brand">
+          <span class="brand-mono">GRID</span>
+          <span class="brand-slash">//</span>
+          <span class="brand-model">01</span>
+          <span class="footer-copy">© 2026 GRID HARDWARE LABS INC.</span>
+        </div>
+        <div class="footer-links">
+          <span>DESIGNED IN STOCKHOLM</span>
+          <span>MANUFACTURED RESPONSIBLY</span>
+        </div>
       </div>
     </div>
   </footer>
 
-  <script src="js/watch-vector.js"></script>
+  <!-- PRE-ORDER DIALOG MODAL -->
+  <div id="preorder-modal" class="modal-layer is-hidden">
+    <div class="modal-card">
+      <div class="modal-top">
+        <span class="modal-kicker">BATCH 01 RESERVATION</span>
+        <button id="btn-close-modal" class="modal-close-btn" type="button">×</button>
+      </div>
+
+      <form id="preorder-form" class="modal-form">
+        <div class="modal-product-summary">
+          <div class="summary-img-tag">GRID // 01</div>
+          <div class="summary-details">
+            <div class="summary-name">GRID 01 Physical Console</div>
+            <div class="summary-price">$179 USD (Free Global Shipping)</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="client-email" class="form-label">YOUR EMAIL ADDRESS</label>
+          <input type="email" id="client-email" class="form-input" placeholder="name@domain.com" required>
+        </div>
+
+        <button type="submit" class="modal-submit-btn">
+          <span>CONFIRM BATCH 01 ALLOCATION</span>
+        </button>
+      </form>
+
+      <div id="preorder-confirmed" class="confirmation-wrap is-hidden"></div>
+    </div>
+  </div>
+
+  <script src="js/device-sim.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

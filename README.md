@@ -1,38 +1,27 @@
-# KÖNIG & SÖHNE // Atelier d'Horlogerie — Caliber KS-042
+# GRID // 01 — Tactile Desktop Macro Console
 
-An independent Glashütte mechanical horological atelier producing 24 bespoke chronometer allocations per calendar year.
+An ultra-minimalist desktop mechanical macro console machined from 6063 aerospace billet aluminum. Featuring custom mechanical switches, rotary knurled encoders, and a monochrome memory-in-pixel E-ink display.
 
-Designed strictly under the **Anti-Slop Design Guidelines**:
-- **Signature Artifact**: Interactive SVG vector horological schematic with razor-sharp geometric precision, layer decomposition (`ALL LAYERS`, `MOVEMENT`, `DIAL`, `ESCAPEMENT`), harmonic balance wheel oscillation (4.0 Hz / 28,800 vph), and coiling Breguet overcoil hairspring.
-- **Component Inspector**: Hover or click on the variable-inertia balance, screwed gold chatons, twin-series mainspring barrels, or lancette hands to illuminate the vector path and display verified atelier calibration data.
-- **Winding Crown Physics**: Click **WIND CROWN (+14H)** to advance the vector ratchet wheel and charge the 72-hour power reserve indicator.
-- **Atmosphere & Materials**: Warm obsidian (`#0a0b0e`), untreated German silver (`#181b24`), 18K 4N rose gold, and heat-blued steel accents.
-- **Strict Execution Laws**: Visible by default, parallel baseline alignment, accessible WCAG AA contrast, and 100% functional interactive controls.
+## Aesthetic Direction
+- **Minimalist Hardware / Industrial Design** (inspired by Teenage Engineering & Dieter Rams).
+- **Stark High-Contrast Gallery Palette**: Studio white (`#f7f7f5`), deep charcoal typography (`#111215`), and signature safety orange (`#ff4800`).
+- **Zero generic AI slop**: No purple/blue gradients, no floaty blur balls, no walls of fake marketing copy.
 
----
+## Interactive Hardware Simulator
+The hero section features a fully functional, tactile, virtual replica of the physical unit:
+- **4 Rotary Encoders**: Drag vertically or mouse-wheel to rotate with dynamic angle feedback.
+- **6 Mechanical Switches**: Tactile keypress depth physics with keyboard shortcuts (`1`–`6`, `Space`).
+- **Interactive E-Ink Screen**:
+  1. **Focus Mode**: Live 25-minute Pomodoro timer with Start/Reset controls.
+  2. **Telemetry Mode**: Real-time animated CPU and RAM bar gauges.
+  3. **Deck Mode**: Active app macro profiles.
+  4. **Pixel Runner**: Playable mini obstacle jumper directly inside the display (`Space` to jump).
+- **Physical Rocker Power Switch**: Working power cycle with LED indicator light.
+- **Material Finishes**: Toggle between *Raw Billet Aluminum*, *Matte Obsidian*, and *Vintage Bone*.
 
-## Interactive Features
-
-1. **Interactive Vector SVG Schematic (`js/watch-vector.js`)**:
-   - Razor-sharp vector paths for the 39.5mm case, tapered lugs, fluted crown, step bezel, and chapter ring.
-   - Real-time Glucydur balance wheel oscillating at 4.0 Hz with poising screws and coiling blue hairspring.
-   - Sweeping central second hand, minute hand, and hour hand.
-   - Layer decomposition buttons: toggle between `ALL LAYERS`, `MOVEMENT`, `DIAL`, and `ESCAPEMENT`.
-   - Vector gradient metallurgy switcher: **18K Rose Gold**, **Grade 5 Titanium**, **Obsidian DLC**, and **904L Steel**.
-2. **Movement Architecture & Technical Tolerances**:
-   - Deep technical breakdowns of the Free-Sprung Glucydur balance, Breguet overcoil hairspring, screwed gold chatons, and twin-series mainspring barrels.
-   - Complete Glashütte observatory laboratory tolerances table sharing parallel baselines.
-3. **Bespoke Allocation Configurator (`js/app.js`)**:
-   - Interactive commission builder with case metal, complication (Three-Hand, True Beat Dead-Seconds, Monopusher Chronograph), and strap leather.
-   - Live lead time and pricing calculations (€38,500 – €58,000 EUR).
-   - Submitting reserves an official Glashütte archive serial number (e.g. `KS-042-849`).
-
----
-
-## Quickstart
-
-Run a local server:
+## Local Setup
+Serve the root directory using any local web server:
 ```bash
 python3 -m http.server 4173
 ```
-Open [http://localhost:4173](http://localhost:4173) in your browser.
+Then visit `http://localhost:4173/`.

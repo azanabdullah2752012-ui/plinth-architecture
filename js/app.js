@@ -1,106 +1,67 @@
 /**
- * KÖNIG & SÖHNE // Application Coordinator & Vector Schematic Interactivity
+ * GRID // 01 — Application Coordinator & Keyboard Binding
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  const watchSchematic = new VectorWatchSchematic('watch-vector-viewport');
+  const device = new GridDeviceSimulator();
 
-  // --- Material Metallurgy Switcher ---
-  const materialPills = document.querySelectorAll('.metal-pill');
-  const materialLabel = document.getElementById('current-metal-display');
+  // Keyboard binding to on-screen physical hardware keys!
+  window.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
 
-  const materialNames = {
-    rose_gold: '18K 4N ROSE GOLD // MIRROR-POLISHED BEZEL',
-    titanium: 'GRADE 5 TITANIUM // SATIN-BRUSHED LUGS',
-    obsidian: 'OBSIDIAN DLC COATING // MATTE OBSIDIAN',
-    steel: '904L AUSTENITIC STEEL // BEVELED CHAMFERS'
-  };
+    const keyElMap = {
+      'Digit1': 'k1',
+      'Digit2': 'k2',
+      'Digit3': 'k3',
+      'Digit4': 'k4',
+      'Digit5': 'k5',
+      'Digit6': 'k6',
+      'Space': 'k5'
+    };
 
-  materialPills.forEach((pill) => {
-    pill.addEventListener('click', () => {
-      materialPills.forEach(p => p.classList.remove('is-active'));
-      pill.classList.add('is-active');
-      const mat = pill.dataset.material;
-      watchSchematic.setMaterial(mat);
-      if (materialLabel) materialLabel.textContent = materialNames[mat];
-    });
-  });
-
-  // --- Layer Decomposition Toggles ---
-  const layerBtns = document.querySelectorAll('.layer-btn');
-  layerBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      layerBtns.forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-      watchSchematic.setLayer(btn.dataset.layer);
-    });
-  });
-
-  // --- Crown Winding Action ---
-  const crownBtn = document.getElementById('btn-wind-crown');
-  crownBtn?.addEventListener('click', () => {
-    watchSchematic.windCrown(14);
-    crownBtn.classList.add('is-winding');
-    setTimeout(() => crownBtn.classList.remove('is-winding'), 250);
-  });
-
-  // --- Commission Bespoke Allocation Form ---
-  const commissionForm = document.getElementById('watch-config-form');
-  const quotePrice = document.getElementById('quote-price');
-  const quoteLeadTime = document.getElementById('quote-lead');
-
-  function calculateQuote() {
-    const metal = document.querySelector('input[name="cfg-metal"]:checked')?.value || 'rose_gold';
-    const complication = document.querySelector('input[name="cfg-complication"]:checked')?.value || 'three_hand';
-
-    let basePrice = 38500;
-    let weeks = 18;
-
-    if (metal === 'rose_gold') {
-      basePrice += 8500;
-      weeks += 4;
-    } else if (metal === 'obsidian') {
-      basePrice += 3200;
-      weeks += 2;
-    } else if (metal === 'titanium') {
-      basePrice += 2400;
+    const targetKeyId = keyElMap[e.code];
+    if (targetKeyId) {
+      e.preventDefault();
+      const keyEl = document.querySelector(`.hw-key[data-key="${targetKeyId}"]`);
+      if (keyEl) {
+        keyEl.classList.add('is-pressed');
+        device.handleKeyPress(targetKeyId);
+      }
     }
-
-    if (complication === 'dead_beat') {
-      basePrice += 6500;
-      weeks += 6;
-    } else if (complication === 'chronograph') {
-      basePrice += 11000;
-      weeks += 8;
-    }
-
-    if (quotePrice) quotePrice.textContent = `€${basePrice.toLocaleString()} EUR`;
-    if (quoteLeadTime) quoteLeadTime.textContent = `${weeks} WEEKS ATELIER BUILD`;
-  }
-
-  document.querySelectorAll('input[name="cfg-metal"], input[name="cfg-complication"], #cfg-strap').forEach((el) => {
-    el.addEventListener('change', calculateQuote);
   });
 
-  commissionForm?.addEventListener('submit', (e) => {
+  window.addEventListener('keyup', (e) => {
+    document.querySelectorAll('.hw-key').forEach(k => k.classList.remove('is-pressed'));
+  });
+
+  // Pre-order Modal & Drawer
+  const preOrderBtn = document.getElementById('btn-preorder');
+  const modal = document.getElementById('preorder-modal');
+  const closeModalBtn = document.getElementById('btn-close-modal');
+  const preOrderForm = document.getElementById('preorder-form');
+  const confirmBox = document.getElementById('preorder-confirmed');
+
+  preOrderBtn?.addEventListener('click', () => {
+    modal?.classList.remove('is-hidden');
+  });
+
+  closeModalBtn?.addEventListener('click', () => {
+    modal?.classList.add('is-hidden');
+  });
+
+  preOrderForm?.addEventListener('submit', (e) => {
     e.preventDefault();
-    const name = document.getElementById('client-name')?.value || 'Collector';
-    const allocId = `KS-042-${Math.floor(100 + Math.random() * 900)}`;
+    const email = document.getElementById('client-email')?.value || 'backer@domain.com';
+    const batchId = `GR-01-${Math.floor(1000 + Math.random() * 9000)}`;
 
-    const confirmBox = document.getElementById('order-confirmation');
     if (confirmBox) {
       confirmBox.innerHTML = `
-        <div class="confirm-card">
-          <div class="confirm-badge">REGISTRY ENTRY CONFIRMED // BATCH 2026</div>
-          <h3 class="confirm-title">ALLOCATION SECURED FOR ${name.toUpperCase()}</h3>
-          <p class="confirm-id">CALIBER ARCHIVE SERIAL: <strong>${allocId}</strong></p>
-          <p class="confirm-desc">Master Watchmaker Johannes König will prepare your movement blueprint folio. Our concierge will contact you within one business day for custom case engraving and private atelier reception in Glashütte.</p>
-        </div>
+        <div class="confirm-pill">BATCH 01 ALLOCATION CONFIRMED</div>
+        <h3 class="confirm-heading">UNIT RESERVED: ${batchId}</h3>
+        <p class="confirm-sub">Confirmation sent to <strong>${email}</strong>. Target dispatch: July 2026. Zero upfront charge until dispatch inspection.</p>
       `;
       confirmBox.classList.remove('is-hidden');
-      commissionForm.style.display = 'none';
+      preOrderForm.style.display = 'none';
     }
   });
-
-  calculateQuote();
 });
