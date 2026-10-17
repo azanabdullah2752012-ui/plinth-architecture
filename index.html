@@ -6,8 +6,6 @@
   <title>KÖNIG & SÖHNE // Atelier d'Horlogerie — Caliber KS-042</title>
   <meta name="description" content="Independent Glashütte horological atelier crafting mechanical chronometers with free-sprung variable-inertia balance wheels, Swiss lever escapements, and bespoke commissions.">
   <link rel="stylesheet" href="css/style.css">
-  <!-- Three.js for real-time 3D PBR WebGL rendering -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
   <!-- HEADER NAVIGATION -->
@@ -30,7 +28,7 @@
   </header>
 
   <main>
-    <!-- HERO SECTION: OWNS 1440x900 INITIAL VIEWPORT WITH INTERACTIVE 3D WATCH ARTIFACT -->
+    <!-- HERO SECTION: OWNS 1440x900 INITIAL VIEWPORT WITH INTERACTIVE VECTOR SCHEMATIC -->
     <section id="hero" class="hero-stage">
       <div class="hero-bounds">
         <!-- Left Column: Editorial & Physical Metrics -->
@@ -49,7 +47,7 @@
           <!-- Metallurgy Switcher & Winding Tools -->
           <div class="hero-controls-block">
             <div class="finish-cluster">
-              <span class="cluster-label">CASE METALLURGY & FINISH</span>
+              <span class="cluster-label">CASE METALLURGY & VECTOR FINISH</span>
               <div class="metal-options">
                 <button type="button" class="metal-pill is-active" data-material="rose_gold">18K ROSE GOLD</button>
                 <button type="button" class="metal-pill" data-material="titanium">TITANIUM G5</button>
@@ -88,23 +86,28 @@
           </div>
         </div>
 
-        <!-- Right Column: Interactive 3D WebGL Watch Canvas -->
+        <!-- Right Column: Interactive Vector SVG Horological Schematic -->
         <div class="hero-right">
-          <div class="webgl-canvas-frame">
-            <div id="watch-3d-viewport" class="watch-canvas-box"></div>
+          <div class="vector-viewport-frame">
+            <div id="watch-vector-viewport" class="vector-canvas-box"></div>
 
-            <!-- 3D Studio Floating Bar -->
-            <div class="studio-floating-dock">
-              <button id="btn-toggle-explode" class="studio-btn" type="button" title="Disassemble movement layers along Z-axis">
-                <span class="btn-icon">❖</span>
-                <span class="btn-label">EXPLODE HOROLOGY</span>
-              </button>
-              <button id="btn-wind-crown" class="studio-btn" type="button" title="Wind mainspring barrel">
+            <!-- Layer Explorer Floating Dock -->
+            <div class="schematic-floating-dock">
+              <div class="layer-buttons-group">
+                <button type="button" class="layer-btn is-active" data-layer="all">ALL LAYERS</button>
+                <button type="button" class="layer-btn" data-layer="movement">MOVEMENT</button>
+                <button type="button" class="layer-btn" data-layer="dial">DIAL</button>
+                <button type="button" class="layer-btn" data-layer="escapement">ESCAPEMENT</button>
+              </div>
+              <button id="btn-wind-crown" class="wind-btn" type="button" title="Wind mainspring barrel">
                 <span class="btn-icon">↻</span>
                 <span>WIND CROWN (+14H)</span>
               </button>
-              <div class="studio-drag-hint">DRAG TO ORBIT 360° // REAL-TIME BALANCE WHEEL</div>
             </div>
+          </div>
+
+          <div id="inspect-badge-text" class="inspect-hud-badge">
+            HOVER OVER BALANCE, CHATONS, OR BARRELS TO INSPECT ATELIER CALIBRATION
           </div>
           <div id="current-metal-display" class="finish-caption">18K 4N ROSE GOLD // MIRROR-POLISHED BEZEL</div>
         </div>
@@ -424,7 +427,7 @@
     </div>
   </footer>
 
-  <script src="js/watch-3d.js"></script>
+  <script src="js/watch-vector.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 /**
  * KÖNIG & SÖHNE // Atelier d'Horlogerie
- * High-Craft Luxury Editorial Architecture (Anti-Slop Certified)
+ * High-Craft Luxury Editorial Architecture & Vector Schematic Styling
  */
 
 /* ==========================================================================
@@ -349,7 +349,9 @@ body {
   color: var(--text-muted);
 }
 
-/* Right Column: 3D WebGL Watch Canvas Frame */
+/* ==========================================================================
+   RIGHT COLUMN: CRISP INTERACTIVE VECTOR SCHEMATIC
+   ========================================================================== */
 .hero-right {
   display: flex;
   flex-direction: column;
@@ -357,13 +359,13 @@ body {
   gap: 12px;
 }
 
-.webgl-canvas-frame {
+.vector-viewport-frame {
   position: relative;
   width: 540px;
   height: 540px;
   max-width: 100%;
   aspect-ratio: 1;
-  background: radial-gradient(circle at 50% 50%, #171922 0%, #0a0b0e 85%);
+  background: radial-gradient(circle at 50% 50%, #151822 0%, #0a0b0e 85%);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
@@ -373,71 +375,112 @@ body {
   overflow: hidden;
 }
 
-.watch-canvas-box {
+.vector-canvas-box {
   width: 100%;
   height: 100%;
-  cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.watch-canvas-box:active {
-  cursor: grabbing;
+.schematic-layer {
+  transition: opacity 0.25s ease;
 }
 
-.studio-floating-dock {
+/* Hover effects on inspectable components */
+.inspectable {
+  transition: filter 0.15s ease;
+}
+
+.inspectable:hover {
+  filter: drop-shadow(0 0 8px rgba(207, 167, 110, 0.6));
+}
+
+.schematic-floating-dock {
   position: absolute;
-  bottom: 20px;
+  bottom: 16px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: rgba(14, 16, 22, 0.88);
-  backdrop-filter: blur(8px);
+  background-color: rgba(14, 16, 22, 0.92);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xs);
   padding: 6px 12px;
   z-index: 10;
 }
 
-.studio-btn {
+.layer-buttons-group {
+  display: flex;
+  gap: 4px;
+}
+
+.layer-btn {
   background-color: var(--bg-surface-alt);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xs);
-  color: var(--text-white);
+  color: var(--text-dim);
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  padding: 6px 12px;
+  letter-spacing: 0.05em;
+  padding: 5px 10px;
   cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.15s ease;
+  transition: all 0.12s ease;
 }
 
-.studio-btn:hover {
+.layer-btn:hover {
   background-color: var(--bg-surface-hover);
-  border-color: var(--border-prominent);
+  color: #ffffff;
 }
 
-.studio-btn.is-active {
+.layer-btn.is-active {
   background-color: var(--accent-gold-dim);
   border-color: var(--accent-gold);
   color: var(--accent-gold);
 }
 
-.studio-btn.is-winding {
+.wind-btn {
+  background-color: var(--bg-surface-alt);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  color: var(--text-white);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 5px 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.12s ease;
+}
+
+.wind-btn:hover {
+  background-color: var(--bg-surface-hover);
+  border-color: var(--border-prominent);
+}
+
+.wind-btn.is-winding {
   background-color: rgba(74, 144, 226, 0.2);
   border-color: #4a90e2;
 }
 
-.studio-drag-hint {
+.inspect-hud-badge {
   font-family: var(--font-mono);
-  font-size: 8px;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-  white-space: nowrap;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--accent-gold);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 6px 14px;
+  text-align: center;
+  max-width: 540px;
+  width: 100%;
 }
 
 .finish-caption {
@@ -957,7 +1000,7 @@ body {
   .architecture-cards-grid { grid-template-columns: 1fr; }
   .process-columns { grid-template-columns: 1fr; }
   .form-split-row { flex-direction: column; }
-  .webgl-canvas-frame { width: 340px; height: 340px; }
+  .vector-viewport-frame { width: 340px; height: 340px; }
   .footer-bounds { flex-direction: column; align-items: flex-start; }
 }
 

@@ -1,9 +1,9 @@
 /**
- * KÖNIG & SÖHNE // Application Coordinator & Studio Interactivity
+ * KÖNIG & SÖHNE // Application Coordinator & Vector Schematic Interactivity
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  const watchStudio = new WatchStudio3D('watch-3d-viewport');
+  const watchSchematic = new VectorWatchSchematic('watch-vector-viewport');
 
   // --- Material Metallurgy Switcher ---
   const materialPills = document.querySelectorAll('.metal-pill');
@@ -21,23 +21,25 @@ document.addEventListener('DOMContentLoaded', () => {
       materialPills.forEach(p => p.classList.remove('is-active'));
       pill.classList.add('is-active');
       const mat = pill.dataset.material;
-      watchStudio.setMaterial(mat);
+      watchSchematic.setMaterial(mat);
       if (materialLabel) materialLabel.textContent = materialNames[mat];
     });
   });
 
-  // --- Explode View Toggle ---
-  const explodeBtn = document.getElementById('btn-toggle-explode');
-  explodeBtn?.addEventListener('click', () => {
-    const isExploded = watchStudio.toggleExploded();
-    explodeBtn.classList.toggle('is-active', isExploded);
-    explodeBtn.querySelector('.btn-label').textContent = isExploded ? 'ASSEMBLE CASE' : 'EXPLODE HOROLOGY';
+  // --- Layer Decomposition Toggles ---
+  const layerBtns = document.querySelectorAll('.layer-btn');
+  layerBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      layerBtns.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      watchSchematic.setLayer(btn.dataset.layer);
+    });
   });
 
   // --- Crown Winding Action ---
   const crownBtn = document.getElementById('btn-wind-crown');
   crownBtn?.addEventListener('click', () => {
-    watchStudio.windCrown(14);
+    watchSchematic.windCrown(14);
     crownBtn.classList.add('is-winding');
     setTimeout(() => crownBtn.classList.remove('is-winding'), 250);
   });
