@@ -1,52 +1,51 @@
-# KINESIS // SYS-84 Analog Synthesizer & Tape Echo Station
+# KNOT // Reactive Visual Dataflow & Node Canvas
 
-A tactile, physical-modeled analog synthesizer and magnetic tape delay workstation running in the browser via the Web Audio API and HTML5 Canvas.
+A high-performance, infinite-canvas visual dataflow and reactive computing workbench running in the browser. Zero audio, zero video — pure logic, math, circuits, and visual programming.
 
-Designed under the **Anti-Slop Design Guidelines**: bespoke industrial hardware console aesthetic, calibrated vector CRT phosphor oscilloscope, zero generic presets, and 100% functional mechanical controls.
+Built strictly under the **Anti-Slop Design Guidelines**: deep carbon industrial console styling, cubic bezier patch cables with animated data pulses, live topological graph evaluation, and zero generic boilerplate.
 
 ---
 
-## Features
+## Key Features
 
-### 1. Sound Architecture (Physical Web Audio API)
-- **Dual Analog-Modelled VCOs**: Sawtooth, Square, Triangle, and Sine waveforms with octave shift (-2 to +2), independent detune (-25 to +25 cents), and level mixing.
-- **Sub-Oscillator & Analog Noise Generator**: Sine/Square sub-oscillator and authentic pink/tape noise generator for dusty vintage warmth.
-- **24dB Resonant Moog-Style Ladder Lowpass Filter**: Frequency cutoff (40Hz – 12kHz), resonance/Q, and bipolar envelope modulation amount.
-- **Dual ADSR Envelopes**: Independent Amp (VCA) and Filter (VCF) envelopes with exponential decay/release curves.
-- **Global LFO**: Triangle, Sine, and Square modulators mapped to pitch vibrato and filter sweep.
-- **Magnetic Tape Echo & Saturation**: Bucket-brigade tape loop with variable delay time, feedback gain, high-frequency tape absorption filter, soft-clipping saturation transfer curve, and wow/flutter pitch drift.
-- **Stereo Space Convolver**: Synthetic impulse room & plate reverberation.
+### 1. Infinite Reactive Canvas
+- **Fluid Navigation**: Pan via `Space + Drag`, Middle Mouse button, or dragging empty canvas; Zoom via mouse scroll wheel or trackpad pinch.
+- **Dynamic Bezier Cables**: Smooth vector cubic bezier patch cables with glowing directional cores.
+- **Animated Data Pulses**: Real-time energy particles travel along active cables whenever data recalculates downstream.
+- **Minimap Radar**: Live picture-in-picture viewport overview showing all node clusters and camera position.
 
-### 2. Signature Phosphor Vector CRT Display
-- **Vector / Lissajous Mode**: X/Y trajectory correlation comparing dry synth signal with tape-delayed feedback.
-- **Dual-Beam Oscilloscope Trace**: Zero-crossing stabilized dual phosphor beam showing live and delayed waveforms.
-- **Spectral Waterfall / RTA**: Stepped frequency bar analyzer with real-time peak-hold physics.
-- **CRT Glass Physics**: Phosphor decay persistence trail, spherical vignette, horizontal scanlines, and optical reflection glare.
+### 2. Comprehensive Node Operator Library
+- **Sources & Inputs**:
+  - `Number Slider`: Precision integer/float sliders with direct numeric inputs.
+  - `Toggle Switch`: Tactile binary HIGH/LOW state toggle.
+  - `Text String`: Multi-line text string supplier.
+  - `Clock Pulse`: Interval tick & step counter generator with play/pause.
+  - `JSON Payload`: Editable JSON source with real-time syntax verification.
+- **Math & Operators**:
+  - `Math Operator`: Add, Subtract, Multiply, Divide, Modulo, Exponentiation.
+  - `Comparator`: Equality, Inequality, Greater/Less-than comparisons.
+  - `Clamp Range`: Upper and lower boundary constraint.
+- **Logic & Circuits**:
+  - `Logic Gate`: AND, OR, XOR, NAND, NOR, NOT.
+  - `Ternary Switch`: Conditional `If Condition Then Else` routing.
+- **Text & Transformation**:
+  - `Template Formatter`: Dynamic string interpolation (`{a}`, `{b}`, `{c}`).
+  - `JSON Path Extractor`: Deep object property retrieval (e.g. `user.tier` or `metrics.latency`).
+- **Displays & Sinks**:
+  - `Value Gauge`: Live graduated bar meter and numeric readout.
+  - `Live Sparkline`: Real-time scrolling strip-chart plotting dynamic signals.
+  - `Output Telemetry Card`: Industrial telemetry card with verified status badge.
+  - `Status LED`: Illuminated phosphor diode with state glow.
 
-### 3. Tactile 16-Step Analog Sequencer
-- Lookahead clock scheduling with high-precision `AudioContext.currentTime` timing.
-- Per-step Active/Mute toggle and Accent switches.
-- Per-step pitch offset adjustable via mouse wheel.
-- Swing / Groove micro-timing engine.
-- Musical Scale Quantizer (Minor Pentatonic, Dorian, Phrygian, Japanese Hirajoshi, Chromatic).
-- Algorithmic generative pattern randomizer.
-- Synchronized spinning tape reels reflecting tape transport physics.
+### 3. Factory Blueprints
+1. **01 // Dynamic Pricing & VIP Invoice**: Interactive e-commerce pipeline with quantity, unit price, VIP tier discount logic, sales tax calculation, and real-time invoice display.
+2. **02 // Digital Binary Half-Adder Circuit**: Hardware logic simulation calculating Sum (XOR) and Carry (AND) with illuminated LED status bulbs.
+3. **03 // Live Clock Pulse & Sparkline Chart**: High-frequency clock signal with modulo math and dynamic strip-chart plotting.
 
-### 4. Playability & Hardware Controls
-- **Playable 2-Octave Keyboard**: Click or touch keys directly.
-- **Computer QWERTY Keyboard**:
-  - White keys: `[A]`, `[S]`, `[D]`, `[F]`, `[G]`, `[H]`, `[J]`, `[K]`, `[L]`, `[;]`
-  - Black keys: `[W]`, `[E]`, `[T]`, `[Y]`, `[U]`, `[O]`, `[P]`
-  - Octave Shift: `[Z]` (Down), `[X]` (Up)
-  - Spacebar: `[SPACE]` Toggle sequencer play/stop
-- **Web MIDI Controller**: Plug in any USB MIDI keyboard or hardware controller — velocity sensitivity supported automatically.
-- **Built-in Session Audio Recorder**: Record your performances directly to downloadable audio files.
-- **Factory Presets**:
-  - `01 // Vangelis CS-80 Brass`
-  - `02 // Kyoto Ambient Tape Cloud`
-  - `03 // Tokyo 303 Resonant Acid`
-  - `04 // Boards of Canada Tape Bleed`
-  - `05 // Deep Space Pulsar Radar`
+### 4. Persistence & Export
+- **Export to JSON**: Download the full node graph and wire connections as a portable `.json` file.
+- **Import from JSON**: Load any saved pipeline with one click.
+- **Quick Node Catalog**: Press `Shift+A`, click `+ ADD NODE`, or double-click anywhere on the canvas to open the instant fuzzy node search.
 
 ---
 
@@ -57,4 +56,4 @@ Run a local server:
 python3 -m http.server 4173
 ```
 Open [http://localhost:4173](http://localhost:4173) in your browser.
-Click anywhere to engage the audio bus, turn the rotary dials (drag up/down or use your mouse wheel), and play!
+Drag nodes, wire ports together, adjust sliders, and watch values compute live!

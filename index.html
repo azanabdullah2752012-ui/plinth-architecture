@@ -3,420 +3,107 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KINESIS // Oblique Analog Synthesizer & Tape Echo Station</title>
-  <meta name="description" content="Tactile physical-modeled analog synthesizer, tape echo feedback workstation, phosphor CRT vector oscilloscope, and 16-step sequencer.">
+  <title>KNOT // Reactive Visual Dataflow & Node Canvas</title>
+  <meta name="description" content="Infinite visual node canvas for reactive dataflow pipelines, math, logic circuits, and dynamic telemetry.">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- Unlock audio prompt banner if suspended -->
-  <div id="audio-unlock-banner" class="audio-banner">
-    <div class="banner-inner">
-      <span class="banner-status-dot"></span>
-      <span class="banner-text">HARDWARE READY // CLICK ANYWHERE OR PRESS ANY KEY TO ENGAGE AUDIO BUS</span>
-    </div>
-  </div>
-
-  <main class="console-rack">
-    <!-- TOP HEADER / SYSTEM STRIP -->
-    <header class="system-strip">
-      <div class="brand-group">
-        <div class="brand-mark">
-          <span class="brand-icon">⏣</span>
-          <span class="brand-name">KINESIS</span>
+  <div class="knot-workspace">
+    <!-- TOP WORKSPACE TOOLBAR -->
+    <header class="knot-toolbar">
+      <div class="toolbar-left">
+        <div class="brand-badge">
+          <span class="brand-mark">⎇</span>
+          <span class="brand-title">KNOT</span>
+          <span class="version-tag">v2.4 // REACTIVE DAG</span>
         </div>
-        <div class="model-badge">SYS-84 // OBLIQUE TAPE LAB</div>
+
+        <div class="toolbar-divider"></div>
+
+        <button id="btn-add-node" class="toolbar-btn primary-btn" type="button" title="Add Node (Shift+A or Double-Click Canvas)">
+          <span class="btn-icon">+</span>
+          <span>ADD NODE</span>
+        </button>
+
+        <button id="btn-center" class="toolbar-btn" type="button" title="Center Viewport">
+          <span>CENTER VIEW</span>
+        </button>
+
+        <button id="btn-clear" class="toolbar-btn danger-btn" type="button" title="Clear Canvas">
+          <span>CLEAR</span>
+        </button>
       </div>
 
-      <!-- Center: Preset Selector & Description -->
-      <div class="preset-strip">
-        <label for="preset-select" class="strip-label">PATCH REGISTER</label>
-        <select id="preset-select" class="tactile-select">
-          <option value="blade_runner">01 // Vangelis CS-80 Brass</option>
-          <option value="kyoto_tape">02 // Kyoto Ambient Tape Cloud</option>
-          <option value="acid_303">03 // Tokyo 303 Resonant Acid</option>
-          <option value="boc_melancholy">04 // Boards of Canada Tape Bleed</option>
-          <option value="pulsar_telemetry">05 // Deep Space Pulsar Radar</option>
+      <!-- Center: Blueprints Selector -->
+      <div class="toolbar-center">
+        <label for="blueprint-select" class="toolbar-label">PIPELINE PRESET</label>
+        <select id="blueprint-select" class="toolbar-select">
+          <option value="pricing_pipeline">01 // Dynamic Pricing & VIP Invoice</option>
+          <option value="logic_adder">02 // Digital Binary Half-Adder Circuit</option>
+          <option value="sparkline_oscillator">03 // Live Clock Pulse & Sparkline Chart</option>
         </select>
-        <div id="preset-desc" class="preset-desc">Slow-swelling detuned dual saw with wide tape flutter and cavernous reverb.</div>
+        <span id="blueprint-desc" class="blueprint-info">Real-time e-commerce subtotal, VIP condition logic, tax computation, and live invoice card.</span>
       </div>
 
-      <!-- Right: Master Actions & Tape Recorder -->
-      <div class="master-actions">
-        <div class="record-cluster">
-          <span id="record-led" class="rec-led"></span>
-          <span id="record-time" class="telemetry-digits">00:00</span>
-          <button id="btn-record" class="tactile-btn rec-btn" type="button" aria-label="Toggle recording">
-            <span class="btn-label">REC AUDIO</span>
-          </button>
-        </div>
-
-        <button id="btn-panic" class="tactile-btn panic-btn" type="button" title="Kill all active voices">
-          <span class="btn-label">PANIC</span>
+      <!-- Right: Import / Export File IO -->
+      <div class="toolbar-right">
+        <input type="file" id="import-file-input" accept=".json" style="display: none;">
+        <button id="btn-import" class="toolbar-btn" type="button" title="Import JSON Pipeline">
+          <span>IMPORT JSON</span>
+        </button>
+        <button id="btn-export" class="toolbar-btn" type="button" title="Export Pipeline to File">
+          <span>EXPORT JSON</span>
         </button>
       </div>
     </header>
 
-    <!-- MAIN CONSOLE GRID -->
-    <div class="console-body">
-      <!-- LEFT MODULE: SOUND GENERATION (OSC 1, OSC 2, NOISE) -->
-      <section class="console-module module-oscillators">
-        <div class="module-header">
-          <h2 class="module-title">01 // SIGNAL GENERATION</h2>
-          <span class="module-spec">DUAL VCO + SUB</span>
+    <!-- MAIN INFINITE CANVAS STAGE -->
+    <main class="canvas-viewport">
+      <div id="canvas-container" class="infinite-canvas">
+        <!-- Canvas wire layer & DOM node layer injected here -->
+      </div>
+
+      <!-- MINIMAP OVERLAY -->
+      <div class="minimap-panel">
+        <div class="minimap-header">RADAR OVERVIEW</div>
+        <canvas id="minimap-canvas" width="160" height="96"></canvas>
+      </div>
+
+      <!-- CANVAS BOTTOM HINT STRIP -->
+      <footer class="canvas-hint-strip">
+        <div class="hint-item"><span>PAN:</span> <strong>SPACE + DRAG</strong> OR <strong>MIDDLE MOUSE</strong></div>
+        <div class="hint-item"><span>ZOOM:</span> <strong>SCROLL WHEEL</strong></div>
+        <div class="hint-item"><span>ADD NODE:</span> <strong>DOUBLE CLICK</strong> OR <strong>SHIFT+A</strong></div>
+        <div class="hint-item"><span>WIRE:</span> <strong>DRAG OUTPUT BULLET → INPUT BULLET</strong></div>
+        <div class="hint-item"><span>DELETE:</span> <strong>CLICK PORT TO UNWIRE</strong> / <strong>BACKSPACE</strong></div>
+      </footer>
+    </main>
+
+    <!-- ADD NODE CATALOG MODAL -->
+    <div id="add-node-modal" class="modal-backdrop is-hidden">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <div class="modal-title-cluster">
+            <h3 class="modal-title">NODE CATALOG</h3>
+            <span class="modal-sub">SELECT OPERATOR TO SPAWN</span>
+          </div>
+          <button id="btn-close-modal" class="modal-close" type="button">×</button>
         </div>
-
-        <div class="module-grid">
-          <!-- OSC 1 Block -->
-          <div class="sub-module">
-            <div class="sub-header">OSCILLATOR 1</div>
-            <div class="wave-toggle-group">
-              <button type="button" class="toggle-btn is-selected" data-group="osc1" data-param="osc1Wave" data-val="sawtooth">SAW</button>
-              <button type="button" class="toggle-btn" data-group="osc1" data-param="osc1Wave" data-val="square">SQR</button>
-              <button type="button" class="toggle-btn" data-group="osc1" data-param="osc1Wave" data-val="triangle">TRI</button>
-              <button type="button" class="toggle-btn" data-group="osc1" data-param="osc1Wave" data-val="sine">SIN</button>
-            </div>
-
-            <div class="knob-row">
-              <div class="control-unit">
-                <div class="knob-dial" data-param="osc1Octave" data-min="-2" data-max="2" data-step="1" data-val="0" data-default="0" data-unit="oct">
-                  <div class="knob-cap"><div class="knob-pointer"></div></div>
-                </div>
-                <label class="control-label">OCTAVE</label>
-                <div class="knob-readout">0oct</div>
-              </div>
-
-              <div class="control-unit">
-                <div class="knob-dial" data-param="osc1Detune" data-min="-25" data-max="25" data-step="1" data-val="-4" data-default="0" data-unit="ct">
-                  <div class="knob-cap"><div class="knob-pointer"></div></div>
-                </div>
-                <label class="control-label">FINE</label>
-                <div class="knob-readout">-4ct</div>
-              </div>
-
-              <div class="control-unit">
-                <div class="knob-dial" data-param="osc1Gain" data-min="0" data-max="1" data-step="0.01" data-val="0.75" data-default="0.75">
-                  <div class="knob-cap"><div class="knob-pointer"></div></div>
-                </div>
-                <label class="control-label">LEVEL</label>
-                <div class="knob-readout">0.75</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- OSC 2 Block -->
-          <div class="sub-module">
-            <div class="sub-header">OSCILLATOR 2</div>
-            <div class="wave-toggle-group">
-              <button type="button" class="toggle-btn" data-group="osc2" data-param="osc2Wave" data-val="sawtooth">SAW</button>
-              <button type="button" class="toggle-btn is-selected" data-group="osc2" data-param="osc2Wave" data-val="square">SQR</button>
-              <button type="button" class="toggle-btn" data-group="osc2" data-param="osc2Wave" data-val="triangle">TRI</button>
-              <button type="button" class="toggle-btn" data-group="osc2" data-param="osc2Wave" data-val="sine">SIN</button>
-            </div>
-
-            <div class="knob-row">
-              <div class="control-unit">
-                <div class="knob-dial" data-param="osc2Octave" data-min="-2" data-max="2" data-step="1" data-val="-1" data-default="0" data-unit="oct">
-                  <div class="knob-cap"><div class="knob-pointer"></div></div>
-                </div>
-                <label class="control-label">OCTAVE</label>
-                <div class="knob-readout">-1oct</div>
-              </div>
-
-              <div class="control-unit">
-                <div class="knob-dial" data-param="osc2Detune" data-min="-25" data-max="25" data-step="1" data-val="7" data-default="0" data-unit="ct">
-                  <div class="knob-cap"><div class="knob-pointer"></div></div>
-                </div>
-                <label class="control-label">DETUNE</label>
-                <div class="knob-readout">+7ct</div>
-              </div>
-
-              <div class="control-unit">
-                <div class="knob-dial" data-param="osc2Gain" data-min="0" data-max="1" data-step="0.01" data-val="0.55" data-default="0.55">
-                  <div class="knob-cap"><div class="knob-pointer"></div></div>
-                </div>
-                <label class="control-label">LEVEL</label>
-                <div class="knob-readout">0.55</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- SUB & NOISE -->
-          <div class="sub-module sub-subnoise">
-            <div class="sub-header">AUX COLOR / NOISE</div>
-            <div class="knob-row">
-              <div class="control-unit">
-                <div class="knob-dial" data-param="subGain" data-min="0" data-max="1" data-step="0.01" data-val="0.4" data-default="0.4">
-                  <div class="knob-cap"><div class="knob-pointer"></div></div>
-                </div>
-                <label class="control-label">SUB-BASS</label>
-                <div class="knob-readout">0.40</div>
-              </div>
-
-              <div class="control-unit">
-                <div class="knob-dial" data-param="noiseGain" data-min="0" data-max="0.5" data-step="0.01" data-val="0.08" data-default="0.08">
-                  <div class="knob-cap"><div class="knob-pointer"></div></div>
-                </div>
-                <label class="control-label">TAPE HISS</label>
-                <div class="knob-readout">0.08</div>
-              </div>
-            </div>
-          </div>
+        <div class="modal-search-wrap">
+          <input type="text" id="add-node-search" class="modal-search-input" placeholder="Search node operators (math, logic, slider, json, gauge)..." autocomplete="off">
         </div>
-      </section>
-
-      <!-- CENTER MODULE: PHOSPHOR CRT VECTOR SCOPE & TAPE REELS -->
-      <section class="console-module module-scope-center">
-        <div class="module-header">
-          <h2 class="module-title">02 // PHOSPHOR VECTOR CRT</h2>
-          <div class="scope-mode-tabs">
-            <button type="button" class="scope-mode-btn is-selected" data-mode="lissajous">LISSAJOUS</button>
-            <button type="button" class="scope-mode-btn" data-mode="dual_trace">DUAL TRACE</button>
-            <button type="button" class="scope-mode-btn" data-mode="spectrum">SPECTRUM</button>
-          </div>
+        <div id="add-node-list" class="modal-catalog-list">
+          <!-- Populated dynamically -->
         </div>
-
-        <!-- CRT Tube Frame -->
-        <div class="crt-housing">
-          <canvas id="crt-screen" class="crt-canvas" width="460" height="260"></canvas>
-          <div class="crt-bezel-shadow"></div>
-          <div class="crt-tube-label">RETICLE CALIBRATED // 100MS/DIV</div>
-        </div>
-
-        <!-- TAPE DECK MECHANICAL STAGE -->
-        <div class="tape-stage">
-          <div class="tape-reel reel-left">
-            <div class="reel-flange">
-              <div class="spoke spoke-1"></div>
-              <div class="spoke spoke-2"></div>
-              <div class="spoke spoke-3"></div>
-              <div class="reel-hub"></div>
-            </div>
-            <div class="reel-label">SUPPLY // 7½ IPS</div>
-          </div>
-
-          <div class="tape-path-center">
-            <div class="tape-head head-erase"></div>
-            <div class="tape-head head-record"></div>
-            <div class="tape-head head-playback"></div>
-            <div class="capstan-roller"></div>
-            <div class="tape-guide-line"></div>
-            <div class="tape-tension-label">MAGNETIC BIAS: +3VU</div>
-          </div>
-
-          <div class="tape-reel reel-right">
-            <div class="reel-flange">
-              <div class="spoke spoke-1"></div>
-              <div class="spoke spoke-2"></div>
-              <div class="spoke spoke-3"></div>
-              <div class="reel-hub"></div>
-            </div>
-            <div class="reel-label">TAKEUP // 15 IPS</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- RIGHT MODULE: VCF FILTER, ENVELOPES & TAPE ECHO -->
-      <section class="console-module module-processing">
-        <div class="module-header">
-          <h2 class="module-title">03 // FILTER & MODULATION</h2>
-          <span class="module-spec">24dB LADDER + VCA</span>
-        </div>
-
-        <div class="module-grid">
-          <!-- Filter Controls -->
-          <div class="sub-module">
-            <div class="sub-header">24dB ANALOG LADDER FILTER</div>
-            <div class="knob-row">
-              <div class="control-unit">
-                <div class="knob-dial knob-large" data-param="filterCutoff" data-min="40" data-max="12000" data-step="10" data-val="1800" data-default="1800" data-unit="Hz">
-                  <div class="knob-cap"><div class="knob-pointer"></div></div>
-                </div>
-                <label class="control-label">CUTOFF</label>
-                <div class="knob-readout">1.8kHz</div>
-              </div>
-
-              <div class="control-unit">
-                <div class="knob-dial" data-param="filterResonance" data-min="0.5" data-max="18" data-step="0.1" data-val="4.5" data-default="4.5">
-                  <div class="knob-cap"><div class="knob-pointer"></div></div>
-                </div>
-                <label class="control-label">RESONANCE</label>
-                <div class="knob-readout">4.5</div>
-              </div>
-
-              <div class="control-unit">
-                <div class="knob-dial" data-param="filterEnvAmount" data-min="-5000" data-max="8000" data-step="50" data-val="2400" data-default="2400" data-unit="Hz">
-                  <div class="knob-cap"><div class="knob-pointer"></div></div>
-                </div>
-                <label class="control-label">ENV AMOUNT</label>
-                <div class="knob-readout">+2.4k</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Envelopes -->
-          <div class="sub-module">
-            <div class="sub-header">AMP & FILTER ENVELOPE (ADSR)</div>
-            <div class="knob-row four-col">
-              <div class="control-unit">
-                <div class="knob-dial" data-param="ampAttack" data-min="0.005" data-max="2.5" data-step="0.01" data-val="0.01" data-default="0.01" data-unit="s">
-                  <div class="knob-cap"><div class="knob-pointer"></div></div>
-                </div>
-                <label class="control-label">ATTACK</label>
-                <div class="knob-readout">0.01s</div>
-              </div>
-
-              <div class="control-unit">
-                <div class="knob-dial" data-param="ampDecay" data-min="0.01" data-max="3.0" data-step="0.01" data-val="0.25" data-default="0.25" data-unit="s">
-                  <div class="knob-cap"><div class="knob-pointer"></div></div>
-                </div>
-                <label class="control-label">DECAY</label>
-                <div class="knob-readout">0.25s</div>
-              </div>
-
-              <div class="control-unit">
-                <div class="knob-dial" data-param="ampSustain" data-min="0" data-max="1" data-step="0.01" data-val="0.7" data-default="0.7">
-                  <div class="knob-cap"><div class="knob-pointer"></div></div>
-                </div>
-                <label class="control-label">SUSTAIN</label>
-                <div class="knob-readout">0.70</div>
-              </div>
-
-              <div class="control-unit">
-                <div class="knob-dial" data-param="ampRelease" data-min="0.02" data-max="4.0" data-step="0.01" data-val="0.45" data-default="0.45" data-unit="s">
-                  <div class="knob-cap"><div class="knob-pointer"></div></div>
-                </div>
-                <label class="control-label">RELEASE</label>
-                <div class="knob-readout">0.45s</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Tape Delay & Reverb FX -->
-          <div class="sub-module">
-            <div class="sub-header">TAPE ECHO & SPACE MATRIX</div>
-            <div class="knob-row four-col">
-              <div class="control-unit">
-                <div class="knob-dial" data-param="echoTime" data-min="0.04" data-max="1.2" data-step="0.01" data-val="0.32" data-default="0.32" data-unit="s">
-                  <div class="knob-cap"><div class="knob-pointer"></div></div>
-                </div>
-                <label class="control-label">TIME</label>
-                <div class="knob-readout">0.32s</div>
-              </div>
-
-              <div class="control-unit">
-                <div class="knob-dial" data-param="echoFeedback" data-min="0" data-max="0.94" data-step="0.01" data-val="0.48" data-default="0.48">
-                  <div class="knob-cap"><div class="knob-pointer"></div></div>
-                </div>
-                <label class="control-label">FEEDBACK</label>
-                <div class="knob-readout">0.48</div>
-              </div>
-
-              <div class="control-unit">
-                <div class="knob-dial" data-param="tapeFlutter" data-min="0" data-max="0.02" data-step="0.001" data-val="0.003" data-default="0.003">
-                  <div class="knob-cap"><div class="knob-pointer"></div></div>
-                </div>
-                <label class="control-label">WOW/FLUT</label>
-                <div class="knob-readout">0.003</div>
-              </div>
-
-              <div class="control-unit">
-                <div class="knob-dial" data-param="reverbMix" data-min="0" data-max="0.85" data-step="0.01" data-val="0.25" data-default="0.25">
-                  <div class="knob-cap"><div class="knob-pointer"></div></div>
-                </div>
-                <label class="control-label">SPACE</label>
-                <div class="knob-readout">0.25</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      </div>
     </div>
+  </div>
 
-    <!-- LOWER SECTION: 16-STEP SEQUENCER DECK -->
-    <section class="console-module module-sequencer">
-      <div class="module-header">
-        <div class="seq-title-cluster">
-          <h2 class="module-title">04 // 16-STEP ANALOG SEQUENCER</h2>
-          <span class="module-spec">ACCENT // SWING // SCALE QUANTIZE</span>
-        </div>
-
-        <div class="seq-actions">
-          <!-- Tempo -->
-          <div class="control-unit inline-control">
-            <div class="knob-dial knob-small" data-param="bpm" data-min="40" data-max="220" data-step="1" data-val="118" data-default="118" data-unit="BPM">
-              <div class="knob-cap"><div class="knob-pointer"></div></div>
-            </div>
-            <label class="control-label">TEMPO</label>
-            <div class="knob-readout">118BPM</div>
-          </div>
-
-          <!-- Scale selector -->
-          <div class="scale-selector-wrap">
-            <label for="scale-select" class="strip-label">SCALE</label>
-            <select id="scale-select" class="tactile-select compact">
-              <option value="minor_pentatonic">Minor Pentatonic</option>
-              <option value="dorian">Dorian Mode</option>
-              <option value="phrygian">Phrygian Mode</option>
-              <option value="hirajoshi">Hirajoshi (JP)</option>
-              <option value="chromatic">Chromatic 12-Tone</option>
-            </select>
-          </div>
-
-          <button id="btn-seq-random" class="tactile-btn" type="button">
-            <span class="btn-label">RANDOMIZE</span>
-          </button>
-
-          <button id="btn-seq-play" class="tactile-btn play-btn" type="button">
-            <span class="btn-icon">▶</span>
-            <span class="btn-label">START SEQ</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- 16 Steps Row -->
-      <div id="sequencer-grid" class="sequencer-grid">
-        <!-- Injected via JavaScript -->
-      </div>
-      <div class="seq-instructions-hint">CLICK TO TOGGLE STEP // SHIFT+CLICK FOR ACCENT // SCROLL WHEEL OVER STEP TO SHIFT PITCH</div>
-    </section>
-
-    <!-- BOTTOM SECTION: TACTILE PLAYABLE KEYBOARD & OCTAVE CONTROLS -->
-    <footer class="console-keyboard-deck">
-      <div class="keyboard-toolbar">
-        <div class="octave-controls">
-          <button id="octave-down" class="tactile-btn compact-btn" type="button" title="Shortcut: Z">◀ OCT -</button>
-          <span id="octave-display" class="octave-indicator">OCT 3</span>
-          <button id="octave-up" class="tactile-btn compact-btn" type="button" title="Shortcut: X">OCT + ▶</button>
-        </div>
-
-        <div class="key-legend">
-          <span>QWERTY: <strong>[A]-[K]</strong> WHITE KEYS &nbsp;|&nbsp; <strong>[W][E][T][Y][U]</strong> BLACK KEYS &nbsp;|&nbsp; <strong>[SPACE]</strong> TOGGLE SEQ</span>
-        </div>
-
-        <div class="master-vol-cluster">
-          <div class="control-unit inline-control">
-            <div class="knob-dial knob-small" data-param="masterVolume" data-min="0" data-max="1" data-step="0.01" data-val="0.85" data-default="0.85">
-              <div class="knob-cap"><div class="knob-pointer"></div></div>
-            </div>
-            <label class="control-label">MASTER VOL</label>
-            <div class="knob-readout">0.85</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Musical 2-Octave Keyboard -->
-      <div id="piano-keys" class="piano-keys-bed">
-        <!-- Rendered dynamically -->
-      </div>
-    </footer>
-  </main>
-
-  <!-- Script stack -->
-  <script src="js/presets.js"></script>
-  <script src="js/audio-engine.js"></script>
-  <script src="js/visualizer.js"></script>
-  <script src="js/knob-controller.js"></script>
-  <script src="js/sequencer.js"></script>
+  <!-- Scripts -->
+  <script src="js/node-types.js"></script>
+  <script src="js/graph.js"></script>
+  <script src="js/canvas.js"></script>
+  <script src="js/blueprints.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
