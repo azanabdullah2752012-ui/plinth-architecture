@@ -1,0 +1,89 @@
+/* ══════════════════════════════════════════════════
+   PLINTH — Design Tokens
+   All colour, type, spacing and layout variables
+   live here. Nothing else imports raw values.
+══════════════════════════════════════════════════ */
+
+:root {
+
+  /* ── Colour ───────────────────────────────── */
+  --c-cream:        #F2EBDD;   /* page background          */
+  --c-cream-dark:   #E9E0CF;   /* subtle surface variant   */
+  --c-divider:      #D9D0C0;   /* thin rules & borders     */
+  --c-umber:        #30271F;   /* primary text             */
+  --c-umber-mid:    #4A3C30;   /* headings / strong text   */
+  --c-secondary:    #63574A;   /* secondary / body text    */
+  --c-muted:        #8C7D6E;   /* labels, captions         */
+  --c-brass:        #98764B;   /* accent                   */
+  --c-brass-light:  #B8966B;   /* hover / lighter accent   */
+  --c-overlay:      rgba(30, 20, 12, 0.38); /* hero image scrim */
+
+  /* ── Typography ───────────────────────────── */
+  --f-display: 'Cormorant Garamond', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+  --f-sans:    'DM Sans', 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Type scale — fluid using clamp() */
+  --fs-micro:  0.625rem;   /* 10px */
+  --fs-tiny:   0.6875rem;  /* 11px */
+  --fs-small:  0.8125rem;  /* 13px */
+  --fs-body:   1rem;       /* 16px */
+  --fs-lead:   1.125rem;   /* 18px */
+
+  /* Display sizes — fluid */
+  --fs-d1: clamp(3.25rem, 7vw, 6.5rem);   /* hero H1 */
+  --fs-d2: clamp(2.25rem, 4.5vw, 4rem);   /* section H2 */
+  --fs-d3: clamp(1.5rem,  3vw,  2.5rem);  /* card title */
+
+  /* Letter spacing */
+  --ls-tight:  -0.02em;
+  --ls-normal:  0;
+  --ls-wide:    0.08em;
+  --ls-wider:   0.14em;
+  --ls-widest:  0.22em;
+
+  /* Line heights */
+  --lh-tight:   1.04;
+  --lh-heading: 1.12;
+  --lh-body:    1.70;
+
+  /* Font weights */
+  --fw-light:   300;
+  --fw-regular: 400;
+  --fw-medium:  500;
+
+  /* ── Spacing ───────────────────────────────── */
+  --sp-2:   0.125rem;
+  --sp-4:   0.25rem;
+  --sp-8:   0.5rem;
+  --sp-12:  0.75rem;
+  --sp-16:  1rem;
+  --sp-20:  1.25rem;
+  --sp-24:  1.5rem;
+  --sp-32:  2rem;
+  --sp-40:  2.5rem;
+  --sp-48:  3rem;
+  --sp-64:  4rem;
+  --sp-80:  5rem;
+  --sp-96:  6rem;
+  --sp-128: 8rem;
+
+  /* Fluid page padding (horizontal) */
+  --page-pad: clamp(1.5rem, 5vw, 5rem);
+
+  /* Max content width */
+  --content-max: 1360px;
+
+  /* ── Layout ────────────────────────────────── */
+  --masthead-h: 60px;
+
+  /* ── Easing ────────────────────────────────── */
+  --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-standard: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* ── Transitions ───────────────────────────── */
+  --t-fast:   150ms;
+  --t-base:   250ms;
+  --t-slow:   450ms;
+  --t-crawl:  700ms;
+}

@@ -1,0 +1,259 @@
+/* ══════════════════════════════════════════════════
+   PLINTH — Hero
+   Full-bleed architectural photograph with headline
+   and metadata. Occupies ~88vh below the masthead.
+══════════════════════════════════════════════════ */
+
+/* ── Section shell ────────────────────────────── */
+.hero {
+  position: relative;
+  /* 88% of viewport height, minus the masthead */
+  height: calc(88svh - var(--masthead-h));
+  /* Fallback for browsers without svh */
+  height: calc(88vh - var(--masthead-h));
+  min-height: 560px;
+  margin-top: var(--masthead-h);
+  overflow: hidden;
+  /* Scroll reveal for content inside */
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Full-bleed photograph ────────────────────── */
+.hero__media {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Anchor photo to mid-left — preserves the architectural interior */
+  object-position: 40% center;
+  /* Subtle entrance — only if motion is acceptable */
+  animation: photo-drift 18s ease-in-out infinite alternate;
+}
+
+@keyframes photo-drift {
+  from { transform: scale(1.00); }
+  to   { transform: scale(1.04); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__photo { animation: none; }
+}
+
+/* ── Scrim — bottom-weighted, keeps image readable ─
+   Gradient runs from transparent at top to a
+   moderate dark at bottom-left where text sits.
+   Not a heavy overlay — the image must still breathe.
+──────────────────────────────────────────────── */
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    /* Bottom-left darkening for text legibility */
+    linear-gradient(
+      155deg,
+      transparent           35%,
+      rgba(20, 13, 7, 0.55) 100%
+    ),
+    /* Soft top vignette for the masthead area */
+    linear-gradient(
+      to bottom,
+      rgba(20, 13, 7, 0.28) 0%,
+      transparent           22%
+    );
+  pointer-events: none;
+}
+
+/* ── Content: headline + metadata ─────────────── */
+.hero__content {
+  position: relative;   /* above the scrim */
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 var(--page-pad) var(--sp-64);
+  max-width: var(--content-max);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.hero__text-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-32);
+  /* Limit text block to left portion of viewport */
+  max-width: min(620px, 72%);
+}
+
+/* ── Headline ─────────────────────────────────── */
+.hero__headline {
+  font-family: var(--f-display);
+  font-size: var(--fs-d1);
+  font-weight: var(--fw-light);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: #FAFAF8;             /* near-white, warmer than pure white */
+  /* Text shadow: subtle, directional — not a blurry halo */
+  text-shadow:
+    0 1px 0   rgba(0,0,0,0.15),
+    0 2px 16px rgba(0,0,0,0.20);
+}
+
+.hero__headline em {
+  font-style: italic;
+  font-weight: var(--fw-light);
+  /* Slight warmth to the italic line */
+  color: #F5EEE2;
+}
+
+/* ── Metadata ─────────────────────────────────── */
+.hero__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-16);
+}
+
+/* Thin brass rule above metadata */
+.hero__meta-rule {
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--c-brass-light);
+}
+
+.hero__meta-list {
+  display: flex;
+  flex-direction: row;
+  gap: var(--sp-32);
+  flex-wrap: wrap;
+}
+
+.hero__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.hero__meta-label {
+  font-family: var(--f-sans);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: rgba(200, 188, 168, 0.75);
+}
+
+.hero__meta-value {
+  font-family: var(--f-sans);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-light);
+  letter-spacing: var(--ls-wide);
+  color: rgba(242, 235, 221, 0.90);
+}
+
+/* ── Scroll cue ───────────────────────────────── */
+.hero__scroll-cue {
+  position: absolute;
+  bottom: 0;
+  right: var(--page-pad);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-8);
+  padding-bottom: var(--sp-40);
+  /* Writing mode: rotated 90° reading "Scroll" vertically */
+  writing-mode: vertical-rl;
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(
+    to bottom,
+    rgba(242, 235, 221, 0.10),
+    rgba(242, 235, 221, 0.55)
+  );
+  animation: scroll-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes scroll-pulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(0.85); }
+  50%       { opacity: 1;   transform: scaleY(1);    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll-line { animation: none; opacity: 0.5; }
+}
+
+.hero__scroll-label {
+  font-family: var(--f-sans);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: rgba(242, 235, 221, 0.40);
+  /* Rotate text back so it reads naturally in vertical-rl context */
+  transform: rotate(180deg);
+}
+
+/* ── Responsive adjustments ───────────────────── */
+@media (max-width: 768px) {
+  .hero {
+    height: calc(88svh - var(--masthead-h));
+    height: calc(88vh - var(--masthead-h));
+    min-height: 500px;
+  }
+
+  .hero__content {
+    padding-bottom: var(--sp-48);
+    align-items: flex-end;
+  }
+
+  .hero__text-block {
+    max-width: 100%;
+    gap: var(--sp-24);
+  }
+
+  .hero__scroll-cue {
+    /* Hide on mobile — not needed */
+    display: none;
+  }
+
+  .hero__meta-list {
+    gap: var(--sp-24);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__content {
+    padding-bottom: var(--sp-40);
+  }
+}
+
+/* ── Image entrance animation ─────────────────── */
+/*
+  On page load, the hero fades in gracefully.
+  The image is already visible (no opacity:0 default)
+  but we animate the content in for a cleaner landing.
+*/
+.hero__content {
+  animation: content-rise 1.1s var(--ease-out) 0.2s both;
+}
+
+@keyframes content-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__content { animation: none; }
+}

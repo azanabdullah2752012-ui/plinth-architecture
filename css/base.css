@@ -1,0 +1,112 @@
+/* ══════════════════════════════════════════════════
+   PLINTH — Base / Reset
+   Minimal opinionated reset + global defaults.
+   No component styles here.
+══════════════════════════════════════════════════ */
+
+/* ── Box model ────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Document ─────────────────────────────────── */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  /* Prevent layout shift from scrollbar appearing */
+  scrollbar-gutter: stable;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  background-color: var(--c-cream);
+  color: var(--c-umber);
+  font-family: var(--f-sans);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-light);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Media ────────────────────────────────────── */
+img,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* ── Interactive ──────────────────────────────── */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* ── Lists ────────────────────────────────────── */
+ul, ol { list-style: none; }
+
+/* ── Addresses ────────────────────────────────── */
+address { font-style: normal; }
+
+/* ── Skip link (accessibility) ───────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--sp-16);
+  padding: var(--sp-8) var(--sp-16);
+  background: var(--c-umber);
+  color: var(--c-cream);
+  font-family: var(--f-sans);
+  font-size: var(--fs-small);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  z-index: 9999;
+  transition: top var(--t-fast);
+}
+.skip-link:focus {
+  top: var(--sp-16);
+}
+
+/* ── Focus visible ring ───────────────────────── */
+:focus-visible {
+  outline: 1.5px solid var(--c-brass);
+  outline-offset: 3px;
+}
+
+/* ── Placeholder section styling ─────────────── */
+/* Quiet indicator that more content is coming    */
+.section-pending {
+  border-top: 1px solid var(--c-divider);
+}
+
+.section-pending__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--sp-64) var(--page-pad);
+}
+
+.section-pending__label {
+  font-family: var(--f-sans);
+  font-size: var(--fs-tiny);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--c-muted);
+}

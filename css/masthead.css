@@ -1,0 +1,245 @@
+/* ══════════════════════════════════════════════════
+   PLINTH — Masthead
+   Editorial header: wordmark + navigation.
+   Fixed at top, 60px height.
+   Transparent over hero → picks up background
+   colour once user scrolls past the hero.
+══════════════════════════════════════════════════ */
+
+.masthead {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  height: var(--masthead-h);
+
+  /* Starts transparent over the hero image */
+  background-color: transparent;
+  transition:
+    background-color var(--t-slow) var(--ease-standard),
+    border-color     var(--t-slow) var(--ease-standard);
+
+  /* No bottom border until scrolled */
+  border-bottom: 1px solid transparent;
+}
+
+/* ── Scrolled state (added via JS) ───────────── */
+.masthead.is-scrolled {
+  background-color: rgba(242, 235, 221, 0.94);
+  border-bottom-color: var(--c-divider);
+  /* Subtle frosted effect where supported */
+  backdrop-filter: blur(10px) saturate(1.4);
+  -webkit-backdrop-filter: blur(10px) saturate(1.4);
+}
+
+/* ── Inner layout ─────────────────────────────── */
+.masthead__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 var(--page-pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-32);
+}
+
+/* ── Brand block ──────────────────────────────── */
+.masthead__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.masthead__wordmark {
+  font-family: var(--f-display);
+  font-size: 1.375rem;        /* 22px */
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-widest);
+  color: var(--c-cream);      /* white over hero image */
+  line-height: 1;
+  transition: color var(--t-slow) var(--ease-standard);
+}
+
+/* Once scrolled, wordmark switches to dark */
+.masthead.is-scrolled .masthead__wordmark {
+  color: var(--c-umber);
+}
+
+.masthead__descriptor {
+  font-family: var(--f-sans);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: rgba(242, 235, 221, 0.55);
+  line-height: 1;
+  transition: color var(--t-slow) var(--ease-standard);
+  /* Hidden on small screens */
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .masthead__descriptor { display: block; }
+}
+
+.masthead.is-scrolled .masthead__descriptor {
+  color: var(--c-muted);
+}
+
+/* ── Navigation ───────────────────────────────── */
+.masthead__nav {
+  display: flex;
+  align-items: center;
+}
+
+.masthead__nav-list {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-40);
+}
+
+.masthead__nav-link {
+  font-family: var(--f-sans);
+  font-size: var(--fs-tiny);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: rgba(242, 235, 221, 0.80);
+  transition: color var(--t-slow) var(--ease-standard);
+  position: relative;
+  padding-bottom: 2px;
+}
+
+/* Underline indicator on hover */
+.masthead__nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width var(--t-base) var(--ease-out);
+}
+
+.masthead__nav-link:hover {
+  color: rgba(242, 235, 221, 1);
+}
+
+.masthead__nav-link:hover::after {
+  width: 100%;
+}
+
+/* Scrolled: links go dark */
+.masthead.is-scrolled .masthead__nav-link {
+  color: var(--c-secondary);
+}
+
+.masthead.is-scrolled .masthead__nav-link:hover {
+  color: var(--c-umber);
+}
+
+/* ── Mobile menu button ───────────────────────── */
+.masthead__menu-btn {
+  display: none;   /* shown via media query */
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.masthead__menu-icon,
+.masthead__menu-icon::before,
+.masthead__menu-icon::after {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: var(--c-cream);
+  position: absolute;
+  transition:
+    transform  var(--t-base) var(--ease-out),
+    opacity    var(--t-base) var(--ease-out),
+    background var(--t-slow) var(--ease-standard);
+}
+
+.masthead__menu-icon::before { content: ''; top: -6px; }
+.masthead__menu-icon::after  { content: ''; top:  6px; }
+
+/* Scrolled state — icon goes dark */
+.masthead.is-scrolled .masthead__menu-icon,
+.masthead.is-scrolled .masthead__menu-icon::before,
+.masthead.is-scrolled .masthead__menu-icon::after {
+  background: var(--c-umber);
+}
+
+/* Open state — becomes an X */
+.masthead__menu-btn[aria-expanded="true"] .masthead__menu-icon {
+  background: transparent;
+}
+.masthead__menu-btn[aria-expanded="true"] .masthead__menu-icon::before {
+  transform: translateY(6px) rotate(45deg);
+}
+.masthead__menu-btn[aria-expanded="true"] .masthead__menu-icon::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* ── Responsive: hide links, show burger ─────── */
+@media (max-width: 768px) {
+  .masthead__nav-list  { display: none; }
+  .masthead__menu-btn  { display: flex; }
+}
+
+/* ── Mobile menu drawer ───────────────────────── */
+.masthead__mobile-menu {
+  position: fixed;
+  top: var(--masthead-h);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--c-cream);
+  z-index: 199;
+  padding: var(--sp-48) var(--page-pad) var(--sp-64);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-40);
+  /* Animate open */
+  animation: drawer-in var(--t-slow) var(--ease-out) both;
+}
+
+.masthead__mobile-menu[hidden] { display: none; }
+
+@keyframes drawer-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .masthead__mobile-menu { animation: none; }
+}
+
+.mobile-link {
+  font-family: var(--f-display);
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  font-weight: var(--fw-light);
+  letter-spacing: var(--ls-tight);
+  color: var(--c-umber);
+  line-height: 1.1;
+  display: block;
+  transition: color var(--t-fast);
+}
+
+.mobile-link:hover { color: var(--c-brass); }
+
+.mobile-meta {
+  font-family: var(--f-sans);
+  font-size: var(--fs-tiny);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--c-muted);
+  border-top: 1px solid var(--c-divider);
+  padding-top: var(--sp-24);
+  margin-top: auto;
+}
