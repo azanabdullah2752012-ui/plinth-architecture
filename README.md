@@ -1,33 +1,30 @@
-# MONOLITH // Architectural Acoustic Sculptures
+# KÖNIG & SÖHNE // Atelier d'Horlogerie — Caliber KS-042
 
-A brutalist luxury industrial design brand and landing page showcasing precision CNC unibody acoustic instruments sculpted from 120kg ingots of aerospace-grade 6061-T6 aluminum.
+An independent Glashütte mechanical horological atelier producing 24 bespoke chronometer allocations per calendar year.
 
 Designed strictly under the **Anti-Slop Design Guidelines**:
-- **Signature Artifact**: Real-time 3D WebGL (Three.js) studio with PBR metallic reflections, interactive 360° mouse drag orbit, dynamic multi-point studio spotlights, and an interactive **EXPLODED ARCHITECTURE** disassembly view.
-- **Acoustic Wavefront Simulator**: Real-time 2D wave equation canvas solver simulating isobaric sound wavefronts radiating from dual transducers into acoustic room boundaries.
-- **Atmosphere & Materials**: Architectural obsidian (`#08090b`), raw billet aluminum, champagne titanium PVD, and tungsten plinths.
+- **Signature Artifact**: Real-time 3D WebGL (Three.js) watch studio featuring PBR metallic surface shaders, sapphire crystal optical refraction, real-time oscillating Glucydur balance wheel (4.0 Hz / 28,800 vph), 360° mouse drag orbit, and an interactive **EXPLODE HOROLOGY** mechanical disassembly view.
+- **Winding Crown Physics**: Click **WIND CROWN (+14H)** to physically turn the fluted crown and charge the 72-hour power reserve indicator.
+- **Atmosphere & Materials**: Warm obsidian (`#0a0b0e`), untreated German silver (`#181b24`), 18K 4N rose gold, and heat-blued steel hands.
 - **Strict Execution Laws**: Visible by default, parallel baseline alignment, accessible WCAG AA contrast, and 100% functional interactive controls.
 
 ---
 
 ## Interactive Features
 
-1. **3D WebGL Studio Engine (`js/scene-3d.js`)**:
-   - PBR metallic surface rendering with specular highlights.
-   - Click & drag to rotate the monolithic instrument 360° in 3D space.
-   - Click **EXPLODE ARCHITECTURE** to smoothly slide apart the rear acoustic shell, copper heat core, dual drivers, and front baffle along the Z-axis.
-   - Instant finish switcher: **Raw Billet Silver**, **Stealth Obsidian**, and **Champagne Titanium**.
-2. **Real-Time Acoustic Dispersion Field (`js/acoustic-sim.js`)**:
-   - 2D finite-difference wave equation solver.
-   - Interactive frequency slider (30 Hz to 240 Hz).
-   - Room reflection boundary presets: Diffusive Studio, Treated Anechoic, and Concrete Hall.
-3. **Internal Architecture & Engineering Tolerances**:
-   - Deep metallurgical and acoustic breakdowns of the Beryllium vapor dome, Helmholtz copper core, isobaric compound woofer, and tungsten plinth.
-   - Complete bench tolerances table sharing parallel baselines.
-4. **Bespoke Allocation Configurator (`js/app.js`)**:
-   - Interactive pair allocation builder with finish, transducer, and plinth selection.
-   - Live mass and price calculations ($14,500 – $20,500 USD).
-   - Submitting reserves an official Swiss municipal allocation serial number (e.g. `MN-842-1049`).
+1. **3D WebGL Watch Studio (`js/watch-3d.js`)**:
+   - PBR metallic surface rendering with specular reflections on beveled lugs and step bezel.
+   - Click & drag directly on the watch to orbit 360° around the case in 3D space.
+   - Click **EXPLODE HOROLOGY** to smoothly slide apart the sapphire crystal, step bezel ring, moving hands, dial plate, movement caliber, and exhibition caseback along the Z-axis.
+   - Live metallurgy switcher: **18K Rose Gold**, **Grade 5 Titanium**, **Obsidian DLC**, and **904L Steel**.
+   - Real-time Glucydur balance wheel oscillating at 4.0 Hz in the open-heart 6 o'clock position.
+2. **Movement Architecture & Technical Tolerances**:
+   - Deep technical breakdowns of the Free-Sprung Glucydur balance, Breguet overcoil hairspring, screwed gold chatons, and twin-series mainspring barrels.
+   - Complete Glashütte observatory laboratory tolerances table sharing parallel baselines.
+3. **Bespoke Allocation Configurator (`js/app.js`)**:
+   - Interactive commission builder with case metal, complication (Three-Hand, True Beat Dead-Seconds, Monopusher Chronograph), and strap leather.
+   - Live lead time and pricing calculations (€38,500 – €58,000 EUR).
+   - Submitting reserves an official Glashütte archive serial number (e.g. `KS-042-849`).
 
 ---
 

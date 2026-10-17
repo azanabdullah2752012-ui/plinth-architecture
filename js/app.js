@@ -1,108 +1,104 @@
 /**
- * MONOLITH // Application Coordinator & Studio Interactivity
+ * KÖNIG & SÖHNE // Application Coordinator & Studio Interactivity
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  const monolith = new Monolith3D('monolith-3d-container');
-  const acousticSim = new AcousticFieldSimulator('acoustic-canvas');
+  const watchStudio = new WatchStudio3D('watch-3d-viewport');
 
-  // --- Finish Switcher ---
-  const finishPills = document.querySelectorAll('.finish-pill');
-  const finishLabel = document.getElementById('current-finish-title');
+  // --- Material Metallurgy Switcher ---
+  const materialPills = document.querySelectorAll('.metal-pill');
+  const materialLabel = document.getElementById('current-metal-display');
 
-  const finishNames = {
-    silver: 'RAW BILLET 6061-T6 ALUMINUM // BEAD-BLASTED SATIN',
-    obsidian: 'STEALTH ANODIZED OBSIDIAN // MATTE CARBON COAT',
-    champagne: 'CHAMPAGNE TITANIUM NITRIDE // PVD HAND-BRUSHED'
+  const materialNames = {
+    rose_gold: '18K 4N ROSE GOLD // MIRROR-POLISHED BEZEL',
+    titanium: 'GRADE 5 TITANIUM // SATIN-BRUSHED LUGS',
+    obsidian: 'OBSIDIAN DLC COATING // MATTE OBSIDIAN',
+    steel: '904L AUSTENITIC STEEL // BEVELED CHAMFERS'
   };
 
-  finishPills.forEach((pill) => {
+  materialPills.forEach((pill) => {
     pill.addEventListener('click', () => {
-      finishPills.forEach(p => p.classList.remove('is-active'));
+      materialPills.forEach(p => p.classList.remove('is-active'));
       pill.classList.add('is-active');
-      const finish = pill.dataset.finish;
-      monolith.setFinish(finish);
-      if (finishLabel) finishLabel.textContent = finishNames[finish];
+      const mat = pill.dataset.material;
+      watchStudio.setMaterial(mat);
+      if (materialLabel) materialLabel.textContent = materialNames[mat];
     });
   });
 
-  // --- Exploded View Toggle ---
+  // --- Explode View Toggle ---
   const explodeBtn = document.getElementById('btn-toggle-explode');
   explodeBtn?.addEventListener('click', () => {
-    const isExploded = monolith.toggleExploded();
+    const isExploded = watchStudio.toggleExploded();
     explodeBtn.classList.toggle('is-active', isExploded);
-    explodeBtn.querySelector('.btn-label').textContent = isExploded ? 'ASSEMBLE CHASSIS' : 'EXPLODE ARCHITECTURE';
+    explodeBtn.querySelector('.btn-label').textContent = isExploded ? 'ASSEMBLE CASE' : 'EXPLODE HOROLOGY';
   });
 
-  // --- Acoustic Wave Simulator Controls ---
-  const freqSlider = document.getElementById('wave-freq-slider');
-  const freqReadout = document.getElementById('wave-freq-readout');
-  freqSlider?.addEventListener('input', (e) => {
-    const hz = parseInt(e.target.value, 10);
-    acousticSim.setFrequency(hz);
-    if (freqReadout) freqReadout.textContent = `${hz} Hz`;
+  // --- Crown Winding Action ---
+  const crownBtn = document.getElementById('btn-wind-crown');
+  crownBtn?.addEventListener('click', () => {
+    watchStudio.windCrown(14);
+    crownBtn.classList.add('is-winding');
+    setTimeout(() => crownBtn.classList.remove('is-winding'), 250);
   });
 
-  const roomBtns = document.querySelectorAll('.room-toggle-btn');
-  roomBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      roomBtns.forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-      const refl = parseFloat(btn.dataset.reflection);
-      acousticSim.setWallReflection(refl);
-    });
-  });
+  // --- Commission Bespoke Allocation Form ---
+  const commissionForm = document.getElementById('watch-config-form');
+  const quotePrice = document.getElementById('quote-price');
+  const quoteLeadTime = document.getElementById('quote-lead');
 
-  // --- Custom Configurator & Order Allocation ---
-  const orderForm = document.getElementById('monolith-config-form');
-  const configWeight = document.getElementById('cfg-weight');
-  const configPrice = document.getElementById('cfg-price');
+  function calculateQuote() {
+    const metal = document.querySelector('input[name="cfg-metal"]:checked')?.value || 'rose_gold';
+    const complication = document.querySelector('input[name="cfg-complication"]:checked')?.value || 'three_hand';
 
-  function updateConfig() {
-    const finish = document.querySelector('input[name="cfg-metal"]:checked')?.value || 'silver';
-    const tweeter = document.querySelector('input[name="cfg-tweeter"]:checked')?.value || 'beryllium';
-    const plinth = document.getElementById('cfg-plinth')?.value || 'aluminum';
+    let basePrice = 38500;
+    let weeks = 18;
 
-    let basePrice = 14500;
-    let weight = 42.0;
-
-    if (finish === 'champagne') basePrice += 2200;
-    if (finish === 'obsidian') basePrice += 1100;
-
-    if (tweeter === 'diamond') {
-      basePrice += 3800;
+    if (metal === 'rose_gold') {
+      basePrice += 8500;
+      weeks += 4;
+    } else if (metal === 'obsidian') {
+      basePrice += 3200;
+      weeks += 2;
+    } else if (metal === 'titanium') {
+      basePrice += 2400;
     }
 
-    if (plinth === 'granite') weight += 18.5;
-    if (plinth === 'brass') weight += 14.0;
+    if (complication === 'dead_beat') {
+      basePrice += 6500;
+      weeks += 6;
+    } else if (complication === 'chronograph') {
+      basePrice += 11000;
+      weeks += 8;
+    }
 
-    if (configPrice) configPrice.textContent = `$${basePrice.toLocaleString()} USD / PAIR`;
-    if (configWeight) configWeight.textContent = `${weight.toFixed(1)} KG TOTAL MASS`;
+    if (quotePrice) quotePrice.textContent = `€${basePrice.toLocaleString()} EUR`;
+    if (quoteLeadTime) quoteLeadTime.textContent = `${weeks} WEEKS ATELIER BUILD`;
   }
 
-  document.querySelectorAll('input[name="cfg-metal"], input[name="cfg-tweeter"], #cfg-plinth').forEach((el) => {
-    el.addEventListener('change', updateConfig);
+  document.querySelectorAll('input[name="cfg-metal"], input[name="cfg-complication"], #cfg-strap').forEach((el) => {
+    el.addEventListener('change', calculateQuote);
   });
 
-  orderForm?.addEventListener('submit', (e) => {
+  commissionForm?.addEventListener('submit', (e) => {
     e.preventDefault();
-    const name = document.getElementById('client-name')?.value || 'Client';
-    const allocId = `MN-${Math.floor(100 + Math.random() * 900)}-${Date.now().toString().slice(-4)}`;
+    const name = document.getElementById('client-name')?.value || 'Collector';
+    const allocId = `KS-042-${Math.floor(100 + Math.random() * 900)}`;
 
     const confirmBox = document.getElementById('order-confirmation');
     if (confirmBox) {
       confirmBox.innerHTML = `
         <div class="confirm-card">
-          <div class="confirm-badge">ALLOCATION REGISTERED // BATCH 04</div>
-          <h3 class="confirm-title">RESERVATION SECURED FOR ${name.toUpperCase()}</h3>
-          <p class="confirm-id">MONOLITH CHASSIS SERIAL: <strong>${allocId}</strong></p>
-          <p class="confirm-desc">Your unibody billet chassis will be individually CNC machined in Zurich. Acoustic calibration report and laser-etched serial documentation will be dispatched to your concierge.</p>
+          <div class="confirm-badge">REGISTRY ENTRY CONFIRMED // BATCH 2026</div>
+          <h3 class="confirm-title">ALLOCATION SECURED FOR ${name.toUpperCase()}</h3>
+          <p class="confirm-id">CALIBER ARCHIVE SERIAL: <strong>${allocId}</strong></p>
+          <p class="confirm-desc">Master Watchmaker Johannes König will prepare your movement blueprint folio. Our concierge will contact you within one business day for custom case engraving and private atelier reception in Glashütte.</p>
         </div>
       `;
       confirmBox.classList.remove('is-hidden');
-      orderForm.style.display = 'none';
+      commissionForm.style.display = 'none';
     }
   });
 
-  updateConfig();
+  calculateQuote();
 });
