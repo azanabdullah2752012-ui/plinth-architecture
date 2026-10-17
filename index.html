@@ -3,152 +3,430 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CIPHER: PROTOCOL // Turn-Based Tactical Stealth</title>
-  <meta name="description" content="A minimalist turn-based stealth puzzle game. Dodge guard vision cones, hack encrypted terminals, and extract undetected.">
+  <title>KÖNIG & SÖHNE // Atelier d'Horlogerie — Caliber KS-042</title>
+  <meta name="description" content="Independent Glashütte horological atelier crafting mechanical chronometers with variable-inertia balance wheels, Swiss lever escapements, and bespoke commissions.">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="game-wrapper">
-    <!-- TOP TACTICAL HUD -->
-    <header class="tactical-hud">
-      <div class="hud-left">
-        <div class="brand-cluster">
-          <span class="brand-glyph">◈</span>
-          <span class="brand-name">CIPHER: PROTOCOL</span>
+  <!-- TOP ATELIER NAVIGATION STRIP -->
+  <header class="atelier-nav">
+    <div class="nav-container">
+      <a href="#hero" class="brand-signature">
+        <span class="hallmark-symbol">✠</span>
+        <span class="brand-text">KÖNIG & SÖHNE</span>
+        <span class="atelier-loc">GLASHÜTTE I/SA</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#caliber" class="nav-link">Caliber KS-042</a>
+        <a href="#architecture" class="nav-link">Architecture</a>
+        <a href="#specifications" class="nav-link">Specifications</a>
+        <a href="#atelier" class="nav-link">Atelier</a>
+        <a href="#commission" class="nav-link cta-link">Bespoke Commission</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION: OWNS THE 1440x900 FOLD WITH LIVE SIGNATURE ARTIFACT -->
+    <section id="hero" class="hero-section">
+      <div class="hero-layout">
+        <!-- Left: Editorial Typography & Provenance -->
+        <div class="hero-editorial">
+          <div class="provenance-tag">
+            <span class="cert-dot"></span>
+            <span>CHRONOMETRIC ARCHIVE // N° 042</span>
+          </div>
+
+          <h1 class="hero-headline">The Mechanics of Unbroken Time</h1>
+
+          <p class="hero-lead">
+            Hand-assembled in Glashütte with a free-sprung variable-inertia balance, Breguet overcoil hairspring, and 72-hour reserve. 350 hours of hand anglage per caliber.
+          </p>
+
+          <!-- Interactive Caliber Controls Bar -->
+          <div class="hero-actions">
+            <div class="material-picker-cluster">
+              <span class="picker-label">CASE METALLURGY</span>
+              <div class="material-pill-group">
+                <button type="button" class="material-pill is-active" data-material="titanium">TITANIUM G5</button>
+                <button type="button" class="material-pill" data-material="rose_gold">18K ROSE GOLD</button>
+                <button type="button" class="material-pill" data-material="obsidian">OBSIDIAN DLC</button>
+                <button type="button" class="material-pill" data-material="steel">904L STEEL</button>
+              </div>
+            </div>
+
+            <div class="telemetry-grid">
+              <div class="telemetry-item">
+                <span class="t-label">FREQUENCY</span>
+                <span class="t-val">4.0 HZ // 28,800 VPH</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="t-label">DAILY RATE</span>
+                <span class="t-val">+1.2 SEC / DAY</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="t-label">POWER RESERVE</span>
+                <span id="stat-reserve" class="t-val">68.4h / 72h</span>
+              </div>
+            </div>
+
+            <div class="reserve-gauge-track">
+              <div id="reserve-bar" class="reserve-gauge-fill" style="width: 95%;"></div>
+            </div>
+          </div>
         </div>
-        <div class="mission-cluster">
-          <h1 id="mission-title" class="mission-name">01 // PROVING GROUNDS</h1>
-          <p id="mission-subtitle" class="mission-desc">Learn movement and basic extraction</p>
+
+        <!-- Right: The Signature Artifact (Interactive Caliber Canvas Simulator) -->
+        <div class="hero-artifact-wrapper">
+          <div class="canvas-chassis">
+            <canvas id="caliber-canvas" class="caliber-viewport" width="520" height="520"></canvas>
+            
+            <!-- Real-time Watchmaker Interaction Overlay -->
+            <div class="artifact-controls-overlay">
+              <div class="view-switch-group">
+                <button type="button" class="view-toggle-btn is-active" data-view="skeleton">SKELETON CALIBER</button>
+                <button type="button" class="view-toggle-btn" data-view="guilloche">GUILLOCHÉ DIAL</button>
+              </div>
+
+              <div class="mechanical-actions-dock">
+                <button id="btn-wind-crown" class="artifact-btn" type="button" title="Wind mainspring barrel">
+                  <span class="btn-icon">↻</span>
+                  <span>WIND CROWN (+14H)</span>
+                </button>
+                <button id="btn-toggle-deadbeat" class="artifact-btn" type="button" title="Toggle True Beat dead-seconds complication">
+                  <span class="btn-icon">⏱</span>
+                  <span class="btn-state">SWEEP (4 HZ)</span>
+                </button>
+                <button id="btn-chrono-pusher" class="artifact-btn" type="button" title="Actuate monopusher chronograph">
+                  <span class="btn-icon">▶</span>
+                  <span class="btn-state">START CHRONO</span>
+                </button>
+                <button id="btn-chrono-reset" class="artifact-btn compact" type="button" title="Zero chronograph hand">
+                  <span>RESET</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div id="current-material-label" class="case-spec-caption">GRADE 5 TITANIUM // BRUSHED SATIN</div>
         </div>
       </div>
+    </section>
 
-      <!-- Center Status Telemetry -->
-      <div class="hud-center">
-        <div id="turn-counter" class="telemetry-pill">TURN 00</div>
-        <div id="terminal-status" class="status-chip">0 / 1 HACKED</div>
-        <div id="stealth-status" class="status-chip is-ghost">STATUS // GHOST</div>
-      </div>
-
-      <!-- Right Controls & Level Selector -->
-      <div class="hud-right">
-        <label for="level-select" class="hud-label">OPERATION</label>
-        <select id="level-select" class="tactile-select">
-          <!-- Injected dynamically -->
-        </select>
-      </div>
-    </header>
-
-    <!-- MAIN GAME CANVAS VIEWPORT -->
-    <main class="tactical-stage">
-      <canvas id="game-canvas"></canvas>
-
-      <!-- IN-GAME INVENTORY & QUICK ACTIONS DOCK -->
-      <div class="inventory-dock">
-        <div class="item-slot">
-          <button id="btn-item-emp" class="item-btn" type="button" title="Disable cameras and lasers for 3 turns (Hotkey: 1)">
-            <span class="item-icon">⚡</span>
-            <span class="item-name">EMP BLAST</span>
-            <span id="emp-count" class="item-badge">[1]</span>
-          </button>
-          <span class="item-hotkey">KEY 1</span>
+    <!-- SECTION 2: CALIBER ARCHITECTURE & METALLURGY -->
+    <section id="architecture" class="content-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-kicker">01 // MOVEMENT ARCHITECTURE</span>
+          <h2 class="section-title">The Anatomic Anatomy of Caliber KS-042</h2>
+          <p class="section-intro">
+            Manufactured in untreated German silver with three-quarter plate construction, hand-engraved balance cock, and screwed gold chatons.
+          </p>
         </div>
 
-        <div class="item-slot">
-          <button id="btn-item-smoke" class="item-btn" type="button" title="Drop smoke cloud blocking guard vision for 4 turns (Hotkey: 2)">
-            <span class="item-icon">💨</span>
-            <span class="item-name">SMOKE SCREEN</span>
-            <span id="smoke-count" class="item-badge">[1]</span>
-          </button>
-          <span class="item-hotkey">KEY 2</span>
-        </div>
+        <div class="architecture-grid">
+          <div class="arch-card">
+            <div class="card-num">01</div>
+            <h3 class="card-title">Free-Sprung Glucydur Balance</h3>
+            <p class="card-desc">
+              Four masselottes poising screws enable micrometer regulation without regulator pins, eliminating rate perturbation across positions.
+            </p>
+            <div class="card-metric">
+              <span class="metric-num">10.2 mm</span>
+              <span class="metric-caption">WHEEL DIAMETER</span>
+            </div>
+          </div>
 
-        <div class="item-slot">
-          <button id="btn-item-decoy" class="item-btn" type="button" title="Place decoy attracting nearest guard (Hotkey: 3, then click tile)">
-            <span class="item-icon">🪤</span>
-            <span class="item-name">HOLO DECOY</span>
-            <span id="decoy-count" class="item-badge">[1]</span>
-          </button>
-          <span class="item-hotkey">KEY 3</span>
-        </div>
+          <div class="arch-card">
+            <div class="card-num">02</div>
+            <h3 class="card-title">Breguet Overcoil Hairspring</h3>
+            <p class="card-desc">
+              Hand-curved terminal curve allows concentric spring expansion in every orientation, delivering chronometric isochronism.
+            </p>
+            <div class="card-metric">
+              <span class="metric-num">Nivarox I</span>
+              <span class="metric-caption">ALLOY SPECIFICATION</span>
+            </div>
+          </div>
 
-        <div class="dock-divider"></div>
+          <div class="arch-card">
+            <div class="card-num">03</div>
+            <h3 class="card-title">Screwed Gold Chatons</h3>
+            <p class="card-desc">
+              Synthetic ruby bearing jewels seated inside solid 18-karat gold rings, secured to the German silver bridge by blued steel screws.
+            </p>
+            <div class="card-metric">
+              <span class="metric-num">33 Jewels</span>
+              <span class="metric-caption">TOTAL BEARING COUNT</span>
+            </div>
+          </div>
 
-        <div class="item-slot">
-          <button id="btn-action-undo" class="action-btn" type="button" title="Rewind turn (Hotkey: Z)">
-            <span class="action-icon">⤺</span>
-            <span class="action-name">UNDO</span>
-          </button>
-          <span class="item-hotkey">KEY Z</span>
-        </div>
-
-        <div class="item-slot">
-          <button id="btn-action-wait" class="action-btn" type="button" title="Wait one turn in place (Hotkey: Space)">
-            <span class="action-icon">⏸</span>
-            <span class="action-name">WAIT</span>
-          </button>
-          <span class="item-hotkey">SPACE</span>
-        </div>
-
-        <div class="item-slot">
-          <button id="btn-action-restart" class="action-btn danger-action" type="button" title="Restart level (Hotkey: R)">
-            <span class="action-icon">↺</span>
-            <span class="action-name">RESET</span>
-          </button>
-          <span class="item-hotkey">KEY R</span>
+          <div class="arch-card">
+            <div class="card-num">04</div>
+            <h3 class="card-title">Twin-Series Barrels</h3>
+            <p class="card-desc">
+              Two mainspring barrels coupled in series deliver uniform torque transfer across the full 72-hour operating curve.
+            </p>
+            <div class="card-metric">
+              <span class="metric-num">72 Hours</span>
+              <span class="metric-caption">POWER RESERVE</span>
+            </div>
+          </div>
         </div>
       </div>
-    </main>
+    </section>
 
-    <!-- FOOTER CONTROLS & HINT BAR -->
-    <footer class="tactical-footer">
-      <div class="legend-group">
-        <span class="legend-tag legend-player"><span class="dot"></span> AGENT (YOU)</span>
-        <span class="legend-tag legend-guard"><span class="dot"></span> PATROL GUARD</span>
-        <span class="legend-tag legend-danger"><span class="dot"></span> RED VISION CONE (DEADLY)</span>
-        <span class="legend-tag legend-terminal"><span class="dot"></span> CIPHER TERMINAL</span>
-        <span class="legend-tag legend-exit"><span class="dot"></span> GREEN EXTRACTION</span>
-      </div>
-      <div class="hint-group">
-        <span>MOVE: <strong>W A S D</strong> OR <strong>ARROWS</strong> OR <strong>CLICK ADJACENT TILE</strong></span>
-      </div>
-    </footer>
-
-    <!-- GAME OVER / DETECTED MODAL -->
-    <div id="modal-game-over" class="modal-layer is-hidden">
-      <div class="tactical-modal is-alarm-modal">
-        <div class="modal-badge-red">COMPROMISED</div>
-        <h2 class="modal-heading">INFILTRATION FAILED</h2>
-        <p id="game-over-cause" class="modal-text">SURVEILLANCE ALARM TRIGGERED</p>
-        <div class="modal-actions">
-          <button id="btn-rewind-death" class="modal-btn primary-action" type="button">
-            <span>⤺ REWIND 1 TURN (UNDO)</span>
-          </button>
-          <button id="btn-restart-death" class="modal-btn secondary-action" type="button">
-            <span>↺ RESTART MISSION</span>
-          </button>
+    <!-- SECTION 3: SPECIFICATIONS COMPARISON TABLE (PARALLEL BASELINES) -->
+    <section id="specifications" class="content-section section-contrast">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-kicker">02 // TECHNICAL REGISTRY</span>
+          <h2 class="section-title">Reference Specifications</h2>
         </div>
+
+        <div class="spec-table-container">
+          <table class="spec-table">
+            <thead>
+              <tr>
+                <th scope="col">DIMENSION / COMPONENT</th>
+                <th scope="col">KS-042 REFERENCE</th>
+                <th scope="col">MANUFACTURING STANDARD</th>
+                <th scope="col">VERIFICATION TOLERANCE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Case Diameter</td>
+                <td>39.50 mm</td>
+                <td>CNC Lathe Turn & Hand Polish</td>
+                <td>± 0.005 mm</td>
+              </tr>
+              <tr>
+                <td>Total Case Thickness</td>
+                <td>9.80 mm</td>
+                <td>Double-domed Sapphire Included</td>
+                <td>Flush Caliper Fit</td>
+              </tr>
+              <tr>
+                <td>Movement Diameter</td>
+                <td>30.40 mm (13½ Lines)</td>
+                <td>Untreated German Silver Plate</td>
+                <td>Atelier Calibrated</td>
+              </tr>
+              <tr>
+                <td>Movement Height</td>
+                <td>4.20 mm</td>
+                <td>Integrated Chronometer Layout</td>
+                <td>Micron Leveling</td>
+              </tr>
+              <tr>
+                <td>Oscillation Rate</td>
+                <td>28,800 vibrations / hour (4 Hz)</td>
+                <td>Glashütte Observatory Spec</td>
+                <td>COSC Standard (-4/+6s)</td>
+              </tr>
+              <tr>
+                <td>Finish Treatment</td>
+                <td>Black Polish & 45° Anglage</td>
+                <td>Tin Lap with Diamond Paste</td>
+                <td>Optical Mirror Reflection</td>
+              </tr>
+              <tr>
+                <td>Water Resistance</td>
+                <td>50 meters (5 ATM)</td>
+                <td>Dual O-ring Gasket System</td>
+                <td>Dry & Wet Pressure Tested</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: ATELIER TRADITION -->
+    <section id="atelier" class="content-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-kicker">03 // THE GLASHÜTTE BENCH</span>
+          <h2 class="section-title">One Watchmaker, One Movement</h2>
+          <p class="section-intro">
+            From rough turning to final casing, each timepiece is entrusted to a single master watchmaker through two complete assembly and regulation cycles.
+          </p>
+        </div>
+
+        <div class="atelier-process-columns">
+          <div class="process-col">
+            <div class="process-step">PHASE 01</div>
+            <h3 class="process-title">First Assembly & Pre-Timing</h3>
+            <p class="process-text">
+              The movement is dry-assembled to check gear teeth end-shake, wheel depthing, and pallet stone engagement under 40x magnification.
+            </p>
+          </div>
+
+          <div class="process-col">
+            <div class="process-step">PHASE 02</div>
+            <h3 class="process-title">Hand Finishing & Anglage</h3>
+            <p class="process-text">
+              Every bridge edge is filed with boxwood laps to a 45-degree mirror chamfer. Screw heads are flat-polished on zinc blocks with diamond rouge.
+            </p>
+          </div>
+
+          <div class="process-col">
+            <div class="process-step">PHASE 03</div>
+            <h3 class="process-title">Second Assembly & Regulation</h3>
+            <p class="process-text">
+              The finished components are lubricated with synthetic Moebius oils and timed in six static positions across three temperature gradients.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: INTERACTIVE BESPOKE COMMISSION WORKBENCH -->
+    <section id="commission" class="content-section section-contrast">
+      <div class="section-container">
+        <div class="commission-box">
+          <div class="commission-intro">
+            <span class="section-kicker">04 // COMMISSIONS</span>
+            <h2 class="section-title">Configure Your Allocation</h2>
+            <p class="section-intro">
+              Atelier output is limited to 24 timepieces per calendar year. Configure your case, complication, and strap to calculate atelier lead time and file an allocation request.
+            </p>
+          </div>
+
+          <div class="commission-interactive-grid">
+            <!-- Form Configurator -->
+            <form id="commission-form" class="config-form">
+              <div class="form-group">
+                <label class="form-label">SELECT CASE METAL</label>
+                <div class="radio-tile-group">
+                  <label class="radio-tile">
+                    <input type="radio" name="cfg-metal" value="titanium" checked>
+                    <span class="tile-content">
+                      <span class="tile-title">Titanium G5</span>
+                      <span class="tile-meta">Satin Brushed</span>
+                    </span>
+                  </label>
+
+                  <label class="radio-tile">
+                    <input type="radio" name="cfg-metal" value="rose_gold">
+                    <span class="tile-content">
+                      <span class="tile-title">18K 4N Rose Gold</span>
+                      <span class="tile-meta">Mirror Anglage</span>
+                    </span>
+                  </label>
+
+                  <label class="radio-tile">
+                    <input type="radio" name="cfg-metal" value="obsidian">
+                    <span class="tile-content">
+                      <span class="tile-title">Obsidian DLC</span>
+                      <span class="tile-meta">Matte Carbon</span>
+                    </span>
+                  </label>
+
+                  <label class="radio-tile">
+                    <input type="radio" name="cfg-metal" value="steel">
+                    <span class="tile-content">
+                      <span class="tile-title">904L Steel</span>
+                      <span class="tile-meta">High Polish Lugs</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">CALIBER COMPLICATION</label>
+                <div class="radio-tile-group">
+                  <label class="radio-tile">
+                    <input type="radio" name="cfg-complication" value="three_hand" checked>
+                    <span class="tile-content">
+                      <span class="tile-title">Three-Hand Sweeping</span>
+                      <span class="tile-meta">Caliber KS-042 Base</span>
+                    </span>
+                  </label>
+
+                  <label class="radio-tile">
+                    <input type="radio" name="cfg-complication" value="dead_beat">
+                    <span class="tile-content">
+                      <span class="tile-title">True Beat Dead-Seconds</span>
+                      <span class="tile-meta">Star & Whip Mechanism</span>
+                    </span>
+                  </label>
+
+                  <label class="radio-tile">
+                    <input type="radio" name="cfg-complication" value="chronograph">
+                    <span class="tile-content">
+                      <span class="tile-title">Column-Wheel Monopusher</span>
+                      <span class="tile-meta">Horizontal Clutch</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label for="cfg-strap" class="form-label">LEATHER STRAP</label>
+                  <select id="cfg-strap" class="form-select">
+                    <option value="alligator">Hand-Stitched Matte Black Alligator</option>
+                    <option value="barenia">French Barenia Saddle Leather (Cognac)</option>
+                    <option value="cordovan">Shell Cordovan (Horween Oxblood)</option>
+                    <option value="sailcloth">Ballistic Sailcloth Rubberized (Anthracite)</option>
+                  </select>
+                </div>
+
+                <div class="form-group flex-1">
+                  <label for="collector-name" class="form-label">COLLECTOR FULL NAME</label>
+                  <input type="text" id="collector-name" class="form-input" placeholder="e.g. Marcus Thorne" required>
+                </div>
+              </div>
+
+              <button type="submit" class="submit-btn">
+                <span>SUBMIT COMMISSION REQUEST</span>
+                <span class="btn-arrow">→</span>
+              </button>
+            </form>
+
+            <!-- Dynamic Confirmation Output -->
+            <div id="commission-confirmation" class="confirmation-wrap is-hidden"></div>
+
+            <!-- Dynamic Calculator Card (Bottom Anchored) -->
+            <div class="commission-summary-card">
+              <span class="summary-badge">PRODUCTION TELEMETRY</span>
+              <div class="summary-metric-group">
+                <div id="estimate-lead-time" class="summary-metric">16 WEEKS ATELIER BUILD</div>
+                <div id="estimate-deposit" class="summary-metric-sub">€4,200 RESERVATION DEPOSIT</div>
+              </div>
+              <p class="summary-text">
+                Every bespoke timepiece receives an individualized certificate of provenance signed by the master watchmaker, recorded in the Glashütte municipal archive.
+              </p>
+              <div class="summary-signature">
+                <span class="sig-line">J. König</span>
+                <span class="sig-role">MASTER WATCHMAKER // ATELIER DIRECTOR</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ATELIER FOOTER -->
+  <footer class="atelier-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <span class="hallmark-symbol">✠</span>
+        <span class="footer-brand">KÖNIG & SÖHNE ATELIER D'HORLOGERIE</span>
+        <span class="footer-copy">© 2026 // ALL RIGHTS RESERVED</span>
+      </div>
+
+      <div class="footer-right">
+        <span>HAUPTSTRASSE 18, 01768 GLASHÜTTE, SAXONY</span>
+        <span>VISITS STRICTLY BY PRIVATE APPOINTMENT</span>
       </div>
     </div>
+  </footer>
 
-    <!-- MISSION ACCOMPLISHED MODAL -->
-    <div id="modal-victory" class="modal-layer is-hidden">
-      <div class="tactical-modal is-victory-modal">
-        <div class="modal-badge-green">OBJECTIVE SECURED</div>
-        <h2 class="modal-heading">EXTRACTION COMPLETE</h2>
-        <p id="victory-turns" class="modal-text">COMPLETED IN 12 TURNS // RATING: GHOST</p>
-        <div class="modal-actions">
-          <button id="btn-next-level" class="modal-btn victory-action" type="button">
-            <span>PROCEED TO NEXT MISSION ▶</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Scripts -->
-  <script src="js/levels.js"></script>
-  <script src="js/game-engine.js"></script>
-  <script src="js/renderer.js"></script>
+  <script src="js/caliber-sim.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

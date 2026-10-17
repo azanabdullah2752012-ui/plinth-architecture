@@ -1,39 +1,47 @@
-# CIPHER: PROTOCOL // Tactical Stealth Infiltration
+# KÖNIG & SÖHNE // Atelier d'Horlogerie
 
-A minimalist turn-based stealth puzzle game running in your browser. Zero sound, zero video — pure strategic movement, line-of-sight evasion, security hacking, and tactical gadget deployment.
+An independent Glashütte horological atelier crafting mechanical chronometers with variable-inertia balance wheels, Swiss lever escapements, and bespoke commissions.
 
-Designed under the **Anti-Slop Design Guidelines**: high-contrast tactical security grid, raycast vision cones, smooth movement interpolation, and infinite turn rewind (`Z`).
-
----
-
-## How to Play (Instant 10-Second Guide)
-
-1. **Move Your Agent**: Use `W A S D`, `Arrow Keys`, or simply **click an adjacent floor tile**.
-2. **Dodge Red Vision Cones**: Patrol guards and security cameras project red vision cones across the floor. If you end your turn inside one, the alarm triggers!
-3. **Hack Encrypted Terminals (`⚡`)**: Step on the yellow cipher terminal to hack it and unlock security blast doors.
-4. **Reach Extraction (`EXIT`)**: Step on the green exit zone once all terminals are hacked to win the mission!
-5. **Made a Mistake? Press `Z`**: Infinite turn rewind! You can undo any move at any time with zero penalty.
+Designed strictly under the **Anti-Slop Design Guidelines**:
+- **One Signature Artifact**: Real-time interactive mechanical escapement simulator with harmonic balance oscillation, hairspring coiling, pallet locking, and crown winding.
+- **Composed Atmosphere**: Dark warm obsidian (`#0c0e12`), champagne brass (`#cda66f`), untreated German silver, and mirror-beveled anglage.
+- **Real Specificity**: Authentic horological nomenclature (isochronism, Breguet overcoil, Glucydur balance, Glashütte three-quarter plate, Incabloc shock protection) with zero AI buzzwords.
+- **Strict Execution Laws**: Visible by default, parallel baseline alignment, accessible WCAG AA contrast, and 100% functional controls.
 
 ---
 
-## Tactical Gadgets
+## Brand Overview
 
-- `[1] EMP Blast`: Deactivates all security cameras and lasers for 3 turns.
-- `[2] Smoke Screen`: Deploys a 3x3 smoke cloud around your agent that completely blocks guard vision for 4 turns.
-- `[3] Holo Decoy`: Place a holographic decoy on any tile to distract the nearest patrol guard.
-- `[Space] Wait`: Stay in place for one turn to let guards walk past.
+- **Maison**: KÖNIG & SÖHNE
+- **Origin**: Hauptstraße 18, 01768 Glashütte, Saxony
+- **Caliber Reference**: KS-042
+- **Production Limit**: 24 bespoke allocations per calendar year
+- **Hallmark**: Double-polished German silver three-quarter plate, screwed gold chatons, free-sprung poising screws.
 
 ---
 
-## Missions
+## Interactive Features
 
-- `01 // Proving Grounds`: Learn basic movement, doors, and extraction.
-- `02 // Perimeter Patrol`: Evade moving patrol guards with vision cones.
-- `03 // Camera Sweep`: Rotating 90° security cameras.
-- `04 // Infrared Corridor`: Time your passage through cycling infrared lasers.
-- `05 // The Inner Sanctum`: Multi-guard patrol crossfire.
-- `06 // Master Protocol`: Full security array (lasers, cameras, guards, dual ciphers).
-- `∞ // Procedural Heist`: Endless procedurally generated vault layouts!
+1. **Live Caliber KS-042 Escapement Simulator**:
+   - Free-sprung balance wheel oscillating at 4.0 Hz (28,800 vph).
+   - Coiling Breguet hairspring synchronized with harmonic deflection.
+   - Swiss lever escapement advancing teeth in real-time.
+   - 72-hour power reserve with live winding via the Crown button (`+14h`).
+2. **Case Metallurgy Customizer**:
+   - `Grade 5 Titanium` (Brushed satin)
+   - `18K 4N Rose Gold` (Mirror anglage)
+   - `Obsidian DLC` (Matte carbon)
+   - `904L Steel` (Faceted lugs)
+3. **Dial Modes**:
+   - `Skeleton Caliber`: Transparent view into the three-quarter plate, gear train, and screwed chatons.
+   - `Guilloché Dial`: Hand-turned Clous de Paris textured face with open balance aperture at 6 o'clock.
+4. **Complications**:
+   - `True Beat (Dead-Seconds)`: Mechanical 1Hz jumping seconds.
+   - `Monopusher Chronograph`: Start, stop, and reset stopwatch.
+5. **Interactive Bespoke Commission Workbench**:
+   - Configure case metal, complication, and strap leather.
+   - Calculates dynamic atelier build lead times and deposit requirements.
+   - Generates municipal archive commission numbers upon submission.
 
 ---
 
