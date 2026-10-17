@@ -70,4 +70,30 @@
     }
   });
 
+  /* ── Project scroll storytelling ─────────────── */
+  const projectItems = document.querySelectorAll('.project-item');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (projectItems.length > 0 && !prefersReduced && 'IntersectionObserver' in window) {
+    projectItems.forEach(function (item) {
+      item.classList.add('will-reveal');
+    });
+
+    const projectObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          projectObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -30px 0px'
+    });
+
+    projectItems.forEach(function (item) {
+      projectObserver.observe(item);
+    });
+  }
+
 }());

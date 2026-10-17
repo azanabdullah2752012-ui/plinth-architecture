@@ -133,151 +133,180 @@
     </section>
 
 
-    <!-- ── WORK / MONOGRAPH PRESENTATIONS ─────── -->
-    <section class="section-work" id="work" aria-label="Selected Works">
+    <!-- ── SELECTED WORK (PROMPT 02) ────────────── -->
+    <section class="section-work" id="work" aria-label="Selected Work">
       <div class="work__inner">
 
-        <!-- Work Header -->
-        <div class="work__header">
-          <div class="work__title-group">
-            <span class="work__kicker">Selected Projects · 2018—2026</span>
-            <h2 class="work__title">Form follows patience.</h2>
-          </div>
-          <p class="work__lead">
-            Every building begins with silent observation: the trajectory of solstice light, the grain of local aggregate, and the collective memory held in the topography.
+        <!-- Section Introduction -->
+        <header class="work__intro">
+          <span class="work__eyebrow">SELECTED WORK</span>
+          <h2 class="work__heading">Five projects. Different contexts. One approach.</h2>
+          <p class="work__support">
+            Architecture shaped by quiet observation—responding to the permanence of place, material honesty, and the slow passage of light.
           </p>
-        </div>
+        </header>
 
-        <!-- Monograph Index Table -->
-        <div class="work__index-table" role="table" aria-label="Projects Archive Index">
-          <div class="work__index-row" role="row">
-            <span class="work__index-num" role="cell">01</span>
-            <span class="work__index-name" role="cell">Biblioteca Central</span>
-            <span class="work__index-loc" role="cell">Porto, Portugal</span>
-            <span class="work__index-tag" role="cell">Cultural</span>
-            <span class="work__index-year" role="cell">2024</span>
-          </div>
-          <div class="work__index-row" role="row">
-            <span class="work__index-num" role="cell">02</span>
-            <span class="work__index-name" role="cell">Pátio das Flores</span>
-            <span class="work__index-loc" role="cell">Évora, Portugal</span>
-            <span class="work__index-tag" role="cell">Heritage</span>
-            <span class="work__index-year" role="cell">2024</span>
-          </div>
-          <div class="work__index-row" role="row">
-            <span class="work__index-num" role="cell">03</span>
-            <span class="work__index-name" role="cell">Edifício Vento</span>
-            <span class="work__index-loc" role="cell">Cascais, Portugal</span>
-            <span class="work__index-tag" role="cell">Commercial</span>
-            <span class="work__index-year" role="cell">2023</span>
-          </div>
-          <div class="work__index-row" role="row">
-            <span class="work__index-num" role="cell">04</span>
-            <span class="work__index-name" role="cell">Pavilhão Sereno</span>
-            <span class="work__index-loc" role="cell">Alentejo, Portugal</span>
-            <span class="work__index-tag" role="cell">Installation</span>
-            <span class="work__index-year" role="cell">2023</span>
-          </div>
-        </div>
+        <!-- Project Grid: Strict Two-Column Portfolio Grid -->
+        <div class="projects-grid">
 
-        <!-- Plates Stream -->
-        <div class="plates-stream">
-
-          <!-- Plate 01: Biblioteca Central -->
-          <article class="plate-full">
-            <div class="plate-full__media">
-              <img
-                src="images/biblioteca-central.jpg"
-                alt="Interior perspective of Biblioteca Central showing coffered concrete ceiling and timber reading tables"
-                class="plate-full__image"
-                loading="lazy"
-              >
-            </div>
-            <div class="plate-full__caption">
-              <div class="plate-title-block">
-                <span class="plate-num">Plate 01</span>
-                <h3 class="plate-title">Biblioteca Central</h3>
-                <p class="plate-location">Porto, Portugal</p>
+          <!-- 01: Casa Mouraria -->
+          <article class="project-item" id="project-casa-mouraria">
+            <a href="#project-casa-mouraria" class="project-item__link" aria-label="Casa Mouraria — Residential project in Mouraria, Lisbon">
+              <div class="project-item__visual">
+                <img
+                  src="images/casa-mouraria.jpg"
+                  alt="Minimalist private residence in Mouraria with white plaster walls, raw concrete floor, and warm afternoon light"
+                  class="project-item__image"
+                  loading="lazy"
+                  width="1600"
+                  height="1000"
+                >
               </div>
-              <p class="plate-narrative">
-                An investigation into acoustic silence and overhead illumination. The coffered concrete roof structure filters indirect northern sunlight through deep reveal channels, bathing the reading hall in a soft, non-glare luminosity throughout the Atlantic seasons.
-              </p>
-              <div class="plate-specs">
-                <span><strong>Typology:</strong> Civic Library</span>
-                <span><strong>Gross Area:</strong> 3,850 m²</span>
-                <span><strong>Structure:</strong> In-situ concrete &amp; bog oak</span>
-                <span><strong>Status:</strong> Completed 2024</span>
+              <div class="project-item__content">
+                <div class="project-item__header">
+                  <h3 class="project-item__title">
+                    Casa Mouraria
+                    <span class="project-item__arrow" aria-hidden="true">→</span>
+                  </h3>
+                  <div class="project-item__meta">
+                    <span class="project-item__location">Mouraria, Lisbon</span>
+                    <span class="project-item__separator" aria-hidden="true">·</span>
+                    <span class="project-item__category">Residential</span>
+                  </div>
+                </div>
+                <p class="project-item__description">
+                  A minimalist private home shaped by white plaster, concrete and afternoon light.
+                </p>
               </div>
-            </div>
+            </a>
           </article>
 
-          <!-- Plate Duet (02 & 03): Edifício Vento & Pátio das Flores -->
-          <div class="plate-duet">
-
-            <article class="plate-duet__item">
-              <div class="plate-duet__media">
+          <!-- 02: Biblioteca Central -->
+          <article class="project-item" id="project-biblioteca-central">
+            <a href="#project-biblioteca-central" class="project-item__link" aria-label="Biblioteca Central — Cultural project in Porto">
+              <div class="project-item__visual">
                 <img
-                  src="images/edificio-vento.jpg"
-                  alt="Double-height central void and concrete bridge of Edifício Vento in Cascais"
-                  class="plate-duet__image--tall"
+                  src="images/biblioteca-central.jpg"
+                  alt="Monumental brutalist interior of Biblioteca Central in Porto with coffered concrete ceiling and timber reading tables"
+                  class="project-item__image"
                   loading="lazy"
+                  width="1600"
+                  height="1000"
                 >
               </div>
-              <div class="plate-duet__caption">
-                <div class="plate-title-block">
-                  <span class="plate-num">Plate 02</span>
-                  <h3 class="plate-title">Edifício Vento</h3>
-                  <p class="plate-location">Cascais, Portugal · 2023</p>
+              <div class="project-item__content">
+                <div class="project-item__header">
+                  <h3 class="project-item__title">
+                    Biblioteca Central
+                    <span class="project-item__arrow" aria-hidden="true">→</span>
+                  </h3>
+                  <div class="project-item__meta">
+                    <span class="project-item__location">Porto</span>
+                    <span class="project-item__separator" aria-hidden="true">·</span>
+                    <span class="project-item__category">Cultural</span>
+                  </div>
                 </div>
-                <p class="plate-narrative">
-                  A coastal workplace anchored around a double-height ventilation court. High-performance micro-cement and sandblasted pine create quiet thermal comfort facing the Atlantic wind.
+                <p class="project-item__description">
+                  A brutalist public library defined by coffered concrete, dark timber and clerestory light.
                 </p>
               </div>
-            </article>
+            </a>
+          </article>
 
-            <article class="plate-duet__item">
-              <div class="plate-duet__media">
+          <!-- 03: Pátio das Flores -->
+          <article class="project-item" id="project-patio-flores">
+            <a href="#project-patio-flores" class="project-item__link" aria-label="Pátio das Flores — Heritage project in Évora">
+              <div class="project-item__visual">
                 <img
                   src="images/patio-flores.jpg"
-                  alt="Restored lime-washed masonry arch and terracotta court in Évora"
-                  class="plate-duet__image--portrait"
+                  alt="Restored historic stone courtyard in Évora featuring arched stone openings, terracotta tiles and a fig tree"
+                  class="project-item__image"
                   loading="lazy"
+                  width="1600"
+                  height="1000"
                 >
               </div>
-              <div class="plate-duet__caption">
-                <div class="plate-title-block">
-                  <span class="plate-num">Plate 03</span>
-                  <h3 class="plate-title">Pátio das Flores</h3>
-                  <p class="plate-location">Évora, Portugal · 2024</p>
+              <div class="project-item__content">
+                <div class="project-item__header">
+                  <h3 class="project-item__title">
+                    Pátio das Flores
+                    <span class="project-item__arrow" aria-hidden="true">→</span>
+                  </h3>
+                  <div class="project-item__meta">
+                    <span class="project-item__location">Évora</span>
+                    <span class="project-item__separator" aria-hidden="true">·</span>
+                    <span class="project-item__category">Heritage</span>
+                  </div>
                 </div>
-                <p class="plate-narrative">
-                  Consolidation of an eighteenth-century domestic courtyard. Hand-shaped local terracotta tiles and breathable slaked-lime wash retain moisture while respecting centuries of archaeological layering.
+                <p class="project-item__description">
+                  A restored stone courtyard featuring arched openings, terracotta tiles and a fig tree.
                 </p>
               </div>
-            </article>
+            </a>
+          </article>
 
-          </div>
-
-          <!-- Plate Landscape: Pavilhão Sereno -->
-          <article class="plate-landscape">
-            <div class="plate-landscape__sidebar">
-              <div class="plate-title-block">
-                <span class="plate-num">Plate 04</span>
-                <h3 class="plate-title">Pavilhão<br>Sereno</h3>
-                <p class="plate-location">Alentejo, Portugal · 2023</p>
+          <!-- 04: Edifício Vento -->
+          <article class="project-item" id="project-edificio-vento">
+            <a href="#project-edificio-vento" class="project-item__link" aria-label="Edifício Vento — Commercial project in Cascais">
+              <div class="project-item__visual">
+                <img
+                  src="images/edificio-vento.jpg"
+                  alt="Double-height commercial office atrium in Cascais with concrete mezzanine walkway and overhead skylight"
+                  class="project-item__image"
+                  loading="lazy"
+                  width="1600"
+                  height="1000"
+                >
               </div>
-              <p class="plate-narrative">
-                A minimal horizontal roof plane suspended above dry wheat grasslands. Four slender blackened steel columns dissolve into the distant cork oak horizon, providing shade with near-zero ground footprint.
-              </p>
-            </div>
-            <div class="plate-landscape__media">
-              <img
-                src="images/pavilhao-sereno.jpg"
-                alt="Horizontal roof slab of Pavilhão Sereno resting lightly on the open Alentejo plains"
-                class="plate-landscape__image"
-                loading="lazy"
-              >
-            </div>
+              <div class="project-item__content">
+                <div class="project-item__header">
+                  <h3 class="project-item__title">
+                    Edifício Vento
+                    <span class="project-item__arrow" aria-hidden="true">→</span>
+                  </h3>
+                  <div class="project-item__meta">
+                    <span class="project-item__location">Cascais</span>
+                    <span class="project-item__separator" aria-hidden="true">·</span>
+                    <span class="project-item__category">Commercial</span>
+                  </div>
+                </div>
+                <p class="project-item__description">
+                  An office building organised around a double-height atrium, mezzanine walkway and skylight.
+                </p>
+              </div>
+            </a>
+          </article>
+
+          <!-- 05: Pavilhão Sereno (Left column of final row, right column empty) -->
+          <article class="project-item" id="project-pavilhao-sereno">
+            <a href="#project-pavilhao-sereno" class="project-item__link" aria-label="Pavilhão Sereno — Installation project in Alentejo">
+              <div class="project-item__visual">
+                <img
+                  src="images/pavilhao-sereno.jpg"
+                  alt="Minimalist outdoor concrete pavilion in Alentejo resting quietly against open countryside and golden wheat fields"
+                  class="project-item__image"
+                  loading="lazy"
+                  width="1600"
+                  height="1000"
+                >
+              </div>
+              <div class="project-item__content">
+                <div class="project-item__header">
+                  <h3 class="project-item__title">
+                    Pavilhão Sereno
+                    <span class="project-item__arrow" aria-hidden="true">→</span>
+                  </h3>
+                  <div class="project-item__meta">
+                    <span class="project-item__location">Alentejo</span>
+                    <span class="project-item__separator" aria-hidden="true">·</span>
+                    <span class="project-item__category">Installation</span>
+                  </div>
+                </div>
+                <p class="project-item__description">
+                  A minimalist outdoor concrete pavilion set against open countryside and golden wheat fields.
+                </p>
+              </div>
+            </a>
           </article>
 
         </div>
