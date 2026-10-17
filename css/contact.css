@@ -1,0 +1,170 @@
+/* ══════════════════════════════════════════════════
+   PLINTH — Contact & Colophon
+   Subtle architectural inquiries, coordinates,
+   and quiet editorial colophon.
+══════════════════════════════════════════════════ */
+
+.section-contact {
+  padding-top: var(--sp-128);
+  padding-bottom: var(--sp-96);
+  border-top: 1px solid var(--c-divider);
+  background-color: var(--c-cream);
+}
+
+.contact__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--page-pad);
+}
+
+.contact__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--sp-80);
+  margin-bottom: var(--sp-96);
+}
+
+.contact__left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-24);
+}
+
+.contact__kicker {
+  font-family: var(--f-sans);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--c-brass);
+}
+
+.contact__headline {
+  font-family: var(--f-display);
+  font-size: var(--fs-d2);
+  font-weight: var(--fw-light);
+  line-height: var(--lh-tight);
+  color: var(--c-umber);
+}
+
+.contact__headline em {
+  font-style: italic;
+  color: var(--c-umber-mid);
+}
+
+.contact__body {
+  font-family: var(--f-sans);
+  font-size: var(--fs-lead);
+  font-weight: var(--fw-light);
+  line-height: var(--lh-body);
+  color: var(--c-secondary);
+  max-width: 44ch;
+}
+
+.contact__right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-32);
+  border-left: 1px solid var(--c-divider);
+  padding-left: var(--sp-48);
+}
+
+.contact__channel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+}
+
+.contact__channel-label {
+  font-family: var(--f-sans);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+
+.contact__email-link {
+  font-family: var(--f-display);
+  font-size: 1.75rem;
+  font-weight: var(--fw-regular);
+  color: var(--c-umber);
+  line-height: 1.1;
+  transition: color var(--t-fast);
+}
+
+.contact__email-link:hover {
+  color: var(--c-brass);
+}
+
+.contact__address-text {
+  font-family: var(--f-sans);
+  font-size: var(--fs-small);
+  line-height: 1.7;
+  color: var(--c-secondary);
+}
+
+.contact__coords {
+  font-family: var(--f-sans);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-wider);
+  color: var(--c-muted);
+  text-transform: uppercase;
+  margin-top: var(--sp-4);
+}
+
+/* ── Site Colophon / Footer ───────────────────── */
+.colophon {
+  border-top: 1px solid var(--c-divider);
+  padding: var(--sp-48) 0;
+  margin-top: var(--sp-64);
+}
+
+.colophon__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sp-24);
+  font-family: var(--f-sans);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+
+.colophon__brand {
+  font-family: var(--f-display);
+  font-size: 1.125rem;
+  color: var(--c-umber);
+  letter-spacing: var(--ls-widest);
+  text-transform: none;
+}
+
+.colophon__links {
+  display: flex;
+  gap: var(--sp-32);
+}
+
+.colophon__link {
+  color: var(--c-secondary);
+  transition: color var(--t-fast);
+}
+
+.colophon__link:hover {
+  color: var(--c-brass);
+}
+
+/* ── Responsive ───────────────────────────────── */
+@media (max-width: 900px) {
+  .contact__grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-48);
+  }
+
+  .contact__right {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--c-divider);
+    padding-top: var(--sp-32);
+  }
+}

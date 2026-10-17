@@ -20,6 +20,9 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/masthead.css">
   <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/work.css">
+  <link rel="stylesheet" href="css/studio.css">
+  <link rel="stylesheet" href="css/contact.css">
 </head>
 <body>
 
@@ -130,24 +133,337 @@
     </section>
 
 
-    <!-- ── PLACEHOLDER: upcoming sections ───────
-         (Gallery, Studio, Contact — built next)
-    ─────────────────────────────────────────── -->
-    <section class="section-pending" id="work" aria-label="Work — coming soon">
-      <div class="section-pending__inner">
-        <p class="section-pending__label">Work</p>
+    <!-- ── WORK / MONOGRAPH PRESENTATIONS ─────── -->
+    <section class="section-work" id="work" aria-label="Selected Works">
+      <div class="work__inner">
+
+        <!-- Work Header -->
+        <div class="work__header">
+          <div class="work__title-group">
+            <span class="work__kicker">Selected Projects · 2018—2026</span>
+            <h2 class="work__title">Form follows patience.</h2>
+          </div>
+          <p class="work__lead">
+            Every building begins with silent observation: the trajectory of solstice light, the grain of local aggregate, and the collective memory held in the topography.
+          </p>
+        </div>
+
+        <!-- Monograph Index Table -->
+        <div class="work__index-table" role="table" aria-label="Projects Archive Index">
+          <div class="work__index-row" role="row">
+            <span class="work__index-num" role="cell">01</span>
+            <span class="work__index-name" role="cell">Biblioteca Central</span>
+            <span class="work__index-loc" role="cell">Porto, Portugal</span>
+            <span class="work__index-tag" role="cell">Cultural</span>
+            <span class="work__index-year" role="cell">2024</span>
+          </div>
+          <div class="work__index-row" role="row">
+            <span class="work__index-num" role="cell">02</span>
+            <span class="work__index-name" role="cell">Pátio das Flores</span>
+            <span class="work__index-loc" role="cell">Évora, Portugal</span>
+            <span class="work__index-tag" role="cell">Heritage</span>
+            <span class="work__index-year" role="cell">2024</span>
+          </div>
+          <div class="work__index-row" role="row">
+            <span class="work__index-num" role="cell">03</span>
+            <span class="work__index-name" role="cell">Edifício Vento</span>
+            <span class="work__index-loc" role="cell">Cascais, Portugal</span>
+            <span class="work__index-tag" role="cell">Commercial</span>
+            <span class="work__index-year" role="cell">2023</span>
+          </div>
+          <div class="work__index-row" role="row">
+            <span class="work__index-num" role="cell">04</span>
+            <span class="work__index-name" role="cell">Pavilhão Sereno</span>
+            <span class="work__index-loc" role="cell">Alentejo, Portugal</span>
+            <span class="work__index-tag" role="cell">Installation</span>
+            <span class="work__index-year" role="cell">2023</span>
+          </div>
+        </div>
+
+        <!-- Plates Stream -->
+        <div class="plates-stream">
+
+          <!-- Plate 01: Biblioteca Central -->
+          <article class="plate-full">
+            <div class="plate-full__media">
+              <img
+                src="images/biblioteca-central.jpg"
+                alt="Interior perspective of Biblioteca Central showing coffered concrete ceiling and timber reading tables"
+                class="plate-full__image"
+                loading="lazy"
+              >
+            </div>
+            <div class="plate-full__caption">
+              <div class="plate-title-block">
+                <span class="plate-num">Plate 01</span>
+                <h3 class="plate-title">Biblioteca Central</h3>
+                <p class="plate-location">Porto, Portugal</p>
+              </div>
+              <p class="plate-narrative">
+                An investigation into acoustic silence and overhead illumination. The coffered concrete roof structure filters indirect northern sunlight through deep reveal channels, bathing the reading hall in a soft, non-glare luminosity throughout the Atlantic seasons.
+              </p>
+              <div class="plate-specs">
+                <span><strong>Typology:</strong> Civic Library</span>
+                <span><strong>Gross Area:</strong> 3,850 m²</span>
+                <span><strong>Structure:</strong> In-situ concrete &amp; bog oak</span>
+                <span><strong>Status:</strong> Completed 2024</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Plate Duet (02 & 03): Edifício Vento & Pátio das Flores -->
+          <div class="plate-duet">
+
+            <article class="plate-duet__item">
+              <div class="plate-duet__media">
+                <img
+                  src="images/edificio-vento.jpg"
+                  alt="Double-height central void and concrete bridge of Edifício Vento in Cascais"
+                  class="plate-duet__image--tall"
+                  loading="lazy"
+                >
+              </div>
+              <div class="plate-duet__caption">
+                <div class="plate-title-block">
+                  <span class="plate-num">Plate 02</span>
+                  <h3 class="plate-title">Edifício Vento</h3>
+                  <p class="plate-location">Cascais, Portugal · 2023</p>
+                </div>
+                <p class="plate-narrative">
+                  A coastal workplace anchored around a double-height ventilation court. High-performance micro-cement and sandblasted pine create quiet thermal comfort facing the Atlantic wind.
+                </p>
+              </div>
+            </article>
+
+            <article class="plate-duet__item">
+              <div class="plate-duet__media">
+                <img
+                  src="images/patio-flores.jpg"
+                  alt="Restored lime-washed masonry arch and terracotta court in Évora"
+                  class="plate-duet__image--portrait"
+                  loading="lazy"
+                >
+              </div>
+              <div class="plate-duet__caption">
+                <div class="plate-title-block">
+                  <span class="plate-num">Plate 03</span>
+                  <h3 class="plate-title">Pátio das Flores</h3>
+                  <p class="plate-location">Évora, Portugal · 2024</p>
+                </div>
+                <p class="plate-narrative">
+                  Consolidation of an eighteenth-century domestic courtyard. Hand-shaped local terracotta tiles and breathable slaked-lime wash retain moisture while respecting centuries of archaeological layering.
+                </p>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- Plate Landscape: Pavilhão Sereno -->
+          <article class="plate-landscape">
+            <div class="plate-landscape__sidebar">
+              <div class="plate-title-block">
+                <span class="plate-num">Plate 04</span>
+                <h3 class="plate-title">Pavilhão<br>Sereno</h3>
+                <p class="plate-location">Alentejo, Portugal · 2023</p>
+              </div>
+              <p class="plate-narrative">
+                A minimal horizontal roof plane suspended above dry wheat grasslands. Four slender blackened steel columns dissolve into the distant cork oak horizon, providing shade with near-zero ground footprint.
+              </p>
+            </div>
+            <div class="plate-landscape__media">
+              <img
+                src="images/pavilhao-sereno.jpg"
+                alt="Horizontal roof slab of Pavilhão Sereno resting lightly on the open Alentejo plains"
+                class="plate-landscape__image"
+                loading="lazy"
+              >
+            </div>
+          </article>
+
+        </div>
+
       </div>
     </section>
 
-    <section class="section-pending" id="studio" aria-label="Studio — coming soon">
-      <div class="section-pending__inner">
-        <p class="section-pending__label">Studio</p>
+
+    <!-- ── STUDIO & PHILOSOPHY ─────────────────── -->
+    <section class="section-studio" id="studio" aria-label="The Studio">
+      <div class="studio__inner">
+
+        <!-- Manifesto -->
+        <div class="studio__manifesto">
+          <blockquote class="studio__quote">
+            “Architecture is not the invention of novel form.<br>
+            It is the patience to discover the room that a <em>landscape</em> has been waiting for.”
+          </blockquote>
+          <div class="studio__citation">
+            <span class="studio__citation-line" aria-hidden="true"></span>
+            <span>Sofia Mendes &amp; Rui Carvalho, Lisbon 2022</span>
+          </div>
+        </div>
+
+        <!-- Ethos Columns -->
+        <div class="studio__ethos-grid">
+          <div class="studio__ethos-left">
+            <h2>Twelve practitioners.<br>One discipline.</h2>
+          </div>
+          <div class="studio__ethos-right">
+            <p class="studio__paragraph">
+              Founded in Lisbon in 2018, PLINTH operates as an integrated spatial studio encompassing architects, structural researchers, and conservation artisans. We maintain a deliberate ceiling of six active commissions per year to ensure partner immersion in every detail.
+            </p>
+            <p class="studio__paragraph">
+              Our working method draws equally from the Portuguese tectonic lineage of Álvaro Siza and Fernando Távora, alongside rigorous contemporary environmental modeling. We do not apply pre-determined aesthetics; the geology and culture of the site dictate the outcome.
+            </p>
+          </div>
+        </div>
+
+        <!-- Leadership Team -->
+        <div class="studio__team-header">
+          <h3 class="studio__team-title">Studio Principals</h3>
+        </div>
+
+        <div class="studio__team-grid">
+          <article class="team-card">
+            <div class="team-card__media">
+              <img
+                src="images/sofia-mendes.jpg"
+                alt="Portrait of Sofia Mendes, Founding Partner"
+                class="team-card__image"
+                loading="lazy"
+              >
+            </div>
+            <div class="team-card__content">
+              <h4 class="team-card__name">Sofia Mendes</h4>
+              <span class="team-card__role">Founding Partner · Design</span>
+              <p class="team-card__bio">
+                FAUP Porto &amp; ETH Zürich. Prior associate at Álvaro Siza Vieira atelier. Oversees concept design and civic competitions.
+              </p>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-card__media">
+              <img
+                src="images/rui-carvalho.jpg"
+                alt="Portrait of Rui Carvalho, Founding Partner"
+                class="team-card__image"
+                loading="lazy"
+              >
+            </div>
+            <div class="team-card__content">
+              <h4 class="team-card__name">Rui Carvalho</h4>
+              <span class="team-card__role">Founding Partner · Tectonics</span>
+              <p class="team-card__bio">
+                Architectural Association London. Specialist in low-carbon rammed earth and in-situ structural concrete engineering.
+              </p>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-card__media">
+              <img
+                src="images/ana-ribeiro.jpg"
+                alt="Portrait of Ana Ribeiro, Heritage Director"
+                class="team-card__image"
+                loading="lazy"
+              >
+            </div>
+            <div class="team-card__content">
+              <h4 class="team-card__name">Ana Ribeiro</h4>
+              <span class="team-card__role">Director · Heritage &amp; Craft</span>
+              <p class="team-card__bio">
+                Master in Historic Preservation, Universidade de Coimbra. Directs material archaeology, traditional lime mortars, and timber restoration.
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <!-- Honors Archive -->
+        <div class="studio__awards-section">
+          <div class="studio__awards-header">
+            <h4 class="studio__awards-title">Selected Recognition &amp; Exhibitions</h4>
+          </div>
+          <div class="studio__awards-list" role="table" aria-label="Awards Archive">
+            <div class="studio__award-item" role="row">
+              <span class="studio__award-year" role="cell">2025</span>
+              <span class="studio__award-prize" role="cell">European Mies Award</span>
+              <span class="studio__award-project" role="cell">Biblioteca Central</span>
+              <span class="studio__award-status" role="cell">Nominated</span>
+            </div>
+            <div class="studio__award-item" role="row">
+              <span class="studio__award-year" role="cell">2024</span>
+              <span class="studio__award-prize" role="cell">Prémio Nacional de Arquitetura</span>
+              <span class="studio__award-project" role="cell">Casa Mouraria</span>
+              <span class="studio__award-status" role="cell">First Prize</span>
+            </div>
+            <div class="studio__award-item" role="row">
+              <span class="studio__award-year" role="cell">2023</span>
+              <span class="studio__award-prize" role="cell">FAD Architecture Award</span>
+              <span class="studio__award-project" role="cell">Pavilhão Sereno</span>
+              <span class="studio__award-status" role="cell">Finalist</span>
+            </div>
+            <div class="studio__award-item" role="row">
+              <span class="studio__award-year" role="cell">2022</span>
+              <span class="studio__award-prize" role="cell">Prémio Secil de Arquitetura</span>
+              <span class="studio__award-project" role="cell">Atelier Madalena</span>
+              <span class="studio__award-status" role="cell">Winner</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <section class="section-pending" id="contact" aria-label="Contact — coming soon">
-      <div class="section-pending__inner">
-        <p class="section-pending__label">Contact</p>
+
+    <!-- ── CONTACT & COLOPHON ─────────────────── -->
+    <section class="section-contact" id="contact" aria-label="Inquiries and Location">
+      <div class="contact__inner">
+
+        <div class="contact__grid">
+          <div class="contact__left">
+            <span class="contact__kicker">Inquiries</span>
+            <h2 class="contact__headline">Let us discuss your<br><em>site and horizon.</em></h2>
+            <p class="contact__body">
+              We welcome commissions for private residences, cultural institutions, and adaptive heritage renovations. We review prospective projects by appointment at our Lisbon atelier.
+            </p>
+          </div>
+
+          <div class="contact__right">
+            <div class="contact__channel">
+              <span class="contact__channel-label">New Commissions &amp; Collaborations</span>
+              <a href="mailto:studio@plinth.pt" class="contact__email-link">studio@plinth.pt</a>
+            </div>
+
+            <div class="contact__channel">
+              <span class="contact__channel-label">Press &amp; Publications</span>
+              <a href="mailto:press@plinth.pt" class="contact__email-link">press@plinth.pt</a>
+            </div>
+
+            <div class="contact__channel">
+              <span class="contact__channel-label">Lisbon Atelier</span>
+              <address class="contact__address-text">
+                Rua da Madalena 78, 2º Andar<br>
+                1100–318 Lisboa, Portugal
+              </address>
+              <span class="contact__coords">38°42'38" N · 9°08'09" W</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Colophon -->
+        <footer class="colophon" role="contentinfo">
+          <div class="colophon__inner">
+            <span class="colophon__brand">PLINTH</span>
+            <span>© 2018—2026 Plinth Arquitetura Lda · All rights reserved</span>
+            <div class="colophon__links">
+              <a href="#main-content" class="colophon__link">Top ↑</a>
+              <a href="#work" class="colophon__link">Work</a>
+              <a href="#studio" class="colophon__link">Studio</a>
+              <a href="#contact" class="colophon__link">Contact</a>
+            </div>
+          </div>
+        </footer>
+
       </div>
     </section>
 
