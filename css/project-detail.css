@@ -1,0 +1,386 @@
+/* ══════════════════════════════════════════════════
+   PLINTH — Project Detail Monograph Experience
+   Prompt 03: Editorial architectural monograph layouts
+   for individual project pages.
+══════════════════════════════════════════════════ */
+
+/* ── Detail Page Shell ────────────────────────── */
+.project-detail {
+  padding-top: var(--masthead-h);
+  background-color: var(--c-cream);
+  min-height: 100vh;
+}
+
+.detail__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--page-pad);
+}
+
+/* ── Breadcrumb / Return Nav ─────────────────── */
+.detail__top-nav {
+  padding: var(--sp-40) 0 var(--sp-32);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail__back-link {
+  font-family: var(--f-sans);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--c-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-8);
+  transition: color var(--t-fast);
+}
+
+.detail__back-link:hover {
+  color: var(--c-brass);
+}
+
+.detail__project-index {
+  font-family: var(--f-sans);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+
+/* ── Project Header ───────────────────────────── */
+.detail__header {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--sp-64);
+  align-items: flex-end;
+  margin-bottom: var(--sp-64);
+  border-bottom: 1px solid var(--c-divider);
+  padding-bottom: var(--sp-48);
+}
+
+.detail__header-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-12);
+}
+
+.detail__kicker {
+  font-family: var(--f-sans);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--c-brass);
+}
+
+.detail__title {
+  font-family: var(--f-display);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: var(--fw-light);
+  line-height: 1.05;
+  letter-spacing: var(--ls-tight);
+  color: var(--c-umber);
+}
+
+.detail__lead {
+  font-family: var(--f-sans);
+  font-size: var(--fs-lead);
+  font-weight: var(--fw-light);
+  line-height: var(--lh-body);
+  color: var(--c-secondary);
+  max-width: 46ch;
+}
+
+/* ── Hero Image ───────────────────────────────── */
+.detail__hero-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: var(--c-cream-dark);
+  margin-bottom: var(--sp-20);
+  overflow: hidden;
+}
+
+.detail__hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.detail__caption {
+  font-family: var(--f-sans);
+  font-size: var(--fs-tiny);
+  letter-spacing: var(--ls-wide);
+  color: var(--c-muted);
+  text-align: right;
+  margin-bottom: var(--sp-80);
+}
+
+/* ── Structured Information Area (Data Strip) ─── */
+.detail__data-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-32);
+  border-top: 1px solid var(--c-divider);
+  border-bottom: 1px solid var(--c-divider);
+  padding: var(--sp-32) 0;
+  margin-bottom: var(--sp-96);
+}
+
+.detail__data-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.detail__data-label {
+  font-family: var(--f-sans);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--c-brass);
+}
+
+.detail__data-value {
+  font-family: var(--f-sans);
+  font-size: var(--fs-small);
+  color: var(--c-umber);
+  line-height: 1.5;
+}
+
+/* ── Narrative & Architectural Text ──────────── */
+.detail__narrative-section {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: var(--sp-80);
+  margin-bottom: var(--sp-128);
+  align-items: flex-start;
+}
+
+.detail__narrative-heading {
+  font-family: var(--f-display);
+  font-size: var(--fs-d2);
+  font-weight: var(--fw-light);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-tight);
+  color: var(--c-umber);
+}
+
+.detail__narrative-heading em {
+  font-style: italic;
+  color: var(--c-umber-mid);
+}
+
+.detail__narrative-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-24);
+  font-family: var(--f-sans);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-light);
+  line-height: var(--lh-body);
+  color: var(--c-secondary);
+}
+
+.detail__narrative-body p:first-of-type {
+  font-size: var(--fs-lead);
+  color: var(--c-umber);
+}
+
+/* ── Sequence of Supporting Photographs ───────── */
+.detail__gallery {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-96);
+  margin-bottom: var(--sp-128);
+}
+
+/* Duet (2-column paired study) */
+.detail__gallery-duet {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-48);
+}
+
+.gallery-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-12);
+}
+
+.gallery-card__visual {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: var(--c-cream-dark);
+  overflow: hidden;
+}
+
+.gallery-card__visual--portrait {
+  aspect-ratio: 3 / 4;
+}
+
+.gallery-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.gallery-card__caption {
+  font-family: var(--f-sans);
+  font-size: var(--fs-tiny);
+  letter-spacing: var(--ls-wide);
+  color: var(--c-muted);
+}
+
+/* Wide panoramic study */
+.detail__gallery-wide {
+  width: 100%;
+}
+
+.detail__gallery-wide .gallery-card__visual {
+  aspect-ratio: 21 / 9;
+}
+
+/* ── Next / Previous Project Navigation ───────── */
+.detail__pagination {
+  border-top: 1px solid var(--c-divider);
+  border-bottom: 1px solid var(--c-divider);
+  padding: var(--sp-64) 0;
+  margin-bottom: var(--sp-96);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-64);
+}
+
+.pagination-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--t-base) var(--ease-out);
+}
+
+.pagination-item--next {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.pagination-item__label {
+  font-family: var(--f-sans);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--c-brass);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-8);
+}
+
+.pagination-item__title {
+  font-family: var(--f-display);
+  font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+  font-weight: var(--fw-light);
+  line-height: 1.15;
+  color: var(--c-umber);
+  transition: color var(--t-fast);
+}
+
+.pagination-item__meta {
+  font-family: var(--f-sans);
+  font-size: var(--fs-small);
+  color: var(--c-muted);
+  letter-spacing: var(--ls-wide);
+}
+
+.pagination-item:hover .pagination-item__title {
+  color: var(--c-brass);
+}
+
+.pagination-item:focus-visible {
+  outline: 2px solid var(--c-brass);
+  outline-offset: 6px;
+}
+
+/* ── Return to Selected Work Anchor ───────────── */
+.detail__return-strip {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--sp-96);
+}
+
+.detail__return-btn {
+  font-family: var(--f-sans);
+  font-size: var(--fs-small);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--c-umber);
+  border: 1px solid var(--c-divider);
+  padding: var(--sp-16) var(--sp-32);
+  transition: border-color var(--t-fast), color var(--t-fast), background-color var(--t-fast);
+}
+
+.detail__return-btn:hover {
+  border-color: var(--c-brass);
+  color: var(--c-brass);
+  background-color: var(--c-cream-dark);
+}
+
+.detail__return-btn:focus-visible {
+  outline: 2px solid var(--c-brass);
+  outline-offset: 4px;
+}
+
+/* ── Responsive Rules ─────────────────────────── */
+@media (max-width: 960px) {
+  .detail__header {
+    grid-template-columns: 1fr;
+    gap: var(--sp-32);
+  }
+
+  .detail__data-grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: var(--sp-24);
+  }
+
+  .detail__narrative-section {
+    grid-template-columns: 1fr;
+    gap: var(--sp-32);
+  }
+
+  .detail__gallery-duet {
+    grid-template-columns: 1fr;
+    gap: var(--sp-48);
+  }
+
+  .detail__pagination {
+    grid-template-columns: 1fr;
+    gap: var(--sp-40);
+  }
+
+  .pagination-item--next {
+    text-align: left;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .detail__data-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail__top-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-8);
+  }
+}
