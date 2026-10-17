@@ -1,51 +1,39 @@
-# KNOT // Reactive Visual Dataflow & Node Canvas
+# CIPHER: PROTOCOL // Tactical Stealth Infiltration
 
-A high-performance, infinite-canvas visual dataflow and reactive computing workbench running in the browser. Zero audio, zero video — pure logic, math, circuits, and visual programming.
+A minimalist turn-based stealth puzzle game running in your browser. Zero sound, zero video — pure strategic movement, line-of-sight evasion, security hacking, and tactical gadget deployment.
 
-Built strictly under the **Anti-Slop Design Guidelines**: deep carbon industrial console styling, cubic bezier patch cables with animated data pulses, live topological graph evaluation, and zero generic boilerplate.
+Designed under the **Anti-Slop Design Guidelines**: high-contrast tactical security grid, raycast vision cones, smooth movement interpolation, and infinite turn rewind (`Z`).
 
 ---
 
-## Key Features
+## How to Play (Instant 10-Second Guide)
 
-### 1. Infinite Reactive Canvas
-- **Fluid Navigation**: Pan via `Space + Drag`, Middle Mouse button, or dragging empty canvas; Zoom via mouse scroll wheel or trackpad pinch.
-- **Dynamic Bezier Cables**: Smooth vector cubic bezier patch cables with glowing directional cores.
-- **Animated Data Pulses**: Real-time energy particles travel along active cables whenever data recalculates downstream.
-- **Minimap Radar**: Live picture-in-picture viewport overview showing all node clusters and camera position.
+1. **Move Your Agent**: Use `W A S D`, `Arrow Keys`, or simply **click an adjacent floor tile**.
+2. **Dodge Red Vision Cones**: Patrol guards and security cameras project red vision cones across the floor. If you end your turn inside one, the alarm triggers!
+3. **Hack Encrypted Terminals (`⚡`)**: Step on the yellow cipher terminal to hack it and unlock security blast doors.
+4. **Reach Extraction (`EXIT`)**: Step on the green exit zone once all terminals are hacked to win the mission!
+5. **Made a Mistake? Press `Z`**: Infinite turn rewind! You can undo any move at any time with zero penalty.
 
-### 2. Comprehensive Node Operator Library
-- **Sources & Inputs**:
-  - `Number Slider`: Precision integer/float sliders with direct numeric inputs.
-  - `Toggle Switch`: Tactile binary HIGH/LOW state toggle.
-  - `Text String`: Multi-line text string supplier.
-  - `Clock Pulse`: Interval tick & step counter generator with play/pause.
-  - `JSON Payload`: Editable JSON source with real-time syntax verification.
-- **Math & Operators**:
-  - `Math Operator`: Add, Subtract, Multiply, Divide, Modulo, Exponentiation.
-  - `Comparator`: Equality, Inequality, Greater/Less-than comparisons.
-  - `Clamp Range`: Upper and lower boundary constraint.
-- **Logic & Circuits**:
-  - `Logic Gate`: AND, OR, XOR, NAND, NOR, NOT.
-  - `Ternary Switch`: Conditional `If Condition Then Else` routing.
-- **Text & Transformation**:
-  - `Template Formatter`: Dynamic string interpolation (`{a}`, `{b}`, `{c}`).
-  - `JSON Path Extractor`: Deep object property retrieval (e.g. `user.tier` or `metrics.latency`).
-- **Displays & Sinks**:
-  - `Value Gauge`: Live graduated bar meter and numeric readout.
-  - `Live Sparkline`: Real-time scrolling strip-chart plotting dynamic signals.
-  - `Output Telemetry Card`: Industrial telemetry card with verified status badge.
-  - `Status LED`: Illuminated phosphor diode with state glow.
+---
 
-### 3. Factory Blueprints
-1. **01 // Dynamic Pricing & VIP Invoice**: Interactive e-commerce pipeline with quantity, unit price, VIP tier discount logic, sales tax calculation, and real-time invoice display.
-2. **02 // Digital Binary Half-Adder Circuit**: Hardware logic simulation calculating Sum (XOR) and Carry (AND) with illuminated LED status bulbs.
-3. **03 // Live Clock Pulse & Sparkline Chart**: High-frequency clock signal with modulo math and dynamic strip-chart plotting.
+## Tactical Gadgets
 
-### 4. Persistence & Export
-- **Export to JSON**: Download the full node graph and wire connections as a portable `.json` file.
-- **Import from JSON**: Load any saved pipeline with one click.
-- **Quick Node Catalog**: Press `Shift+A`, click `+ ADD NODE`, or double-click anywhere on the canvas to open the instant fuzzy node search.
+- `[1] EMP Blast`: Deactivates all security cameras and lasers for 3 turns.
+- `[2] Smoke Screen`: Deploys a 3x3 smoke cloud around your agent that completely blocks guard vision for 4 turns.
+- `[3] Holo Decoy`: Place a holographic decoy on any tile to distract the nearest patrol guard.
+- `[Space] Wait`: Stay in place for one turn to let guards walk past.
+
+---
+
+## Missions
+
+- `01 // Proving Grounds`: Learn basic movement, doors, and extraction.
+- `02 // Perimeter Patrol`: Evade moving patrol guards with vision cones.
+- `03 // Camera Sweep`: Rotating 90° security cameras.
+- `04 // Infrared Corridor`: Time your passage through cycling infrared lasers.
+- `05 // The Inner Sanctum`: Multi-guard patrol crossfire.
+- `06 // Master Protocol`: Full security array (lasers, cameras, guards, dual ciphers).
+- `∞ // Procedural Heist`: Endless procedurally generated vault layouts!
 
 ---
 
@@ -56,4 +44,3 @@ Run a local server:
 python3 -m http.server 4173
 ```
 Open [http://localhost:4173](http://localhost:4173) in your browser.
-Drag nodes, wire ports together, adjust sliders, and watch values compute live!

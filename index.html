@@ -3,107 +3,152 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KNOT // Reactive Visual Dataflow & Node Canvas</title>
-  <meta name="description" content="Infinite visual node canvas for reactive dataflow pipelines, math, logic circuits, and dynamic telemetry.">
+  <title>CIPHER: PROTOCOL // Turn-Based Tactical Stealth</title>
+  <meta name="description" content="A minimalist turn-based stealth puzzle game. Dodge guard vision cones, hack encrypted terminals, and extract undetected.">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="knot-workspace">
-    <!-- TOP WORKSPACE TOOLBAR -->
-    <header class="knot-toolbar">
-      <div class="toolbar-left">
-        <div class="brand-badge">
-          <span class="brand-mark">⎇</span>
-          <span class="brand-title">KNOT</span>
-          <span class="version-tag">v2.4 // REACTIVE DAG</span>
+  <div class="game-wrapper">
+    <!-- TOP TACTICAL HUD -->
+    <header class="tactical-hud">
+      <div class="hud-left">
+        <div class="brand-cluster">
+          <span class="brand-glyph">◈</span>
+          <span class="brand-name">CIPHER: PROTOCOL</span>
         </div>
-
-        <div class="toolbar-divider"></div>
-
-        <button id="btn-add-node" class="toolbar-btn primary-btn" type="button" title="Add Node (Shift+A or Double-Click Canvas)">
-          <span class="btn-icon">+</span>
-          <span>ADD NODE</span>
-        </button>
-
-        <button id="btn-center" class="toolbar-btn" type="button" title="Center Viewport">
-          <span>CENTER VIEW</span>
-        </button>
-
-        <button id="btn-clear" class="toolbar-btn danger-btn" type="button" title="Clear Canvas">
-          <span>CLEAR</span>
-        </button>
+        <div class="mission-cluster">
+          <h1 id="mission-title" class="mission-name">01 // PROVING GROUNDS</h1>
+          <p id="mission-subtitle" class="mission-desc">Learn movement and basic extraction</p>
+        </div>
       </div>
 
-      <!-- Center: Blueprints Selector -->
-      <div class="toolbar-center">
-        <label for="blueprint-select" class="toolbar-label">PIPELINE PRESET</label>
-        <select id="blueprint-select" class="toolbar-select">
-          <option value="pricing_pipeline">01 // Dynamic Pricing & VIP Invoice</option>
-          <option value="logic_adder">02 // Digital Binary Half-Adder Circuit</option>
-          <option value="sparkline_oscillator">03 // Live Clock Pulse & Sparkline Chart</option>
+      <!-- Center Status Telemetry -->
+      <div class="hud-center">
+        <div id="turn-counter" class="telemetry-pill">TURN 00</div>
+        <div id="terminal-status" class="status-chip">0 / 1 HACKED</div>
+        <div id="stealth-status" class="status-chip is-ghost">STATUS // GHOST</div>
+      </div>
+
+      <!-- Right Controls & Level Selector -->
+      <div class="hud-right">
+        <label for="level-select" class="hud-label">OPERATION</label>
+        <select id="level-select" class="tactile-select">
+          <!-- Injected dynamically -->
         </select>
-        <span id="blueprint-desc" class="blueprint-info">Real-time e-commerce subtotal, VIP condition logic, tax computation, and live invoice card.</span>
-      </div>
-
-      <!-- Right: Import / Export File IO -->
-      <div class="toolbar-right">
-        <input type="file" id="import-file-input" accept=".json" style="display: none;">
-        <button id="btn-import" class="toolbar-btn" type="button" title="Import JSON Pipeline">
-          <span>IMPORT JSON</span>
-        </button>
-        <button id="btn-export" class="toolbar-btn" type="button" title="Export Pipeline to File">
-          <span>EXPORT JSON</span>
-        </button>
       </div>
     </header>
 
-    <!-- MAIN INFINITE CANVAS STAGE -->
-    <main class="canvas-viewport">
-      <div id="canvas-container" class="infinite-canvas">
-        <!-- Canvas wire layer & DOM node layer injected here -->
-      </div>
+    <!-- MAIN GAME CANVAS VIEWPORT -->
+    <main class="tactical-stage">
+      <canvas id="game-canvas"></canvas>
 
-      <!-- MINIMAP OVERLAY -->
-      <div class="minimap-panel">
-        <div class="minimap-header">RADAR OVERVIEW</div>
-        <canvas id="minimap-canvas" width="160" height="96"></canvas>
-      </div>
+      <!-- IN-GAME INVENTORY & QUICK ACTIONS DOCK -->
+      <div class="inventory-dock">
+        <div class="item-slot">
+          <button id="btn-item-emp" class="item-btn" type="button" title="Disable cameras and lasers for 3 turns (Hotkey: 1)">
+            <span class="item-icon">⚡</span>
+            <span class="item-name">EMP BLAST</span>
+            <span id="emp-count" class="item-badge">[1]</span>
+          </button>
+          <span class="item-hotkey">KEY 1</span>
+        </div>
 
-      <!-- CANVAS BOTTOM HINT STRIP -->
-      <footer class="canvas-hint-strip">
-        <div class="hint-item"><span>PAN:</span> <strong>SPACE + DRAG</strong> OR <strong>MIDDLE MOUSE</strong></div>
-        <div class="hint-item"><span>ZOOM:</span> <strong>SCROLL WHEEL</strong></div>
-        <div class="hint-item"><span>ADD NODE:</span> <strong>DOUBLE CLICK</strong> OR <strong>SHIFT+A</strong></div>
-        <div class="hint-item"><span>WIRE:</span> <strong>DRAG OUTPUT BULLET → INPUT BULLET</strong></div>
-        <div class="hint-item"><span>DELETE:</span> <strong>CLICK PORT TO UNWIRE</strong> / <strong>BACKSPACE</strong></div>
-      </footer>
+        <div class="item-slot">
+          <button id="btn-item-smoke" class="item-btn" type="button" title="Drop smoke cloud blocking guard vision for 4 turns (Hotkey: 2)">
+            <span class="item-icon">💨</span>
+            <span class="item-name">SMOKE SCREEN</span>
+            <span id="smoke-count" class="item-badge">[1]</span>
+          </button>
+          <span class="item-hotkey">KEY 2</span>
+        </div>
+
+        <div class="item-slot">
+          <button id="btn-item-decoy" class="item-btn" type="button" title="Place decoy attracting nearest guard (Hotkey: 3, then click tile)">
+            <span class="item-icon">🪤</span>
+            <span class="item-name">HOLO DECOY</span>
+            <span id="decoy-count" class="item-badge">[1]</span>
+          </button>
+          <span class="item-hotkey">KEY 3</span>
+        </div>
+
+        <div class="dock-divider"></div>
+
+        <div class="item-slot">
+          <button id="btn-action-undo" class="action-btn" type="button" title="Rewind turn (Hotkey: Z)">
+            <span class="action-icon">⤺</span>
+            <span class="action-name">UNDO</span>
+          </button>
+          <span class="item-hotkey">KEY Z</span>
+        </div>
+
+        <div class="item-slot">
+          <button id="btn-action-wait" class="action-btn" type="button" title="Wait one turn in place (Hotkey: Space)">
+            <span class="action-icon">⏸</span>
+            <span class="action-name">WAIT</span>
+          </button>
+          <span class="item-hotkey">SPACE</span>
+        </div>
+
+        <div class="item-slot">
+          <button id="btn-action-restart" class="action-btn danger-action" type="button" title="Restart level (Hotkey: R)">
+            <span class="action-icon">↺</span>
+            <span class="action-name">RESET</span>
+          </button>
+          <span class="item-hotkey">KEY R</span>
+        </div>
+      </div>
     </main>
 
-    <!-- ADD NODE CATALOG MODAL -->
-    <div id="add-node-modal" class="modal-backdrop is-hidden">
-      <div class="modal-dialog">
-        <div class="modal-header">
-          <div class="modal-title-cluster">
-            <h3 class="modal-title">NODE CATALOG</h3>
-            <span class="modal-sub">SELECT OPERATOR TO SPAWN</span>
-          </div>
-          <button id="btn-close-modal" class="modal-close" type="button">×</button>
+    <!-- FOOTER CONTROLS & HINT BAR -->
+    <footer class="tactical-footer">
+      <div class="legend-group">
+        <span class="legend-tag legend-player"><span class="dot"></span> AGENT (YOU)</span>
+        <span class="legend-tag legend-guard"><span class="dot"></span> PATROL GUARD</span>
+        <span class="legend-tag legend-danger"><span class="dot"></span> RED VISION CONE (DEADLY)</span>
+        <span class="legend-tag legend-terminal"><span class="dot"></span> CIPHER TERMINAL</span>
+        <span class="legend-tag legend-exit"><span class="dot"></span> GREEN EXTRACTION</span>
+      </div>
+      <div class="hint-group">
+        <span>MOVE: <strong>W A S D</strong> OR <strong>ARROWS</strong> OR <strong>CLICK ADJACENT TILE</strong></span>
+      </div>
+    </footer>
+
+    <!-- GAME OVER / DETECTED MODAL -->
+    <div id="modal-game-over" class="modal-layer is-hidden">
+      <div class="tactical-modal is-alarm-modal">
+        <div class="modal-badge-red">COMPROMISED</div>
+        <h2 class="modal-heading">INFILTRATION FAILED</h2>
+        <p id="game-over-cause" class="modal-text">SURVEILLANCE ALARM TRIGGERED</p>
+        <div class="modal-actions">
+          <button id="btn-rewind-death" class="modal-btn primary-action" type="button">
+            <span>⤺ REWIND 1 TURN (UNDO)</span>
+          </button>
+          <button id="btn-restart-death" class="modal-btn secondary-action" type="button">
+            <span>↺ RESTART MISSION</span>
+          </button>
         </div>
-        <div class="modal-search-wrap">
-          <input type="text" id="add-node-search" class="modal-search-input" placeholder="Search node operators (math, logic, slider, json, gauge)..." autocomplete="off">
-        </div>
-        <div id="add-node-list" class="modal-catalog-list">
-          <!-- Populated dynamically -->
+      </div>
+    </div>
+
+    <!-- MISSION ACCOMPLISHED MODAL -->
+    <div id="modal-victory" class="modal-layer is-hidden">
+      <div class="tactical-modal is-victory-modal">
+        <div class="modal-badge-green">OBJECTIVE SECURED</div>
+        <h2 class="modal-heading">EXTRACTION COMPLETE</h2>
+        <p id="victory-turns" class="modal-text">COMPLETED IN 12 TURNS // RATING: GHOST</p>
+        <div class="modal-actions">
+          <button id="btn-next-level" class="modal-btn victory-action" type="button">
+            <span>PROCEED TO NEXT MISSION ▶</span>
+          </button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Scripts -->
-  <script src="js/node-types.js"></script>
-  <script src="js/graph.js"></script>
-  <script src="js/canvas.js"></script>
-  <script src="js/blueprints.js"></script>
+  <script src="js/levels.js"></script>
+  <script src="js/game-engine.js"></script>
+  <script src="js/renderer.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

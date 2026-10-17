@@ -1,389 +1,212 @@
 /**
- * KNOT // Main Application Coordinator & Canvas DOM Controller
- * Node rendering, port wiring, dragging, and keyboard shortcuts
+ * CIPHER: PROTOCOL // Main Coordinator & Input Controller
+ * Controls: WASD / Arrows, Space to Wait, Z to Undo, Click-to-Move, Tactical Items
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  const container = document.getElementById('canvas-container');
-  const graph = new ReactiveGraph();
-  const canvas = new InfiniteCanvas(container, graph);
+  const canvas = document.getElementById('game-canvas');
+  const engine = new GameEngine();
+  const renderer = new TacticalRenderer(canvas, engine);
 
-  let selectedNodeId = null;
-  let activeDragNode = null;
-  let dragOffset = { x: 0, y: 0 };
+  let decoyTargetingMode = false;
 
-  // --- Render Nodes into DOM Layer ---
-  function syncDomNodes() {
-    const layer = canvas.nodeLayer;
-    const existingIds = new Set();
+  // --- UI Elements ---
+  const levelSelect = document.getElementById('level-select');
+  const missionTitle = document.getElementById('mission-title');
+  const missionSubtitle = document.getElementById('mission-subtitle');
+  const turnCounter = document.getElementById('turn-counter');
+  const terminalStatus = document.getElementById('terminal-status');
+  const stealthStatus = document.getElementById('stealth-status');
 
-    graph.nodes.forEach((node) => {
-      existingIds.add(node.id);
-      if (!node.domElement) {
-        node.domElement = createNodeElement(node);
-        layer.appendChild(node.domElement);
-      }
-      // Update position
-      node.domElement.style.transform = `translate(${node.x}px, ${node.y}px)`;
-      node.domElement.classList.toggle('is-selected', node.id === selectedNodeId);
+  const btnEmp = document.getElementById('btn-item-emp');
+  const btnSmoke = document.getElementById('btn-item-smoke');
+  const btnDecoy = document.getElementById('btn-item-decoy');
+
+  const empCount = document.getElementById('emp-count');
+  const smokeCount = document.getElementById('smoke-count');
+  const decoyCount = document.getElementById('decoy-count');
+
+  const modalGameOver = document.getElementById('modal-game-over');
+  const modalVictory = document.getElementById('modal-victory');
+  const gameOverCause = document.getElementById('game-over-cause');
+  const victoryTurns = document.getElementById('victory-turns');
+
+  // --- Initialize Level Select ---
+  function populateLevelSelect() {
+    levelSelect.innerHTML = '';
+    window.LEVELS.forEach((lvl, idx) => {
+      const opt = document.createElement('option');
+      opt.value = idx;
+      opt.textContent = lvl.name;
+      levelSelect.appendChild(opt);
     });
 
-    // Remove defunct DOM elements
-    Array.from(layer.children).forEach((child) => {
-      if (!existingIds.has(child.dataset.nodeId)) {
-        layer.removeChild(child);
-      }
-    });
+    const procOpt = document.createElement('option');
+    procOpt.value = 'proc';
+    procOpt.textContent = '∞ // PROCEDURAL HEIST';
+    levelSelect.appendChild(procOpt);
   }
 
-  function createNodeElement(node) {
-    const def = window.NODE_DEFINITIONS[node.type];
-    const el = document.createElement('div');
-    el.className = 'canvas-node';
-    el.dataset.nodeId = node.id;
-    el.style.borderTopColor = node.accent || '#3b4352';
+  populateLevelSelect();
 
-    // Header
-    const header = document.createElement('div');
-    header.className = 'node-header';
-    header.style.borderLeftColor = node.accent || '#3b4352';
-
-    const titleWrap = document.createElement('div');
-    titleWrap.className = 'node-title-wrap';
-
-    const title = document.createElement('span');
-    title.className = 'node-title';
-    title.textContent = node.title;
-
-    const catBadge = document.createElement('span');
-    catBadge.className = 'node-cat-badge';
-    catBadge.textContent = node.category.toUpperCase().split(' ')[0];
-
-    titleWrap.appendChild(title);
-    titleWrap.appendChild(catBadge);
-
-    const closeBtn = document.createElement('button');
-    closeBtn.className = 'node-close-btn';
-    closeBtn.innerHTML = '×';
-    closeBtn.title = 'Delete Node';
-    closeBtn.onclick = (e) => {
-      e.stopPropagation();
-      graph.removeNode(node.id);
-    };
-
-    header.appendChild(titleWrap);
-    header.appendChild(closeBtn);
-
-    // Ports & Content Stack
-    const body = document.createElement('div');
-    body.className = 'node-body';
-
-    // Port Rows
-    const portsRow = document.createElement('div');
-    portsRow.className = 'node-ports-row';
-
-    const inputCol = document.createElement('div');
-    inputCol.className = 'node-ports-col inputs';
-    node.inputs.forEach((input) => {
-      const portRow = document.createElement('div');
-      portRow.className = 'port-item';
-
-      const portBullet = document.createElement('div');
-      portBullet.className = 'node-port is-input';
-      portBullet.dataset.port = input.id;
-      portBullet.dataset.nodeId = node.id;
-
-      setupPortDrag(portBullet, node.id, input.id, false);
-
-      const label = document.createElement('span');
-      label.className = 'port-label';
-      label.textContent = input.label;
-
-      portRow.appendChild(portBullet);
-      portRow.appendChild(label);
-      inputCol.appendChild(portRow);
-    });
-
-    const outputCol = document.createElement('div');
-    outputCol.className = 'node-ports-col outputs';
-    node.outputs.forEach((output) => {
-      const portRow = document.createElement('div');
-      portRow.className = 'port-item';
-
-      const label = document.createElement('span');
-      label.className = 'port-label';
-      label.textContent = output.label;
-
-      const portBullet = document.createElement('div');
-      portBullet.className = 'node-port is-output';
-      portBullet.dataset.port = output.id;
-      portBullet.dataset.nodeId = node.id;
-
-      setupPortDrag(portBullet, node.id, output.id, true);
-
-      portRow.appendChild(label);
-      portRow.appendChild(portBullet);
-      outputCol.appendChild(portRow);
-    });
-
-    portsRow.appendChild(inputCol);
-    portsRow.appendChild(outputCol);
-
-    // Custom UI
-    const customContent = document.createElement('div');
-    customContent.className = 'node-custom-ui';
-    if (def && def.renderUI) {
-      const rendered = def.renderUI(node, node.state, (newState) => {
-        graph.updateNodeState(node.id, newState);
-      });
-      if (rendered) customContent.appendChild(rendered);
+  function loadSelectedLevel() {
+    const val = levelSelect.value;
+    if (val === 'proc') {
+      const procLvl = window.generateProceduralLevel();
+      engine.loadLevel(0, procLvl);
+    } else {
+      engine.loadLevel(parseInt(val, 10));
     }
-
-    body.appendChild(portsRow);
-    body.appendChild(customContent);
-
-    el.appendChild(header);
-    el.appendChild(body);
-
-    // Dragging node via header
-    header.addEventListener('pointerdown', (e) => {
-      if (e.target.tagName === 'BUTTON') return;
-      e.stopPropagation();
-      activeDragNode = node;
-      selectedNodeId = node.id;
-      syncDomNodes();
-
-      const world = canvas.screenToWorld(e.clientX, e.clientY);
-      dragOffset = {
-        x: world.x - node.x,
-        y: world.y - node.y
-      };
-    });
-
-    el.addEventListener('pointerdown', (e) => {
-      e.stopPropagation();
-      selectedNodeId = node.id;
-      syncDomNodes();
-    });
-
-    return el;
+    renderer.recalculateLayout();
+    modalGameOver.classList.add('is-hidden');
+    modalVictory.classList.add('is-hidden');
+    decoyTargetingMode = false;
   }
 
-  // Handle port click/drag wiring
-  function setupPortDrag(portEl, nodeId, portId, isOutput) {
-    portEl.addEventListener('pointerdown', (e) => {
-      e.stopPropagation();
-      e.preventDefault();
+  levelSelect.addEventListener('change', loadSelectedLevel);
 
-      // If clicking on an input port that already has a wire, disconnect it
-      if (!isOutput) {
-        const existingWire = graph.wires.find(w => w.toNode === nodeId && w.toPort === portId);
-        if (existingWire) {
-          graph.removeWire(existingWire.id);
-          return;
-        }
-      }
+  // --- Update HUD on State Change ---
+  engine.subscribe((state, status) => {
+    missionTitle.textContent = engine.levelData.name;
+    missionSubtitle.textContent = engine.levelData.subtitle;
+    turnCounter.textContent = `TURN ${engine.turnCount.toString().padStart(2, '0')}`;
 
-      canvas.startDraggingWire(nodeId, portId, isOutput, portEl);
-    });
+    const totalTerms = state.terminals.length;
+    const hackedCount = state.terminals.filter(t => t.hacked).length;
+    terminalStatus.textContent = totalTerms > 0 ? `${hackedCount} / ${totalTerms} HACKED` : 'NO CIPHERS';
+    terminalStatus.className = `status-chip ${hackedCount === totalTerms ? 'is-complete' : ''}`;
 
-    portEl.addEventListener('pointerup', (e) => {
-      if (!canvas.activeDragPort) return;
-      e.stopPropagation();
+    // Item counts
+    empCount.textContent = `[${state.items.emp}]`;
+    smokeCount.textContent = `[${state.items.smoke}]`;
+    decoyCount.textContent = `[${state.items.decoy}]`;
 
-      const source = canvas.activeDragPort;
-      // Cannot connect to itself
-      if (source.nodeId === nodeId) return;
+    btnEmp.disabled = state.items.emp <= 0;
+    btnSmoke.disabled = state.items.smoke <= 0;
+    btnDecoy.disabled = state.items.decoy <= 0;
 
-      // Output -> Input connection
-      if (source.isOutput && !isOutput) {
-        graph.addWire(source.nodeId, source.portId, nodeId, portId);
-      } else if (!source.isOutput && isOutput) {
-        graph.addWire(nodeId, portId, source.nodeId, source.portId);
-      }
-      canvas.activeDragPort = null;
-    });
-  }
-
-  // Node movement tracking
-  window.addEventListener('pointermove', (e) => {
-    if (activeDragNode) {
-      const world = canvas.screenToWorld(e.clientX, e.clientY);
-      activeDragNode.x = Math.round((world.x - dragOffset.x) / 12) * 12; // snap 12px
-      activeDragNode.y = Math.round((world.y - dragOffset.y) / 12) * 12;
-      activeDragNode.domElement.style.transform = `translate(${activeDragNode.x}px, ${activeDragNode.y}px)`;
+    // Status chip
+    if (status === 'DETECTED') {
+      stealthStatus.textContent = 'ALARM // DETECTED';
+      stealthStatus.className = 'status-chip is-alarm';
+      gameOverCause.textContent = engine.detectionCause || 'SURVEILLANCE TRIGGERED';
+      modalGameOver.classList.remove('is-hidden');
+    } else if (status === 'VICTORY') {
+      stealthStatus.textContent = 'STATUS // EXTRACTED';
+      stealthStatus.className = 'status-chip is-victory';
+      victoryTurns.textContent = `COMPLETED IN ${engine.turnCount} TURNS`;
+      modalVictory.classList.remove('is-hidden');
+    } else {
+      stealthStatus.textContent = state.empTurnsLeft > 0 ? `EMP ACTIVE (${state.empTurnsLeft})` : 'STATUS // GHOST';
+      stealthStatus.className = `status-chip ${state.empTurnsLeft > 0 ? 'is-emp' : 'is-ghost'}`;
+      modalGameOver.classList.add('is-hidden');
+      modalVictory.classList.add('is-hidden');
     }
   });
 
-  window.addEventListener('pointerup', () => {
-    if (activeDragNode) {
-      activeDragNode = null;
-    }
-  });
-
-  // Subscribe to graph changes to keep DOM in sync
-  graph.subscribe(() => {
-    syncDomNodes();
-  });
-
-  // --- Add Node Menu / Catalog ---
-  const addNodeModal = document.getElementById('add-node-modal');
-  const addNodeSearch = document.getElementById('add-node-search');
-  const addNodeList = document.getElementById('add-node-list');
-
-  function openAddNodeModal(spawnX = null, spawnY = null) {
-    addNodeModal.classList.remove('is-hidden');
-    addNodeSearch.value = '';
-    addNodeSearch.focus();
-    renderAddNodeCatalog('', spawnX, spawnY);
-  }
-
-  function closeAddNodeModal() {
-    addNodeModal.classList.add('is-hidden');
-  }
-
-  function renderAddNodeCatalog(query = '', spawnX = null, spawnY = null) {
-    addNodeList.innerHTML = '';
-    const q = query.toLowerCase();
-
-    Object.entries(window.NODE_DEFINITIONS).forEach(([type, def]) => {
-      if (q && !def.title.toLowerCase().includes(q) && !def.category.toLowerCase().includes(q)) {
-        return;
-      }
-
-      const item = document.createElement('div');
-      item.className = 'node-catalog-item';
-
-      const left = document.createElement('div');
-      left.className = 'catalog-item-info';
-      const title = document.createElement('span');
-      title.className = 'catalog-item-title';
-      title.textContent = def.title;
-      const cat = document.createElement('span');
-      cat.className = 'catalog-item-cat';
-      cat.textContent = def.category;
-      left.appendChild(title);
-      left.appendChild(cat);
-
-      const addBtn = document.createElement('span');
-      addBtn.className = 'catalog-add-badge';
-      addBtn.textContent = '+ ADD';
-
-      item.appendChild(left);
-      item.appendChild(addBtn);
-
-      item.onclick = () => {
-        const center = spawnX !== null 
-          ? { x: spawnX, y: spawnY } 
-          : canvas.screenToWorld(canvas.width / 2, canvas.height / 2);
-        graph.addNode(type, center.x - 100, center.y - 60);
-        closeAddNodeModal();
-      };
-
-      addNodeList.appendChild(item);
-    });
-  }
-
-  addNodeSearch?.addEventListener('input', (e) => {
-    renderAddNodeCatalog(e.target.value);
-  });
-
-  document.getElementById('btn-add-node')?.addEventListener('click', () => {
-    openAddNodeModal();
-  });
-
-  document.getElementById('btn-close-modal')?.addEventListener('click', closeAddNodeModal);
-
-  // Double-click empty canvas to open node menu at cursor
-  container.addEventListener('dblclick', (e) => {
-    if (e.target === container || e.target === canvas.canvasLayer || e.target === canvas.nodeLayer) {
-      const rect = container.getBoundingClientRect();
-      const world = canvas.screenToWorld(e.clientX - rect.left, e.clientY - rect.top);
-      openAddNodeModal(world.x, world.y);
-    }
-  });
-
-  // --- Toolbar Actions ---
-  document.getElementById('btn-center')?.addEventListener('click', () => {
-    canvas.centerView();
-  });
-
-  document.getElementById('btn-clear')?.addEventListener('click', () => {
-    if (confirm('Clear entire workspace?')) {
-      graph.clear();
-      syncDomNodes();
-    }
-  });
-
-  // Blueprints loader
-  const blueprintSelect = document.getElementById('blueprint-select');
-  blueprintSelect?.addEventListener('change', (e) => {
-    const bp = window.FACTORY_BLUEPRINTS[e.target.value];
-    if (bp) {
-      graph.fromJSON(bp.graph);
-      document.getElementById('blueprint-desc').textContent = bp.description;
-      setTimeout(() => canvas.centerView(), 50);
-    }
-  });
-
-  // Export JSON
-  document.getElementById('btn-export')?.addEventListener('click', () => {
-    const json = JSON.stringify(graph.toJSON(), null, 2);
-    const blob = new Blob([json], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `knot-pipeline-${Date.now()}.json`;
-    a.click();
-    setTimeout(() => URL.revokeObjectURL(url), 10000);
-  });
-
-  // Import JSON
-  const fileInput = document.getElementById('import-file-input');
-  document.getElementById('btn-import')?.addEventListener('click', () => {
-    fileInput?.click();
-  });
-  fileInput?.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      try {
-        const data = JSON.parse(event.target.result);
-        graph.fromJSON(data);
-        setTimeout(() => canvas.centerView(), 50);
-      } catch (err) {
-        alert('Invalid pipeline JSON file.');
-      }
-    };
-    reader.readAsText(file);
-    fileInput.value = '';
-  });
-
-  // Global Keyboard Shortcuts
+  // --- Keyboard Input Handling ---
   window.addEventListener('keydown', (e) => {
-    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
 
-    if (e.code === 'Delete' || e.code === 'Backspace') {
-      if (selectedNodeId) {
-        graph.removeNode(selectedNodeId);
-        selectedNodeId = null;
-      }
-    } else if (e.code === 'Escape') {
-      closeAddNodeModal();
-      selectedNodeId = null;
-      syncDomNodes();
-    } else if (e.code === 'KeyA' && (e.shiftKey || e.metaKey || e.ctrlKey)) {
+    if (e.code === 'KeyW' || e.code === 'ArrowUp') {
       e.preventDefault();
-      openAddNodeModal();
+      engine.movePlayer(0, -1);
+    } else if (e.code === 'KeyS' || e.code === 'ArrowDown') {
+      e.preventDefault();
+      engine.movePlayer(0, 1);
+    } else if (e.code === 'KeyA' || e.code === 'ArrowLeft') {
+      e.preventDefault();
+      engine.movePlayer(-1, 0);
+    } else if (e.code === 'KeyD' || e.code === 'ArrowRight') {
+      e.preventDefault();
+      engine.movePlayer(1, 0);
+    } else if (e.code === 'Space') {
+      e.preventDefault();
+      engine.waitTurn();
+    } else if (e.code === 'KeyZ') {
+      e.preventDefault();
+      engine.undo();
+    } else if (e.code === 'KeyR') {
+      e.preventDefault();
+      engine.restart();
+    } else if (e.code === 'Digit1') {
+      e.preventDefault();
+      engine.useEmp();
+    } else if (e.code === 'Digit2') {
+      e.preventDefault();
+      engine.useSmoke();
+    } else if (e.code === 'Digit3') {
+      e.preventDefault();
+      toggleDecoyMode();
+    } else if (e.code === 'Escape') {
+      decoyTargetingMode = false;
+      document.body.classList.remove('is-targeting');
     }
   });
 
-  // Load default blueprint
-  const defaultBp = window.FACTORY_BLUEPRINTS['pricing_pipeline'];
-  if (defaultBp) {
-    graph.fromJSON(defaultBp.graph);
-    document.getElementById('blueprint-desc').textContent = defaultBp.description;
-    setTimeout(() => canvas.centerView(), 80);
+  // --- Click / Touch Movement & Decoy Targeting ---
+  canvas.addEventListener('click', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const sx = e.clientX - rect.left;
+    const sy = e.clientY - rect.top;
+    const target = renderer.screenToGrid(sx, sy);
+
+    if (decoyTargetingMode) {
+      engine.useDecoy(target.x, target.y);
+      decoyTargetingMode = false;
+      document.body.classList.remove('is-targeting');
+      return;
+    }
+
+    const px = engine.state.player.x;
+    const py = engine.state.player.y;
+    const dx = target.x - px;
+    const dy = target.y - py;
+
+    // Direct adjacent step
+    if (Math.abs(dx) + Math.abs(dy) === 1) {
+      engine.movePlayer(dx, dy);
+    } else if (dx === 0 && dy === 0) {
+      engine.waitTurn();
+    }
+  });
+
+  // --- Tactical Item Buttons ---
+  btnEmp.addEventListener('click', () => engine.useEmp());
+  btnSmoke.addEventListener('click', () => engine.useSmoke());
+
+  function toggleDecoyMode() {
+    if (engine.state.items.decoy <= 0) return;
+    decoyTargetingMode = !decoyTargetingMode;
+    document.body.classList.toggle('is-targeting', decoyTargetingMode);
   }
+
+  btnDecoy.addEventListener('click', toggleDecoyMode);
+
+  // --- Bottom Action Buttons ---
+  document.getElementById('btn-action-undo')?.addEventListener('click', () => engine.undo());
+  document.getElementById('btn-action-wait')?.addEventListener('click', () => engine.waitTurn());
+  document.getElementById('btn-action-restart')?.addEventListener('click', () => engine.restart());
+
+  // Modal Buttons
+  document.getElementById('btn-rewind-death')?.addEventListener('click', () => {
+    engine.undo();
+  });
+
+  document.getElementById('btn-restart-death')?.addEventListener('click', () => {
+    engine.restart();
+  });
+
+  document.getElementById('btn-next-level')?.addEventListener('click', () => {
+    let nextIdx = engine.currentLevelIndex + 1;
+    if (nextIdx >= window.LEVELS.length) {
+      levelSelect.value = 'proc';
+    } else {
+      levelSelect.value = nextIdx;
+    }
+    loadSelectedLevel();
+  });
+
+  // Start with Level 1
+  loadSelectedLevel();
 });
