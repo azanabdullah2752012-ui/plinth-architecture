@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Studio — PLINTH Architecture</title>
+  <meta name="description" content="PLINTH is an independent architecture and spatial design studio based in Lisbon, Portugal. A considered approach to place, material and light.">
+
+  <!-- Preconnect for font performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/masthead.css">
+  <link rel="stylesheet" href="css/studio-page.css">
+</head>
+<body class="studio-page">
+
+  <!-- ════════════════════════════════════════════
+       MASTHEAD
+  ════════════════════════════════════════════ -->
+  <header class="masthead is-scrolled" id="masthead" role="banner">
+    <div class="masthead__inner">
+      <div class="masthead__brand">
+        <a href="index.html" class="masthead__wordmark" aria-label="PLINTH — return to homepage">
+          PLINTH
+        </a>
+        <span class="masthead__descriptor" aria-hidden="true">
+          Architecture &amp; Spatial Design
+        </span>
+      </div>
+
+      <nav class="masthead__nav" aria-label="Primary navigation">
+        <ul class="masthead__nav-list" role="list">
+          <li><a href="index.html#work" class="masthead__nav-link">Work</a></li>
+          <li><a href="studio.html" class="masthead__nav-link" aria-current="page">Studio</a></li>
+          <li><a href="index.html#contact" class="masthead__nav-link">Contact</a></li>
+        </ul>
+
+        <button
+          class="masthead__menu-btn"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          type="button"
+        >
+          <span class="masthead__menu-icon" aria-hidden="true"></span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Mobile menu drawer -->
+    <div class="masthead__mobile-menu" id="mobile-menu" hidden>
+      <ul role="list">
+        <li><a href="index.html#work" class="mobile-link">Work</a></li>
+        <li><a href="studio.html" class="mobile-link">Studio</a></li>
+        <li><a href="index.html#contact" class="mobile-link">Contact</a></li>
+      </ul>
+      <p class="mobile-meta">Lisbon &amp; Porto — Est. 2018</p>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════════
+       STUDIO CONTENT
+  ════════════════════════════════════════════ -->
+  <main id="main-content" class="studio-page__inner">
+
+    <!-- 1. Opening Section -->
+    <section class="studio-hero" aria-label="Studio Introduction">
+      <div class="studio-hero__header">
+        <div>
+          <span class="studio-hero__eyebrow">THE STUDIO</span>
+          <h1 class="studio-hero__headline">A considered approach to place.</h1>
+        </div>
+        <p class="studio-hero__intro">
+          PLINTH is an independent architecture and spatial design studio based in Lisbon, Portugal. Our work spans architecture, interiors, heritage renovation and temporary installations, guided by an enduring interest in place, material and light.
+        </p>
+      </div>
+
+      <div class="studio-hero__visual">
+        <img
+          src="images/casa-mouraria.jpg"
+          alt="Quiet architectural interior with generous natural light across raw concrete and white plaster"
+          class="studio-hero__image"
+          width="1600"
+          height="900"
+        >
+      </div>
+      <p class="studio-hero__caption">Interior study: natural light and tectonic honesty in domestic space.</p>
+    </section>
+
+    <!-- 2. Philosophy Section -->
+    <section class="studio-philosophy" aria-label="Studio Philosophy">
+      <div class="studio-philosophy__intro">
+        <span class="studio-philosophy__eyebrow">PHILOSOPHY</span>
+        <h2 class="studio-philosophy__heading">Three guiding commitments.</h2>
+      </div>
+
+      <div class="studio-philosophy__sequence">
+        <article class="philosophy-item">
+          <h3 class="philosophy-item__principle">Place</h3>
+          <p class="philosophy-item__text">
+            Every project begins with its context. We study the character, history and conditions of a site before proposing a response.
+          </p>
+        </article>
+
+        <article class="philosophy-item">
+          <h3 class="philosophy-item__principle">Material</h3>
+          <p class="philosophy-item__text">
+            Materials should express what they are. Concrete, stone, timber and plaster are allowed to retain their natural character rather than imitate something else.
+          </p>
+        </article>
+
+        <article class="philosophy-item">
+          <h3 class="philosophy-item__principle">Time</h3>
+          <p class="philosophy-item__text">
+            Good architecture is not designed to chase a trend. We favour patient decisions, enduring proportions and spaces that remain meaningful over time.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3. What We Do Section -->
+    <section class="studio-services" aria-label="What We Do">
+      <div class="studio-services__header">
+        <span class="studio-services__eyebrow">DISCIPLINE</span>
+        <h2 class="studio-services__heading">Scope of practice.</h2>
+      </div>
+
+      <div class="studio-services__grid">
+        <article class="service-item">
+          <h3 class="service-item__title">Architecture</h3>
+          <p class="service-item__description">
+            Residential, commercial and cultural buildings.
+          </p>
+        </article>
+
+        <article class="service-item">
+          <h3 class="service-item__title">Interior &amp; Spatial Design</h3>
+          <p class="service-item__description">
+            The organisation, experience and flow of interior spaces.
+          </p>
+        </article>
+
+        <article class="service-item">
+          <h3 class="service-item__title">Heritage Renovation</h3>
+          <p class="service-item__description">
+            Careful restoration and adaptation of historic buildings.
+          </p>
+        </article>
+
+        <article class="service-item">
+          <h3 class="service-item__title">Urban Installations</h3>
+          <p class="service-item__description">
+            Temporary architectural interventions in public space.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. The Team Section -->
+    <section class="studio-team" aria-label="The Team">
+      <div class="studio-team__header">
+        <span class="studio-team__eyebrow">LEADERSHIP</span>
+        <h2 class="studio-team__heading">The team.</h2>
+      </div>
+
+      <div class="studio-team__grid">
+        <!-- Sofia Mendes -->
+        <article class="member-card">
+          <div class="member-card__visual">
+            <img
+              src="images/sofia-mendes.jpg"
+              alt="Portrait of Sofia Mendes, Founding Principal"
+              class="member-card__image"
+              loading="lazy"
+            >
+          </div>
+          <div class="member-card__info">
+            <h3 class="member-card__name">Sofia Mendes</h3>
+            <span class="member-card__role">Founding Principal</span>
+            <div class="member-card__meta-list">
+              <span class="member-card__meta-item"><strong>Education:</strong> ETH Zürich</span>
+              <span class="member-card__meta-item"><strong>Background:</strong> Previously worked under Portuguese architect Álvaro Siza Vieira.</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Rui Carvalho -->
+        <article class="member-card">
+          <div class="member-card__visual">
+            <img
+              src="images/rui-carvalho.jpg"
+              alt="Portrait of Rui Carvalho, Founding Principal"
+              class="member-card__image"
+              loading="lazy"
+            >
+          </div>
+          <div class="member-card__info">
+            <h3 class="member-card__name">Rui Carvalho</h3>
+            <span class="member-card__role">Founding Principal</span>
+            <div class="member-card__meta-list">
+              <span class="member-card__meta-item"><strong>Education:</strong> Architectural Association, London</span>
+              <span class="member-card__meta-item"><strong>Background:</strong> Structural engineering experience at Buro Happold.</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Ana Ribeiro -->
+        <article class="member-card">
+          <div class="member-card__visual">
+            <img
+              src="images/ana-ribeiro.jpg"
+              alt="Portrait of Ana Ribeiro, Senior Architect"
+              class="member-card__image"
+              loading="lazy"
+            >
+          </div>
+          <div class="member-card__info">
+            <h3 class="member-card__name">Ana Ribeiro</h3>
+            <span class="member-card__role">Senior Architect</span>
+            <div class="member-card__meta-list">
+              <span class="member-card__meta-item"><strong>Education:</strong> FAUP Porto</span>
+              <span class="member-card__meta-item"><strong>Specialisation:</strong> Heritage conservation.</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5. Recognition Section -->
+    <section class="studio-recognition" aria-label="Recognition">
+      <div class="studio-recognition__header">
+        <span class="studio-recognition__eyebrow">RECOGNITION</span>
+        <h2 class="studio-recognition__heading">Selected distinctions.</h2>
+      </div>
+
+      <div class="recognition-list" role="list">
+        <div class="recognition-item" role="listitem">
+          <span class="recognition-item__award">European Architecture Award</span>
+          <span class="recognition-item__distinction">Shortlist</span>
+        </div>
+        <div class="recognition-item" role="listitem">
+          <span class="recognition-item__award">ArchDaily Building of the Year</span>
+          <span class="recognition-item__distinction">Finalist</span>
+        </div>
+        <div class="recognition-item" role="listitem">
+          <span class="recognition-item__award">Wallpaper* Design Award</span>
+          <span class="recognition-item__distinction">Winner</span>
+        </div>
+        <div class="recognition-item" role="listitem">
+          <span class="recognition-item__award">Prémio Secil Arquitectura</span>
+          <span class="recognition-item__distinction">Winner</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Closing Statement -->
+    <section class="studio-closing" aria-label="Closing Statement">
+      <h2 class="studio-closing__statement">
+        Buildings<br>
+        <em>that belong.</em>
+      </h2>
+      <p class="studio-closing__invite">
+        We welcome inquiries for new architecture, interior, and heritage commissions.
+      </p>
+      <div class="studio-closing__action">
+        <a href="index.html#contact" class="studio-closing__btn">
+          Discuss a Project →
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ════════════════════════════════════════════
+       COLOPHON
+  ════════════════════════════════════════════ -->
+  <footer class="colophon" role="contentinfo">
+    <div class="studio-page__inner colophon__inner">
+      <span class="colophon__brand">PLINTH</span>
+      <span>© 2018—2026 Plinth Arquitetura Lda · Lisbon &amp; Porto</span>
+      <div class="colophon__links">
+        <a href="#main-content" class="colophon__link">Top ↑</a>
+        <a href="index.html#work" class="colophon__link">Work</a>
+        <a href="studio.html" class="colophon__link">Studio</a>
+        <a href="index.html#contact" class="colophon__link">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/masthead.js"></script>
+</body>
+</html>

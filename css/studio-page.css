@@ -1,0 +1,467 @@
+/* ══════════════════════════════════════════════════
+   PLINTH — Studio Page (Prompt 04)
+   Architectural editorial layout: restrained typography,
+   fine rules, generous whitespace, honest materials.
+══════════════════════════════════════════════════ */
+
+.studio-page {
+  padding-top: var(--masthead-h);
+  background-color: var(--c-cream);
+  min-height: 100vh;
+}
+
+.studio-page__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--page-pad);
+}
+
+/* ── 1. Opening ───────────────────────────────── */
+.studio-hero {
+  padding-top: var(--sp-64);
+  padding-bottom: var(--sp-96);
+  border-bottom: 1px solid var(--c-divider);
+}
+
+.studio-hero__header {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: var(--sp-64);
+  align-items: flex-end;
+  margin-bottom: var(--sp-64);
+}
+
+.studio-hero__eyebrow {
+  display: block;
+  font-family: var(--f-sans);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--c-brass);
+  margin-bottom: var(--sp-16);
+}
+
+.studio-hero__headline {
+  font-family: var(--f-display);
+  font-size: clamp(3rem, 6.2vw, 5.75rem);
+  font-weight: var(--fw-light);
+  line-height: 1.05;
+  letter-spacing: var(--ls-tight);
+  color: var(--c-umber);
+}
+
+.studio-hero__intro {
+  font-family: var(--f-sans);
+  font-size: var(--fs-lead);
+  font-weight: var(--fw-light);
+  line-height: var(--lh-body);
+  color: var(--c-secondary);
+  max-width: 44ch;
+}
+
+.studio-hero__visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: var(--c-cream-dark);
+}
+
+.studio-hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.studio-hero__caption {
+  font-family: var(--f-sans);
+  font-size: var(--fs-tiny);
+  letter-spacing: var(--ls-wide);
+  color: var(--c-muted);
+  text-align: right;
+  margin-top: var(--sp-12);
+}
+
+/* ── 2. Philosophy ────────────────────────────── */
+.studio-philosophy {
+  padding-top: var(--sp-96);
+  padding-bottom: var(--sp-96);
+  border-bottom: 1px solid var(--c-divider);
+}
+
+.studio-philosophy__intro {
+  margin-bottom: var(--sp-64);
+  max-width: 640px;
+}
+
+.studio-philosophy__eyebrow {
+  display: block;
+  font-family: var(--f-sans);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--c-brass);
+  margin-bottom: var(--sp-12);
+}
+
+.studio-philosophy__heading {
+  font-family: var(--f-display);
+  font-size: var(--fs-d2);
+  font-weight: var(--fw-light);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-tight);
+  color: var(--c-umber);
+}
+
+.studio-philosophy__sequence {
+  display: flex;
+  flex-direction: column;
+}
+
+.philosophy-item {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: var(--sp-64);
+  padding: var(--sp-48) 0;
+  border-top: 1px solid var(--c-divider);
+  align-items: baseline;
+}
+
+.philosophy-item:last-child {
+  padding-bottom: 0;
+}
+
+.philosophy-item__principle {
+  font-family: var(--f-display);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-tight);
+  color: var(--c-umber);
+}
+
+.philosophy-item__text {
+  font-family: var(--f-sans);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-light);
+  line-height: var(--lh-body);
+  color: var(--c-secondary);
+  max-width: 58ch;
+}
+
+/* ── 3. What We Do ────────────────────────────── */
+.studio-services {
+  padding-top: var(--sp-96);
+  padding-bottom: var(--sp-96);
+  border-bottom: 1px solid var(--c-divider);
+}
+
+.studio-services__header {
+  margin-bottom: var(--sp-64);
+}
+
+.studio-services__eyebrow {
+  display: block;
+  font-family: var(--f-sans);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--c-brass);
+  margin-bottom: var(--sp-12);
+}
+
+.studio-services__heading {
+  font-family: var(--f-display);
+  font-size: var(--fs-d2);
+  font-weight: var(--fw-light);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-tight);
+  color: var(--c-umber);
+}
+
+.studio-services__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: var(--sp-64);
+  row-gap: var(--sp-48);
+}
+
+.service-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-12);
+  padding-top: var(--sp-24);
+  border-top: 1px solid var(--c-divider);
+}
+
+.service-item__title {
+  font-family: var(--f-display);
+  font-size: 1.65rem;
+  font-weight: var(--fw-regular);
+  color: var(--c-umber);
+  line-height: 1.2;
+}
+
+.service-item__description {
+  font-family: var(--f-sans);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-light);
+  line-height: 1.65;
+  color: var(--c-secondary);
+  max-width: 44ch;
+}
+
+/* ── 4. The Team ──────────────────────────────── */
+.studio-team {
+  padding-top: var(--sp-96);
+  padding-bottom: var(--sp-96);
+  border-bottom: 1px solid var(--c-divider);
+}
+
+.studio-team__header {
+  margin-bottom: var(--sp-64);
+}
+
+.studio-team__eyebrow {
+  display: block;
+  font-family: var(--f-sans);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--c-brass);
+  margin-bottom: var(--sp-12);
+}
+
+.studio-team__heading {
+  font-family: var(--f-display);
+  font-size: var(--fs-d2);
+  font-weight: var(--fw-light);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-tight);
+  color: var(--c-umber);
+}
+
+.studio-team__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-48);
+}
+
+.member-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-20);
+}
+
+.member-card__visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background-color: var(--c-cream-dark);
+}
+
+.member-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.member-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+}
+
+.member-card__name {
+  font-family: var(--f-display);
+  font-size: 1.5rem;
+  font-weight: var(--fw-regular);
+  color: var(--c-umber);
+  letter-spacing: 0.02em;
+}
+
+.member-card__role {
+  font-family: var(--f-sans);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--c-brass);
+}
+
+.member-card__meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  margin-top: var(--sp-8);
+  padding-top: var(--sp-12);
+  border-top: 1px solid var(--c-divider);
+  font-family: var(--f-sans);
+  font-size: var(--fs-small);
+  line-height: 1.6;
+  color: var(--c-secondary);
+}
+
+.member-card__meta-item strong {
+  color: var(--c-umber);
+  font-weight: var(--fw-medium);
+}
+
+/* ── 5. Recognition ───────────────────────────── */
+.studio-recognition {
+  padding-top: var(--sp-96);
+  padding-bottom: var(--sp-96);
+  border-bottom: 1px solid var(--c-divider);
+}
+
+.studio-recognition__header {
+  margin-bottom: var(--sp-48);
+}
+
+.studio-recognition__eyebrow {
+  display: block;
+  font-family: var(--f-sans);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--c-brass);
+  margin-bottom: var(--sp-12);
+}
+
+.studio-recognition__heading {
+  font-family: var(--f-display);
+  font-size: var(--fs-d2);
+  font-weight: var(--fw-light);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-tight);
+  color: var(--c-umber);
+}
+
+.recognition-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--c-divider);
+}
+
+.recognition-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: baseline;
+  padding: var(--sp-20) 0;
+  border-bottom: 1px solid var(--c-divider);
+  font-family: var(--f-sans);
+}
+
+.recognition-item__award {
+  font-family: var(--f-display);
+  font-size: 1.35rem;
+  font-weight: var(--fw-regular);
+  color: var(--c-umber);
+}
+
+.recognition-item__distinction {
+  text-align: right;
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--c-brass);
+  font-weight: var(--fw-medium);
+}
+
+/* ── 6. Closing Statement ─────────────────────── */
+.studio-closing {
+  padding-top: var(--sp-128);
+  padding-bottom: var(--sp-128);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--sp-24);
+}
+
+.studio-closing__statement {
+  font-family: var(--f-display);
+  font-size: clamp(3.2rem, 7vw, 6.5rem);
+  font-weight: var(--fw-light);
+  line-height: 1.05;
+  letter-spacing: var(--ls-tight);
+  color: var(--c-umber);
+}
+
+.studio-closing__statement em {
+  font-style: italic;
+  color: var(--c-umber-mid);
+}
+
+.studio-closing__invite {
+  font-family: var(--f-sans);
+  font-size: var(--fs-lead);
+  font-weight: var(--fw-light);
+  color: var(--c-secondary);
+  max-width: 42ch;
+}
+
+.studio-closing__action {
+  margin-top: var(--sp-16);
+}
+
+.studio-closing__btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.95rem 2.2rem;
+  background-color: var(--c-umber);
+  color: var(--c-cream);
+  font-family: var(--f-sans);
+  font-size: var(--fs-tiny);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  border: 1px solid var(--c-umber);
+  transition: background-color var(--t-fast), border-color var(--t-fast);
+}
+
+.studio-closing__btn:hover {
+  background-color: var(--c-umber-mid);
+  border-color: var(--c-umber-mid);
+}
+
+.studio-closing__btn:focus-visible {
+  outline: 2px solid var(--c-brass);
+  outline-offset: 4px;
+}
+
+/* ── Responsive Rules ─────────────────────────── */
+@media (max-width: 960px) {
+  .studio-hero__header {
+    grid-template-columns: 1fr;
+    gap: var(--sp-32);
+  }
+
+  .philosophy-item {
+    grid-template-columns: 1fr;
+    gap: var(--sp-16);
+  }
+
+  .studio-services__grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-32);
+  }
+
+  .studio-team__grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-48);
+  }
+
+  .member-card__visual {
+    max-width: 420px;
+  }
+}
