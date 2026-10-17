@@ -3,397 +3,670 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GRID // 01 — Physical Desktop Macro Console</title>
-  <meta name="description" content="Machined 6063 aluminum. Four tactile knurled dials. Six mechanical switches. One monochrome memory-in-pixel display. Zero drivers.">
+  <title>PLINTH — Architecture & Spatial Design</title>
+  <meta name="description" content="An independent architecture and spatial design studio. We build with intention. Lisbon & Porto.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- MINIMALIST STARK NAVIGATION -->
-  <header class="grid-nav">
-    <div class="nav-bounds">
-      <div class="nav-brand">
-        <span class="brand-mono">GRID</span>
-        <span class="brand-slash">//</span>
-        <span class="brand-model">01</span>
-      </div>
 
-      <nav class="nav-links">
-        <a href="#hardware" class="nav-link">Hardware</a>
-        <a href="#tactile" class="nav-link">Switches</a>
-        <a href="#epaper" class="nav-link">E-Paper</a>
-        <a href="#specs" class="nav-link">Specs</a>
-      </nav>
-
-      <div class="nav-action">
-        <button id="btn-preorder" class="nav-cta-btn" type="button">
-          <span>PRE-ORDER $179</span>
-        </button>
+  <!-- NAVIGATION -->
+  <nav class="site-nav" id="site-nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="PLINTH home">
+        <svg width="88" height="18" viewBox="0 0 88 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <text x="0" y="14" font-family="'Cormorant Garamond', serif" font-size="18" font-weight="400" letter-spacing="0.2em" fill="currentColor">PLINTH</text>
+        </svg>
+      </a>
+      <div class="nav-links">
+        <a href="#work" class="nav-link">Work</a>
+        <a href="#studio" class="nav-link">Studio</a>
+        <a href="#approach" class="nav-link">Approach</a>
+        <a href="#contact" class="nav-link">Contact</a>
       </div>
     </div>
-  </header>
+  </nav>
 
   <main>
-    <!-- HERO SECTION: MASSIVE PRODUCT FOCUS WITH INTERACTIVE PHYSICAL SIMULATOR -->
-    <section class="hero-stage">
-      <div class="hero-bounds">
-        <div class="hero-header-block">
-          <div class="pill-kicker">PHYSICAL MACRO CONSOLE</div>
-          <h1 class="hero-headline">Pure Physical Control.</h1>
-          <p class="hero-subhead">
-            Machined from solid 6063 aluminum. Four knurled rotary dials. Six mechanical keys. One monochrome paper display. Zero latency.
+
+    <!-- ═══════════════════════════════════════════════════
+         HERO — Asymmetric editorial composition
+    ═══════════════════════════════════════════════════ -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-text-col">
+          <p class="hero-kicker">Est. 2018 · Lisbon</p>
+          <h1 class="hero-headline">
+            We design<br>
+            <em>spaces that</em><br>
+            outlast trends.
+          </h1>
+          <p class="hero-body">
+            An independent architecture and spatial design studio. We build with intention — resisting the temporary in favour of the enduring.
+          </p>
+          <div class="hero-actions">
+            <a href="#work" class="btn-primary">View our work</a>
+            <a href="#contact" class="btn-ghost">Start a project</a>
+          </div>
+        </div>
+
+        <!-- Signature Artifact: Architectural isometric SVG illustration -->
+        <div class="hero-visual-col" aria-hidden="true">
+          <div class="hero-frame">
+            <svg class="arch-svg" viewBox="0 0 520 620" xmlns="http://www.w3.org/2000/svg" fill="none">
+              <!-- Ground shadow -->
+              <ellipse cx="260" cy="580" rx="200" ry="20" fill="#2a1f14" opacity="0.08"/>
+
+              <!-- Building shell - back wall -->
+              <rect x="60" y="100" width="400" height="440" fill="#ede8e0" stroke="#c8bfb2" stroke-width="1.5"/>
+
+              <!-- Floor plates (horizontal lines suggesting storeys) -->
+              <line x1="60" y1="210" x2="460" y2="210" stroke="#c8bfb2" stroke-width="1"/>
+              <line x1="60" y1="320" x2="460" y2="320" stroke="#c8bfb2" stroke-width="1"/>
+              <line x1="60" y1="430" x2="460" y2="430" stroke="#c8bfb2" stroke-width="1"/>
+
+              <!-- Structural columns -->
+              <rect x="60" y="100" width="14" height="440" fill="#d4cec5"/>
+              <rect x="235" y="100" width="10" height="440" fill="#d4cec5"/>
+              <rect x="446" y="100" width="14" height="440" fill="#d4cec5"/>
+
+              <!-- Large curtain window grids -->
+              <!-- Ground floor window left -->
+              <rect x="84" y="460" width="130" height="78" fill="#b8c4c0" opacity="0.45"/>
+              <line x1="149" y1="460" x2="149" y2="538" stroke="#d4cec5" stroke-width="1"/>
+              <line x1="84" y1="500" x2="214" y2="500" stroke="#d4cec5" stroke-width="1"/>
+
+              <!-- Ground floor window right -->
+              <rect x="256" y="460" width="170" height="78" fill="#b8c4c0" opacity="0.45"/>
+              <line x1="341" y1="460" x2="341" y2="538" stroke="#d4cec5" stroke-width="1"/>
+              <line x1="256" y1="500" x2="426" y2="500" stroke="#d4cec5" stroke-width="1"/>
+
+              <!-- First floor window left, wide -->
+              <rect x="84" y="228" width="130" height="72" fill="#9daead" opacity="0.35"/>
+              <line x1="149" y1="228" x2="149" y2="300" stroke="#c8bfb2" stroke-width="1"/>
+              <line x1="84" y1="265" x2="214" y2="265" stroke="#c8bfb2" stroke-width="1"/>
+
+              <!-- First floor window right -->
+              <rect x="256" y="228" width="80" height="72" fill="#9daead" opacity="0.35"/>
+              <rect x="350" y="228" width="76" height="72" fill="#9daead" opacity="0.3"/>
+              <line x1="256" y1="265" x2="336" y2="265" stroke="#c8bfb2" stroke-width="1"/>
+              <line x1="350" y1="265" x2="426" y2="265" stroke="#c8bfb2" stroke-width="1"/>
+
+              <!-- Second floor narrow windows -->
+              <rect x="84" y="338" width="55" height="68" fill="#9daead" opacity="0.3"/>
+              <rect x="155" y="338" width="55" height="68" fill="#9daead" opacity="0.25"/>
+              <rect x="256" y="338" width="55" height="68" fill="#9daead" opacity="0.3"/>
+              <rect x="325" y="338" width="55" height="68" fill="#9daead" opacity="0.25"/>
+              <rect x="395" y="338" width="31" height="68" fill="#9daead" opacity="0.2"/>
+
+              <!-- Roof detail: horizontal band -->
+              <rect x="60" y="80" width="400" height="20" fill="#c8bfb2"/>
+              <rect x="60" y="76" width="400" height="4" fill="#a89e91"/>
+
+              <!-- Entrance canopy -->
+              <rect x="195" y="540" width="130" height="6" fill="#2a1f14" opacity="0.25"/>
+              <rect x="205" y="498" width="6" height="46" fill="#2a1f14" opacity="0.2"/>
+              <rect x="309" y="498" width="6" height="46" fill="#2a1f14" opacity="0.2"/>
+
+              <!-- Door -->
+              <rect x="215" y="498" width="90" height="42" fill="#2a1f14" opacity="0.12"/>
+              <line x1="260" y1="498" x2="260" y2="540" stroke="#c8bfb2" stroke-width="1"/>
+
+              <!-- Staircase detail left facade -->
+              <line x1="60" y1="540" x2="0" y2="580" stroke="#c8bfb2" stroke-width="1"/>
+              <line x1="0" y1="540" x2="60" y2="540" stroke="#c8bfb2" stroke-width="1"/>
+              <rect x="0" y="540" width="60" height="40" fill="#e5e0d8"/>
+
+              <!-- Small side accent — vertical louvres right side -->
+              <rect x="462" y="200" width="40" height="240" fill="#ddd9d2"/>
+              <line x1="462" y1="225" x2="502" y2="225" stroke="#c8bfb2" stroke-width="0.75"/>
+              <line x1="462" y1="250" x2="502" y2="250" stroke="#c8bfb2" stroke-width="0.75"/>
+              <line x1="462" y1="275" x2="502" y2="275" stroke="#c8bfb2" stroke-width="0.75"/>
+              <line x1="462" y1="300" x2="502" y2="300" stroke="#c8bfb2" stroke-width="0.75"/>
+              <line x1="462" y1="325" x2="502" y2="325" stroke="#c8bfb2" stroke-width="0.75"/>
+              <line x1="462" y1="350" x2="502" y2="350" stroke="#c8bfb2" stroke-width="0.75"/>
+              <line x1="462" y1="375" x2="502" y2="375" stroke="#c8bfb2" stroke-width="0.75"/>
+              <line x1="462" y1="400" x2="502" y2="400" stroke="#c8bfb2" stroke-width="0.75"/>
+              <line x1="462" y1="425" x2="502" y2="425" stroke="#c8bfb2" stroke-width="0.75"/>
+
+              <!-- Horizon ground line -->
+              <line x1="0" y1="565" x2="520" y2="565" stroke="#c8bfb2" stroke-width="0.75"/>
+
+              <!-- Annotation lines — editorial detail -->
+              <line x1="20" y1="100" x2="20" y2="540" stroke="#2a1f14" stroke-width="0.75" stroke-dasharray="3 6" opacity="0.3"/>
+              <line x1="14" y1="100" x2="26" y2="100" stroke="#2a1f14" stroke-width="0.75" opacity="0.3"/>
+              <line x1="14" y1="540" x2="26" y2="540" stroke="#2a1f14" stroke-width="0.75" opacity="0.3"/>
+              <text x="6" y="330" font-family="'DM Sans', sans-serif" font-size="8" fill="#2a1f14" opacity="0.35" writing-mode="tb">14.2 m</text>
+            </svg>
+
+            <!-- Floating label cards -->
+            <div class="frame-label frame-label--tl">
+              <span class="label-num">01</span>
+              <span class="label-text">Reinforced concrete<br>shell structure</span>
+            </div>
+            <div class="frame-label frame-label--br">
+              <span class="label-num">04</span>
+              <span class="label-text">Floor-to-ceiling<br>glazing, 4 storeys</span>
+            </div>
+          </div>
+
+          <div class="hero-meta-strip">
+            <div class="meta-item">
+              <span class="meta-num">47</span>
+              <span class="meta-label">Projects delivered</span>
+            </div>
+            <div class="meta-divider"></div>
+            <div class="meta-item">
+              <span class="meta-num">12</span>
+              <span class="meta-label">Years in practice</span>
+            </div>
+            <div class="meta-divider"></div>
+            <div class="meta-item">
+              <span class="meta-num">3</span>
+              <span class="meta-label">Countries</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         MARQUEE TICKER
+    ═══════════════════════════════════════════════════ -->
+    <div class="ticker-rail" aria-hidden="true">
+      <div class="ticker-track">
+        <span class="ticker-item">Spatial Design</span>
+        <span class="ticker-dot">·</span>
+        <span class="ticker-item">Architecture</span>
+        <span class="ticker-dot">·</span>
+        <span class="ticker-item">Interior</span>
+        <span class="ticker-dot">·</span>
+        <span class="ticker-item">Heritage Renovation</span>
+        <span class="ticker-dot">·</span>
+        <span class="ticker-item">Urban Installations</span>
+        <span class="ticker-dot">·</span>
+        <span class="ticker-item">Spatial Design</span>
+        <span class="ticker-dot">·</span>
+        <span class="ticker-item">Architecture</span>
+        <span class="ticker-dot">·</span>
+        <span class="ticker-item">Interior</span>
+        <span class="ticker-dot">·</span>
+        <span class="ticker-item">Heritage Renovation</span>
+        <span class="ticker-dot">·</span>
+        <span class="ticker-item">Urban Installations</span>
+        <span class="ticker-dot">·</span>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════
+         WORK — Selected projects grid
+    ═══════════════════════════════════════════════════ -->
+    <section class="section-work" id="work">
+      <div class="section-header">
+        <p class="section-kicker">Selected work, 2018–2026</p>
+        <h2 class="section-title">Projects</h2>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Project 01 — Large feature -->
+        <article class="project-card project-card--large">
+          <div class="project-visual">
+            <svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true">
+              <!-- Interior scene: minimal living space with high ceiling -->
+              <rect width="700" height="480" fill="#ded8ce"/>
+              <!-- Back wall with window shaft of light -->
+              <rect x="0" y="0" width="700" height="480" fill="#e5e0d6"/>
+              <!-- Deep window recess -->
+              <rect x="240" y="0" width="220" height="380" fill="#d4cec5"/>
+              <rect x="260" y="0" width="180" height="360" fill="#bfc4bb" opacity="0.6"/>
+              <!-- Light shaft -->
+              <polygon points="260,0 440,0 480,480 220,480" fill="#f2ede6" opacity="0.55"/>
+              <!-- Floor line -->
+              <rect x="0" y="370" width="700" height="110" fill="#d9d3c8"/>
+              <!-- Left wall side shadow -->
+              <rect x="0" y="0" width="80" height="480" fill="#cdc8be"/>
+              <!-- Minimal furniture: long bench -->
+              <rect x="80" y="330" width="250" height="20" fill="#b8a896" rx="1"/>
+              <rect x="90" y="350" width="12" height="20" fill="#b8a896"/>
+              <rect x="308" y="350" width="12" height="20" fill="#b8a896"/>
+              <!-- Side table -->
+              <rect x="420" y="340" width="70" height="10" fill="#c0b09a" rx="1"/>
+              <rect x="450" y="350" width="8" height="20" fill="#c0b09a"/>
+              <!-- Ceiling line -->
+              <rect x="0" y="0" width="700" height="4" fill="#cec9c0"/>
+              <!-- Artwork on wall -->
+              <rect x="100" y="140" width="80" height="60" fill="none" stroke="#b8a896" stroke-width="1.5"/>
+              <rect x="108" y="148" width="64" height="44" fill="#c8c0b5" opacity="0.7"/>
+            </svg>
+            <div class="project-overlay">
+              <span class="overlay-view">View project →</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-meta">
+              <span class="project-num">01</span>
+              <span class="project-tag">Residential</span>
+              <span class="project-year">2025</span>
+            </div>
+            <h3 class="project-title">Casa Mouraria</h3>
+            <p class="project-location">Lisbon, Portugal</p>
+          </div>
+        </article>
+
+        <!-- Project 02 — Small -->
+        <article class="project-card project-card--small">
+          <div class="project-visual">
+            <svg viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true">
+              <!-- Brutalist library interior -->
+              <rect width="340" height="260" fill="#cdc8be"/>
+              <!-- Concrete ceiling coffers -->
+              <rect x="0" y="0" width="340" height="260" fill="#d4cfc7"/>
+              <rect x="0" y="0" width="340" height="50" fill="#c8c3bb"/>
+              <!-- Coffer grid -->
+              <line x1="85" y1="0" x2="85" y2="50" stroke="#bdb8b0" stroke-width="2"/>
+              <line x1="170" y1="0" x2="170" y2="50" stroke="#bdb8b0" stroke-width="2"/>
+              <line x1="255" y1="0" x2="255" y2="50" stroke="#bdb8b0" stroke-width="2"/>
+              <line x1="0" y1="25" x2="340" y2="25" stroke="#bdb8b0" stroke-width="2"/>
+              <!-- Bookshelves left wall -->
+              <rect x="0" y="50" width="40" height="210" fill="#c8c0b4"/>
+              <line x1="0" y1="90" x2="40" y2="90" stroke="#b8b0a4" stroke-width="1"/>
+              <line x1="0" y1="130" x2="40" y2="130" stroke="#b8b0a4" stroke-width="1"/>
+              <line x1="0" y1="170" x2="40" y2="170" stroke="#b8b0a4" stroke-width="1"/>
+              <line x1="0" y1="210" x2="40" y2="210" stroke="#b8b0a4" stroke-width="1"/>
+              <!-- Books as colored rects -->
+              <rect x="4" y="57" width="5" height="30" fill="#8a7060"/>
+              <rect x="11" y="62" width="4" height="25" fill="#6a7a6a"/>
+              <rect x="17" y="55" width="6" height="32" fill="#9a8070"/>
+              <rect x="25" y="60" width="5" height="27" fill="#7a6a5a"/>
+              <rect x="32" y="65" width="5" height="22" fill="#8a7a6a"/>
+              <!-- Floor -->
+              <rect x="0" y="220" width="340" height="40" fill="#c0bab2"/>
+              <!-- Reading table -->
+              <rect x="100" y="170" width="160" height="8" fill="#b8a896" rx="1"/>
+              <rect x="115" y="178" width="8" height="42" fill="#b8a896"/>
+              <rect x="237" y="178" width="8" height="42" fill="#b8a896"/>
+              <!-- Window end wall -->
+              <rect x="300" y="50" width="40" height="170" fill="#bfc9c4" opacity="0.8"/>
+            </svg>
+            <div class="project-overlay">
+              <span class="overlay-view">View project →</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-meta">
+              <span class="project-num">02</span>
+              <span class="project-tag">Cultural</span>
+              <span class="project-year">2024</span>
+            </div>
+            <h3 class="project-title">Biblioteca Central</h3>
+            <p class="project-location">Porto, Portugal</p>
+          </div>
+        </article>
+
+        <!-- Project 03 — Small -->
+        <article class="project-card project-card--small">
+          <div class="project-visual">
+            <svg viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true">
+              <!-- Exterior courtyard / patio space -->
+              <rect width="340" height="260" fill="#e8e2d8"/>
+              <!-- Sky -->
+              <rect x="0" y="0" width="340" height="130" fill="#dce4e8"/>
+              <!-- Ground plane -->
+              <rect x="0" y="200" width="340" height="60" fill="#d2ccc2"/>
+              <!-- Courtyard walls -->
+              <rect x="0" y="0" width="40" height="260" fill="#cdc8bf"/>
+              <rect x="300" y="0" width="40" height="260" fill="#cdc8bf"/>
+              <!-- Back wall with arched opening -->
+              <rect x="40" y="60" width="260" height="140" fill="#d8d3ca"/>
+              <path d="M130 60 Q170 20 210 60" fill="#dce4e8" stroke="#c8c3ba" stroke-width="1.5"/>
+              <rect x="130" y="60" width="80" height="100" fill="#dce4e8"/>
+              <!-- Planter -->
+              <rect x="60" y="180" width="50" height="20" fill="#b8a896" rx="2"/>
+              <rect x="230" y="180" width="50" height="20" fill="#b8a896" rx="2"/>
+              <!-- Tile grid on floor -->
+              <line x1="40" y1="200" x2="300" y2="200" stroke="#c8c3ba" stroke-width="1"/>
+              <line x1="40" y1="215" x2="300" y2="215" stroke="#c8c3ba" stroke-width="0.75" opacity="0.5"/>
+              <line x1="40" y1="230" x2="300" y2="230" stroke="#c8c3ba" stroke-width="0.75" opacity="0.5"/>
+              <line x1="110" y1="200" x2="110" y2="260" stroke="#c8c3ba" stroke-width="0.75" opacity="0.5"/>
+              <line x1="180" y1="200" x2="180" y2="260" stroke="#c8c3ba" stroke-width="0.75" opacity="0.5"/>
+              <line x1="250" y1="200" x2="250" y2="260" stroke="#c8c3ba" stroke-width="0.75" opacity="0.5"/>
+            </svg>
+            <div class="project-overlay">
+              <span class="overlay-view">View project →</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-meta">
+              <span class="project-num">03</span>
+              <span class="project-tag">Heritage</span>
+              <span class="project-year">2024</span>
+            </div>
+            <h3 class="project-title">Pátio das Flores</h3>
+            <p class="project-location">Évora, Portugal</p>
+          </div>
+        </article>
+
+        <!-- Project 04 — Medium -->
+        <article class="project-card project-card--medium">
+          <div class="project-visual">
+            <svg viewBox="0 0 500 340" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true">
+              <!-- Office / commercial interior: double height atrium -->
+              <rect width="500" height="340" fill="#e0dbd2"/>
+              <!-- Back wall deep -->
+              <rect x="0" y="0" width="500" height="340" fill="#e8e4dc"/>
+              <!-- High atrium void -->
+              <rect x="160" y="0" width="180" height="280" fill="#d0d8dc" opacity="0.6"/>
+              <rect x="180" y="0" width="140" height="260" fill="#c8d2d6" opacity="0.7"/>
+              <!-- Mezzanine floor left -->
+              <rect x="0" y="140" width="160" height="6" fill="#c8c3ba"/>
+              <rect x="0" y="140" width="160" height="200" fill="#dedad2" opacity="0.5"/>
+              <!-- Mezzanine floor right -->
+              <rect x="340" y="140" width="160" height="6" fill="#c8c3ba"/>
+              <rect x="340" y="140" width="160" height="200" fill="#dedad2" opacity="0.5"/>
+              <!-- Staircase -->
+              <rect x="340" y="200" width="40" height="140" fill="#d0ccc4"/>
+              <line x1="340" y1="215" x2="380" y2="215" stroke="#c0bbb2" stroke-width="1"/>
+              <line x1="340" y1="230" x2="380" y2="230" stroke="#c0bbb2" stroke-width="1"/>
+              <line x1="340" y1="245" x2="380" y2="245" stroke="#c0bbb2" stroke-width="1"/>
+              <line x1="340" y1="260" x2="380" y2="260" stroke="#c0bbb2" stroke-width="1"/>
+              <!-- Floor -->
+              <rect x="0" y="290" width="500" height="50" fill="#ccc7be"/>
+              <!-- Light from above -->
+              <polygon points="180,0 320,0 360,340 140,340" fill="#f4ede4" opacity="0.3"/>
+              <!-- Railing left mezzanine -->
+              <line x1="0" y1="140" x2="160" y2="140" stroke="#b8a896" stroke-width="2"/>
+              <line x1="20" y1="100" x2="20" y2="140" stroke="#b8a896" stroke-width="1"/>
+              <line x1="50" y1="100" x2="50" y2="140" stroke="#b8a896" stroke-width="1"/>
+              <line x1="80" y1="100" x2="80" y2="140" stroke="#b8a896" stroke-width="1"/>
+              <line x1="110" y1="100" x2="110" y2="140" stroke="#b8a896" stroke-width="1"/>
+              <line x1="140" y1="100" x2="140" y2="140" stroke="#b8a896" stroke-width="1"/>
+            </svg>
+            <div class="project-overlay">
+              <span class="overlay-view">View project →</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-meta">
+              <span class="project-num">04</span>
+              <span class="project-tag">Commercial</span>
+              <span class="project-year">2023</span>
+            </div>
+            <h3 class="project-title">Edifício Vento</h3>
+            <p class="project-location">Cascais, Portugal</p>
+          </div>
+        </article>
+
+        <!-- Project 05 — Small -->
+        <article class="project-card project-card--small">
+          <div class="project-visual">
+            <svg viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true">
+              <!-- Outdoor pavilion structure -->
+              <rect width="340" height="260" fill="#d8e0dc"/>
+              <!-- Sky gradient feel -->
+              <rect x="0" y="0" width="340" height="140" fill="#dce8e4"/>
+              <rect x="0" y="140" width="340" height="120" fill="#cec8be"/>
+              <!-- Pavilion roof thin slab -->
+              <rect x="30" y="60" width="280" height="10" fill="#b8b0a8" rx="1"/>
+              <!-- Columns -->
+              <rect x="50" y="70" width="12" height="130" fill="#c8c0b8"/>
+              <rect x="150" y="70" width="10" height="130" fill="#c8c0b8"/>
+              <rect x="250" y="70" width="10" height="130" fill="#c8c0b8"/>
+              <rect x="278" y="70" width="12" height="130" fill="#c8c0b8"/>
+              <!-- Ground deck -->
+              <rect x="30" y="200" width="280" height="8" fill="#c0bab2"/>
+              <!-- Landscape behind -->
+              <ellipse cx="80" cy="50" rx="40" ry="30" fill="#b8c4b4" opacity="0.5"/>
+              <ellipse cx="260" cy="45" rx="35" ry="28" fill="#b8c4b4" opacity="0.4"/>
+              <!-- Seating on deck -->
+              <rect x="70" y="185" width="60" height="6" fill="#a89880" rx="1"/>
+              <rect x="200" y="185" width="60" height="6" fill="#a89880" rx="1"/>
+            </svg>
+            <div class="project-overlay">
+              <span class="overlay-view">View project →</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-meta">
+              <span class="project-num">05</span>
+              <span class="project-tag">Installation</span>
+              <span class="project-year">2023</span>
+            </div>
+            <h3 class="project-title">Pavilhão Sereno</h3>
+            <p class="project-location">Alentejo, Portugal</p>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="section-footer">
+        <a href="#" class="link-all-projects">All projects <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         APPROACH — Philosophy, 2-column editorial
+    ═══════════════════════════════════════════════════ -->
+    <section class="section-approach" id="approach">
+      <div class="approach-inner">
+        <div class="approach-left">
+          <p class="section-kicker">Our approach</p>
+          <h2 class="approach-headline">
+            Architecture is<br>
+            a slow <em>conversation</em><br>
+            with a site.
+          </h2>
+        </div>
+        <div class="approach-right">
+          <p class="approach-body">
+            We resist speed for its own sake. Every project begins with long observation — the way light crosses a floor at noon, the ambient sound of a street at dusk, the memory a community holds in its walls.
+          </p>
+          <p class="approach-body">
+            We work in phases, never rushing past the question to arrive at the answer. The result is buildings that feel inevitable — as if they could not have been placed anywhere else, built in any other way.
+          </p>
+
+          <div class="approach-values">
+            <div class="value-item">
+              <span class="value-mark">I.</span>
+              <div>
+                <h4 class="value-title">Site First</h4>
+                <p class="value-desc">Every design emerges from the specific conditions of its land, light, and history.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <span class="value-mark">II.</span>
+              <div>
+                <h4 class="value-title">Material Honesty</h4>
+                <p class="value-desc">Concrete is concrete. Wood is wood. We never disguise structure.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <span class="value-mark">III.</span>
+              <div>
+                <h4 class="value-title">Endurance Over Novelty</h4>
+                <p class="value-desc">We build for the long arc, not the decade of fashion.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Horizontal divider with material callout -->
+      <div class="material-callout">
+        <div class="material-item">
+          <span class="mat-name">Raw concrete</span>
+          <div class="mat-swatch mat-swatch--concrete"></div>
+        </div>
+        <div class="material-item">
+          <span class="mat-name">Aged brass</span>
+          <div class="mat-swatch mat-swatch--brass"></div>
+        </div>
+        <div class="material-item">
+          <span class="mat-name">Ipe hardwood</span>
+          <div class="mat-swatch mat-swatch--wood"></div>
+        </div>
+        <div class="material-item">
+          <span class="mat-name">Travertine</span>
+          <div class="mat-swatch mat-swatch--stone"></div>
+        </div>
+        <div class="material-item">
+          <span class="mat-name">Corten steel</span>
+          <div class="mat-swatch mat-swatch--corten"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         STUDIO — People & credits
+    ═══════════════════════════════════════════════════ -->
+    <section class="section-studio" id="studio">
+      <div class="studio-inner">
+        <div class="studio-header">
+          <p class="section-kicker">The studio</p>
+          <h2 class="section-title">Twelve people,<br>one practice.</h2>
+        </div>
+
+        <div class="studio-grid">
+          <div class="studio-bio">
+            <div class="bio-portrait" aria-hidden="true">
+              <svg viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <rect width="160" height="200" fill="#d8d3c8"/>
+                <!-- Silhouette -->
+                <circle cx="80" cy="65" r="32" fill="#c0bab0"/>
+                <path d="M20 200 Q20 130 80 130 Q140 130 140 200Z" fill="#c0bab0"/>
+              </svg>
+            </div>
+            <h4 class="bio-name">Sofia Mendes</h4>
+            <p class="bio-role">Founding Principal</p>
+            <p class="bio-note">ETH Zürich, 2009. Previously Álvaro Siza Vieira studio.</p>
+          </div>
+          <div class="studio-bio">
+            <div class="bio-portrait" aria-hidden="true">
+              <svg viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <rect width="160" height="200" fill="#cec9bf"/>
+                <circle cx="80" cy="65" r="32" fill="#b8b2a8"/>
+                <path d="M20 200 Q20 130 80 130 Q140 130 140 200Z" fill="#b8b2a8"/>
+              </svg>
+            </div>
+            <h4 class="bio-name">Rui Carvalho</h4>
+            <p class="bio-role">Founding Principal</p>
+            <p class="bio-note">AA London, 2010. Structural engineering background, Buro Happold.</p>
+          </div>
+          <div class="studio-bio">
+            <div class="bio-portrait" aria-hidden="true">
+              <svg viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <rect width="160" height="200" fill="#d4cfc5"/>
+                <circle cx="80" cy="65" r="32" fill="#bdb8ae"/>
+                <path d="M20 200 Q20 130 80 130 Q140 130 140 200Z" fill="#bdb8ae"/>
+              </svg>
+            </div>
+            <h4 class="bio-name">Ana Ribeiro</h4>
+            <p class="bio-role">Senior Architect</p>
+            <p class="bio-note">FAUP Porto, 2015. Heritage conservation specialist.</p>
+          </div>
+        </div>
+
+        <blockquote class="studio-quote">
+          <p>"We are not interested in signature buildings. We are interested in places that make people feel quietly at home in the world."</p>
+          <footer>— Sofia Mendes, 2022</footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         AWARDS / PRESS — Horizontal editorial strip
+    ═══════════════════════════════════════════════════ -->
+    <section class="section-press">
+      <div class="press-inner">
+        <p class="section-kicker">Recognition</p>
+        <div class="press-grid">
+          <div class="press-item">
+            <p class="press-award">European Architecture Award</p>
+            <p class="press-detail">2025 — Shortlisted, Cultural Category</p>
+          </div>
+          <div class="press-item">
+            <p class="press-award">Archdaily Building of the Year</p>
+            <p class="press-detail">2024 — Finalist, Residential</p>
+          </div>
+          <div class="press-item">
+            <p class="press-award">Wallpaper* Design Award</p>
+            <p class="press-detail">2023 — Best Public Space</p>
+          </div>
+          <div class="press-item">
+            <p class="press-award">Prémio Secil Arquitectura</p>
+            <p class="press-detail">2022 — Winner</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         CONTACT — Sparse, purposeful
+    ═══════════════════════════════════════════════════ -->
+    <section class="section-contact" id="contact">
+      <div class="contact-inner">
+        <div class="contact-left">
+          <p class="section-kicker">Start a project</p>
+          <h2 class="contact-headline">
+            Let's build<br>
+            something <em>true.</em>
+          </h2>
+          <p class="contact-body">
+            We take on a limited number of commissions each year to maintain the quality and attention each project deserves. Reach out early.
           </p>
         </div>
-
-        <!-- THE PHYSICAL HARDWARE SIMULATOR (Centerpiece) -->
-        <div class="hardware-stage">
-          <div id="hardware-unit" class="hardware-chassis" data-finish="silver">
-            <!-- Top Controls: 4 Knurled Aluminum Rotary Dials -->
-            <div class="chassis-dials-row">
-              <div class="hw-dial-wrap">
-                <div class="hw-dial" data-dial="0">
-                  <div class="dial-fluting"></div>
-                  <div class="dial-notch"></div>
-                </div>
-                <span class="dial-label">PARAM A</span>
-              </div>
-
-              <div class="hw-dial-wrap">
-                <div class="hw-dial" data-dial="1">
-                  <div class="dial-fluting"></div>
-                  <div class="dial-notch"></div>
-                </div>
-                <span class="dial-label">PARAM B</span>
-              </div>
-
-              <div class="hw-dial-wrap">
-                <div class="hw-dial" data-dial="2">
-                  <div class="dial-fluting"></div>
-                  <div class="dial-notch"></div>
-                </div>
-                <span class="dial-label">PARAM C</span>
-              </div>
-
-              <div class="hw-dial-wrap">
-                <div class="hw-dial dial-orange" data-dial="3">
-                  <div class="dial-fluting"></div>
-                  <div class="dial-notch"></div>
-                </div>
-                <span class="dial-label">MODE</span>
-              </div>
-            </div>
-
-            <!-- Center Display: High-Contrast Memory-In-Pixel E-Paper -->
-            <div class="chassis-screen-bezel">
-              <div id="device-display" class="eink-screen">
-                <!-- Dynamically rendered via device-sim.js -->
-              </div>
-            </div>
-
-            <!-- Bottom Section: 6 Low-Profile Mechanical Click Keys -->
-            <div class="chassis-keys-grid">
-              <button type="button" class="hw-key" data-key="k1">
-                <span class="key-cap">TIMER</span>
-                <span class="key-sub">[1]</span>
-              </button>
-              <button type="button" class="hw-key" data-key="k2">
-                <span class="key-cap">TELEMETRY</span>
-                <span class="key-sub">[2]</span>
-              </button>
-              <button type="button" class="hw-key" data-key="k3">
-                <span class="key-cap">MACROS</span>
-                <span class="key-sub">[3]</span>
-              </button>
-              <button type="button" class="hw-key" data-key="k4">
-                <span class="key-cap">PIXEL RUN</span>
-                <span class="key-sub">[4]</span>
-              </button>
-              <button type="button" class="hw-key key-primary" data-key="k5">
-                <span class="key-cap">ACTUATE</span>
-                <span class="key-sub">[5 / SPACE]</span>
-              </button>
-              <button type="button" class="hw-key" data-key="k6">
-                <span class="key-cap">RESET</span>
-                <span class="key-sub">[6]</span>
-              </button>
-            </div>
-
-            <!-- Right-Side Edge Hardware Details -->
-            <div class="hw-side-strip">
-              <div id="hw-rocker-power" class="hw-rocker" title="Toggle Power Switch">
-                <span class="rocker-bar"></span>
-              </div>
-              <div id="hw-power-led" class="hw-led" title="Power Status"></div>
-              <span class="hw-brand-mark">GRID // M-01</span>
-            </div>
+        <div class="contact-right">
+          <div class="contact-block">
+            <p class="contact-label">New commissions</p>
+            <a href="mailto:studio@plinth.pt" class="contact-email">studio@plinth.pt</a>
           </div>
-
-          <!-- Interactive Finish Picker Toolbar -->
-          <div class="stage-toolbar">
-            <span class="toolbar-label">FINISH:</span>
-            <div class="finish-pill-group">
-              <button type="button" class="finish-btn is-active" data-finish="silver">RAW BILLET ALUMINUM</button>
-              <button type="button" class="finish-btn" data-finish="obsidian">MATTE OBSIDIAN</button>
-              <button type="button" class="finish-btn" data-finish="bone">VINTAGE BONE</button>
-            </div>
-            <span class="toolbar-hint">CLICK KEYS OR USE KEYS [1]–[6] & [SPACE] ON KEYBOARD</span>
+          <div class="contact-block">
+            <p class="contact-label">Press & publications</p>
+            <a href="mailto:press@plinth.pt" class="contact-email">press@plinth.pt</a>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 2: HARDWARE ENGINEERING & ANATOMY -->
-    <section id="hardware" class="feature-strip">
-      <div class="content-bounds">
-        <div class="feature-header">
-          <span class="section-tag">01 // PRECISION BILLET</span>
-          <h2 class="section-title">Zero Plastic. 100% Solid Aluminum.</h2>
-          <p class="section-lead">
-            Every GRID // 01 starts as a 1.2kg block of aerospace 6063 aluminum, carved over 45 minutes on a 5-axis CNC mill down to an ultra-dense 320g unibody shell.
-          </p>
-        </div>
-
-        <div class="feature-grid">
-          <div class="feature-card">
-            <div class="feature-num">320G</div>
-            <h3 class="card-heading">Dead-Weight Inertia</h3>
-            <p class="card-copy">
-              Dense internal brass ballast and custom silicone feet guarantee the unit never slides or tilts across your desk, even during aggressive knob turns.
-            </p>
+          <div class="contact-block">
+            <p class="contact-label">Studio address</p>
+            <address class="contact-address">
+              Rua da Madalena 78, 2º<br>
+              1100–318 Lisboa<br>
+              Portugal
+            </address>
           </div>
-
-          <div class="feature-card">
-            <div class="feature-num">65G</div>
-            <h3 class="card-heading">Cherry MX Actuation</h3>
-            <p class="card-copy">
-              Gold-crosspoint contact switches with 1.8mm travel and crisp tactile feedback. Rated for over 50 million keystrokes per switch.
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-num">120D</div>
-            <h3 class="card-heading">Rechargeable Battery</h3>
-            <p class="card-copy">
-              Memory-in-pixel technology consumes power only when pixels flip. Over four months of daily wireless use on a single USB-C charge.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 3: TACTILE CONTROLS DETAIL -->
-    <section id="tactile" class="feature-strip bg-white">
-      <div class="content-bounds">
-        <div class="feature-split-layout">
-          <div class="split-col-text">
-            <span class="section-tag">02 // TACTILE DIALS</span>
-            <h2 class="section-title">24 Detents Per Rotation.</h2>
-            <p class="section-lead">
-              Precision Alps rotary encoders with mechanical metal detents give instant physical confirmation for every tick. Scrub audio timelines, adjust brush sizes, switch workspaces, or dial in values with your fingertips without glancing at your monitor.
-            </p>
-            <div class="spec-callout-row">
-              <div class="callout-unit">
-                <span class="callout-value">24</span>
-                <span class="callout-desc">CLICKS PER REVOLUTION</span>
-              </div>
-              <div class="callout-unit">
-                <span class="callout-value">&lt; 1ms</span>
-                <span class="callout-desc">POLLING LATENCY</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="split-col-card">
-            <div class="minimal-visual-box">
-              <div class="macro-badge-row">
-                <span class="macro-badge">FIGMA</span>
-                <span class="macro-badge">VS CODE</span>
-                <span class="macro-badge">ABLETON</span>
-                <span class="macro-badge">BLENDER</span>
-              </div>
-              <p class="minimal-box-text">
-                Class-compliant USB HID. Appears as a native mechanical input device on macOS, Windows, and Linux. No background software or telemetry drivers required.
-              </p>
+          <div class="contact-block">
+            <p class="contact-label">Follow</p>
+            <div class="contact-socials">
+              <a href="#" class="social-link">Instagram</a>
+              <a href="#" class="social-link">LinkedIn</a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 4: MONOCHROME MEMORY-IN-PIXEL DISPLAY -->
-    <section id="epaper" class="feature-strip">
-      <div class="content-bounds">
-        <div class="feature-split-layout reverse">
-          <div class="split-col-card">
-            <div class="minimal-visual-box dark-box">
-              <div class="paper-contrast-demo">
-                <span class="paper-val">2.7″</span>
-                <span class="paper-label">SUNLIGHT-READABLE MONOCHROME</span>
-              </div>
-              <p class="minimal-box-text">
-                400 × 240 sharp pixel resolution. Reflects natural ambient room light like printed ink on paper with zero eye fatigue and zero backlight bleed.
-              </p>
-            </div>
-          </div>
-
-          <div class="split-col-text">
-            <span class="section-tag">03 // PAPER DISPLAY</span>
-            <h2 class="section-title">Readable in Direct Sunlight.</h2>
-            <p class="section-lead">
-              Unlike glaring OLED or LCD screens that wash out under desk lamps, GRID's Memory-in-Pixel display becomes sharper and clearer the brighter your room gets.
-            </p>
-            <div class="spec-callout-row">
-              <div class="callout-unit">
-                <span class="callout-value">0 mA</span>
-                <span class="callout-desc">STATIC STANDBY POWER</span>
-              </div>
-              <div class="callout-unit">
-                <span class="callout-value">170°</span>
-                <span class="callout-desc">TRUE VIEWING ANGLE</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 5: TECHNICAL SPECIFICATIONS (PARALLEL BASELINE TABLE) -->
-    <section id="specs" class="feature-strip bg-white">
-      <div class="content-bounds">
-        <div class="feature-header">
-          <span class="section-tag">04 // TECHNICAL SPECIFICATIONS</span>
-          <h2 class="section-title">Engineered to Last Decades.</h2>
-        </div>
-
-        <div class="table-frame">
-          <table class="specs-table">
-            <thead>
-              <tr>
-                <th scope="col">SPECIFICATION</th>
-                <th scope="col">GRID // 01 METRIC</th>
-                <th scope="col">MATERIAL / PROTOCOL</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Chassis Material</td>
-                <td>6063-T6 Aluminum</td>
-                <td>5-Axis CNC machined from solid billet block</td>
-              </tr>
-              <tr>
-                <td>Surface Finish</td>
-                <td>Bead-blasted satin anodize</td>
-                <td>Type II natural silver, matte obsidian, or vintage bone</td>
-              </tr>
-              <tr>
-                <td>Key Switches</td>
-                <td>6 × Low-profile mechanical</td>
-                <td>Custom Cherry MX switches with PBT dye-sublimated keycaps</td>
-              </tr>
-              <tr>
-                <td>Rotary Encoders</td>
-                <td>4 × Alps Alpine tactile</td>
-                <td>Knurled aluminum caps with 24 physical detents per cycle</td>
-              </tr>
-              <tr>
-                <td>Display</td>
-                <td>2.7-inch Memory-in-Pixel</td>
-                <td>400 × 240 monochrome high-contrast reflective panel</td>
-              </tr>
-              <tr>
-                <td>Connectivity</td>
-                <td>USB-C &amp; Bluetooth 5.3 Low Energy</td>
-                <td>1000Hz USB polling rate / Class-compliant HID</td>
-              </tr>
-              <tr>
-                <td>Dimensions &amp; Mass</td>
-                <td>148 mm × 112 mm × 18 mm</td>
-                <td>320 grams (with integrated internal brass stabilizing weight)</td>
-              </tr>
-              <tr>
-                <td>Battery</td>
-                <td>1800 mAh Li-Po cell</td>
-                <td>120 days average daily use (USB-C rechargeable in 2 hours)</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 6: CLEAN BOTTOM PRE-ORDER CALLOUT -->
-    <section class="checkout-banner">
-      <div class="content-bounds">
-        <div class="banner-box">
-          <div class="banner-left">
-            <span class="banner-tag">BATCH 01 ALLOCATION</span>
-            <h2 class="banner-title">Reserve Your GRID // 01</h2>
-            <p class="banner-copy">First production batch limited to 1,000 units. Free global shipping. Dispatches July 2026.</p>
-          </div>
-          <div class="banner-right">
-            <div class="price-stack">
-              <span class="price-val">$179 USD</span>
-              <span class="price-sub">ZERO CHARGE UNTIL DISPATCH</span>
-            </div>
-            <button class="banner-btn" type="button" onclick="document.getElementById('preorder-modal').classList.remove('is-hidden')">
-              <span>PRE-ORDER NOW</span>
-              <span class="btn-arrow">→</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <!-- MINIMALIST FOOTER -->
-  <footer class="grid-footer">
-    <div class="content-bounds">
-      <div class="footer-row">
-        <div class="footer-brand">
-          <span class="brand-mono">GRID</span>
-          <span class="brand-slash">//</span>
-          <span class="brand-model">01</span>
-          <span class="footer-copy">© 2026 GRID HARDWARE LABS INC.</span>
-        </div>
-        <div class="footer-links">
-          <span>DESIGNED IN STOCKHOLM</span>
-          <span>MANUFACTURED RESPONSIBLY</span>
-        </div>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">PLINTH</span>
+        <span class="footer-tagline">Architecture &amp; Spatial Design</span>
+      </div>
+      <div class="footer-meta">
+        <span>© 2026 Plinth Studio Lda.</span>
+        <span>NIF 514 892 673</span>
+        <a href="#">Privacy Policy</a>
       </div>
     </div>
   </footer>
 
-  <!-- PRE-ORDER DIALOG MODAL -->
-  <div id="preorder-modal" class="modal-layer is-hidden">
-    <div class="modal-card">
-      <div class="modal-top">
-        <span class="modal-kicker">BATCH 01 RESERVATION</span>
-        <button id="btn-close-modal" class="modal-close-btn" type="button">×</button>
-      </div>
-
-      <form id="preorder-form" class="modal-form">
-        <div class="modal-product-summary">
-          <div class="summary-img-tag">GRID // 01</div>
-          <div class="summary-details">
-            <div class="summary-name">GRID 01 Physical Console</div>
-            <div class="summary-price">$179 USD (Free Global Shipping)</div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="client-email" class="form-label">YOUR EMAIL ADDRESS</label>
-          <input type="email" id="client-email" class="form-input" placeholder="name@domain.com" required>
-        </div>
-
-        <button type="submit" class="modal-submit-btn">
-          <span>CONFIRM BATCH 01 ALLOCATION</span>
-        </button>
-      </form>
-
-      <div id="preorder-confirmed" class="confirmation-wrap is-hidden"></div>
-    </div>
-  </div>
-
-  <script src="js/device-sim.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
