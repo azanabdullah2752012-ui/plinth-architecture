@@ -1,47 +1,33 @@
-# KÖNIG & SÖHNE // Atelier d'Horlogerie
+# MONOLITH // Architectural Acoustic Sculptures
 
-An independent Glashütte horological atelier crafting mechanical chronometers with variable-inertia balance wheels, Swiss lever escapements, and bespoke commissions.
+A brutalist luxury industrial design brand and landing page showcasing precision CNC unibody acoustic instruments sculpted from 120kg ingots of aerospace-grade 6061-T6 aluminum.
 
 Designed strictly under the **Anti-Slop Design Guidelines**:
-- **One Signature Artifact**: Real-time interactive mechanical escapement simulator with harmonic balance oscillation, hairspring coiling, pallet locking, and crown winding.
-- **Composed Atmosphere**: Dark warm obsidian (`#0c0e12`), champagne brass (`#cda66f`), untreated German silver, and mirror-beveled anglage.
-- **Real Specificity**: Authentic horological nomenclature (isochronism, Breguet overcoil, Glucydur balance, Glashütte three-quarter plate, Incabloc shock protection) with zero AI buzzwords.
-- **Strict Execution Laws**: Visible by default, parallel baseline alignment, accessible WCAG AA contrast, and 100% functional controls.
-
----
-
-## Brand Overview
-
-- **Maison**: KÖNIG & SÖHNE
-- **Origin**: Hauptstraße 18, 01768 Glashütte, Saxony
-- **Caliber Reference**: KS-042
-- **Production Limit**: 24 bespoke allocations per calendar year
-- **Hallmark**: Double-polished German silver three-quarter plate, screwed gold chatons, free-sprung poising screws.
+- **Signature Artifact**: Real-time 3D WebGL (Three.js) studio with PBR metallic reflections, interactive 360° mouse drag orbit, dynamic multi-point studio spotlights, and an interactive **EXPLODED ARCHITECTURE** disassembly view.
+- **Acoustic Wavefront Simulator**: Real-time 2D wave equation canvas solver simulating isobaric sound wavefronts radiating from dual transducers into acoustic room boundaries.
+- **Atmosphere & Materials**: Architectural obsidian (`#08090b`), raw billet aluminum, champagne titanium PVD, and tungsten plinths.
+- **Strict Execution Laws**: Visible by default, parallel baseline alignment, accessible WCAG AA contrast, and 100% functional interactive controls.
 
 ---
 
 ## Interactive Features
 
-1. **Live Caliber KS-042 Escapement Simulator**:
-   - Free-sprung balance wheel oscillating at 4.0 Hz (28,800 vph).
-   - Coiling Breguet hairspring synchronized with harmonic deflection.
-   - Swiss lever escapement advancing teeth in real-time.
-   - 72-hour power reserve with live winding via the Crown button (`+14h`).
-2. **Case Metallurgy Customizer**:
-   - `Grade 5 Titanium` (Brushed satin)
-   - `18K 4N Rose Gold` (Mirror anglage)
-   - `Obsidian DLC` (Matte carbon)
-   - `904L Steel` (Faceted lugs)
-3. **Dial Modes**:
-   - `Skeleton Caliber`: Transparent view into the three-quarter plate, gear train, and screwed chatons.
-   - `Guilloché Dial`: Hand-turned Clous de Paris textured face with open balance aperture at 6 o'clock.
-4. **Complications**:
-   - `True Beat (Dead-Seconds)`: Mechanical 1Hz jumping seconds.
-   - `Monopusher Chronograph`: Start, stop, and reset stopwatch.
-5. **Interactive Bespoke Commission Workbench**:
-   - Configure case metal, complication, and strap leather.
-   - Calculates dynamic atelier build lead times and deposit requirements.
-   - Generates municipal archive commission numbers upon submission.
+1. **3D WebGL Studio Engine (`js/scene-3d.js`)**:
+   - PBR metallic surface rendering with specular highlights.
+   - Click & drag to rotate the monolithic instrument 360° in 3D space.
+   - Click **EXPLODE ARCHITECTURE** to smoothly slide apart the rear acoustic shell, copper heat core, dual drivers, and front baffle along the Z-axis.
+   - Instant finish switcher: **Raw Billet Silver**, **Stealth Obsidian**, and **Champagne Titanium**.
+2. **Real-Time Acoustic Dispersion Field (`js/acoustic-sim.js`)**:
+   - 2D finite-difference wave equation solver.
+   - Interactive frequency slider (30 Hz to 240 Hz).
+   - Room reflection boundary presets: Diffusive Studio, Treated Anechoic, and Concrete Hall.
+3. **Internal Architecture & Engineering Tolerances**:
+   - Deep metallurgical and acoustic breakdowns of the Beryllium vapor dome, Helmholtz copper core, isobaric compound woofer, and tungsten plinth.
+   - Complete bench tolerances table sharing parallel baselines.
+4. **Bespoke Allocation Configurator (`js/app.js`)**:
+   - Interactive pair allocation builder with finish, transducer, and plinth selection.
+   - Live mass and price calculations ($14,500 – $20,500 USD).
+   - Submitting reserves an official Swiss municipal allocation serial number (e.g. `MN-842-1049`).
 
 ---
 

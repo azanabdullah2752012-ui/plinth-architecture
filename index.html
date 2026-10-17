@@ -3,239 +3,266 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KÖNIG & SÖHNE // Atelier d'Horlogerie — Caliber KS-042</title>
-  <meta name="description" content="Independent Glashütte horological atelier crafting mechanical chronometers with variable-inertia balance wheels, Swiss lever escapements, and bespoke commissions.">
+  <title>MONOLITH // Architectural Acoustic Sculptures</title>
+  <meta name="description" content="CNC-machined aerospace-grade aluminum unibody acoustic instruments, beryllium dome transducers, and zero-resonance architectural sound.">
   <link rel="stylesheet" href="css/style.css">
+  <!-- Three.js for real-time 3D PBR WebGL rendering -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
-  <!-- TOP ATELIER NAVIGATION STRIP -->
-  <header class="atelier-nav">
-    <div class="nav-container">
-      <a href="#hero" class="brand-signature">
-        <span class="hallmark-symbol">✠</span>
-        <span class="brand-text">KÖNIG & SÖHNE</span>
-        <span class="atelier-loc">GLASHÜTTE I/SA</span>
+  <!-- HEADER NAVIGATION -->
+  <header class="monolith-nav">
+    <div class="nav-bounds">
+      <a href="#hero" class="brand-link">
+        <span class="brand-glyph">▮</span>
+        <span class="brand-wordmark">MONOLITH</span>
+        <span class="brand-origin">ZURICH // SWITZERLAND</span>
       </a>
 
-      <nav class="nav-links">
-        <a href="#caliber" class="nav-link">Caliber KS-042</a>
-        <a href="#architecture" class="nav-link">Architecture</a>
-        <a href="#specifications" class="nav-link">Specifications</a>
-        <a href="#atelier" class="nav-link">Atelier</a>
-        <a href="#commission" class="nav-link cta-link">Bespoke Commission</a>
+      <nav class="nav-menu">
+        <a href="#hero" class="nav-item">Instrument</a>
+        <a href="#engineering" class="nav-item">Acoustic Core</a>
+        <a href="#dispersion" class="nav-item">Dispersion Field</a>
+        <a href="#tolerances" class="nav-item">Tolerances</a>
+        <a href="#commission" class="nav-item nav-cta">Reserve Allocation</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <!-- HERO SECTION: OWNS THE 1440x900 FOLD WITH LIVE SIGNATURE ARTIFACT -->
-    <section id="hero" class="hero-section">
-      <div class="hero-layout">
-        <!-- Left: Editorial Typography & Provenance -->
-        <div class="hero-editorial">
-          <div class="provenance-tag">
-            <span class="cert-dot"></span>
-            <span>CHRONOMETRIC ARCHIVE // N° 042</span>
+    <!-- HERO SECTION: OWNS 1440x900 INITIAL VIEWPORT WITH INTERACTIVE 3D ARTIFACT -->
+    <section id="hero" class="hero-stage">
+      <div class="hero-bounds">
+        <!-- Left Column: Editorial & Physical Metrics -->
+        <div class="hero-left">
+          <div class="kicker-tag">
+            <span class="kicker-dot"></span>
+            <span>REFERENCE 01 // SOLID BILLET UNIBODY</span>
           </div>
 
-          <h1 class="hero-headline">The Mechanics of Unbroken Time</h1>
+          <h1 class="hero-title">Sculpted from a Single 120kg Ingot of Aluminum.</h1>
 
-          <p class="hero-lead">
-            Hand-assembled in Glashütte with a free-sprung variable-inertia balance, Breguet overcoil hairspring, and 72-hour reserve. 350 hours of hand anglage per caliber.
+          <p class="hero-description">
+            Zero structural seams. 42 kilograms of resonance-dead 6061-T6 aerospace alloy, housing dual isobaric beryllium transducers and a tuned Helmholtz copper wave core.
           </p>
 
-          <!-- Interactive Caliber Controls Bar -->
-          <div class="hero-actions">
-            <div class="material-picker-cluster">
-              <span class="picker-label">CASE METALLURGY</span>
-              <div class="material-pill-group">
-                <button type="button" class="material-pill is-active" data-material="titanium">TITANIUM G5</button>
-                <button type="button" class="material-pill" data-material="rose_gold">18K ROSE GOLD</button>
-                <button type="button" class="material-pill" data-material="obsidian">OBSIDIAN DLC</button>
-                <button type="button" class="material-pill" data-material="steel">904L STEEL</button>
+          <!-- Finish Selector & 3D Tools -->
+          <div class="hero-controls-block">
+            <div class="finish-cluster">
+              <span class="cluster-label">ANODIZED ARCHITECTURAL FINISH</span>
+              <div class="finish-options">
+                <button type="button" class="finish-pill is-active" data-finish="silver">RAW BILLET SILVER</button>
+                <button type="button" class="finish-pill" data-finish="obsidian">STEALTH OBSIDIAN</button>
+                <button type="button" class="finish-pill" data-finish="champagne">CHAMPAGNE TITANIUM</button>
               </div>
             </div>
 
-            <div class="telemetry-grid">
-              <div class="telemetry-item">
-                <span class="t-label">FREQUENCY</span>
-                <span class="t-val">4.0 HZ // 28,800 VPH</span>
+            <!-- Engineering Telemetry Grid (Parallel Baselines) -->
+            <div class="spec-metrics-strip">
+              <div class="spec-item">
+                <span class="spec-label">FREQUENCY RESPONSE</span>
+                <span class="spec-value">24 HZ – 40 KHZ ±1.5DB</span>
               </div>
-              <div class="telemetry-item">
-                <span class="t-label">DAILY RATE</span>
-                <span class="t-val">+1.2 SEC / DAY</span>
+              <div class="spec-item">
+                <span class="spec-label">PEAK PRESSURE (SPL)</span>
+                <span class="spec-value">118 DB @ 1 METER</span>
               </div>
-              <div class="telemetry-item">
-                <span class="t-label">POWER RESERVE</span>
-                <span id="stat-reserve" class="t-val">68.4h / 72h</span>
+              <div class="spec-item">
+                <span class="spec-label">UNIBODY MASS</span>
+                <span class="spec-value">42.5 KG / UNIT</span>
               </div>
             </div>
 
-            <div class="reserve-gauge-track">
-              <div id="reserve-bar" class="reserve-gauge-fill" style="width: 95%;"></div>
+            <div class="hero-cta-row">
+              <a href="#commission" class="primary-action-btn">
+                <span>RESERVE BATCH 04 PAIR</span>
+                <span class="action-arrow">→</span>
+              </a>
+              <span class="batch-status-note">LIMITED TO 12 NUMBERED PAIRS PER PRODUCTION RUN</span>
             </div>
           </div>
         </div>
 
-        <!-- Right: The Signature Artifact (Interactive Caliber Canvas Simulator) -->
-        <div class="hero-artifact-wrapper">
-          <div class="canvas-chassis">
-            <canvas id="caliber-canvas" class="caliber-viewport" width="520" height="520"></canvas>
-            
-            <!-- Real-time Watchmaker Interaction Overlay -->
-            <div class="artifact-controls-overlay">
-              <div class="view-switch-group">
-                <button type="button" class="view-toggle-btn is-active" data-view="skeleton">SKELETON CALIBER</button>
-                <button type="button" class="view-toggle-btn" data-view="guilloche">GUILLOCHÉ DIAL</button>
-              </div>
+        <!-- Right Column: Interactive 3D WebGL Studio Canvas -->
+        <div class="hero-right">
+          <div class="webgl-canvas-frame">
+            <div id="monolith-3d-container" class="monolith-canvas-box"></div>
 
-              <div class="mechanical-actions-dock">
-                <button id="btn-wind-crown" class="artifact-btn" type="button" title="Wind mainspring barrel">
-                  <span class="btn-icon">↻</span>
-                  <span>WIND CROWN (+14H)</span>
-                </button>
-                <button id="btn-toggle-deadbeat" class="artifact-btn" type="button" title="Toggle True Beat dead-seconds complication">
-                  <span class="btn-icon">⏱</span>
-                  <span class="btn-state">SWEEP (4 HZ)</span>
-                </button>
-                <button id="btn-chrono-pusher" class="artifact-btn" type="button" title="Actuate monopusher chronograph">
-                  <span class="btn-icon">▶</span>
-                  <span class="btn-state">START CHRONO</span>
-                </button>
-                <button id="btn-chrono-reset" class="artifact-btn compact" type="button" title="Zero chronograph hand">
-                  <span>RESET</span>
-                </button>
-              </div>
+            <!-- 3D Studio Floating Bar -->
+            <div class="studio-floating-dock">
+              <button id="btn-toggle-explode" class="studio-btn" type="button" title="Disassemble internal acoustic architecture">
+                <span class="btn-icon">❖</span>
+                <span class="btn-label">EXPLODE ARCHITECTURE</span>
+              </button>
+              <div class="studio-drag-hint">DRAG TO ROTATE 360° // SCROLL TO EXAMINE</div>
             </div>
           </div>
-          <div id="current-material-label" class="case-spec-caption">GRADE 5 TITANIUM // BRUSHED SATIN</div>
+          <div id="current-finish-title" class="finish-caption">RAW BILLET 6061-T6 ALUMINUM // BEAD-BLASTED SATIN</div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2: CALIBER ARCHITECTURE & METALLURGY -->
-    <section id="architecture" class="content-section">
-      <div class="section-container">
-        <div class="section-header">
-          <span class="section-kicker">01 // MOVEMENT ARCHITECTURE</span>
-          <h2 class="section-title">The Anatomic Anatomy of Caliber KS-042</h2>
-          <p class="section-intro">
-            Manufactured in untreated German silver with three-quarter plate construction, hand-engraved balance cock, and screwed gold chatons.
+    <!-- SECTION 2: ACOUSTIC INTERNAL ARCHITECTURE -->
+    <section id="engineering" class="content-block">
+      <div class="section-bounds">
+        <div class="block-header">
+          <span class="block-tag">01 // INTERNAL ARCHITECTURE</span>
+          <h2 class="block-headline">The Physics of Inherent Inertia</h2>
+          <p class="block-lead">
+            Traditional speaker enclosures flex under internal air pressure, smearing transient bass response. Monolith utilizes massive wall thickness and tuned copper heat dissipation to achieve zero cabinet coloration.
           </p>
         </div>
 
-        <div class="architecture-grid">
-          <div class="arch-card">
-            <div class="card-num">01</div>
-            <h3 class="card-title">Free-Sprung Glucydur Balance</h3>
-            <p class="card-desc">
-              Four masselottes poising screws enable micrometer regulation without regulator pins, eliminating rate perturbation across positions.
+        <div class="architecture-cards-grid">
+          <div class="arch-tile">
+            <div class="tile-index">01</div>
+            <h3 class="tile-title">Pure Beryllium Vapor Tweeter</h3>
+            <p class="tile-desc">
+              PVD-deposited atomic beryllium dome delivers an ultra-high acoustic propagation velocity of 12,890 m/s with natural breakup modes pushed beyond 52 kHz.
             </p>
-            <div class="card-metric">
-              <span class="metric-num">10.2 mm</span>
-              <span class="metric-caption">WHEEL DIAMETER</span>
+            <div class="tile-footer-metric">
+              <span class="metric-val">12,890 m/s</span>
+              <span class="metric-desc">SOUND PROPAGATION SPEED</span>
             </div>
           </div>
 
-          <div class="arch-card">
-            <div class="card-num">02</div>
-            <h3 class="card-title">Breguet Overcoil Hairspring</h3>
-            <p class="card-desc">
-              Hand-curved terminal curve allows concentric spring expansion in every orientation, delivering chronometric isochronism.
+          <div class="arch-tile">
+            <div class="tile-index">02</div>
+            <h3 class="tile-title">Helmholtz Copper Heat Core</h3>
+            <p class="tile-desc">
+              High-conductivity OFHC copper heat sink draws thermal energy directly from the neodymium motor assembly, preventing magnetic flux saturation.
             </p>
-            <div class="card-metric">
-              <span class="metric-num">Nivarox I</span>
-              <span class="metric-caption">ALLOY SPECIFICATION</span>
+            <div class="tile-footer-metric">
+              <span class="metric-val">385 W/m·K</span>
+              <span class="metric-desc">THERMAL CONDUCTIVITY</span>
             </div>
           </div>
 
-          <div class="arch-card">
-            <div class="card-num">03</div>
-            <h3 class="card-title">Screwed Gold Chatons</h3>
-            <p class="card-desc">
-              Synthetic ruby bearing jewels seated inside solid 18-karat gold rings, secured to the German silver bridge by blued steel screws.
+          <div class="arch-tile">
+            <div class="tile-index">03</div>
+            <h3 class="tile-title">Isobaric Compound Woofer</h3>
+            <p class="tile-desc">
+              Two matched carbon-weave 7-inch drivers mounted face-to-back in a sealed chamber halve equivalent acoustic volume, reaching 24 Hz without port turbulence.
             </p>
-            <div class="card-metric">
-              <span class="metric-num">33 Jewels</span>
-              <span class="metric-caption">TOTAL BEARING COUNT</span>
+            <div class="tile-footer-metric">
+              <span class="metric-val">24 Hz –3dB</span>
+              <span class="metric-desc">TRUE ANECHOIC BASS</span>
             </div>
           </div>
 
-          <div class="arch-card">
-            <div class="card-num">04</div>
-            <h3 class="card-title">Twin-Series Barrels</h3>
-            <p class="card-desc">
-              Two mainspring barrels coupled in series deliver uniform torque transfer across the full 72-hour operating curve.
+          <div class="arch-tile">
+            <div class="tile-index">04</div>
+            <h3 class="tile-title">Decoupling Tungsten Plinth</h3>
+            <p class="tile-desc">
+              Solid 14kg base plinth resting on hardened tungsten carbide contact points acoustically decouples the unibody from room floorboards.
             </p>
-            <div class="card-metric">
-              <span class="metric-num">72 Hours</span>
-              <span class="metric-caption">POWER RESERVE</span>
+            <div class="tile-footer-metric">
+              <span class="metric-val">&lt; 0.002%</span>
+              <span class="metric-desc">CABINET VIBRATION TRANSMISSION</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 3: SPECIFICATIONS COMPARISON TABLE (PARALLEL BASELINES) -->
-    <section id="specifications" class="content-section section-contrast">
-      <div class="section-container">
-        <div class="section-header">
-          <span class="section-kicker">02 // TECHNICAL REGISTRY</span>
-          <h2 class="section-title">Reference Specifications</h2>
+    <!-- SECTION 3: REAL-TIME ACOUSTIC DISPERSION SIMULATOR -->
+    <section id="dispersion" class="content-block contrast-block">
+      <div class="section-bounds">
+        <div class="block-header">
+          <span class="block-tag">02 // ACOUSTIC WAVE PROPAGATION</span>
+          <h2 class="block-headline">Real-Time Wavefront Dispersion</h2>
+          <p class="block-lead">
+            Interactive 2D finite-difference wave solver simulating isobaric sound wavefronts propagating from the Monolith transducer into an acoustic space.
+          </p>
         </div>
 
-        <div class="spec-table-container">
-          <table class="spec-table">
+        <div class="dispersion-workspace">
+          <!-- Canvas Wave Simulator -->
+          <div class="sim-viewport-frame">
+            <canvas id="acoustic-canvas" width="800" height="420"></canvas>
+            <div class="sim-legend">
+              <span class="leg-item leg-pos">POSITIVE PRESSURE WAVEFRONT</span>
+              <span class="leg-item leg-neg">RAREFACTION TROUGH</span>
+            </div>
+          </div>
+
+          <!-- Simulation Controls Bar -->
+          <div class="sim-controls-panel">
+            <div class="sim-ctrl-group">
+              <div class="ctrl-header">
+                <span class="ctrl-title">OSCILLATION FREQUENCY</span>
+                <span id="wave-freq-readout" class="ctrl-readout">80 Hz</span>
+              </div>
+              <input type="range" id="wave-freq-slider" min="30" max="240" step="5" value="80" class="tactile-range">
+            </div>
+
+            <div class="sim-ctrl-group">
+              <span class="ctrl-title">ROOM BOUNDARY DAMPING</span>
+              <div class="room-selector-group">
+                <button type="button" class="room-toggle-btn is-active" data-reflection="0.75">DIFFUSIVE STUDIO</button>
+                <button type="button" class="room-toggle-btn" data-reflection="0.35">TREATED ANECHOIC</button>
+                <button type="button" class="room-toggle-btn" data-reflection="0.95">CONCRETE HALL</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: ARCHITECTURAL METRIC SPECIFICATIONS (PARALLEL BASELINE TABLE) -->
+    <section id="tolerances" class="content-block">
+      <div class="section-bounds">
+        <div class="block-header">
+          <span class="block-tag">03 // ENGINEERING TOLERANCES</span>
+          <h2 class="block-headline">Verified Laboratory Bench Data</h2>
+        </div>
+
+        <div class="table-scroller">
+          <table class="engineering-table">
             <thead>
               <tr>
-                <th scope="col">DIMENSION / COMPONENT</th>
-                <th scope="col">KS-042 REFERENCE</th>
-                <th scope="col">MANUFACTURING STANDARD</th>
-                <th scope="col">VERIFICATION TOLERANCE</th>
+                <th scope="col">PHYSICAL PROPERTY</th>
+                <th scope="col">LABORATORY SPECIFICATION</th>
+                <th scope="col">MANUFACTURING METHOD</th>
+                <th scope="col">QUALITY ASSURANCE CRITERIA</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Case Diameter</td>
-                <td>39.50 mm</td>
-                <td>CNC Lathe Turn & Hand Polish</td>
-                <td>± 0.005 mm</td>
+                <td>Chassis Architecture</td>
+                <td>Single Monolithic Billet</td>
+                <td>5-Axis CNC Milling (18h continuous)</td>
+                <td>Zero structural fasteners or welds</td>
               </tr>
               <tr>
-                <td>Total Case Thickness</td>
-                <td>9.80 mm</td>
-                <td>Double-domed Sapphire Included</td>
-                <td>Flush Caliper Fit</td>
+                <td>Wall Thickness</td>
+                <td>28.0 mm – 42.0 mm Variable</td>
+                <td>Resonance-Optimized Contour</td>
+                <td>Ultrasonic wall thickness scan</td>
               </tr>
               <tr>
-                <td>Movement Diameter</td>
-                <td>30.40 mm (13½ Lines)</td>
-                <td>Untreated German Silver Plate</td>
-                <td>Atelier Calibrated</td>
+                <td>Total Harmonic Distortion</td>
+                <td>&lt; 0.15% @ 96dB SPL (100Hz – 20kHz)</td>
+                <td>Linear Motor Force Topology</td>
+                <td>Individual anechoic chamber test</td>
               </tr>
               <tr>
-                <td>Movement Height</td>
-                <td>4.20 mm</td>
-                <td>Integrated Chronometer Layout</td>
-                <td>Micron Leveling</td>
+                <td>Crossover Topology</td>
+                <td>4th Order Linkwitz-Riley @ 2.1 kHz</td>
+                <td>Air-Core Foil Inductors & Silver Caps</td>
+                <td>Component pair-matching within 0.2%</td>
               </tr>
               <tr>
-                <td>Oscillation Rate</td>
-                <td>28,800 vibrations / hour (4 Hz)</td>
-                <td>Glashütte Observatory Spec</td>
-                <td>COSC Standard (-4/+6s)</td>
+                <td>Amplification Compatibility</td>
+                <td>50W to 500W unclipped @ 4Ω nominal</td>
+                <td>Linear Impedance Stabilization</td>
+                <td>Safe load across all Class-A/D stages</td>
               </tr>
               <tr>
-                <td>Finish Treatment</td>
-                <td>Black Polish & 45° Anglage</td>
-                <td>Tin Lap with Diamond Paste</td>
-                <td>Optical Mirror Reflection</td>
-              </tr>
-              <tr>
-                <td>Water Resistance</td>
-                <td>50 meters (5 ATM)</td>
-                <td>Dual O-ring Gasket System</td>
-                <td>Dry & Wet Pressure Tested</td>
+                <td>Surface Passivation</td>
+                <td>Type III Hard Anodize (35 Micron)</td>
+                <td>Sulfuric Acid Electrolytic Bath</td>
+                <td>Military standard MIL-A-8625F Class 2</td>
               </tr>
             </tbody>
           </table>
@@ -243,165 +270,109 @@
       </div>
     </section>
 
-    <!-- SECTION 4: ATELIER TRADITION -->
-    <section id="atelier" class="content-section">
-      <div class="section-container">
-        <div class="section-header">
-          <span class="section-kicker">03 // THE GLASHÜTTE BENCH</span>
-          <h2 class="section-title">One Watchmaker, One Movement</h2>
-          <p class="section-intro">
-            From rough turning to final casing, each timepiece is entrusted to a single master watchmaker through two complete assembly and regulation cycles.
-          </p>
-        </div>
-
-        <div class="atelier-process-columns">
-          <div class="process-col">
-            <div class="process-step">PHASE 01</div>
-            <h3 class="process-title">First Assembly & Pre-Timing</h3>
-            <p class="process-text">
-              The movement is dry-assembled to check gear teeth end-shake, wheel depthing, and pallet stone engagement under 40x magnification.
+    <!-- SECTION 5: BESPOKE ALLOCATION CONFIGURATOR -->
+    <section id="commission" class="content-block contrast-block">
+      <div class="section-bounds">
+        <div class="configurator-wrapper">
+          <div class="config-intro">
+            <span class="block-tag">04 // ALLOCATION REGISTRY</span>
+            <h2 class="block-headline">Commission a Production Pair</h2>
+            <p class="block-lead">
+              Each pair of Monolith acoustic instruments is hand-assembled to order in Zurich, individually frequency-matched, and delivered in custom Pelican flight cases.
             </p>
           </div>
 
-          <div class="process-col">
-            <div class="process-step">PHASE 02</div>
-            <h3 class="process-title">Hand Finishing & Anglage</h3>
-            <p class="process-text">
-              Every bridge edge is filed with boxwood laps to a 45-degree mirror chamfer. Screw heads are flat-polished on zinc blocks with diamond rouge.
-            </p>
-          </div>
-
-          <div class="process-col">
-            <div class="process-step">PHASE 03</div>
-            <h3 class="process-title">Second Assembly & Regulation</h3>
-            <p class="process-text">
-              The finished components are lubricated with synthetic Moebius oils and timed in six static positions across three temperature gradients.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 5: INTERACTIVE BESPOKE COMMISSION WORKBENCH -->
-    <section id="commission" class="content-section section-contrast">
-      <div class="section-container">
-        <div class="commission-box">
-          <div class="commission-intro">
-            <span class="section-kicker">04 // COMMISSIONS</span>
-            <h2 class="section-title">Configure Your Allocation</h2>
-            <p class="section-intro">
-              Atelier output is limited to 24 timepieces per calendar year. Configure your case, complication, and strap to calculate atelier lead time and file an allocation request.
-            </p>
-          </div>
-
-          <div class="commission-interactive-grid">
-            <!-- Form Configurator -->
-            <form id="commission-form" class="config-form">
-              <div class="form-group">
-                <label class="form-label">SELECT CASE METAL</label>
-                <div class="radio-tile-group">
-                  <label class="radio-tile">
-                    <input type="radio" name="cfg-metal" value="titanium" checked>
-                    <span class="tile-content">
-                      <span class="tile-title">Titanium G5</span>
-                      <span class="tile-meta">Satin Brushed</span>
+          <div class="configurator-layout">
+            <!-- Customizer Form -->
+            <form id="monolith-config-form" class="order-form">
+              <div class="form-section">
+                <span class="form-legend">01 // SELECT CHASSIS FINISH</span>
+                <div class="custom-radio-grid">
+                  <label class="custom-radio">
+                    <input type="radio" name="cfg-metal" value="silver" checked>
+                    <span class="radio-card">
+                      <span class="card-title">Raw Billet Silver</span>
+                      <span class="card-subtitle">Natural Bead-Blasted 6061-T6</span>
                     </span>
                   </label>
 
-                  <label class="radio-tile">
-                    <input type="radio" name="cfg-metal" value="rose_gold">
-                    <span class="tile-content">
-                      <span class="tile-title">18K 4N Rose Gold</span>
-                      <span class="tile-meta">Mirror Anglage</span>
-                    </span>
-                  </label>
-
-                  <label class="radio-tile">
+                  <label class="custom-radio">
                     <input type="radio" name="cfg-metal" value="obsidian">
-                    <span class="tile-content">
-                      <span class="tile-title">Obsidian DLC</span>
-                      <span class="tile-meta">Matte Carbon</span>
+                    <span class="radio-card">
+                      <span class="card-title">Stealth Obsidian</span>
+                      <span class="card-subtitle">Deep Hard-Anodized Carbon</span>
                     </span>
                   </label>
 
-                  <label class="radio-tile">
-                    <input type="radio" name="cfg-metal" value="steel">
-                    <span class="tile-content">
-                      <span class="tile-title">904L Steel</span>
-                      <span class="tile-meta">High Polish Lugs</span>
-                    </span>
-                  </label>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">CALIBER COMPLICATION</label>
-                <div class="radio-tile-group">
-                  <label class="radio-tile">
-                    <input type="radio" name="cfg-complication" value="three_hand" checked>
-                    <span class="tile-content">
-                      <span class="tile-title">Three-Hand Sweeping</span>
-                      <span class="tile-meta">Caliber KS-042 Base</span>
-                    </span>
-                  </label>
-
-                  <label class="radio-tile">
-                    <input type="radio" name="cfg-complication" value="dead_beat">
-                    <span class="tile-content">
-                      <span class="tile-title">True Beat Dead-Seconds</span>
-                      <span class="tile-meta">Star & Whip Mechanism</span>
-                    </span>
-                  </label>
-
-                  <label class="radio-tile">
-                    <input type="radio" name="cfg-complication" value="chronograph">
-                    <span class="tile-content">
-                      <span class="tile-title">Column-Wheel Monopusher</span>
-                      <span class="tile-meta">Horizontal Clutch</span>
+                  <label class="custom-radio">
+                    <input type="radio" name="cfg-metal" value="champagne">
+                    <span class="radio-card">
+                      <span class="card-title">Champagne Titanium</span>
+                      <span class="card-subtitle">Vapor PVD Satin Nitride</span>
                     </span>
                   </label>
                 </div>
               </div>
 
-              <div class="form-row">
-                <div class="form-group flex-1">
-                  <label for="cfg-strap" class="form-label">LEATHER STRAP</label>
-                  <select id="cfg-strap" class="form-select">
-                    <option value="alligator">Hand-Stitched Matte Black Alligator</option>
-                    <option value="barenia">French Barenia Saddle Leather (Cognac)</option>
-                    <option value="cordovan">Shell Cordovan (Horween Oxblood)</option>
-                    <option value="sailcloth">Ballistic Sailcloth Rubberized (Anthracite)</option>
+              <div class="form-section">
+                <span class="form-legend">02 // TRANSDUCER SPECIFICATION</span>
+                <div class="custom-radio-grid">
+                  <label class="custom-radio">
+                    <input type="radio" name="cfg-tweeter" value="beryllium" checked>
+                    <span class="radio-card">
+                      <span class="card-title">Beryllium Vapor Dome</span>
+                      <span class="card-subtitle">Linear extension to 40 kHz</span>
+                    </span>
+                  </label>
+
+                  <label class="custom-radio">
+                    <input type="radio" name="cfg-tweeter" value="diamond">
+                    <span class="radio-card">
+                      <span class="card-title">CVD Chemical Diamond</span>
+                      <span class="card-subtitle">Extreme stiffness to 55 kHz</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-split-row">
+                <div class="form-field">
+                  <label for="cfg-plinth" class="field-label">ISOLATION BASE PLINTH</label>
+                  <select id="cfg-plinth" class="tactile-select-box">
+                    <option value="aluminum">Solid Billet Aluminum Plinth (14 kg)</option>
+                    <option value="granite">Honed Swiss Granite Base (+18.5 kg)</option>
+                    <option value="brass">Acoustic C360 Brass Plinth (+14 kg)</option>
                   </select>
                 </div>
 
-                <div class="form-group flex-1">
-                  <label for="collector-name" class="form-label">COLLECTOR FULL NAME</label>
-                  <input type="text" id="collector-name" class="form-input" placeholder="e.g. Marcus Thorne" required>
+                <div class="form-field">
+                  <label for="client-name" class="field-label">CLIENT FULL NAME</label>
+                  <input type="text" id="client-name" class="tactile-text-input" placeholder="e.g. Julian Vane" required>
                 </div>
               </div>
 
-              <button type="submit" class="submit-btn">
-                <span>SUBMIT COMMISSION REQUEST</span>
+              <button type="submit" class="submit-action-btn">
+                <span>SUBMIT ALLOCATION REQUEST</span>
                 <span class="btn-arrow">→</span>
               </button>
             </form>
 
             <!-- Dynamic Confirmation Output -->
-            <div id="commission-confirmation" class="confirmation-wrap is-hidden"></div>
+            <div id="order-confirmation" class="confirmation-box is-hidden"></div>
 
-            <!-- Dynamic Calculator Card (Bottom Anchored) -->
-            <div class="commission-summary-card">
-              <span class="summary-badge">PRODUCTION TELEMETRY</span>
-              <div class="summary-metric-group">
-                <div id="estimate-lead-time" class="summary-metric">16 WEEKS ATELIER BUILD</div>
-                <div id="estimate-deposit" class="summary-metric-sub">€4,200 RESERVATION DEPOSIT</div>
+            <!-- Dynamic Summary Panel (Bottom Anchored) -->
+            <div class="summary-panel">
+              <span class="summary-kicker">ALLOCATION ESTIMATE</span>
+              <div class="summary-figures">
+                <div id="cfg-price" class="figure-main">$14,500 USD / PAIR</div>
+                <div id="cfg-weight" class="figure-sub">42.0 KG TOTAL MASS</div>
               </div>
-              <p class="summary-text">
-                Every bespoke timepiece receives an individualized certificate of provenance signed by the master watchmaker, recorded in the Glashütte municipal archive.
+              <p class="summary-body">
+                Production lead time is currently 10–12 weeks. Every shipment includes calibrated measurement graphs signed by Chief Acoustic Engineer Dr. H. Weber.
               </p>
-              <div class="summary-signature">
-                <span class="sig-line">J. König</span>
-                <span class="sig-role">MASTER WATCHMAKER // ATELIER DIRECTOR</span>
+              <div class="summary-origin">
+                <span class="origin-stamp">MANUFACTURED IN SWITZERLAND</span>
+                <span class="origin-sub">ISO 9001 ACOUSTIC CERTIFICATION</span>
               </div>
             </div>
           </div>
@@ -411,22 +382,23 @@
   </main>
 
   <!-- ATELIER FOOTER -->
-  <footer class="atelier-footer">
-    <div class="footer-container">
-      <div class="footer-left">
-        <span class="hallmark-symbol">✠</span>
-        <span class="footer-brand">KÖNIG & SÖHNE ATELIER D'HORLOGERIE</span>
-        <span class="footer-copy">© 2026 // ALL RIGHTS RESERVED</span>
+  <footer class="monolith-footer">
+    <div class="footer-bounds">
+      <div class="footer-col-left">
+        <span class="brand-glyph">▮</span>
+        <span class="footer-brand-title">MONOLITH ACOUSTIC LABORATORIES</span>
+        <span class="footer-copyright">© 2026 // ALL RIGHTS RESERVED</span>
       </div>
 
-      <div class="footer-right">
-        <span>HAUPTSTRASSE 18, 01768 GLASHÜTTE, SAXONY</span>
-        <span>VISITS STRICTLY BY PRIVATE APPOINTMENT</span>
+      <div class="footer-col-right">
+        <span>INDUSTRIESTRASSE 42, 8005 ZÜRICH, SWITZERLAND</span>
+        <span>PRIVATE LISTENING SESSIONS BY CURATED INVITATION</span>
       </div>
     </div>
   </footer>
 
-  <script src="js/caliber-sim.js"></script>
+  <script src="js/scene-3d.js"></script>
+  <script src="js/acoustic-sim.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

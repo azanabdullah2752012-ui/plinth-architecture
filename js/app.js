@@ -1,120 +1,108 @@
 /**
- * KÖNIG & SÖHNE // Atelier d'Horlogerie
- * Main Interaction Controller & Commission Configurator
+ * MONOLITH // Application Coordinator & Studio Interactivity
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  const caliber = new CaliberSimulator('caliber-canvas');
+  const monolith = new Monolith3D('monolith-3d-container');
+  const acousticSim = new AcousticFieldSimulator('acoustic-canvas');
 
-  // --- Case Material Selector ---
-  const materialBtns = document.querySelectorAll('.material-pill');
-  materialBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      materialBtns.forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-      caliber.setMaterial(btn.dataset.material);
+  // --- Finish Switcher ---
+  const finishPills = document.querySelectorAll('.finish-pill');
+  const finishLabel = document.getElementById('current-finish-title');
+
+  const finishNames = {
+    silver: 'RAW BILLET 6061-T6 ALUMINUM // BEAD-BLASTED SATIN',
+    obsidian: 'STEALTH ANODIZED OBSIDIAN // MATTE CARBON COAT',
+    champagne: 'CHAMPAGNE TITANIUM NITRIDE // PVD HAND-BRUSHED'
+  };
+
+  finishPills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      finishPills.forEach(p => p.classList.remove('is-active'));
+      pill.classList.add('is-active');
+      const finish = pill.dataset.finish;
+      monolith.setFinish(finish);
+      if (finishLabel) finishLabel.textContent = finishNames[finish];
     });
   });
 
-  // --- View Mode Toggle (Skeleton vs. Guilloché) ---
-  const viewBtns = document.querySelectorAll('.view-toggle-btn');
-  viewBtns.forEach((btn) => {
+  // --- Exploded View Toggle ---
+  const explodeBtn = document.getElementById('btn-toggle-explode');
+  explodeBtn?.addEventListener('click', () => {
+    const isExploded = monolith.toggleExploded();
+    explodeBtn.classList.toggle('is-active', isExploded);
+    explodeBtn.querySelector('.btn-label').textContent = isExploded ? 'ASSEMBLE CHASSIS' : 'EXPLODE ARCHITECTURE';
+  });
+
+  // --- Acoustic Wave Simulator Controls ---
+  const freqSlider = document.getElementById('wave-freq-slider');
+  const freqReadout = document.getElementById('wave-freq-readout');
+  freqSlider?.addEventListener('input', (e) => {
+    const hz = parseInt(e.target.value, 10);
+    acousticSim.setFrequency(hz);
+    if (freqReadout) freqReadout.textContent = `${hz} Hz`;
+  });
+
+  const roomBtns = document.querySelectorAll('.room-toggle-btn');
+  roomBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
-      viewBtns.forEach(b => b.classList.remove('is-active'));
+      roomBtns.forEach(b => b.classList.remove('is-active'));
       btn.classList.add('is-active');
-      caliber.setViewMode(btn.dataset.view);
+      const refl = parseFloat(btn.dataset.reflection);
+      acousticSim.setWallReflection(refl);
     });
   });
 
-  // --- Winding Crown Button ---
-  const crownBtn = document.getElementById('btn-wind-crown');
-  crownBtn?.addEventListener('click', () => {
-    caliber.windCrown(14.0);
-    crownBtn.classList.add('is-winding');
-    setTimeout(() => crownBtn.classList.remove('is-winding'), 250);
-  });
+  // --- Custom Configurator & Order Allocation ---
+  const orderForm = document.getElementById('monolith-config-form');
+  const configWeight = document.getElementById('cfg-weight');
+  const configPrice = document.getElementById('cfg-price');
 
-  // --- Dead-Beat Seconds Toggle ---
-  const deadBeatBtn = document.getElementById('btn-toggle-deadbeat');
-  deadBeatBtn?.addEventListener('click', () => {
-    const isDeadBeat = caliber.toggleDeadBeat();
-    deadBeatBtn.classList.toggle('is-engaged', isDeadBeat);
-    deadBeatBtn.querySelector('.btn-state').textContent = isDeadBeat ? 'DEAD-BEAT (1 HZ)' : 'SWEEP (4 HZ)';
-  });
+  function updateConfig() {
+    const finish = document.querySelector('input[name="cfg-metal"]:checked')?.value || 'silver';
+    const tweeter = document.querySelector('input[name="cfg-tweeter"]:checked')?.value || 'beryllium';
+    const plinth = document.getElementById('cfg-plinth')?.value || 'aluminum';
 
-  // --- Chronograph Pusher ---
-  const chronoBtn = document.getElementById('btn-chrono-pusher');
-  const chronoResetBtn = document.getElementById('btn-chrono-reset');
+    let basePrice = 14500;
+    let weight = 42.0;
 
-  chronoBtn?.addEventListener('click', () => {
-    const running = caliber.toggleChronograph();
-    chronoBtn.classList.toggle('is-running', running);
-    chronoBtn.querySelector('.btn-state').textContent = running ? 'STOP TIMING' : 'START CHRONO';
-  });
+    if (finish === 'champagne') basePrice += 2200;
+    if (finish === 'obsidian') basePrice += 1100;
 
-  chronoResetBtn?.addEventListener('click', () => {
-    caliber.resetChronograph();
-    chronoBtn.classList.remove('is-running');
-    chronoBtn.querySelector('.btn-state').textContent = 'START CHRONO';
-  });
-
-  // --- Commission Bespoke Timepiece Form Calculator ---
-  const commissionForm = document.getElementById('commission-form');
-  const commissionSummary = document.getElementById('commission-summary');
-  const estimateLeadTime = document.getElementById('estimate-lead-time');
-  const estimateDeposit = document.getElementById('estimate-deposit');
-
-  function calculateCommission() {
-    const material = document.querySelector('input[name="cfg-metal"]:checked')?.value || 'titanium';
-    const complication = document.querySelector('input[name="cfg-complication"]:checked')?.value || 'three_hand';
-    const strap = document.getElementById('cfg-strap')?.value || 'alligator';
-
-    let baseWeeks = 16;
-    let deposit = 4200;
-
-    if (material === 'rose_gold') {
-      baseWeeks += 4;
-      deposit += 3600;
-    } else if (material === 'obsidian') {
-      baseWeeks += 2;
-      deposit += 1200;
+    if (tweeter === 'diamond') {
+      basePrice += 3800;
     }
 
-    if (complication === 'chronograph') {
-      baseWeeks += 8;
-      deposit += 4800;
-    } else if (complication === 'dead_beat') {
-      baseWeeks += 6;
-      deposit += 3200;
-    }
+    if (plinth === 'granite') weight += 18.5;
+    if (plinth === 'brass') weight += 14.0;
 
-    if (estimateLeadTime) estimateLeadTime.textContent = `${baseWeeks} WEEKS ATELIER BUILD`;
-    if (estimateDeposit) estimateDeposit.textContent = `€${deposit.toLocaleString()} RESERVATION DEPOSIT`;
+    if (configPrice) configPrice.textContent = `$${basePrice.toLocaleString()} USD / PAIR`;
+    if (configWeight) configWeight.textContent = `${weight.toFixed(1)} KG TOTAL MASS`;
   }
 
-  document.querySelectorAll('input[name="cfg-metal"], input[name="cfg-complication"], #cfg-strap').forEach((el) => {
-    el.addEventListener('change', calculateCommission);
+  document.querySelectorAll('input[name="cfg-metal"], input[name="cfg-tweeter"], #cfg-plinth').forEach((el) => {
+    el.addEventListener('change', updateConfig);
   });
 
-  commissionForm?.addEventListener('submit', (e) => {
+  orderForm?.addEventListener('submit', (e) => {
     e.preventDefault();
-    const collectorName = document.getElementById('collector-name')?.value || 'Collector';
-    const registryNumber = `KS-${Math.floor(1000 + Math.random() * 9000)}`;
+    const name = document.getElementById('client-name')?.value || 'Client';
+    const allocId = `MN-${Math.floor(100 + Math.random() * 900)}-${Date.now().toString().slice(-4)}`;
 
-    const confirmationBox = document.getElementById('commission-confirmation');
-    if (confirmationBox) {
-      confirmationBox.innerHTML = `
-        <div class="confirmation-card">
-          <div class="confirm-badge">REGISTRY ENTRY FILED</div>
-          <h3 class="confirm-title">ALLOCATION RESERVED FOR ${collectorName.toUpperCase()}</h3>
-          <p class="confirm-meta">CALIBER COMMISSION NUMBER: <strong>${registryNumber}</strong></p>
-          <p class="confirm-text">Master Watchmaker Johannes König will prepare your movement blueprint folio. Our concierge will contact you within one business day for personal wrist measurement and bespoke engraving options.</p>
+    const confirmBox = document.getElementById('order-confirmation');
+    if (confirmBox) {
+      confirmBox.innerHTML = `
+        <div class="confirm-card">
+          <div class="confirm-badge">ALLOCATION REGISTERED // BATCH 04</div>
+          <h3 class="confirm-title">RESERVATION SECURED FOR ${name.toUpperCase()}</h3>
+          <p class="confirm-id">MONOLITH CHASSIS SERIAL: <strong>${allocId}</strong></p>
+          <p class="confirm-desc">Your unibody billet chassis will be individually CNC machined in Zurich. Acoustic calibration report and laser-etched serial documentation will be dispatched to your concierge.</p>
         </div>
       `;
-      confirmationBox.classList.remove('is-hidden');
-      commissionForm.style.display = 'none';
+      confirmBox.classList.remove('is-hidden');
+      orderForm.style.display = 'none';
     }
   });
 
-  calculateCommission();
+  updateConfig();
 });
