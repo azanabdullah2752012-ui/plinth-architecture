@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — PLINTH Architecture</title>
+  <meta name="description" content="Contact PLINTH architecture studio in Lisbon, Portugal. Every project begins with a conversation about place, material and light.">
+
+  <!-- Preconnect for font performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/masthead.css">
+  <link rel="stylesheet" href="css/contact-page.css">
+</head>
+<body class="contact-page">
+
+  <!-- ════════════════════════════════════════════
+       MASTHEAD
+  ════════════════════════════════════════════ -->
+  <header class="masthead is-scrolled" id="masthead" role="banner">
+    <div class="masthead__inner">
+      <div class="masthead__brand">
+        <a href="index.html" class="masthead__wordmark" aria-label="PLINTH — return to homepage">
+          PLINTH
+        </a>
+        <span class="masthead__descriptor" aria-hidden="true">
+          Architecture &amp; Spatial Design
+        </span>
+      </div>
+
+      <nav class="masthead__nav" aria-label="Primary navigation">
+        <ul class="masthead__nav-list" role="list">
+          <li><a href="index.html#work" class="masthead__nav-link">Work</a></li>
+          <li><a href="studio.html" class="masthead__nav-link">Studio</a></li>
+          <li><a href="contact.html" class="masthead__nav-link" aria-current="page">Contact</a></li>
+        </ul>
+
+        <button
+          class="masthead__menu-btn"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          type="button"
+        >
+          <span class="masthead__menu-icon" aria-hidden="true"></span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Mobile menu drawer -->
+    <div class="masthead__mobile-menu" id="mobile-menu" hidden>
+      <ul role="list">
+        <li><a href="index.html#work" class="mobile-link">Work</a></li>
+        <li><a href="studio.html" class="mobile-link">Studio</a></li>
+        <li><a href="contact.html" class="mobile-link">Contact</a></li>
+      </ul>
+      <p class="mobile-meta">Lisbon &amp; Porto — Est. 2018</p>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════════
+       MAIN CONTENT
+  ════════════════════════════════════════════ -->
+  <main id="main-content" class="contact-page__inner">
+
+    <!-- 1. Opening Composition -->
+    <section class="contact-hero" aria-label="Contact Introduction">
+      <div class="contact-hero__header">
+        <span class="contact-hero__eyebrow">CONTACT</span>
+        <h1 class="contact-hero__headline">Have a place in mind?</h1>
+        <p class="contact-hero__lead">
+          Every project begins with a conversation. Tell us a little about the place, the ambition and what you hope to make possible.
+        </p>
+      </div>
+    </section>
+
+    <!-- 2. Contact Main (Studio Info + Form) -->
+    <section class="contact-main" aria-label="Studio Information and Enquiry Form">
+      <div class="contact-grid">
+
+        <!-- Left Column: Studio Information -->
+        <aside class="contact-info" aria-label="Studio Details">
+          <div class="contact-info__block">
+            <span class="contact-info__label">Studio</span>
+            <span class="contact-info__value">PLINTH</span>
+          </div>
+
+          <div class="contact-info__block">
+            <span class="contact-info__label">Location</span>
+            <span class="contact-info__value">Lisbon, Portugal</span>
+          </div>
+
+          <div class="contact-info__block">
+            <span class="contact-info__label">Additional Service Locations</span>
+            <span class="contact-info__value">Porto and international projects</span>
+          </div>
+
+          <div class="contact-info__block">
+            <span class="contact-info__label">Email</span>
+            <!-- CONFIGURATION: studio@plinth.pt is configured as the verified studio email -->
+            <a href="mailto:studio@plinth.pt" class="contact-info__email">studio@plinth.pt</a>
+          </div>
+
+          <!-- Architectural Detail Photograph -->
+          <div class="contact-info__visual">
+            <img
+              src="images/casa-mouraria-exterior.jpg"
+              alt="Architectural street study showing smooth white lime plaster facade with deep window reveals"
+              class="contact-info__image"
+              loading="lazy"
+              width="800"
+              height="600"
+            >
+          </div>
+          <p class="contact-info__caption">Contextual study: lime-wash facade and stone threshold, Lisbon.</p>
+        </aside>
+
+        <!-- Right Column: Enquiry Form -->
+        <div class="contact-form-container">
+          <form class="contact-form" id="contact-form" novalidate aria-label="Commission Enquiry Form">
+
+            <!-- Name Field (Required) -->
+            <div class="form-group" id="group-name">
+              <label for="enquiry-name" class="form-label">
+                <span>Name</span>
+                <span class="form-label__tag" aria-hidden="true">Required</span>
+              </label>
+              <input
+                type="text"
+                id="enquiry-name"
+                name="name"
+                class="form-input"
+                placeholder="Your full name"
+                required
+                autocomplete="name"
+                aria-describedby="error-name"
+              >
+              <span class="form-error" id="error-name" role="alert">Please provide your name.</span>
+            </div>
+
+            <!-- Email Field (Required) -->
+            <div class="form-group" id="group-email">
+              <label for="enquiry-email" class="form-label">
+                <span>Email</span>
+                <span class="form-label__tag" aria-hidden="true">Required</span>
+              </label>
+              <input
+                type="email"
+                id="enquiry-email"
+                name="email"
+                class="form-input"
+                placeholder="name@domain.com"
+                required
+                autocomplete="email"
+                aria-describedby="error-email"
+              >
+              <span class="form-error" id="error-email" role="alert">Please provide a valid email address.</span>
+            </div>
+
+            <!-- Project Type Field (Optional) -->
+            <div class="form-group" id="group-type">
+              <label for="enquiry-type" class="form-label">
+                <span>Project Type</span>
+                <span class="form-label__tag" aria-hidden="true">Optional</span>
+              </label>
+              <select id="enquiry-type" name="project_type" class="form-select">
+                <option value="">Select a discipline</option>
+                <option value="Architecture">Architecture</option>
+                <option value="Interior & Spatial Design">Interior &amp; Spatial Design</option>
+                <option value="Heritage Renovation">Heritage Renovation</option>
+                <option value="Urban Installation">Urban Installation</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <!-- Project Location Field (Optional) -->
+            <div class="form-group" id="group-location">
+              <label for="enquiry-location" class="form-label">
+                <span>Project Location</span>
+                <span class="form-label__tag" aria-hidden="true">Optional</span>
+              </label>
+              <input
+                type="text"
+                id="enquiry-location"
+                name="location"
+                class="form-input"
+                placeholder="City, region, or site context"
+              >
+            </div>
+
+            <!-- Message Field (Required) -->
+            <div class="form-group" id="group-message">
+              <label for="enquiry-message" class="form-label">
+                <span>Message</span>
+                <span class="form-label__tag" aria-hidden="true">Required</span>
+              </label>
+              <textarea
+                id="enquiry-message"
+                name="message"
+                class="form-textarea"
+                rows="5"
+                placeholder="Describe the site, the existing conditions, and your intention for the project..."
+                required
+                aria-describedby="error-message"
+              ></textarea>
+              <span class="form-error" id="error-message" role="alert">Please tell us a little about your project.</span>
+            </div>
+
+            <!-- Form Actions & Submission Notifications -->
+            <div class="form-actions">
+              <button type="submit" id="enquiry-submit" class="form-submit-btn">
+                Send enquiry
+              </button>
+
+              <!-- Honest Status Notice (when backend endpoint is not yet configured) -->
+              <div
+                class="form-notice form-notice--config"
+                id="form-notice-config"
+                role="status"
+                tabindex="-1"
+              >
+                <strong>Endpoint Configuration Required</strong>
+                The project form submission endpoint has not yet been linked to a live form backend.
+                Please transmit your commission enquiry directly to <a href="mailto:studio@plinth.pt">studio@plinth.pt</a>.
+              </div>
+
+              <!-- Genuine Success Notice (only active when genuine backend responds 200/201) -->
+              <div
+                class="form-notice form-notice--success"
+                id="form-notice-success"
+                role="status"
+                tabindex="-1"
+              >
+                Thank you. Your message has been received by the studio. We review prospective commissions weekly.
+              </div>
+
+              <!-- Genuine Network/Server Error Notice -->
+              <div
+                class="form-notice form-notice--error"
+                id="form-notice-error"
+                role="alert"
+                tabindex="-1"
+              >
+                Unable to transmit your enquiry due to a network error. Please contact the studio directly at <a href="mailto:studio@plinth.pt">studio@plinth.pt</a>.
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. Closing Composition -->
+    <section class="contact-closing" aria-label="Closing Statement">
+      <h2 class="contact-closing__statement">
+        Buildings<br>
+        <em>that belong.</em>
+      </h2>
+      <div class="contact-closing__return">
+        <a href="index.html#work" class="contact-closing__return-link">
+          <span aria-hidden="true">←</span> Selected Work
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ════════════════════════════════════════════
+       COLOPHON
+  ════════════════════════════════════════════ -->
+  <footer class="colophon" role="contentinfo">
+    <div class="contact-page__inner colophon__inner">
+      <span class="colophon__brand">PLINTH</span>
+      <span>© 2018—2026 Plinth Arquitetura Lda · Lisbon &amp; Porto</span>
+      <div class="colophon__links">
+        <a href="#main-content" class="colophon__link">Top ↑</a>
+        <a href="index.html#work" class="colophon__link">Work</a>
+        <a href="studio.html" class="colophon__link">Studio</a>
+        <a href="contact.html" class="colophon__link">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/masthead.js"></script>
+  <script src="js/contact-form.js"></script>
+</body>
+</html>
