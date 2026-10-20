@@ -233,20 +233,20 @@
   }
 }
 
-/* ── Image entrance animation ─────────────────── */
+/* ── Hero entrance animation ─────────────────── */
 /*
-  On page load, the hero fades in gracefully.
-  The image is already visible (no opacity:0 default)
-  but we animate the content in for a cleaner landing.
+  Content is visible by default (Law 1 compliance).
+  Gentle subtle elevation on load without opacity gating.
 */
 .hero__content {
-  animation: content-rise 1.1s var(--ease-out) 0.2s both;
+  opacity: 1;
+  animation: content-rise 1.1s var(--ease-out) 0.15s;
 }
 
 @keyframes content-rise {
   from {
-    opacity: 0;
-    transform: translateY(12px);
+    opacity: 0.85;
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -255,5 +255,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero__content { animation: none; }
+  .hero__content {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }

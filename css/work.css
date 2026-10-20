@@ -194,13 +194,13 @@
 }
 
 /* ── Scroll Storytelling (Subtle Entrance) ────── */
-/* Content is 100% visible by default. When JS attaches .will-reveal,
-   it enables the delicate reveal transition without locking content. */
+/* Content is 100% visible by default (Law 1 compliance).
+   Progressive enhancement applies a delicate settle without gating content. */
 .project-item.will-reveal {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.6s var(--ease-out),
-              transform 0.6s var(--ease-out);
+  opacity: 0.88;
+  transform: translateY(8px);
+  transition: opacity 0.5s var(--ease-out),
+              transform 0.5s var(--ease-out);
 }
 
 .project-item.will-reveal.is-revealed {
