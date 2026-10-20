@@ -2,6 +2,7 @@
    PLINTH — Selected Projects (Prompt 02)
    Strict two-column architectural portfolio grid.
    Quiet, restrained, zero card backgrounds, zero image zoom.
+   Enriched with monograph indexing, coordinates & materials.
 ══════════════════════════════════════════════════ */
 
 .section-work {
@@ -72,10 +73,20 @@
 .project-item__link {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-20);
+  gap: var(--sp-16);
   color: inherit;
   text-decoration: none;
   outline: none;
+}
+
+/* ── Monograph Index indicator ────────────────── */
+.project-item__index {
+  display: inline-block;
+  font-family: var(--f-sans);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-widest);
+  color: var(--c-brass);
 }
 
 /* ── Photography Canvas ───────────────────────── */
@@ -85,6 +96,7 @@
   aspect-ratio: 16 / 10;
   overflow: hidden;
   background-color: var(--c-cream-dark);
+  border: 1px solid var(--c-divider);
   border-radius: 0; /* Strict architectural square corners */
 }
 
@@ -169,6 +181,36 @@
   max-width: 48ch;
 }
 
+/* ── Monograph Taxonomy & Coordinates ─────────── */
+.project-item__taxonomy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  padding-top: var(--sp-12);
+  margin-top: var(--sp-4);
+  border-top: 1px solid var(--c-divider);
+  font-family: var(--f-sans);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-wide);
+  color: var(--c-muted);
+}
+
+.project-item__materials {
+  color: var(--c-secondary);
+}
+
+.project-item__materials-label {
+  text-transform: uppercase;
+  color: var(--c-muted);
+  font-weight: var(--fw-medium);
+  margin-right: var(--sp-4);
+}
+
+.project-item__coords {
+  font-variant-numeric: tabular-nums;
+  color: var(--c-muted);
+}
+
 /* ── Interactive States (Hover & Focus) ───────── */
 .project-item__link:hover .project-item__title {
   color: var(--c-brass);
@@ -219,8 +261,113 @@
   }
 }
 
+/* ── Monograph Colophon & Editorial Closing ───── */
+.section-colophon {
+  padding-top: var(--sp-96);
+  padding-bottom: var(--sp-96);
+  border-top: 1px solid var(--c-divider);
+  background-color: var(--c-cream);
+}
+
+.colophon__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--page-pad);
+}
+
+.colophon__statement {
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-32);
+}
+
+.colophon__eyebrow {
+  font-family: var(--f-sans);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--c-brass);
+}
+
+.colophon__quote {
+  font-family: var(--f-display);
+  font-size: clamp(1.85rem, 3.6vw, 2.75rem);
+  font-weight: var(--fw-light);
+  line-height: 1.25;
+  letter-spacing: var(--ls-tight);
+  color: var(--c-umber);
+  margin: 0;
+}
+
+.colophon__quote em {
+  font-style: italic;
+  color: var(--c-umber-mid);
+}
+
+.colophon__subtext {
+  font-family: var(--f-sans);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-light);
+  line-height: var(--lh-body);
+  color: var(--c-secondary);
+}
+
+.colophon__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-32);
+  padding-top: var(--sp-16);
+}
+
+.colophon__action {
+  font-family: var(--f-sans);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--c-brass);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-8);
+  transition: color var(--t-base) var(--ease-standard);
+}
+
+.colophon__action:hover {
+  color: var(--c-umber);
+}
+
+.colophon__footer {
+  margin-top: var(--sp-80);
+  padding-top: var(--sp-32);
+  border-top: 1px solid var(--c-divider);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-24);
+  font-family: var(--f-sans);
+  font-size: var(--fs-tiny);
+  letter-spacing: var(--ls-wide);
+  color: var(--c-muted);
+}
+
+.colophon__footer-links {
+  display: flex;
+  gap: var(--sp-24);
+}
+
+.colophon__footer-link {
+  color: var(--c-secondary);
+  transition: color var(--t-fast);
+}
+
+.colophon__footer-link:hover {
+  color: var(--c-brass);
+}
+
 /* ── Responsive Behaviour ─────────────────────── */
-/* Tablet: 2 columns preserved as long as width >= 768px */
 @media (max-width: 767px) {
   .section-work {
     padding-top: var(--sp-64);
@@ -244,5 +391,10 @@
   .project-item__arrow {
     opacity: 0.75;
     transform: none;
+  }
+
+  .colophon__footer {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

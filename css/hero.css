@@ -1,252 +1,189 @@
 /* ══════════════════════════════════════════════════
-   PLINTH — Hero
-   Full-bleed architectural photograph with headline
-   and metadata. Occupies ~88vh below the masthead.
+   PLINTH — Architectural Monograph Hero
+   Pure architectural exhibition plate.
+   Zero dark scrim. Natural sunlight preserved.
+   Inspired by Álvaro Siza, Tadao Ando & Peter Zumthor.
 ══════════════════════════════════════════════════ */
 
 /* ── Section shell ────────────────────────────── */
 .hero {
   position: relative;
-  /* 88% of viewport height, minus the masthead */
-  height: calc(88svh - var(--masthead-h));
-  /* Fallback for browsers without svh */
-  height: calc(88vh - var(--masthead-h));
-  min-height: 560px;
+  min-height: calc(88svh - var(--masthead-h));
+  min-height: calc(88vh - var(--masthead-h));
   margin-top: var(--masthead-h);
-  overflow: hidden;
-  /* Scroll reveal for content inside */
+  padding: var(--sp-16) var(--page-pad) var(--sp-48);
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
+  max-width: var(--content-max);
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* ── Full-bleed photograph ────────────────────── */
-.hero__media {
-  position: absolute;
-  inset: 0;
+/* ── Monograph Exhibition Plate (Framed on cream canvas) ─ */
+.hero__plate {
+  position: relative;
+  width: 100%;
+  height: clamp(520px, 72vh, 760px);
+  overflow: hidden;
+  background-color: var(--c-cream-dark);
+  border: 1px solid var(--c-divider);
 }
 
 .hero__photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Anchor photo to mid-left — preserves the architectural interior */
   object-position: 40% center;
-  /* Subtle entrance — only if motion is acceptable */
-  animation: photo-drift 18s ease-in-out infinite alternate;
+  display: block;
+  /* Architectural stillness — NO photo-drift, NO zoom */
+  transform: none;
 }
 
-@keyframes photo-drift {
-  from { transform: scale(1.00); }
-  to   { transform: scale(1.04); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero__photo { animation: none; }
-}
-
-/* ── Scrim — bottom-weighted, keeps image readable ─
-   Gradient runs from transparent at top to a
-   moderate dark at bottom-left where text sits.
-   Not a heavy overlay — the image must still breathe.
-──────────────────────────────────────────────── */
-.hero__scrim {
+/* ── Monograph Inset Card (Pure contrast without darkening photo) ─ */
+.hero__plaque {
   position: absolute;
-  inset: 0;
-  background:
-    /* Bottom-left darkening for text legibility */
-    linear-gradient(
-      155deg,
-      transparent           35%,
-      rgba(20, 13, 7, 0.55) 100%
-    ),
-    /* Soft top vignette for the masthead area */
-    linear-gradient(
-      to bottom,
-      rgba(20, 13, 7, 0.28) 0%,
-      transparent           22%
-    );
-  pointer-events: none;
-}
-
-/* ── Content: headline + metadata ─────────────── */
-.hero__content {
-  position: relative;   /* above the scrim */
-  flex: 1;
-  display: flex;
-  align-items: flex-end;
-  padding: 0 var(--page-pad) var(--sp-64);
-  max-width: var(--content-max);
-  width: 100%;
-  margin: 0 auto;
-}
-
-.hero__text-block {
+  bottom: 0;
+  left: 0;
+  max-width: min(580px, 92%);
+  background-color: rgba(242, 235, 221, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--c-divider);
+  border-right: 1px solid var(--c-divider);
+  padding: clamp(1.5rem, 3.2vw, 2.75rem);
   display: flex;
   flex-direction: column;
-  gap: var(--sp-32);
-  /* Limit text block to left portion of viewport */
-  max-width: min(620px, 72%);
+  gap: var(--sp-20);
+  z-index: 2;
 }
 
-/* ── Headline ─────────────────────────────────── */
+/* ── Monograph Index Header ───────────────────── */
+.hero__index {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-12);
+  font-family: var(--f-sans);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--c-brass);
+}
+
+.hero__index-sep {
+  color: var(--c-divider);
+}
+
+/* ── Headline in deep umber on warm cream ─────── */
 .hero__headline {
   font-family: var(--f-display);
-  font-size: var(--fs-d1);
+  font-size: clamp(2.5rem, 5.2vw, 4.25rem);
   font-weight: var(--fw-light);
-  line-height: var(--lh-tight);
+  line-height: 1.05;
   letter-spacing: var(--ls-tight);
-  color: #FAFAF8;             /* near-white, warmer than pure white */
-  /* Text shadow: subtle, directional — not a blurry halo */
-  text-shadow:
-    0 1px 0   rgba(0,0,0,0.15),
-    0 2px 16px rgba(0,0,0,0.20);
+  color: var(--c-umber);
+  margin: 0;
 }
 
 .hero__headline em {
   font-style: italic;
   font-weight: var(--fw-light);
-  /* Slight warmth to the italic line */
-  color: #F5EEE2;
+  color: var(--c-umber-mid);
 }
 
-/* ── Metadata ─────────────────────────────────── */
+/* ── Project Metadata Row ─────────────────────── */
 .hero__meta {
   display: flex;
-  flex-direction: column;
-  gap: var(--sp-16);
-}
-
-/* Thin brass rule above metadata */
-.hero__meta-rule {
-  display: block;
-  width: 32px;
-  height: 1px;
-  background: var(--c-brass-light);
-}
-
-.hero__meta-list {
-  display: flex;
-  flex-direction: row;
-  gap: var(--sp-32);
   flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-16) var(--sp-24);
+  padding-top: var(--sp-16);
+  border-top: 1px solid var(--c-divider);
+  font-family: var(--f-sans);
+  font-size: var(--fs-tiny);
+  letter-spacing: var(--ls-wide);
+  color: var(--c-secondary);
 }
 
 .hero__meta-item {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-4);
+  display: inline-flex;
+  gap: var(--sp-6);
+  align-items: baseline;
 }
 
 .hero__meta-label {
-  font-family: var(--f-sans);
-  font-size: var(--fs-micro);
-  font-weight: var(--fw-regular);
-  letter-spacing: var(--ls-widest);
+  font-weight: var(--fw-medium);
   text-transform: uppercase;
-  color: rgba(200, 188, 168, 0.75);
+  color: var(--c-muted);
+  font-size: var(--fs-micro);
 }
 
 .hero__meta-value {
-  font-family: var(--f-sans);
-  font-size: var(--fs-small);
-  font-weight: var(--fw-light);
-  letter-spacing: var(--ls-wide);
-  color: rgba(242, 235, 221, 0.90);
+  color: var(--c-umber);
 }
 
-/* ── Scroll cue ───────────────────────────────── */
-.hero__scroll-cue {
+/* ── Monograph Registration Cue ───────────────── */
+.hero__registration {
   position: absolute;
-  bottom: 0;
-  right: var(--page-pad);
+  top: var(--sp-24);
+  right: var(--sp-24);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: var(--sp-8);
-  padding-bottom: var(--sp-40);
-  /* Writing mode: rotated 90° reading "Scroll" vertically */
-  writing-mode: vertical-rl;
-}
-
-.hero__scroll-line {
-  width: 1px;
-  height: 48px;
-  background: linear-gradient(
-    to bottom,
-    rgba(242, 235, 221, 0.10),
-    rgba(242, 235, 221, 0.55)
-  );
-  animation: scroll-pulse 2.4s ease-in-out infinite;
-}
-
-@keyframes scroll-pulse {
-  0%, 100% { opacity: 0.4; transform: scaleY(0.85); }
-  50%       { opacity: 1;   transform: scaleY(1);    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero__scroll-line { animation: none; opacity: 0.5; }
-}
-
-.hero__scroll-label {
+  align-items: flex-end;
+  gap: var(--sp-6);
   font-family: var(--f-sans);
   font-size: var(--fs-micro);
-  font-weight: var(--fw-regular);
-  letter-spacing: var(--ls-widest);
+  letter-spacing: var(--ls-wider);
   text-transform: uppercase;
-  color: rgba(242, 235, 221, 0.40);
-  /* Rotate text back so it reads naturally in vertical-rl context */
-  transform: rotate(180deg);
+  color: rgba(48, 39, 31, 0.7);
+  background: rgba(242, 235, 221, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: var(--sp-8) var(--sp-12);
+  border: 1px solid var(--c-divider);
+  z-index: 2;
+}
+
+.hero__coords {
+  color: var(--c-muted);
+  font-variant-numeric: tabular-nums;
 }
 
 /* ── Responsive adjustments ───────────────────── */
 @media (max-width: 768px) {
   .hero {
-    height: calc(88svh - var(--masthead-h));
-    height: calc(88vh - var(--masthead-h));
-    min-height: 500px;
+    padding-top: var(--sp-8);
+    padding-bottom: var(--sp-32);
   }
 
-  .hero__content {
-    padding-bottom: var(--sp-48);
-    align-items: flex-end;
+  .hero__plate {
+    height: clamp(480px, 68vh, 600px);
   }
 
-  .hero__text-block {
+  .hero__plaque {
+    position: relative;
     max-width: 100%;
-    gap: var(--sp-24);
+    border-right: none;
+    padding: var(--sp-20) var(--sp-16);
   }
 
-  .hero__scroll-cue {
-    /* Hide on mobile — not needed */
-    display: none;
-  }
-
-  .hero__meta-list {
-    gap: var(--sp-24);
+  .hero__registration {
+    top: var(--sp-12);
+    right: var(--sp-12);
   }
 }
 
-@media (max-width: 480px) {
-  .hero__content {
-    padding-bottom: var(--sp-40);
-  }
-}
-
-/* ── Hero entrance animation ─────────────────── */
-/*
-  Content is visible by default (Law 1 compliance).
-  Gentle subtle elevation on load without opacity gating.
-*/
-.hero__content {
+/* ── Graceful entrance (Content visible by default) ─ */
+.hero__plaque {
   opacity: 1;
-  animation: content-rise 1.1s var(--ease-out) 0.15s;
+  animation: hero-settle 0.8s var(--ease-out) 0.1s;
 }
 
-@keyframes content-rise {
+@keyframes hero-settle {
   from {
-    opacity: 0.85;
-    transform: translateY(8px);
+    opacity: 0.9;
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -255,9 +192,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero__content {
+  .hero__plaque {
     animation: none;
-    opacity: 1;
     transform: none;
   }
 }
