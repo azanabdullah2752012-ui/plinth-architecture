@@ -11,106 +11,17 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link rel="stylesheet" href="css/tokens.css?v=unified">
-  <link rel="stylesheet" href="css/base.css?v=unified">
-  <link rel="stylesheet" href="css/masthead.css?v=unified">
-  <link rel="stylesheet" href="css/hero.css?v=unified">
-  <link rel="stylesheet" href="css/work.css?v=unified">
-  <link rel="stylesheet" href="css/studio.css?v=unified">
-  <link rel="stylesheet" href="css/contact.css?v=unified">
+  <link rel="stylesheet" href="css/tokens.css?v=unobstructed">
+  <link rel="stylesheet" href="css/base.css?v=unobstructed">
+  <link rel="stylesheet" href="css/masthead.css?v=unobstructed">
+  <link rel="stylesheet" href="css/hero.css?v=unobstructed">
+  <link rel="stylesheet" href="css/work.css?v=unobstructed">
+  <link rel="stylesheet" href="css/studio.css?v=unobstructed">
+  <link rel="stylesheet" href="css/contact.css?v=unobstructed">
 </head>
 <body>
 
   <a href="#main-content" class="skip-link">Skip to architectural content</a>
-
-  <!-- ════════════════════════════════════════════
-       FIXED 3D ARCHITECTURAL VIEWPORT (FULL-SITE ANIMATION ENGINE)
-       Continuous Catmull-Rom Camera Flight (120fps GPU)
-  ════════════════════════════════════════════ -->
-  <div class="cinematic-viewport" aria-hidden="true">
-    <canvas id="architectural-3d-canvas" class="cinematic-canvas"></canvas>
-    <div class="cinematic-scrim"></div>
-  </div>
-
-  <!-- Persistent Floating HUD Telemetry -->
-  <div class="cinematic-hud" aria-hidden="true">
-    <!-- Top HUD Header -->
-    <div class="cinematic-hud__top">
-      <div class="hud-brand">
-        <span class="hud-brand__dot"></span>
-        <span class="hud-brand__title">PLINTH TECTONIC FLIGHT ENGINE · WEBGL</span>
-      </div>
-      <div class="hud-progress-block">
-        <span class="hud-progress-label">SPATIAL TIMELINE</span>
-        <div class="hud-progress-track">
-          <div class="hud-progress-bar" id="hud-progress-fill"></div>
-        </div>
-        <span class="hud-progress-pct" id="hud-progress-text">00%</span>
-      </div>
-    </div>
-
-    <!-- Live Stage Telemetry Card (Pinned Bottom-Left) -->
-    <div class="hud-stage-card" id="hud-stage-card">
-      <div class="hud-stage-badge">
-        <span id="hud-phase-code">[ CHAPTER 01 / EXCAVATION ]</span>
-        <span class="hud-badge-sep">·</span>
-        <span id="hud-phase-sub">BEDROCK BASALT DATUM ±0.00M</span>
-      </div>
-      <h2 class="hud-stage-title" id="hud-stage-title">Excavating<br><em>the bedrock.</em></h2>
-      <p class="hud-stage-desc" id="hud-stage-desc">
-        Every commission begins with geological excavation. The stepped stone plinth anchors directly into coastal basalt bedrock.
-      </p>
-      
-      <!-- Real-Time Architectural Metrics -->
-      <div class="hud-telemetry-grid">
-        <div class="hud-telemetry-cell">
-          <span class="hud-cell-label">Solar Azimuth</span>
-          <span class="hud-cell-val" id="hud-val-sun">65.0° N Morning</span>
-        </div>
-        <div class="hud-telemetry-cell">
-          <span class="hud-cell-label">Cantilever Span</span>
-          <span class="hud-cell-val" id="hud-val-span">14.80 m</span>
-        </div>
-        <div class="hud-telemetry-cell">
-          <span class="hud-cell-label">Tectonic Load</span>
-          <span class="hud-cell-val" id="hud-val-load">Bedrock Datum ±0.00m</span>
-        </div>
-        <div class="hud-telemetry-cell">
-          <span class="hud-cell-label">Material Spec</span>
-          <span class="hud-cell-val" id="hud-val-mat">Basalt &amp; Travertine</span>
-        </div>
-      </div>
-
-      <!-- Quick Monograph Portal Button -->
-      <div class="hud-stage-action">
-        <a href="projects/casa-mouraria.html" class="hud-portal-btn" id="hud-portal-link">
-          <span>Explore Casa Mouraria Folio [PL-01] →</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Bottom HUD Footer -->
-    <div class="cinematic-hud__bottom">
-      <div class="hud-coords">
-        <span>LISBOA · 38°42′54″N 9°08′10″W · ELEV +42.5M</span>
-      </div>
-      
-      <!-- Interactive Chapter Scrub Navigation -->
-      <div class="hud-phase-nav" role="navigation" aria-label="Timeline Chapter Navigation">
-        <button type="button" class="hud-dot-btn is-active" data-phase="0.00" aria-label="Chapter 1: Excavation">01</button>
-        <button type="button" class="hud-dot-btn" data-phase="0.25" aria-label="Chapter 2: Structure">02</button>
-        <button type="button" class="hud-dot-btn" data-phase="0.50" aria-label="Chapter 3: Light Void">03</button>
-        <button type="button" class="hud-dot-btn" data-phase="0.75" aria-label="Chapter 4: Commissions">04</button>
-        <button type="button" class="hud-dot-btn" data-phase="0.95" aria-label="Chapter 5: Axonometric">05</button>
-      </div>
-
-      <div class="hud-scroll-indicator">
-        <div class="hud-scroll-needle"></div>
-        <span>Scroll to Scrub Full Site</span>
-      </div>
-    </div>
-  </div>
-
 
   <!-- ════════════════════════════════════════════
        MASTHEAD — Editorial Monograph Header
@@ -169,229 +80,99 @@
   ════════════════════════════════════════════ -->
   <main id="main-content">
 
-    <!-- ── 1. HERO CHAPTER (THE MONOLITH) ────────── -->
-    <section class="section-hero" id="hero" aria-label="Tectonic Architecture Introduction">
-      <div class="hero__inner">
-        <div class="hero__headline-block">
-          <span class="hero__eyebrow">MONUMENTAL ARCHITECTURE · EST. 2018</span>
-          <h1 class="hero__title">Buildings<br><em>that belong.</em></h1>
-          <p class="hero__sub">
-            Architecture is not the invention of novel form. It is the patience to discover the room that a landscape has been waiting for.
-          </p>
-        </div>
-      </div>
-    </section>
+    <!-- ── 1. CINEMATIC 3D SCROLLYTELLING JOURNEY (600vh) ──────────
+         100% Unobstructed 3D WebGL Canvas · Zero Obscuring Cards
+         Continuous Catmull-Rom Camera Flight across all 5 commissions
+    ─────────────────────────────────────────── -->
+    <section class="scrolly-journey" id="hero-scrolly" aria-label="Interactive 3D Architectural Animation">
+      <div id="work" style="position: absolute; top: 0; left: 0; height: 1px; width: 1px; pointer-events: none;" aria-hidden="true"></div>
+      
+      <!-- Pinned Sticky 3D Viewport (100vh) -->
+      <div class="scrolly-sticky-viewport">
+        
+        <!-- WebGL 3D Canvas (Full-Screen Unobstructed View) -->
+        <canvas id="architectural-3d-canvas" class="scrolly-canvas" aria-label="3D architectural structure animation"></canvas>
 
+        <!-- Directional Ambient Scrim -->
+        <div class="scrolly-scrim" aria-hidden="true"></div>
 
-    <!-- ── 2. SELECTED COMMISSIONS & MONOGRAPHS ───── -->
-    <section class="section-work" id="work" aria-label="Selected Architecture Monographs">
-      <div class="work__inner">
+        <!-- Synchronized Architectural HUD Telemetry (Zero Model Obstruction) -->
+        <div class="scrolly-hud" aria-hidden="true">
+          
+          <!-- Top HUD Header -->
+          <div class="scrolly-hud__top">
+            <div class="hud-brand">
+              <span class="hud-brand__dot"></span>
+              <span class="hud-brand__title">PLINTH TECTONIC FLIGHT ENGINE · WEBGL</span>
+            </div>
+            <div class="hud-progress-block">
+              <span class="hud-progress-label">SPATIAL TIMELINE</span>
+              <div class="hud-progress-track">
+                <div class="hud-progress-bar" id="hud-progress-fill"></div>
+              </div>
+              <span class="hud-progress-pct" id="hud-progress-text">00%</span>
+            </div>
+          </div>
 
-        <!-- Curation Header -->
-        <header class="work__intro">
-          <span class="work__eyebrow">MONOGRAPHS [01—05]</span>
-          <div class="work__header-content">
-            <h2 class="work__heading">Five commissions. Specific geologies. One tectonic rigor.</h2>
-            <p class="work__support">
-              We reject stylistic templates. Every project is an excavation of historical memory, structural mass, and daylight falloff.
+          <!-- Live Floating Stage Card (Pinned in bottom-left corner with generous clearance) -->
+          <div class="hud-stage-card" id="hud-stage-card">
+            <div class="hud-stage-badge">
+              <span id="hud-phase-code">[ CHAPTER 01 / BEDROCK ]</span>
+              <span class="hud-badge-sep">·</span>
+              <span id="hud-phase-sub">DATUM ±0.00M</span>
+            </div>
+            <h2 class="hud-stage-title" id="hud-stage-title">Excavating<br><em>the bedrock.</em></h2>
+            <p class="hud-stage-desc" id="hud-stage-desc">
+              Every commission begins with geological excavation. The stepped stone plinth anchors directly into coastal basalt bedrock.
             </p>
-          </div>
-        </header>
-
-        <!-- Monograph Stream -->
-        <div class="monographs-stream">
-
-          <!-- 01: CASA MOURARIA -->
-          <article class="project-monograph project-monograph--featured" id="project-casa-mouraria">
-            <div class="monograph__header">
-              <span class="monograph__index">[ PL-01 ] · RESIDENTIAL MONOGRAPH · COMPLETED 2025</span>
-              <span class="monograph__coords">38° 42′ 54″ N · 9° 08′ 10″ W</span>
-            </div>
-
-            <div class="monograph__visual-stage">
-              <img
-                src="casa-mouraria-hero.jpg"
-                alt="Interior of Casa Mouraria — afternoon light falling across white plaster walls and raw concrete floor, Lisbon 2025"
-                class="monograph__photo"
-                width="1600"
-                height="900"
-                loading="eager"
-              >
-              <!-- CAD Blueprint Cutaway Layer -->
-              <div class="monograph__schematic" aria-hidden="true">
-                <svg class="monograph__schematic-svg" viewBox="0 0 800 450">
-                  <line x1="40" y1="380" x2="760" y2="380" stroke-width="1.5" stroke="#38bdf8"/>
-                  <text x="50" y="370" fill="#38bdf8" font-family="JetBrains Mono" font-size="10">DATUM LEVEL ±0.00m (BEDROCK BASALT)</text>
-                  <rect x="180" y="160" width="440" height="220" stroke-width="1.5" stroke="#38bdf8"/>
-                  <rect x="260" y="80" width="280" height="80" stroke-width="1.5" stroke="#38bdf8" stroke-dasharray="4,4"/>
-                  <line x1="380" y1="80" x2="380" y2="380" stroke-width="1" stroke="#38bdf8" stroke-dasharray="2,4"/>
-                  <text x="390" y="110" fill="#DEC396" font-family="JetBrains Mono" font-size="9">SOLAR LIGHT SHAFT (SOUTH 28°)</text>
-                  <line x1="180" y1="410" x2="620" y2="410" stroke-width="0.75" stroke="#38bdf8"/>
-                  <text x="360" y="425" fill="#38bdf8" font-family="JetBrains Mono" font-size="9" text-anchor="middle">SPAN 14.80m [POST-TENSIONED]</text>
-                </svg>
+            
+            <!-- Real-Time Architectural Metrics -->
+            <div class="hud-telemetry-grid">
+              <div class="hud-telemetry-cell">
+                <span class="hud-cell-label">Solar Azimuth</span>
+                <span class="hud-cell-val" id="hud-val-sun">65.0° N Morning</span>
+              </div>
+              <div class="hud-telemetry-cell">
+                <span class="hud-cell-label">Cantilever Span</span>
+                <span class="hud-cell-val" id="hud-val-span">14.80 m</span>
+              </div>
+              <div class="hud-telemetry-cell">
+                <span class="hud-cell-label">Tectonic Load</span>
+                <span class="hud-cell-val" id="hud-val-load">Bedrock Datum</span>
+              </div>
+              <div class="hud-telemetry-cell">
+                <span class="hud-cell-label">Material Spec</span>
+                <span class="hud-cell-val" id="hud-val-mat">Basalt &amp; Plaster</span>
               </div>
             </div>
 
-            <!-- Blueprint Action Toolbar -->
-            <div class="monograph__toolbar">
-              <button type="button" class="blueprint-toggle-btn" data-blueprint-toggle="true" aria-pressed="false">
-                <span class="blueprint-toggle__icon" aria-hidden="true">◩</span>
-                <span class="blueprint-toggle__label">Inspect Structural Blueprint</span>
-              </button>
-              <span class="monograph__coords">Scale 1:50 · Transverse Section A-A'</span>
+            <!-- Quick Monograph Portal Button -->
+            <div class="hud-stage-action">
+              <a href="projects/casa-mouraria.html" class="hud-portal-btn" id="hud-portal-link">
+                <span>Explore Casa Mouraria Folio [PL-01] →</span>
+              </a>
             </div>
-
-            <div class="monograph__details">
-              <div>
-                <a href="projects/casa-mouraria.html" class="monograph__title-link">
-                  <span>Casa Mouraria</span>
-                  <span class="monograph__link-arrow" aria-hidden="true">→</span>
-                </a>
-              </div>
-              <p class="monograph__narrative">
-                A private home excavated into the historic Mouraria hillside. Organized around a central light court that pulls maritime daylight three levels down into cast concrete bedrock.
-              </p>
-              <div class="monograph__material-taxonomy">
-                <span class="taxonomy-strong">Material Spec:</span>
-                <span>In-Situ Concrete · Lime Wash · Honed Travertine</span>
-              </div>
-            </div>
-          </article>
-
-
-          <!-- 02 & 03: ASYMMETRIC PAIR -->
-          <div class="monographs-pair">
-
-            <!-- 02: Biblioteca Central -->
-            <article class="project-monograph project-monograph--compact" id="project-biblioteca-central">
-              <div class="monograph__header">
-                <span class="monograph__index">[ PL-02 ] · CULTURAL · PORTO</span>
-                <span class="monograph__coords">41° 09′ N · 8° 37′ W</span>
-              </div>
-              <div class="monograph__visual-stage">
-                <img
-                  src="images/biblioteca-central.jpg"
-                  alt="Monumental brutalist interior of Biblioteca Central in Porto with coffered concrete ceiling"
-                  class="monograph__photo monograph__photo--pair"
-                  width="1200"
-                  height="750"
-                  loading="lazy"
-                >
-              </div>
-              <div class="monograph__details" style="grid-template-columns: 1fr; gap: var(--sp-12);">
-                <a href="projects/biblioteca-central.html" class="monograph__title-link">
-                  <span>Biblioteca Central</span>
-                  <span class="monograph__link-arrow" aria-hidden="true">→</span>
-                </a>
-                <p class="monograph__narrative">
-                  A brutalist public library defined by coffered concrete ceilings and north-facing clerestory light shafts.
-                </p>
-                <div class="monograph__material-taxonomy">
-                  <span class="taxonomy-strong">Material Spec:</span>
-                  <span>Coffered Pozzolanic Concrete · Oiled Walnut</span>
-                </div>
-              </div>
-            </article>
-
-            <!-- 03: Pátio das Flores -->
-            <article class="project-monograph project-monograph--compact" id="project-patio-flores">
-              <div class="monograph__header">
-                <span class="monograph__index">[ PL-03 ] · HERITAGE · ÉVORA</span>
-                <span class="monograph__coords">38° 34′ N · 7° 54′ W</span>
-              </div>
-              <div class="monograph__visual-stage">
-                <img
-                  src="images/patio-flores.jpg"
-                  alt="Restored historic stone courtyard in Évora featuring arched stone openings"
-                  class="monograph__photo monograph__photo--pair"
-                  width="1200"
-                  height="750"
-                  loading="lazy"
-                >
-              </div>
-              <div class="monograph__details" style="grid-template-columns: 1fr; gap: var(--sp-12);">
-                <a href="projects/patio-flores.html" class="monograph__title-link">
-                  <span>Pátio das Flores</span>
-                  <span class="monograph__link-arrow" aria-hidden="true">→</span>
-                </a>
-                <p class="monograph__narrative">
-                  Restoration of an 18th-century cloistered courtyard using traditional lime mortars and terracotta pavers.
-                </p>
-                <div class="monograph__material-taxonomy">
-                  <span class="taxonomy-strong">Material Spec:</span>
-                  <span>Limestone Masonry · Hexagonal Terracotta</span>
-                </div>
-              </div>
-            </article>
-
           </div>
 
+          <!-- Bottom HUD Footer -->
+          <div class="scrolly-hud__bottom">
+            <div class="hud-coords">
+              <span>LISBOA · 38°42′54″N 9°08′10″W · ELEV +42.5M</span>
+            </div>
+            
+            <!-- Interactive Chapter Scrub Navigation -->
+            <div class="hud-phase-nav" role="navigation" aria-label="Timeline Chapter Navigation">
+              <button type="button" class="hud-dot-btn is-active" data-phase="0.00" aria-label="Chapter 1: Excavation">01</button>
+              <button type="button" class="hud-dot-btn" data-phase="0.25" aria-label="Chapter 2: Structure">02</button>
+              <button type="button" class="hud-dot-btn" data-phase="0.48" aria-label="Chapter 3: Light Void">03</button>
+              <button type="button" class="hud-dot-btn" data-phase="0.72" aria-label="Chapter 4: Commissions">04</button>
+              <button type="button" class="hud-dot-btn" data-phase="0.95" aria-label="Chapter 5: Axonometric">05</button>
+            </div>
 
-          <!-- 04 & 05: INVERTED ASYMMETRIC PAIR -->
-          <div class="monographs-pair-inverted">
-
-            <!-- 04: Edifício Vento -->
-            <article class="project-monograph project-monograph--compact" id="project-edificio-vento">
-              <div class="monograph__header">
-                <span class="monograph__index">[ PL-04 ] · COMMERCIAL · CASCAIS</span>
-                <span class="monograph__coords">38° 41′ N · 9° 25′ W</span>
-              </div>
-              <div class="monograph__visual-stage">
-                <img
-                  src="images/edificio-vento.jpg"
-                  alt="Double-height commercial office atrium in Cascais with concrete mezzanine walkway"
-                  class="monograph__photo monograph__photo--pair"
-                  width="1200"
-                  height="750"
-                  loading="lazy"
-                >
-              </div>
-              <div class="monograph__details" style="grid-template-columns: 1fr; gap: var(--sp-12);">
-                <a href="projects/edificio-vento.html" class="monograph__title-link">
-                  <span>Edifício Vento</span>
-                  <span class="monograph__link-arrow" aria-hidden="true">→</span>
-                </a>
-                <p class="monograph__narrative">
-                  Double-height civic atrium engineered for passive stack ventilation and natural marine air circulation.
-                </p>
-                <div class="monograph__material-taxonomy">
-                  <span class="taxonomy-strong">Material Spec:</span>
-                  <span>Pale Limestone Panels · Blackened Steel</span>
-                </div>
-              </div>
-            </article>
-
-            <!-- 05: Pavilhão Sereno -->
-            <article class="project-monograph project-monograph--compact" id="project-pavilhao-sereno">
-              <div class="monograph__header">
-                <span class="monograph__index">[ PL-05 ] · INSTALLATION · ALENTEJO</span>
-                <span class="monograph__coords">38° 01′ N · 7° 52′ W</span>
-              </div>
-              <div class="monograph__visual-stage">
-                <img
-                  src="images/pavilhao-sereno.jpg"
-                  alt="Minimalist outdoor concrete pavilion in Alentejo resting quietly against open countryside"
-                  class="monograph__photo monograph__photo--pair"
-                  width="1200"
-                  height="750"
-                  loading="lazy"
-                >
-              </div>
-              <div class="monograph__details" style="grid-template-columns: 1fr; gap: var(--sp-12);">
-                <a href="projects/pavilhao-sereno.html" class="monograph__title-link">
-                  <span>Pavilhão Sereno</span>
-                  <span class="monograph__link-arrow" aria-hidden="true">→</span>
-                </a>
-                <p class="monograph__narrative">
-                  A post-tensioned thin concrete canopy suspended over wild wheat fields. A pure horizon marker.
-                </p>
-                <div class="monograph__material-taxonomy">
-                  <span class="taxonomy-strong">Material Spec:</span>
-                  <span>Post-Tensioned Concrete Slab · Cylindrical Steel</span>
-                </div>
-              </div>
-            </article>
-
+            <div class="hud-scroll-indicator">
+              <div class="hud-scroll-needle"></div>
+              <span>Scroll to Scrub 3D Timeline</span>
+            </div>
           </div>
 
         </div>
@@ -400,7 +181,7 @@
     </section>
 
 
-    <!-- ── 3. TECTONIC ARCHAEOLOGY & MATERIAL RESEARCH ── -->
+    <!-- ── 2. TECTONIC ARCHAEOLOGY & MATERIAL RESEARCH ── -->
     <section class="section-materials" id="materials" aria-label="Tectonic Materiality & Archaeology">
       <div class="materials__inner">
 
@@ -467,7 +248,7 @@
     </section>
 
 
-    <!-- ── 4. STUDIO & TECTONIC PHILOSOPHY ─────────── -->
+    <!-- ── 3. STUDIO & TECTONIC PHILOSOPHY ─────────── -->
     <section class="section-studio" id="studio" aria-label="Studio Ethos and Leadership">
       <div class="studio__inner">
 
@@ -597,7 +378,7 @@
     </section>
 
 
-    <!-- ── 5. CONTACT & ATELIER ───────────────────── -->
+    <!-- ── 4. CONTACT & ATELIER ───────────────────── -->
     <section class="section-contact" id="contact" aria-label="Contact Atelier and Inquiries">
       <div class="contact__inner">
 
@@ -638,7 +419,7 @@
             <span class="colophon__brand">PLINTH</span>
             <span>© 2018—2026 Plinth Arquitetura Lda · All rights reserved</span>
             <div class="colophon__links">
-              <a href="#hero" class="colophon__link">Top ↑</a>
+              <a href="#hero-scrolly" class="colophon__link">Top ↑</a>
               <a href="#work" class="colophon__link">Selected Work</a>
               <a href="#materials" class="colophon__link">Materials</a>
               <a href="studio.html" class="colophon__link">Studio</a>

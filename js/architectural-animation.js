@@ -368,6 +368,7 @@
   }
 
   // ── 7. SCROLL INTERACTION & SMOOTHING ──────────────────────
+  const track = document.getElementById('hero-scrolly') || document.getElementById('spatial-flight-track');
   let targetProgress = 0;
   let currentProgress = 0;
   let lastTime = performance.now();
@@ -378,10 +379,11 @@
   let currentMouseY = 0;
 
   function updateScroll() {
-    // Total document scroll distance
-    const totalDist = document.documentElement.scrollHeight - window.innerHeight;
+    if (!track) return;
+    const rect = track.getBoundingClientRect();
+    const totalDist = rect.height - window.innerHeight;
     if (totalDist <= 0) return;
-    const scrolled = window.scrollY || window.pageYOffset;
+    const scrolled = -rect.top;
     targetProgress = Math.min(1, Math.max(0, scrolled / totalDist));
   }
 
@@ -517,12 +519,13 @@
     }
   }
 
-  // Phase Click Buttons: Smooth Scroll to Normalized Milestones
+  // Phase Click Buttons: Smooth Scroll to Normalized Milestones within Track
   phaseDots.forEach(dot => {
     dot.addEventListener('click', () => {
       const targetP = parseFloat(dot.getAttribute('data-phase') || '0');
-      const totalDist = document.documentElement.scrollHeight - window.innerHeight;
-      const targetScroll = targetP * totalDist;
+      if (!track) return;
+      const totalDist = track.offsetHeight - window.innerHeight;
+      const targetScroll = track.offsetTop + (targetP * totalDist);
       window.scrollTo({ top: targetScroll, behavior: 'smooth' });
     });
   });
