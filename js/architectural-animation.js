@@ -514,76 +514,11 @@
 
   scene.add(house5);
 
-  // ── INTERNAL ARCHITECTURAL NIGHT ILLUMINATIONS ──────────────
-  const h1_lamp = new THREE.PointLight(0xF5D061, 0, 14, 1.8);
-  h1_lamp.position.set(0.6, 0.4, 0.3);
-  house1.add(h1_lamp);
-
-  const h2_lamp = new THREE.PointLight(0xF5D061, 0, 18, 1.8);
-  h2_lamp.position.set(0, 0.8, 0);
-  house2.add(h2_lamp);
-
-  const h3_lamp = new THREE.PointLight(0xF5D061, 0, 15, 1.8);
-  h3_lamp.position.set(0, 1.2, -4.5);
-  house3.add(h3_lamp);
-
-  const h4_lamp = new THREE.PointLight(0xF5D061, 0, 20, 1.8);
-  h4_lamp.position.set(0, 1.8, 0);
-  house4.add(h4_lamp);
-
-  const h5_lamp = new THREE.PointLight(0xF5D061, 0, 16, 1.8);
-  h5_lamp.position.set(0, 1.6, 0);
-  house5.add(h5_lamp);
-
-  const internalLamps = [h1_lamp, h2_lamp, h3_lamp, h4_lamp, h5_lamp];
-
-  // ── 5. LIGHTING & SOLAR HELIODON PRESETS ───────────────────
-  const SOLAR_PRESETS = {
-    morning: {
-      color: 0xFFE0B8,
-      intensity: 4.2,
-      x: 18, y: 14, zLead: 25,
-      ambientColor: 0x0C0B0A,
-      ambientIntensity: 1.4,
-      nightIntensity: 0.0
-    },
-    midday: {
-      color: 0xFFFAF0,
-      intensity: 5.5,
-      x: 6, y: 26, zLead: 5,
-      ambientColor: 0x181614,
-      ambientIntensity: 1.8,
-      nightIntensity: 0.0
-    },
-    golden: {
-      color: 0xFFA64D,
-      intensity: 4.8,
-      x: -22, y: 8, zLead: -15,
-      ambientColor: 0x140e0a,
-      ambientIntensity: 1.5,
-      nightIntensity: 0.5
-    },
-    dusk: {
-      color: 0x3A4D6B,
-      intensity: 0.8,
-      x: -26, y: 3, zLead: -30,
-      ambientColor: 0x06080D,
-      ambientIntensity: 0.9,
-      nightIntensity: 4.0
-    }
-  };
-
-  let activeSolarPreset = 'morning';
-  let targetSunColor = new THREE.Color(SOLAR_PRESETS.morning.color);
-  let targetSunIntensity = SOLAR_PRESETS.morning.intensity;
-  let targetNightIntensity = SOLAR_PRESETS.morning.nightIntensity;
-  let targetAmbientColor = new THREE.Color(SOLAR_PRESETS.morning.ambientColor);
-  let targetAmbientIntensity = SOLAR_PRESETS.morning.ambientIntensity;
-
+  // ── 5. LIGHTING ────────────────────────────────────────────
   const ambientLight = new THREE.AmbientLight(0x0C0B0A, 1.4);
   scene.add(ambientLight);
 
-  const sunLight = new THREE.DirectionalLight(0xFFE0B8, 4.2);
+  const sunLight = new THREE.DirectionalLight(0xFFE8D0, 4.2);
   sunLight.position.set(18, 14, 25);
   sunLight.castShadow = true;
   sunLight.shadow.mapSize.width = 2048;
@@ -600,95 +535,6 @@
   const rimLight = new THREE.DirectionalLight(0xC4A675, 1.2);
   rimLight.position.set(-15, 8, -120);
   scene.add(rimLight);
-
-  // ── CAD WIREFRAME & 3D DIMENSION ANNOTATIONS ───────────────
-  const cadDimensionGroup = new THREE.Group();
-  cadDimensionGroup.visible = false;
-  scene.add(cadDimensionGroup);
-
-  function createDimensionLine(p1, p2, labelText) {
-    const group = new THREE.Group();
-
-    // Baseline dimension line
-    const geo = new THREE.BufferGeometry().setFromPoints([p1, p2]);
-    const line = new THREE.Line(geo, new THREE.LineBasicMaterial({ color: 0xC4A675, transparent: true, opacity: 0.85 }));
-    group.add(line);
-
-    // End ticks
-    const dir = new THREE.Vector3().subVectors(p2, p1).normalize();
-    const up = new THREE.Vector3(0, 1, 0);
-    const tickDir = new THREE.Vector3().crossVectors(dir, up).normalize();
-    if (tickDir.length() < 0.1) tickDir.set(1, 0, 0);
-
-    const tickGeo1 = new THREE.BufferGeometry().setFromPoints([
-      new THREE.Vector3().copy(p1).addScaledVector(tickDir, 0.45),
-      new THREE.Vector3().copy(p1).addScaledVector(tickDir, -0.45)
-    ]);
-    const tickGeo2 = new THREE.BufferGeometry().setFromPoints([
-      new THREE.Vector3().copy(p2).addScaledVector(tickDir, 0.45),
-      new THREE.Vector3().copy(p2).addScaledVector(tickDir, -0.45)
-    ]);
-    group.add(new THREE.Line(tickGeo1, new THREE.LineBasicMaterial({ color: 0xC4A675 })));
-    group.add(new THREE.Line(tickGeo2, new THREE.LineBasicMaterial({ color: 0xC4A675 })));
-
-    // Crisp Canvas 2D Text Billboard
-    const cvs = document.createElement('canvas');
-    cvs.width = 512;
-    cvs.height = 128;
-    const ctx = cvs.getContext('2d');
-    ctx.fillStyle = 'rgba(17, 16, 15, 0.9)';
-    ctx.fillRect(0, 0, 512, 128);
-    ctx.strokeStyle = '#C4A675';
-    ctx.lineWidth = 4;
-    ctx.strokeRect(4, 4, 504, 120);
-    ctx.fillStyle = '#E8E4DC';
-    ctx.font = 'bold 34px monospace';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(labelText, 256, 64);
-
-    const tex = new THREE.CanvasTexture(cvs);
-    const spriteMat = new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false });
-    const sprite = new THREE.Sprite(spriteMat);
-    const mid = new THREE.Vector3().addVectors(p1, p2).multiplyScalar(0.5);
-    sprite.position.copy(mid).add(new THREE.Vector3(0, 0.55, 0));
-    sprite.scale.set(3.4, 0.85, 1);
-    group.add(sprite);
-
-    return group;
-  }
-
-  // Dimension lines positioned in 3D around each house
-  cadDimensionGroup.add(createDimensionLine(
-    new THREE.Vector3(-2.7, 2.5, 0),
-    new THREE.Vector3(2.7, 2.5, 0),
-    'SPAN: 14.80m CANTILEVER'
-  ));
-  cadDimensionGroup.add(createDimensionLine(
-    new THREE.Vector3(3.2, -1.4, 0),
-    new THREE.Vector3(3.2, 2.4, 0),
-    'HEIGHT: 3.80m VOID'
-  ));
-  cadDimensionGroup.add(createDimensionLine(
-    new THREE.Vector3(-5.5, 3.8, -80),
-    new THREE.Vector3(5.5, 3.8, -80),
-    'GRID: 22.40m COFFER BAY'
-  ));
-  cadDimensionGroup.add(createDimensionLine(
-    new THREE.Vector3(-4.5, 2.5, -164.5),
-    new THREE.Vector3(4.5, 2.5, -164.5),
-    'SPAN: 9.20m LOGGIA'
-  ));
-  cadDimensionGroup.add(createDimensionLine(
-    new THREE.Vector3(-5.2, 1.6, -240),
-    new THREE.Vector3(5.2, 1.6, -240),
-    'SKYWALK: 10.50m BRIDGE'
-  ));
-  cadDimensionGroup.add(createDimensionLine(
-    new THREE.Vector3(-4.5, 2.6, -320),
-    new THREE.Vector3(4.5, 2.6, -320),
-    'CANOPY: 9.00m · 120mm SLAB'
-  ));
 
   // ── 6. CONTINUOUS CATMULL-ROM CAMERA FLIGHT SPLINE ─────────
   // Elevated, pulled-back wide-angle framing (18m–24m distance) across all 5 houses
@@ -796,30 +642,6 @@
     phaseDots.forEach((dot, idx) => {
       dot.classList.toggle('is-active', idx + 1 === activeHouse);
     });
-
-    // Synchronize 1:100 Plan Drawer Active Blueprint & Metadata
-    const planSvgs = document.querySelectorAll('.plan-svg');
-    planSvgs.forEach((svg, idx) => {
-      svg.classList.toggle('is-active', idx + 1 === activeHouse);
-    });
-
-    const planDrawerTitle = document.getElementById('plan-drawer-title');
-    const planTbComm = document.getElementById('plan-tb-comm');
-    const planTbDatum = document.getElementById('plan-tb-datum');
-
-    const HOUSE_DATA = {
-      1: { title: 'Casa Mouraria — Level 00 Plan', comm: 'PL-01 · CASA MOURARIA', datum: '±0.00M BASALT' },
-      2: { title: 'Biblioteca Central — Coffer Plan', comm: 'PL-02 · BIBLIOTECA CENTRAL', datum: '-38.00M POZZOLANIC' },
-      3: { title: 'Pátio das Flores — Cloister Plan', comm: 'PL-03 · PÁTIO DAS FLORES', datum: '-76.00M LIMESTONE' },
-      4: { title: 'Edifício Vento — Skywalk Atrium Plan', comm: 'PL-04 · EDIFÍCIO VENTO', datum: '-114.00M CONCRETE' },
-      5: { title: 'Pavilhão Sereno — Canopy Plan', comm: 'PL-05 · PAVILHÃO SERENO', datum: '-152.00M HORIZON' }
-    };
-
-    if (planDrawerTitle && HOUSE_DATA[activeHouse]) {
-      planDrawerTitle.textContent = HOUSE_DATA[activeHouse].title;
-      if (planTbComm) planTbComm.textContent = HOUSE_DATA[activeHouse].comm;
-      if (planTbDatum) planTbDatum.textContent = HOUSE_DATA[activeHouse].datum;
-    }
   }
 
   phaseDots.forEach(dot => {
@@ -829,72 +651,6 @@
       const targetScroll = track.offsetTop + (targetP * totalDist);
       window.scrollTo({ top: targetScroll, behavior: 'smooth' });
     });
-  });
-
-  // ── HELIODON SOLAR STUDY CONTROLS ──────────────────────────
-  const solarBtns = document.querySelectorAll('.hud-solar-control .hud-tool-btn');
-  solarBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      solarBtns.forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-      const mode = btn.getAttribute('data-solar');
-      if (SOLAR_PRESETS[mode]) {
-        activeSolarPreset = mode;
-        targetSunColor = new THREE.Color(SOLAR_PRESETS[mode].color);
-        targetSunIntensity = SOLAR_PRESETS[mode].intensity;
-        targetNightIntensity = SOLAR_PRESETS[mode].nightIntensity;
-        targetAmbientColor = new THREE.Color(SOLAR_PRESETS[mode].ambientColor);
-        targetAmbientIntensity = SOLAR_PRESETS[mode].ambientIntensity;
-      }
-    });
-  });
-
-  // ── VIEWPORT ENGINE MODES (RENDER / CAD WIREFRAME) ─────────
-  const btnRender = document.getElementById('btn-mode-render');
-  const btnCad = document.getElementById('btn-mode-cad');
-
-  function setEngineMode(cad) {
-    if (btnRender) btnRender.classList.toggle('is-active', !cad);
-    if (btnCad) btnCad.classList.toggle('is-active', cad);
-
-    // Toggle wireframe on primary structural surfaces
-    concreteMat.wireframe = cad;
-    travertineMat.wireframe = cad;
-    terracottaMat.wireframe = cad;
-    basaltMat.wireframe = cad;
-    cadDimensionGroup.visible = cad;
-  }
-
-  if (btnRender) btnRender.addEventListener('click', () => setEngineMode(false));
-  if (btnCad) btnCad.addEventListener('click', () => setEngineMode(true));
-
-  // ── 1:100 TECTONIC DRAFTING DRAWER CONTROLLER ──────────────
-  const btnTogglePlan = document.getElementById('btn-toggle-plan');
-  const btnClosePlan = document.getElementById('btn-close-plan');
-  const planBackdrop = document.getElementById('plan-backdrop');
-  const planDrawer = document.getElementById('plan-drawer');
-
-  function openPlanDrawer() {
-    if (planDrawer) {
-      planDrawer.classList.add('is-open');
-      planDrawer.setAttribute('aria-hidden', 'false');
-    }
-  }
-
-  function closePlanDrawer() {
-    if (planDrawer) {
-      planDrawer.classList.remove('is-open');
-      planDrawer.setAttribute('aria-hidden', 'true');
-    }
-  }
-
-  if (btnTogglePlan) btnTogglePlan.addEventListener('click', openPlanDrawer);
-  if (btnClosePlan) btnClosePlan.addEventListener('click', closePlanDrawer);
-  if (planBackdrop) planBackdrop.addEventListener('click', closePlanDrawer);
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && planDrawer && planDrawer.classList.contains('is-open')) {
-      closePlanDrawer();
-    }
   });
 
   // ── 9. MAIN RENDER LOOP (120FPS GPU COMPOSITING) ───────────
@@ -966,20 +722,9 @@
     const h5_grow = smoothStep(0.80, 0.90, p);
     h5_canopy.position.y = 6.8 - (h5_grow * 4.4);
 
-    // ── HELIODON SOLAR POSITION & ILLUMINATION LERP ───────────
-    sunLight.color.lerp(targetSunColor, 0.06);
-    sunLight.intensity += (targetSunIntensity - sunLight.intensity) * 0.06;
-    ambientLight.color.lerp(targetAmbientColor, 0.06);
-    ambientLight.intensity += (targetAmbientIntensity - ambientLight.intensity) * 0.06;
-
-    internalLamps.forEach(lamp => {
-      lamp.intensity += (targetNightIntensity - lamp.intensity) * 0.06;
-    });
-
-    const preset = SOLAR_PRESETS[activeSolarPreset] || SOLAR_PRESETS.morning;
-    sunLight.position.x = preset.x + Math.sin(p * Math.PI * 4) * 4;
-    sunLight.position.y = preset.y;
-    sunLight.position.z = preset.zLead - (p * 370);
+    // Dynamic Sunlight sweeps across the terrain as camera moves down Z
+    sunLight.position.z = 25 - (p * 370);
+    sunLight.position.x = 18 + Math.sin(p * Math.PI * 4) * 8;
 
     // ── CONTINUOUS MATHEMATICAL CAMERA FLIGHT ────────────────
     const camPos = cameraSpline.getPoint(p);
