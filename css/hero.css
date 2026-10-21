@@ -1,94 +1,174 @@
 /* ══════════════════════════════════════════════════
-   PLINTH — Apple-Style Canvas Sequence Scrollytelling
-   Pinned Sticky Viewport + 350vh Virtual Scroll Track
-   72-Frame High-DPI Retina Scrubbing + Synchronized HUD Telemetry
+   PLINTH — Multi-Scene 650vh 3D Spatial Flight Journey
+   GPU-Accelerated 120fps Hardware Transform Pipeline
+   Zero-Lag Sub-Pixel Compositing + Atmospheric Depth
 ══════════════════════════════════════════════════ */
 
-/* ── Virtual Scroll Track ─────────────────────── */
-.scrolly-track {
+/* ── Virtual Scroll Track (650vh Cinematic Flight) ── */
+.spatial-track {
   position: relative;
-  height: 350vh; /* Smooth, precise Apple-grade scroll distance */
+  height: 650vh; /* Substantial, luxurious multi-scene scroll journey */
   background-color: var(--c-ground);
   margin-top: 0;
 }
 
-/* ── Pinned Sticky Viewport ───────────────────── */
-.sticky-viewport {
+/* ── Pinned 3D Viewport ───────────────────────── */
+.spatial-viewport {
   position: sticky;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   height: 100svh;
   overflow: hidden;
+  perspective: 1300px;
+  perspective-origin: 50% 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--c-ground);
 }
 
-/* ── High-DPI Retina Canvas ───────────────────── */
-#product-canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
-  /* Instant First-Frame Paint fallback (Law 1: Content visible by default) */
-  background-image: url('../frames/frame_0001.jpg');
-  background-size: cover;
-  background-position: center;
-}
-
-/* ── Directional Cinematic Shadow Scrim ───────── */
-.scrolly-scrim {
+/* ── Atmospheric Ambient Lighting & Volumetric Gradient ── */
+.spatial-environment {
   position: absolute;
   inset: 0;
+  pointer-events: none;
+  z-index: 1;
   background:
+    radial-gradient(
+      ellipse 90% 70% at 75% 35%,
+      rgba(196, 166, 117, 0.09) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      circle 600px at 20% 75%,
+      rgba(26, 25, 23, 0.70) 0%,
+      transparent 70%
+    ),
     linear-gradient(
       180deg,
-      rgba(12, 11, 10, 0.50) 0%,
-      transparent 18%,
-      transparent 55%,
-      rgba(12, 11, 10, 0.88) 100%
+      rgba(12, 11, 10, 0.60) 0%,
+      transparent 20%,
+      transparent 70%,
+      rgba(12, 11, 10, 0.95) 100%
     );
-  pointer-events: none;
+}
+
+/* ── 3D World Stage (Hardware GPU Layer) ──────── */
+.spatial-world {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
   z-index: 2;
 }
 
-/* ── Synchronized HUD Telemetry Layers ────────── */
-.hud-layer-container {
+/* ── 3D Architectural Scene Plates ────────────── */
+.spatial-plate {
   position: absolute;
-  inset: 0;
-  z-index: 3;
-  pointer-events: none;
-  max-width: var(--content-max);
-  margin: 0 auto;
-  width: 100%;
-}
-
-.hud-stage {
-  position: absolute;
-  inset: 0;
-  padding: 0 var(--page-pad) var(--sp-64);
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  gap: var(--sp-24);
-  opacity: 0;
-  transform: translate3d(0, 12px, 0);
-  pointer-events: none;
-  transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
-}
-
-/* Stage 1 is immediately active on initial paint (Law 1 compliance) */
-.hud-stage[data-stage="1"] {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
   pointer-events: auto;
 }
 
-/* ── HUD Telemetry Header (Micro) ─────────────── */
-.hud-telemetry {
+/* Plate 1: Casa Mouraria (Monumental Hero) */
+.spatial-plate--hero {
+  width: min(1080px, 86vw);
+  height: min(640px, 72vh);
+  margin-left: calc(min(1080px, 86vw) / -2);
+  margin-top: calc(min(640px, 72vh) / -2);
+}
+
+/* Plate 2: The Spatial Light Void (Interior Dive) */
+.spatial-plate--void {
+  width: min(880px, 78vw);
+  height: min(560px, 64vh);
+  margin-left: calc(min(880px, 78vw) / -2);
+  margin-top: calc(min(560px, 64vh) / -2);
+}
+
+/* Plate 3: Biblioteca Central (Porto) */
+.spatial-plate--biblioteca {
+  width: min(960px, 82vw);
+  height: min(600px, 68vh);
+  margin-left: calc(min(960px, 82vw) / -2);
+  margin-top: calc(min(600px, 68vh) / -2);
+}
+
+/* Plate 4: Pátio das Flores (Évora) */
+.spatial-plate--patio {
+  width: min(920px, 80vw);
+  height: min(580px, 66vh);
+  margin-left: calc(min(920px, 80vw) / -2);
+  margin-top: calc(min(580px, 66vh) / -2);
+}
+
+/* Plate 5: Dual Tectonic Installations (Cascais & Alentejo) */
+.spatial-plate--installations {
+  width: min(1120px, 88vw);
+  height: min(580px, 66vh);
+  margin-left: calc(min(1120px, 88vw) / -2);
+  margin-top: calc(min(580px, 66vh) / -2);
+}
+
+/* ── Plate Surface & Visual Canvas ────────────── */
+.spatial-plate__frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-divider-strong);
+  overflow: hidden;
+  box-shadow:
+    0 30px 80px -20px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(243, 239, 230, 0.06);
+}
+
+.spatial-plate__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: contrast(1.05) brightness(0.94);
+  transform: scale(1.02);
+  transition: filter var(--t-base);
+}
+
+/* Soft directional vignette on each plate */
+.spatial-plate__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(12, 11, 10, 0.20) 0%,
+    transparent 30%,
+    rgba(12, 11, 10, 0.40) 65%,
+    rgba(12, 11, 10, 0.92) 100%
+  );
+  pointer-events: none;
+}
+
+/* ── Integrated Architectural Telemetry Overlay ── */
+.spatial-plate__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: clamp(1.5rem, 3.5vw, 2.75rem);
   display: flex;
+  flex-direction: column;
+  gap: var(--sp-16);
+  z-index: 2;
+}
+
+.spatial-plate__badge {
+  display: inline-flex;
   align-items: center;
   gap: var(--sp-12);
   font-family: var(--f-mono);
@@ -98,145 +178,167 @@
   color: var(--c-brass);
 }
 
-.hud-telemetry-rule {
-  width: 28px;
+.spatial-plate__badge-line {
+  width: 24px;
   height: 1px;
   background-color: var(--c-brass);
 }
 
-/* ── HUD Headlines (Macro Scale) ──────────────── */
-.hud-headline {
+.spatial-plate__title {
   font-family: var(--f-display);
-  font-size: var(--fs-d1);
+  font-size: clamp(2.4rem, 5vw, 4.25rem);
   font-weight: var(--fw-light);
   line-height: var(--lh-monumental);
   letter-spacing: var(--ls-tight);
   color: var(--c-umber);
-  max-width: 980px;
   margin: 0;
-  text-shadow: 0 4px 32px rgba(0, 0, 0, 0.85);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.7);
 }
 
-.hud-headline em {
+.spatial-plate__title em {
   font-style: italic;
   font-weight: var(--fw-light);
   color: var(--c-brass-light);
 }
 
-.hud-desc {
+.spatial-plate__desc {
   font-family: var(--f-sans);
   font-size: var(--fs-lead);
   font-weight: var(--fw-light);
-  line-height: var(--lh-body);
+  line-height: 1.6;
   color: var(--c-secondary);
   max-width: 58ch;
 }
 
-/* ── HUD Metadata Bar ─────────────────────────── */
-.hud-meta-bar {
+.spatial-plate__meta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--sp-16) var(--sp-32);
-  padding-top: var(--sp-20);
-  border-top: 1px solid var(--c-divider-strong);
+  gap: var(--sp-16) var(--sp-24);
+  padding-top: var(--sp-16);
+  border-top: 1px solid var(--c-divider);
   font-family: var(--f-sans);
   font-size: var(--fs-tiny);
   letter-spacing: var(--ls-wide);
   color: var(--c-secondary);
 }
 
-.hud-meta-list {
+.spatial-plate__meta-items {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--sp-24) var(--sp-32);
+  gap: var(--sp-20);
 }
 
-.hud-meta-item {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-4);
-}
-
-.hud-meta-label {
+.spatial-plate__meta-label {
   font-family: var(--f-mono);
   font-size: var(--fs-micro);
-  letter-spacing: var(--ls-wider);
   text-transform: uppercase;
   color: var(--c-muted);
+  margin-right: var(--sp-6);
 }
 
-.hud-meta-value {
-  color: var(--c-umber);
-  font-weight: var(--fw-regular);
-}
-
-.hud-coords {
+.spatial-plate__coords {
   font-family: var(--f-mono);
   font-size: var(--fs-micro);
   letter-spacing: var(--ls-wider);
   color: var(--c-brass);
   font-variant-numeric: tabular-nums;
-  display: flex;
-  align-items: center;
-  gap: var(--sp-8);
 }
 
-/* ── HUD Actions ──────────────────────────────── */
-.hud-action-link {
-  display: inline-flex;
+/* Dual Plate layout for Scene 5 */
+.spatial-dual-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-24);
+  width: 100%;
+  height: 100%;
+}
+
+.spatial-dual-card {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-divider-strong);
+}
+
+/* ── Flight Telemetry HUD (Fixed on Viewport) ─── */
+.flight-hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.flight-hud__top {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: var(--sp-8);
+  padding-top: var(--masthead-h);
   font-family: var(--f-mono);
-  font-size: var(--fs-small);
-  letter-spacing: var(--ls-wide);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-telemetry);
   text-transform: uppercase;
   color: var(--c-brass);
-  transition: color var(--t-fast);
-  padding: var(--sp-8) 0;
 }
 
-.hud-action-link:hover {
-  color: var(--c-umber);
+.flight-hud__progress-ring {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-12);
+  color: var(--c-muted);
 }
 
-/* ── Scroll Guide Cue ─────────────────────────── */
-.scrolly-scroll-cue {
+.flight-hud__progress-bar {
+  width: 90px;
+  height: 2px;
+  background: var(--c-divider);
+  position: relative;
+  overflow: hidden;
+}
+
+.flight-hud__progress-fill {
   position: absolute;
-  bottom: var(--sp-48);
-  right: var(--page-pad);
-  z-index: 4;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background-color: var(--c-brass);
+  transition: width 0.1s linear;
+}
+
+.flight-hud__progress-text {
+  font-variant-numeric: tabular-nums;
+  color: var(--c-brass);
+}
+
+.flight-hud__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.flight-hud__scroll-cue {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--sp-8);
   writing-mode: vertical-rl;
-  pointer-events: none;
 }
 
-.scrolly-scroll-line {
+.flight-hud__cue-line {
   width: 1px;
   height: 44px;
-  background: linear-gradient(
-    to bottom,
-    var(--c-brass),
-    transparent
-  );
+  background: linear-gradient(to bottom, var(--c-brass), transparent);
   animation: scroll-pulse 2.4s ease-in-out infinite;
 }
 
-@keyframes scroll-pulse {
-  0%, 100% { opacity: 0.3; transform: scaleY(0.85); }
-  50%       { opacity: 1;   transform: scaleY(1);    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .scrolly-scroll-line { animation: none; opacity: 0.5; }
-}
-
-.scrolly-scroll-label {
+.flight-hud__cue-label {
   font-family: var(--f-mono);
   font-size: var(--fs-micro);
   letter-spacing: var(--ls-widest);
@@ -245,23 +347,38 @@
   transform: rotate(180deg);
 }
 
-/* ── Responsive Behavior ──────────────────────── */
+/* ── Responsive adjustments ───────────────────── */
 @media (max-width: 768px) {
-  .scrolly-track {
-    height: 260vh;
+  .spatial-track {
+    height: 480vh;
   }
 
-  .hud-stage {
-    padding-bottom: var(--sp-40);
-    gap: var(--sp-16);
+  .spatial-plate--hero,
+  .spatial-plate--void,
+  .spatial-plate--biblioteca,
+  .spatial-plate--patio,
+  .spatial-plate--installations {
+    width: 92vw;
+    height: 70vh;
+    margin-left: -46vw;
+    margin-top: -35vh;
   }
 
-  .scrolly-scroll-cue {
+  .spatial-dual-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .flight-hud__scroll-cue {
     display: none;
   }
 
-  .hud-meta-bar {
-    flex-direction: column;
-    align-items: flex-start;
+  .spatial-plate__overlay {
+    padding: var(--sp-20);
   }
+}
+
+@keyframes scroll-pulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.85); }
+  50%       { opacity: 1;   transform: scaleY(1);    }
 }
