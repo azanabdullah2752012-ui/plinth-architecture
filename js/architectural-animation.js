@@ -107,10 +107,10 @@
 
   // ── 2. WEBGL SCENE, CAMERA & RENDERER SETUP ────────────────
   const scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x0C0B0A, 0.032);
+  scene.fog = new THREE.FogExp2(0x0C0B0A, 0.014); // Gentle atmospheric haze with expansive depth
 
-  const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
-  camera.position.set(0, 1.2, 9.2);
+  const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 200);
+  camera.position.set(0, 3.2, 18.0);
 
   const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
@@ -121,7 +121,7 @@
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.22;
+  renderer.toneMappingExposure = 1.25;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
@@ -328,17 +328,17 @@
   scene.add(ambientLight);
 
   // Primary Raking Sunlight (Dynamic Portuguese Azimuth)
-  const sunLight = new THREE.DirectionalLight(0xFFE8D0, 3.8);
-  sunLight.position.set(7, 6, 5);
+  const sunLight = new THREE.DirectionalLight(0xFFE8D0, 4.0);
+  sunLight.position.set(12, 10, 9);
   sunLight.castShadow = true;
   sunLight.shadow.mapSize.width = 2048;
   sunLight.shadow.mapSize.height = 2048;
-  sunLight.shadow.camera.near = 0.5;
-  sunLight.shadow.camera.far = 30;
-  sunLight.shadow.camera.left = -6;
-  sunLight.shadow.camera.right = 6;
-  sunLight.shadow.camera.top = 6;
-  sunLight.shadow.camera.bottom = -6;
+  sunLight.shadow.camera.near = 1.0;
+  sunLight.shadow.camera.far = 50;
+  sunLight.shadow.camera.left = -14;
+  sunLight.shadow.camera.right = 14;
+  sunLight.shadow.camera.top = 14;
+  sunLight.shadow.camera.bottom = -14;
   sunLight.shadow.bias = -0.0003;
   scene.add(sunLight);
 
@@ -600,44 +600,60 @@
       columnGroup.position.z += explode * 0.4;
     }
 
-    // ── 7. CINEMATIC CAMERA CHOREOGRAPHY ───────────────────────
-    // Camera glides along a cinematic spline through the architecture
+    // ── 7. CINEMATIC CAMERA CHOREOGRAPHY (EXPANSIVE BREATHING ROOM) ──
+    // Architecture offset: balance right on desktop so HUD on left never overlaps
+    const targetOffsetX = window.innerWidth > 960 ? 1.4 : 0.0;
+    architectureRoot.position.x = targetOffsetX;
+    architectureRoot.position.y = -0.3;
+
+    // Camera stays pulled back at a comfortable architectural viewing distance (~16m - 18.5m)
+    // Never suffocates or crops the structure; framed with generous negative space
     let camX, camY, camZ, lookX, lookY, lookZ;
 
-    if (p < 0.30) {
-      // Stage 1: Low monumental establishing angle, looking slightly up
-      const t = p / 0.30;
-      camX = (currentMouseX * 0.4);
-      camY = 0.8 + (t * 0.6) - (currentMouseY * 0.3);
-      camZ = 9.2 - (t * 2.0);
-      lookX = 0;
-      lookY = -0.4 + (t * 0.5);
-      lookZ = 0;
-    } else if (p < 0.65) {
-      // Stage 2 & 3: Sweeping orbit and approach into portal
-      const t = (p - 0.30) / 0.35;
-      camX = Math.sin(t * Math.PI * 0.8) * 3.4 + (currentMouseX * 0.4);
-      camY = 1.4 + (Math.sin(t * Math.PI) * 0.5) - (currentMouseY * 0.3);
-      camZ = 7.2 - (t * 2.6);
-      lookX = 0.2;
+    if (p < 0.25) {
+      // Stage 1: Expansive establishing perspective of the bedrock foundation
+      const t = p / 0.25;
+      camX = targetOffsetX + (currentMouseX * 0.7);
+      camY = 2.8 + (t * 0.8) - (currentMouseY * 0.4);
+      camZ = 18.5 - (t * 1.5);
+      lookX = targetOffsetX;
       lookY = 0.4;
-      lookZ = -0.2;
-    } else if (p < 0.88) {
-      // Stage 4: Inside the sunlit light court, looking through the sunbeam
-      const t = (p - 0.65) / 0.23;
-      camX = 1.2 - (t * 1.8) + (currentMouseX * 0.35);
-      camY = 0.9 + (t * 0.3) - (currentMouseY * 0.25);
-      camZ = 4.6 - (t * 1.2);
-      lookX = -0.4;
+      lookZ = 0;
+    } else if (p < 0.50) {
+      // Stage 2: Smooth architectural crane orbit as walls & column assemble
+      const t = (p - 0.25) / 0.25;
+      const angle = t * 0.65; // Elegant 35-degree sweeping arc
+      camX = targetOffsetX + Math.sin(angle) * 8.5 + (currentMouseX * 0.7);
+      camY = 3.6 + (Math.sin(t * Math.PI) * 0.8) - (currentMouseY * 0.4);
+      camZ = Math.cos(angle) * 17.2;
+      lookX = targetOffsetX;
       lookY = 0.6;
-      lookZ = -0.8;
+      lookZ = 0;
+    } else if (p < 0.72) {
+      // Stage 3: Elevated perspective framing the roof canopy descending from above
+      const t = (p - 0.50) / 0.22;
+      camX = targetOffsetX + 5.2 - (t * 2.0) + (currentMouseX * 0.6);
+      camY = 4.8 + (t * 0.6) - (currentMouseY * 0.4);
+      camZ = 16.5;
+      lookX = targetOffsetX;
+      lookY = 0.8;
+      lookZ = 0;
+    } else if (p < 0.88) {
+      // Stage 4: Three-quarter profile capturing the full volumetric sunbeam and floor shadow
+      const t = (p - 0.72) / 0.16;
+      camX = targetOffsetX - 6.2 + (t * 1.5) + (currentMouseX * 0.6);
+      camY = 3.2 + (t * 0.5) - (currentMouseY * 0.4);
+      camZ = 16.2;
+      lookX = targetOffsetX + 0.3;
+      lookY = 0.5;
+      lookZ = 0;
     } else {
-      // Stage 5: Elevated monumental 35° isometric axonometric view
+      // Stage 5: Textbook 35° isometric axonometric view of the exploded structure
       const t = (p - 0.88) / 0.12;
-      camX = -0.6 + (t * 4.2) + (currentMouseX * 0.35);
-      camY = 1.2 + (t * 4.6) - (currentMouseY * 0.25);
-      camZ = 3.4 + (t * 3.8);
-      lookX = 0;
+      camX = targetOffsetX + 10.5 + (t * 1.5) + (currentMouseX * 0.6);
+      camY = 8.5 + (t * 2.0) - (currentMouseY * 0.4);
+      camZ = 15.5 + (t * 1.2);
+      lookX = targetOffsetX;
       lookY = 0.8;
       lookZ = 0;
     }

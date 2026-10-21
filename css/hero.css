@@ -138,18 +138,18 @@
 .hud-stage-card {
   position: absolute;
   left: clamp(1.25rem, 3.5vw, 3rem);
-  bottom: clamp(5.5rem, 12vh, 7.5rem);
-  max-width: min(520px, 92vw);
-  background: rgba(18, 17, 16, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  bottom: clamp(4.5rem, 8vh, 6.5rem);
+  max-width: min(380px, 86vw);
+  background: rgba(18, 17, 16, 0.85);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   border: 1px solid var(--c-divider-strong);
-  border-left: 3px solid var(--c-brass);
-  padding: clamp(1.25rem, 2.8vw, 2.25rem);
+  border-left: 2px solid var(--c-brass);
+  padding: clamp(1rem, 2vw, 1.5rem);
   display: flex;
   flex-direction: column;
-  gap: var(--sp-12);
-  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.85);
+  gap: var(--sp-10);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.85);
   pointer-events: auto;
   transition: border-color var(--t-fast);
 }
@@ -157,9 +157,9 @@
 .hud-stage-badge {
   display: inline-flex;
   align-items: center;
-  gap: var(--sp-8);
+  gap: var(--sp-6);
   font-family: var(--f-mono);
-  font-size: var(--fs-micro);
+  font-size: 0.65rem;
   letter-spacing: var(--ls-telemetry);
   text-transform: uppercase;
   color: var(--c-brass);
@@ -171,9 +171,9 @@
 
 .hud-stage-title {
   font-family: var(--f-display);
-  font-size: clamp(1.85rem, 3.6vw, 3.0rem);
+  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
   font-weight: var(--fw-light);
-  line-height: var(--lh-monumental);
+  line-height: 1.15;
   letter-spacing: var(--ls-tight);
   color: var(--c-umber);
   margin: 0;
@@ -186,10 +186,10 @@
 
 .hud-stage-desc {
   font-family: var(--f-sans);
-  font-size: var(--fs-small);
-  line-height: 1.6;
+  font-size: var(--fs-tiny);
+  line-height: 1.55;
   color: var(--c-secondary);
-  max-width: 48ch;
+  max-width: 44ch;
   margin: 0;
 }
 
@@ -197,11 +197,11 @@
 .hud-telemetry-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--sp-12) var(--sp-20);
-  padding: var(--sp-12) 0;
+  gap: var(--sp-8) var(--sp-14);
+  padding: var(--sp-8) 0;
   border-top: 1px solid var(--c-divider);
   border-bottom: 1px solid var(--c-divider);
-  margin-top: var(--sp-4);
+  margin-top: 2px;
 }
 
 .hud-telemetry-cell {
