@@ -7,7 +7,8 @@
 .section-work,
 .section-materials {
   position: relative;
-  background-color: var(--c-ground);
+  z-index: 10;
+  background: transparent;
   padding: var(--sp-96) 0;
   border-bottom: 1px solid var(--c-divider-strong);
 }
@@ -79,10 +80,13 @@
 
 /* ── 1. Interactive Material Archaeology Console ── */
 .material-console {
-  background: var(--c-surface);
+  background: rgba(18, 18, 22, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--c-divider-strong);
   display: flex;
   flex-direction: column;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85);
 }
 
 .material-console__nav {

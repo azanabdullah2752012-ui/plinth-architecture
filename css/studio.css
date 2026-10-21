@@ -5,10 +5,12 @@
 ══════════════════════════════════════════════════ */
 
 .section-studio {
+  position: relative;
+  z-index: 10;
   padding-top: var(--sp-128);
   padding-bottom: var(--sp-128);
   border-top: 1px solid var(--c-divider);
-  background-color: var(--c-ground);
+  background-color: transparent;
 }
 
 .studio__inner {
