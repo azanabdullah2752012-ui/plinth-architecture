@@ -5,10 +5,10 @@
    120fps GPU Rendering · Continuous Catmull-Rom Camera Flight
 ══════════════════════════════════════════════════ */
 
-/* ── Virtual Scroll Track (600vh Cinematic Flight) ── */
+/* ── Virtual Scroll Track (1200vh Cinematic Flight · 240vh Per House) ── */
 .scrolly-journey {
   position: relative;
-  height: 600vh;
+  height: 1200vh;
   background-color: var(--c-ground);
   margin-top: 0;
 }

@@ -129,10 +129,11 @@
 
   // ── 2. SCENE, CAMERA & RENDERER SETUP ──────────────────────
   const scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x09090B, 0.012);
+  scene.fog = new THREE.Fog(0x09090B, 26, 85);
 
-  const camera = new THREE.PerspectiveCamera(36, window.innerWidth / window.innerHeight, 0.1, 300);
-  camera.position.set(2.0, 3.2, 16.5);
+  // 45° architectural Leica perspective pulled back for heroic wide-angle composition
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 450);
+  camera.position.set(9.0, 5.2, 16.0);
 
   const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
@@ -212,15 +213,15 @@
   }
 
   // ── 4. CONTINUOUS GROUND PLANE & GRIDS ─────────────────────
-  // Vast basalt bedrock terrain stretching across the entire flight
-  const groundGeo = new THREE.BoxGeometry(40, 0.4, 200);
+  // Vast basalt bedrock terrain stretching across the entire flight (Z = +25 to Z = -380)
+  const groundGeo = new THREE.BoxGeometry(70, 0.4, 450);
   const groundMesh = new THREE.Mesh(groundGeo, basaltMat);
-  groundMesh.position.set(0, -1.8, -75);
+  groundMesh.position.set(0, -1.8, -160);
   groundMesh.receiveShadow = true;
   scene.add(groundMesh);
 
-  const gridHelper = new THREE.GridHelper(200, 100, 0xC4A675, 0x222120);
-  gridHelper.position.set(0, -1.58, -75);
+  const gridHelper = new THREE.GridHelper(450, 150, 0xC4A675, 0x222120);
+  gridHelper.position.set(0, -1.58, -160);
   scene.add(gridHelper);
 
   // ══════════════════════════════════════════════════════════
@@ -318,9 +319,9 @@
   scene.add(house1);
 
 
-  // ── HOUSE 2: BIBLIOTECA CENTRAL (at Z = -38) ───────────────
+  // ── HOUSE 2: BIBLIOTECA CENTRAL (at Z = -80) ───────────────
   const house2 = new THREE.Group();
-  house2.position.set(0, -0.2, -38);
+  house2.position.set(0, -0.2, -80);
 
   // Monumental Pozzolanic Concrete Base
   const h2_base = new THREE.Mesh(new THREE.BoxGeometry(11, 0.4, 9), concreteMat);
@@ -378,9 +379,9 @@
   scene.add(house2);
 
 
-  // ── HOUSE 3: PÁTIO DAS FLORES (at Z = -76) ─────────────────
+  // ── HOUSE 3: PÁTIO DAS FLORES (at Z = -160) ─────────────────
   const house3 = new THREE.Group();
-  house3.position.set(0, -0.2, -76);
+  house3.position.set(0, -0.2, -160);
 
   // Terracotta Hexagonal Courtyard Floor
   const h3_floor = new THREE.Mesh(new THREE.BoxGeometry(11, 0.25, 11), terracottaMat);
@@ -427,9 +428,9 @@
   scene.add(house3);
 
 
-  // ── HOUSE 4: EDIFÍCIO VENTO (at Z = -114) ──────────────────
+  // ── HOUSE 4: EDIFÍCIO VENTO (at Z = -240) ──────────────────
   const house4 = new THREE.Group();
-  house4.position.set(0, -0.2, -114);
+  house4.position.set(0, -0.2, -240);
 
   // Basalt Atrium Ground
   const h4_floor = new THREE.Mesh(new THREE.BoxGeometry(11, 0.3, 9), concreteMat);
@@ -475,9 +476,9 @@
   scene.add(house4);
 
 
-  // ── HOUSE 5: PAVILHÃO SERENO (at Z = -152) ─────────────────
+  // ── HOUSE 5: PAVILHÃO SERENO (at Z = -320) ─────────────────
   const house5 = new THREE.Group();
-  house5.position.set(0, -0.2, -152);
+  house5.position.set(0, -0.2, -320);
 
   // Open Horizon Meadow Floor
   const h5_floor = new THREE.Mesh(new THREE.BoxGeometry(18, 0.3, 16), basaltMat);
@@ -517,53 +518,63 @@
   const ambientLight = new THREE.AmbientLight(0x0C0B0A, 1.4);
   scene.add(ambientLight);
 
-  const sunLight = new THREE.DirectionalLight(0xFFE8D0, 4.0);
-  sunLight.position.set(14, 12, 10);
+  const sunLight = new THREE.DirectionalLight(0xFFE8D0, 4.2);
+  sunLight.position.set(18, 14, 25);
   sunLight.castShadow = true;
   sunLight.shadow.mapSize.width = 2048;
   sunLight.shadow.mapSize.height = 2048;
   sunLight.shadow.camera.near = 1.0;
-  sunLight.shadow.camera.far = 180;
-  sunLight.shadow.camera.left = -25;
-  sunLight.shadow.camera.right = 25;
-  sunLight.shadow.camera.top = 25;
-  sunLight.shadow.camera.bottom = -25;
+  sunLight.shadow.camera.far = 450;
+  sunLight.shadow.camera.left = -35;
+  sunLight.shadow.camera.right = 35;
+  sunLight.shadow.camera.top = 35;
+  sunLight.shadow.camera.bottom = -35;
   sunLight.shadow.bias = -0.0003;
   scene.add(sunLight);
 
   const rimLight = new THREE.DirectionalLight(0xC4A675, 1.2);
-  rimLight.position.set(-10, 6, -50);
+  rimLight.position.set(-15, 8, -120);
   scene.add(rimLight);
 
   // ── 6. CONTINUOUS CATMULL-ROM CAMERA FLIGHT SPLINE ─────────
-  // Smoothly glides across all 5 houses from Z = 16.5 down to Z = -152
+  // Elevated, pulled-back wide-angle framing (18m–24m distance) across all 5 houses
   const cameraSplinePoints = [
-    new THREE.Vector3( 2.2, 3.0,   16.5), // 0.00 - House 1: Casa Mouraria approach
-    new THREE.Vector3( 5.5, 3.5,    8.5), // 0.10 - House 1: Orbit & sunbeam
-    new THREE.Vector3( 3.2, 4.2,  -12.0), // 0.20 - Flight towards House 2
-    new THREE.Vector3(-4.5, 3.8,  -30.0), // 0.30 - House 2: Biblioteca Central coffered ceiling
-    new THREE.Vector3(-1.8, 4.4,  -50.0), // 0.40 - Flight towards House 3
-    new THREE.Vector3( 5.2, 3.4,  -70.0), // 0.50 - House 3: Pátio das Flores limestone cloister
-    new THREE.Vector3( 2.5, 4.5,  -90.0), // 0.60 - Flight towards House 4
-    new THREE.Vector3(-4.8, 3.8, -108.0), // 0.70 - House 4: Edifício Vento atrium bridge
-    new THREE.Vector3(-1.2, 4.8, -128.0), // 0.80 - Flight towards House 5
-    new THREE.Vector3( 6.8, 3.6, -148.0), // 0.90 - House 5: Pavilhão Sereno horizon canopy
-    new THREE.Vector3( 9.5, 6.5, -145.0)  // 1.00 - House 5: Elevated twilight horizon view
+    new THREE.Vector3(  8.5, 4.8,   17.0), // 0.00 - House 1: Wide frontal-three-quarter approach (Z = 0)
+    new THREE.Vector3( 10.5, 4.4,   13.5), // 0.08 - House 1: Assembled, sunlight framing
+    new THREE.Vector3(  7.5, 5.2,    6.0), // 0.16 - House 1: Elevation view
+    new THREE.Vector3(  5.0, 7.5,  -35.0), // 0.22 - Flight across landscape towards House 2
+    new THREE.Vector3(-12.0, 5.8,  -62.0), // 0.28 - House 2: Wide coffered ceiling and columns (Z = -80)
+    new THREE.Vector3( -9.5, 4.8,  -66.0), // 0.34 - House 2: Reading tables & clerestory
+    new THREE.Vector3( -4.0, 8.0, -115.0), // 0.42 - Flight across landscape towards House 3
+    new THREE.Vector3( 13.0, 6.0, -142.0), // 0.48 - House 3: Terracotta cloister & limestone arches (Z = -160)
+    new THREE.Vector3( 10.5, 5.0, -146.0), // 0.54 - House 3: Sun-dappled courtyard perspective
+    new THREE.Vector3(  5.0, 8.2, -195.0), // 0.62 - Flight across landscape towards House 4
+    new THREE.Vector3(-13.5, 6.2, -222.0), // 0.68 - House 4: Atrium bridge & glass curtain facade (Z = -240)
+    new THREE.Vector3(-10.0, 5.2, -226.0), // 0.74 - House 4: Aerodynamic louvers & mezzanine
+    new THREE.Vector3( -3.0, 8.5, -275.0), // 0.82 - Flight across landscape towards House 5
+    new THREE.Vector3( 14.0, 5.8, -302.0), // 0.88 - House 5: Razor-thin canopy on brass columns (Z = -320)
+    new THREE.Vector3( 11.0, 5.0, -306.0), // 0.94 - House 5: Horizon meadow & minimal bench
+    new THREE.Vector3( 14.5, 8.5, -300.0)  // 1.00 - House 5: Heroic elevated horizon twilight view
   ];
   const cameraSpline = new THREE.CatmullRomCurve3(cameraSplinePoints, false, 'catmullrom', 0.5);
 
   const lookSplinePoints = [
-    new THREE.Vector3( 1.4, 0.5,    0.0), // House 1
-    new THREE.Vector3( 1.4, 0.6,    0.0), // House 1
-    new THREE.Vector3( 0.0, 0.8,  -22.0), // Transition
-    new THREE.Vector3( 0.0, 1.2,  -38.0), // House 2
-    new THREE.Vector3( 0.0, 0.8,  -58.0), // Transition
-    new THREE.Vector3( 0.0, 0.6,  -76.0), // House 3
-    new THREE.Vector3( 0.0, 1.2,  -96.0), // Transition
-    new THREE.Vector3( 0.0, 1.4, -114.0), // House 4
-    new THREE.Vector3( 0.0, 0.8, -135.0), // Transition
-    new THREE.Vector3( 0.0, 0.6, -152.0), // House 5
-    new THREE.Vector3( 0.0, 0.6, -152.0)  // House 5
+    new THREE.Vector3( 0.8, 0.6,    0.0), // House 1
+    new THREE.Vector3( 0.8, 0.8,    0.0), // House 1
+    new THREE.Vector3( 0.8, 0.8,    0.0), // House 1
+    new THREE.Vector3( 0.0, 1.0,  -80.0), // Transition
+    new THREE.Vector3( 0.0, 1.0,  -80.0), // House 2
+    new THREE.Vector3( 0.0, 1.2,  -80.0), // House 2
+    new THREE.Vector3( 0.0, 1.0, -160.0), // Transition
+    new THREE.Vector3( 0.0, 0.8, -160.0), // House 3
+    new THREE.Vector3( 0.0, 1.0, -160.0), // House 3
+    new THREE.Vector3( 0.0, 1.2, -240.0), // Transition
+    new THREE.Vector3( 0.0, 1.2, -240.0), // House 4
+    new THREE.Vector3( 0.0, 1.4, -240.0), // House 4
+    new THREE.Vector3( 0.0, 1.0, -320.0), // Transition
+    new THREE.Vector3( 0.0, 0.8, -320.0), // House 5
+    new THREE.Vector3( 0.0, 1.0, -320.0), // House 5
+    new THREE.Vector3( 0.0, 0.6, -320.0)  // House 5
   ];
   const lookSpline = new THREE.CatmullRomCurve3(lookSplinePoints, false, 'catmullrom', 0.5);
 
@@ -649,7 +660,7 @@
     const dt = Math.min((now - lastTime) / 1000, 0.08);
     lastTime = now;
 
-    const decay = prefersReduced ? 30.0 : 9.5;
+    const decay = prefersReduced ? 30.0 : 5.5;
     const lerpAlpha = 1 - Math.exp(-decay * dt);
 
     const prevP = currentProgress;
@@ -663,50 +674,57 @@
 
     const p = currentProgress;
 
+    // ── STRICT ISOLATION: NEVER RENDER ANOTHER HOUSE SIMULTANEOUSLY ──
+    house1.visible = (p < 0.20);
+    house2.visible = (p >= 0.18 && p < 0.40);
+    house3.visible = (p >= 0.38 && p < 0.60);
+    house4.visible = (p >= 0.58 && p < 0.80);
+    house5.visible = (p >= 0.78);
+
     // ── KINETIC ASSEMBLY OF EACH HOUSE AS CAMERA APPROACHES ──
 
-    // House 1 Assembly (p: 0.00 -> 0.18)
-    const h1_rise = smoothStep(0.00, 0.14, p);
+    // House 1 Assembly (p: 0.00 -> 0.12)
+    const h1_rise = smoothStep(0.00, 0.10, p);
     h1_plinth1.position.y = -2.2 + (h1_rise * 0.8);
     h1_wallLeft.position.x = -4.5 + (h1_rise * 2.4);
     h1_wallRight.position.x = 4.5 - (h1_rise * 2.4);
-    const h1_roofDesc = smoothStep(0.06, 0.18, p);
+    const h1_roofDesc = smoothStep(0.04, 0.12, p);
     h1_roof.position.y = 6.5 - (h1_roofDesc * 4.15);
 
-    // House 1 Sunbeam (peaks around p = 0.10)
+    // House 1 Sunbeam (peaks around p = 0.08)
     let b1 = 0;
-    if (p <= 0.22) {
-      b1 = Math.sin((p / 0.22) * Math.PI) * 0.32;
+    if (p <= 0.18) {
+      b1 = Math.sin((p / 0.18) * Math.PI) * 0.32;
     }
     beamMat.opacity = b1;
     particleMat.opacity = b1 * 2.5;
 
-    // House 2 Assembly (p: 0.18 -> 0.38)
-    const h2_grow = smoothStep(0.18, 0.32, p);
+    // House 2 Assembly (p: 0.20 -> 0.32)
+    const h2_grow = smoothStep(0.20, 0.30, p);
     h2_base.position.y = -2.4 + (h2_grow * 1.2);
     h2_cols.forEach(col => {
       col.scale.y = Math.max(0.01, h2_grow);
     });
-    const h2_ceil = smoothStep(0.24, 0.38, p);
+    const h2_ceil = smoothStep(0.24, 0.32, p);
     h2_ceilingSlab.position.y = 6.8 - (h2_ceil * 3.4);
 
-    // House 3 Assembly (p: 0.38 -> 0.58)
-    const h3_grow = smoothStep(0.38, 0.52, p);
+    // House 3 Assembly (p: 0.40 -> 0.52)
+    const h3_grow = smoothStep(0.40, 0.50, p);
     h3_floor.position.y = -2.5 + (h3_grow * 1.2);
     h3_portico.position.y = -3.0 + (h3_grow * 3.0);
 
-    // House 4 Assembly (p: 0.58 -> 0.78)
-    const h4_grow = smoothStep(0.58, 0.72, p);
+    // House 4 Assembly (p: 0.60 -> 0.72)
+    const h4_grow = smoothStep(0.60, 0.70, p);
     h4_bridge.position.x = -6.0 + (h4_grow * 6.0);
     h4_roof.position.y = 7.2 - (h4_grow * 3.4);
 
-    // House 5 Assembly (p: 0.78 -> 0.98)
-    const h5_grow = smoothStep(0.78, 0.94, p);
+    // House 5 Assembly (p: 0.80 -> 0.92)
+    const h5_grow = smoothStep(0.80, 0.90, p);
     h5_canopy.position.y = 6.8 - (h5_grow * 4.4);
 
     // Dynamic Sunlight sweeps across the terrain as camera moves down Z
-    sunLight.position.z = 10 - (p * 160);
-    sunLight.position.x = 14 + Math.sin(p * Math.PI * 4) * 6;
+    sunLight.position.z = 25 - (p * 370);
+    sunLight.position.x = 18 + Math.sin(p * Math.PI * 4) * 8;
 
     // ── CONTINUOUS MATHEMATICAL CAMERA FLIGHT ────────────────
     const camPos = cameraSpline.getPoint(p);
