@@ -4,25 +4,28 @@
    Zero 3-card boilerplate. Dynamic spatial tension.
 ══════════════════════════════════════════════════ */
 
-.section-work {
+.section-work,
+.section-materials {
   position: relative;
   background-color: var(--c-ground);
   padding: var(--sp-96) 0;
   border-bottom: 1px solid var(--c-divider-strong);
 }
 
-.work__inner {
+.work__inner,
+.materials__inner {
   width: 100%;
   max-width: var(--content-max);
   margin: 0 auto;
   padding: 0 var(--page-pad);
   display: flex;
   flex-direction: column;
-  gap: var(--sp-80);
+  gap: var(--sp-64);
 }
 
 /* ── Section Curation Header ─────────────────── */
-.work__intro {
+.work__intro,
+.materials__intro {
   display: grid;
   grid-template-columns: 280px 1fr;
   gap: var(--sp-48);
@@ -32,13 +35,15 @@
 }
 
 @media (max-width: 860px) {
-  .work__intro {
+  .work__intro,
+  .materials__intro {
     grid-template-columns: 1fr;
     gap: var(--sp-16);
   }
 }
 
-.work__eyebrow {
+.work__eyebrow,
+.materials__eyebrow {
   font-family: var(--f-mono);
   font-size: var(--fs-micro);
   letter-spacing: var(--ls-telemetry);
@@ -46,13 +51,15 @@
   color: var(--c-brass);
 }
 
-.work__header-content {
+.work__header-content,
+.materials__header-content {
   display: flex;
   flex-direction: column;
   gap: var(--sp-16);
 }
 
-.work__heading {
+.work__heading,
+.materials__heading {
   font-family: var(--f-display);
   font-size: var(--fs-d2);
   font-weight: 300;
@@ -61,7 +68,8 @@
   color: var(--c-umber);
 }
 
-.work__support {
+.work__support,
+.materials__support {
   font-family: var(--f-sans);
   font-size: var(--fs-body);
   color: var(--c-secondary);

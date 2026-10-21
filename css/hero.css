@@ -263,6 +263,89 @@
   border: 1px solid var(--c-divider-strong);
 }
 
+/* ── Monograph Action CTA on Spatial Plates ── */
+.spatial-plate__action {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sp-16);
+  margin-top: var(--sp-12);
+  pointer-events: auto;
+}
+
+.spatial-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-12);
+  padding: 12px 22px;
+  background: rgba(20, 19, 18, 0.90);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--c-brass);
+  color: var(--c-umber);
+  font-family: var(--f-sans);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wide);
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  transition: background-color var(--t-fast), border-color var(--t-fast), color var(--t-fast), transform var(--t-fast);
+}
+
+.spatial-cta-btn:hover {
+  background-color: var(--c-brass);
+  color: var(--c-ground);
+  border-color: var(--c-brass-light);
+  transform: translateY(-1px);
+}
+
+.spatial-cta-btn:focus-visible {
+  outline: 2px solid var(--c-brass-light);
+  outline-offset: 3px;
+}
+
+.spatial-cta-btn__text {
+  font-weight: var(--fw-medium);
+}
+
+.spatial-cta-btn__code {
+  font-family: var(--f-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-telemetry);
+  color: var(--c-brass);
+  opacity: 0.9;
+  transition: color var(--t-fast);
+}
+
+.spatial-cta-btn:hover .spatial-cta-btn__code {
+  color: var(--c-ground);
+}
+
+.spatial-cta-btn__arrow {
+  display: inline-block;
+  transition: transform var(--t-fast);
+}
+
+.spatial-cta-btn:hover .spatial-cta-btn__arrow {
+  transform: translateX(4px);
+}
+
+.spatial-cta-btn--compact {
+  padding: 8px 16px;
+  font-size: var(--fs-tiny);
+}
+
+.spatial-plate__folio-hint {
+  font-family: var(--f-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+
 /* ── Flight Telemetry HUD (Fixed on Viewport) ─── */
 .flight-hud {
   position: absolute;

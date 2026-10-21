@@ -9,7 +9,7 @@
 (function () {
   'use strict';
 
-  const track = document.getElementById('spatial-flight-track');
+  const track = document.getElementById('spatial-flight-track') || document.getElementById('work');
   const world = document.getElementById('spatial-world');
   const progressFill = document.getElementById('flight-progress-fill');
   const progressText = document.getElementById('flight-progress-text');
@@ -106,22 +106,25 @@
       const distFromCam = config.z + camZ;
 
       let opacity = 1;
-      let pointerEvents = 'auto';
+      let pointerEvents = 'none';
 
       if (distFromCam > 450) {
         // Swept past camera behind viewer
         opacity = 0;
-        pointerEvents = 'none';
       } else if (distFromCam > 50) {
         // Active exit dissolve as camera flies through
         opacity = Math.max(0, 1 - (distFromCam - 50) / 400);
       } else if (distFromCam < -2800) {
         // Distant in atmospheric fog
         opacity = 0;
-        pointerEvents = 'none';
       } else if (distFromCam < -1600) {
         // Atmospheric approach fade-in
         opacity = Math.max(0, 1 - (-distFromCam - 1600) / 1200);
+      }
+
+      // Plate is in prime interactive view when front & center
+      if (distFromCam >= -950 && distFromCam <= 120) {
+        pointerEvents = 'auto';
       }
 
       // Hardware 3D position
