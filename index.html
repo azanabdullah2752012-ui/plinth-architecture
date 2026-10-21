@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PLINTH — Architecture & Spatial Design, Lisbon</title>
-  <meta name="description" content="An independent architecture and spatial design studio founded in Lisbon, 2018. We build with intention.">
+  <title>PLINTH — Architecture &amp; Spatial Design, Lisbon</title>
+  <meta name="description" content="An independent architecture and spatial design studio founded in Lisbon, 2018. We build with permanence, material honesty, and quiet confidence.">
 
   <!-- Preconnect for font performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!--
-    Cormorant Garamond: display headings
+    Cormorant Garamond: monumental display headings
     DM Sans: body, UI, metadata
   -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
@@ -27,9 +27,9 @@
 <body>
 
   <!-- ════════════════════════════════════════════
-       MASTHEAD — editorial, not a corporate navbar
+       MASTHEAD — editorial monograph header
   ════════════════════════════════════════════ -->
-  <header class="masthead" id="masthead" role="banner">
+  <header class="masthead is-scrolled" id="masthead" role="banner">
     <div class="masthead__inner">
 
       <!-- Left: wordmark + discipline label -->
@@ -38,14 +38,14 @@
           PLINTH
         </a>
         <span class="masthead__descriptor" aria-hidden="true">
-          Architecture &amp; Spatial Design
+          Architecture &amp; Spatial Design · Lisboa
         </span>
       </div>
 
       <!-- Right: navigation -->
       <nav class="masthead__nav" aria-label="Primary navigation">
         <ul class="masthead__nav-list" role="list">
-          <li><a href="#work"         class="masthead__nav-link">Work</a></li>
+          <li><a href="#work"         class="masthead__nav-link" aria-current="page">Work</a></li>
           <li><a href="studio.html"   class="masthead__nav-link">Studio</a></li>
           <li><a href="contact.html"  class="masthead__nav-link">Contact</a></li>
         </ul>
@@ -81,12 +81,12 @@
   ════════════════════════════════════════════ -->
   <main id="main-content">
 
-    <!-- ── HERO ─────────────────────────────────
+    <!-- ── HERO: MONUMENTAL ARCHITECTURAL PLATE ─────
          Featured project: Casa Mouraria, Lisbon
     ─────────────────────────────────────────── -->
     <section class="hero" aria-label="Featured project: Casa Mouraria">
 
-      <!-- Full-bleed photograph -->
+      <!-- Full-bleed photograph with directional raking sunlight -->
       <div class="hero__media">
         <img
           src="casa-mouraria-hero.jpg"
@@ -96,30 +96,42 @@
           loading="eager"
           decoding="async"
         >
-        <!-- Subtle scrim: ensures headline legibility without killing the image -->
         <div class="hero__scrim" aria-hidden="true"></div>
       </div>
 
-      <!-- Headline and metadata — positioned over the image -->
+      <!-- Monumental headline and telemetry -->
       <div class="hero__content">
-        <div class="hero__text-block">
-          <h1 class="hero__headline">Buildings<br><em>that belong.</em></h1>
-          <div class="hero__meta" aria-label="Project details">
-            <span class="hero__meta-rule" aria-hidden="true"></span>
-            <dl class="hero__meta-list">
-              <div class="hero__meta-item">
-                <dt class="hero__meta-label">Project</dt>
-                <dd class="hero__meta-value">Casa Mouraria</dd>
-              </div>
-              <div class="hero__meta-item">
-                <dt class="hero__meta-label">Location</dt>
-                <dd class="hero__meta-value">Lisbon, Portugal</dd>
-              </div>
-              <div class="hero__meta-item">
-                <dt class="hero__meta-label">Year</dt>
-                <dd class="hero__meta-value">2025</dd>
-              </div>
-            </dl>
+        <div class="hero__telemetry" aria-hidden="true">
+          <span>[ PL-01 ]</span>
+          <span class="hero__telemetry-rule"></span>
+          <span>FEATURED RESIDENTIAL MONOGRAPH · LISBOA</span>
+        </div>
+
+        <h1 class="hero__headline">Buildings<br><em>that belong.</em></h1>
+
+        <div class="hero__meta" aria-label="Project details">
+          <div class="hero__meta-list">
+            <div class="hero__meta-item">
+              <span class="hero__meta-label">Commission</span>
+              <span class="hero__meta-value">Casa Mouraria</span>
+            </div>
+            <div class="hero__meta-item">
+              <span class="hero__meta-label">Location</span>
+              <span class="hero__meta-value">Lisbon, Portugal</span>
+            </div>
+            <div class="hero__meta-item">
+              <span class="hero__meta-label">Year</span>
+              <span class="hero__meta-value">2025</span>
+            </div>
+            <div class="hero__meta-item">
+              <span class="hero__meta-label">Materiality</span>
+              <span class="hero__meta-value">Cast Concrete · White Plaster · Travertine</span>
+            </div>
+          </div>
+
+          <div class="hero__coords" aria-hidden="true">
+            <span>COORD</span>
+            <span>38° 42′ 54″ N · 9° 08′ 10″ W</span>
           </div>
         </div>
       </div>
@@ -133,7 +145,7 @@
     </section>
 
 
-    <!-- ── SELECTED WORK (PROMPT 02) ────────────── -->
+    <!-- ── SELECTED WORK: EXHIBITION GALLERY ───────── -->
     <section class="section-work" id="work" aria-label="Selected Work">
       <div class="work__inner">
 
@@ -142,16 +154,20 @@
           <span class="work__eyebrow">SELECTED WORK</span>
           <h2 class="work__heading">Five projects. Different contexts. One approach.</h2>
           <p class="work__support">
-            Architecture shaped by quiet observation—responding to the permanence of place, material honesty, and the slow passage of light.
+            Architecture shaped by quiet observation—responding to the permanence of place, material honesty, and the slow passage of light across raw stone and concrete.
           </p>
         </header>
 
-        <!-- Project Grid: Strict Two-Column Portfolio Grid -->
+        <!-- Project Grid: Strict Two-Column Exhibition Grid -->
         <div class="projects-grid">
 
           <!-- 01: Casa Mouraria -->
           <article class="project-item" id="project-casa-mouraria">
             <a href="projects/casa-mouraria.html" class="project-item__link" aria-label="Casa Mouraria — Residential project in Mouraria, Lisbon">
+              <div class="project-item__telemetry" aria-hidden="true">
+                <span class="project-item__code">[ PL-01 ] · RESIDENTIAL</span>
+                <span class="project-item__coords">38° 42′ 54″ N · 9° 08′ 10″ W</span>
+              </div>
               <div class="project-item__visual">
                 <img
                   src="images/casa-mouraria.jpg"
@@ -177,6 +193,12 @@
                 <p class="project-item__description">
                   A minimalist private home shaped by white plaster, concrete and afternoon light.
                 </p>
+                <div class="project-item__taxonomy">
+                  <div class="project-item__materials">
+                    <span class="project-item__materials-label">Materiality:</span>
+                    White lime plaster · In-situ concrete · Travertine
+                  </div>
+                </div>
               </div>
             </a>
           </article>
@@ -184,6 +206,10 @@
           <!-- 02: Biblioteca Central -->
           <article class="project-item" id="project-biblioteca-central">
             <a href="projects/biblioteca-central.html" class="project-item__link" aria-label="Biblioteca Central — Cultural project in Porto">
+              <div class="project-item__telemetry" aria-hidden="true">
+                <span class="project-item__code">[ PL-02 ] · CULTURAL</span>
+                <span class="project-item__coords">41° 09′ 00″ N · 8° 37′ 00″ W</span>
+              </div>
               <div class="project-item__visual">
                 <img
                   src="images/biblioteca-central.jpg"
@@ -209,6 +235,12 @@
                 <p class="project-item__description">
                   A brutalist public library defined by coffered concrete, dark timber and clerestory light.
                 </p>
+                <div class="project-item__taxonomy">
+                  <div class="project-item__materials">
+                    <span class="project-item__materials-label">Materiality:</span>
+                    Coffered in-situ concrete · Oiled walnut · Clerestory glazing
+                  </div>
+                </div>
               </div>
             </a>
           </article>
@@ -216,6 +248,10 @@
           <!-- 03: Pátio das Flores -->
           <article class="project-item" id="project-patio-flores">
             <a href="projects/patio-flores.html" class="project-item__link" aria-label="Pátio das Flores — Heritage project in Évora">
+              <div class="project-item__telemetry" aria-hidden="true">
+                <span class="project-item__code">[ PL-03 ] · HERITAGE</span>
+                <span class="project-item__coords">38° 34′ 00″ N · 7° 54′ 00″ W</span>
+              </div>
               <div class="project-item__visual">
                 <img
                   src="images/patio-flores.jpg"
@@ -241,6 +277,12 @@
                 <p class="project-item__description">
                   A restored stone courtyard featuring arched openings, terracotta tiles and a fig tree.
                 </p>
+                <div class="project-item__taxonomy">
+                  <div class="project-item__materials">
+                    <span class="project-item__materials-label">Materiality:</span>
+                    Restored limestone masonry · Hexagonal terracotta · Aged lime wash
+                  </div>
+                </div>
               </div>
             </a>
           </article>
@@ -248,6 +290,10 @@
           <!-- 04: Edifício Vento -->
           <article class="project-item" id="project-edificio-vento">
             <a href="projects/edificio-vento.html" class="project-item__link" aria-label="Edifício Vento — Commercial project in Cascais">
+              <div class="project-item__telemetry" aria-hidden="true">
+                <span class="project-item__code">[ PL-04 ] · COMMERCIAL</span>
+                <span class="project-item__coords">38° 41′ 50″ N · 9° 25′ 15″ W</span>
+              </div>
               <div class="project-item__visual">
                 <img
                   src="images/edificio-vento.jpg"
@@ -273,13 +319,23 @@
                 <p class="project-item__description">
                   An office building organised around a double-height atrium, mezzanine walkway and skylight.
                 </p>
+                <div class="project-item__taxonomy">
+                  <div class="project-item__materials">
+                    <span class="project-item__materials-label">Materiality:</span>
+                    Pale limestone panels · Blackened steel · Pale oak timber
+                  </div>
+                </div>
               </div>
             </a>
           </article>
 
-          <!-- 05: Pavilhão Sereno (Left column of final row, right column empty) -->
+          <!-- 05: Pavilhão Sereno -->
           <article class="project-item" id="project-pavilhao-sereno">
             <a href="projects/pavilhao-sereno.html" class="project-item__link" aria-label="Pavilhão Sereno — Installation project in Alentejo">
+              <div class="project-item__telemetry" aria-hidden="true">
+                <span class="project-item__code">[ PL-05 ] · INSTALLATION</span>
+                <span class="project-item__coords">38° 01′ 30″ N · 7° 52′ 40″ W</span>
+              </div>
               <div class="project-item__visual">
                 <img
                   src="images/pavilhao-sereno.jpg"
@@ -305,6 +361,12 @@
                 <p class="project-item__description">
                   A minimalist outdoor concrete pavilion set against open countryside and golden wheat fields.
                 </p>
+                <div class="project-item__taxonomy">
+                  <div class="project-item__materials">
+                    <span class="project-item__materials-label">Materiality:</span>
+                    Post-tensioned concrete slab · Cylindrical steel columns · Open meadow
+                  </div>
+                </div>
               </div>
             </a>
           </article>
@@ -497,7 +559,6 @@
     </section>
 
   </main>
-
 
   <script src="js/masthead.js"></script>
 </body>

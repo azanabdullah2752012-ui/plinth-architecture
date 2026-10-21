@@ -1,9 +1,7 @@
 /* ══════════════════════════════════════════════════
    PLINTH — Masthead
-   Editorial header: wordmark + navigation.
-   Fixed at top, 60px height.
-   Transparent over hero → picks up background
-   colour once user scrolls past the hero.
+   Architectural Monograph Navigation
+   Fixed top, transparent over hero, obsidian glass when scrolled.
 ══════════════════════════════════════════════════ */
 
 .masthead {
@@ -13,24 +11,19 @@
   right: 0;
   z-index: 200;
   height: var(--masthead-h);
-
-  /* Starts transparent over the hero image */
   background-color: transparent;
   transition:
     background-color var(--t-slow) var(--ease-standard),
     border-color     var(--t-slow) var(--ease-standard);
-
-  /* No bottom border until scrolled */
   border-bottom: 1px solid transparent;
 }
 
-/* ── Scrolled state (added via JS) ───────────── */
+/* ── Scrolled state (Obsidian Frosted Glass) ──── */
 .masthead.is-scrolled {
-  background-color: rgba(242, 235, 221, 0.94);
+  background-color: rgba(12, 11, 10, 0.92);
   border-bottom-color: var(--c-divider);
-  /* Subtle frosted effect where supported */
-  backdrop-filter: blur(10px) saturate(1.4);
-  -webkit-backdrop-filter: blur(10px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
 }
 
 /* ── Inner layout ─────────────────────────────── */
@@ -48,23 +41,22 @@
 /* ── Brand block ──────────────────────────────── */
 .masthead__brand {
   display: flex;
-  flex-direction: column;
-  gap: 1px;
+  align-items: baseline;
+  gap: var(--sp-16);
 }
 
 .masthead__wordmark {
   font-family: var(--f-display);
-  font-size: 1.375rem;        /* 22px */
+  font-size: 1.5rem;
   font-weight: var(--fw-regular);
   letter-spacing: var(--ls-widest);
-  color: var(--c-cream);      /* white over hero image */
+  color: var(--c-umber);
   line-height: 1;
-  transition: color var(--t-slow) var(--ease-standard);
+  transition: color var(--t-base) var(--ease-standard);
 }
 
-/* Once scrolled, wordmark switches to dark */
-.masthead.is-scrolled .masthead__wordmark {
-  color: var(--c-umber);
+.masthead__wordmark:hover {
+  color: var(--c-brass);
 }
 
 .masthead__descriptor {
@@ -73,19 +65,13 @@
   font-weight: var(--fw-regular);
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
-  color: rgba(242, 235, 221, 0.55);
+  color: var(--c-muted);
   line-height: 1;
-  transition: color var(--t-slow) var(--ease-standard);
-  /* Hidden on small screens */
   display: none;
 }
 
 @media (min-width: 640px) {
-  .masthead__descriptor { display: block; }
-}
-
-.masthead.is-scrolled .masthead__descriptor {
-  color: var(--c-muted);
+  .masthead__descriptor { display: inline-block; }
 }
 
 /* ── Navigation ───────────────────────────────── */
@@ -103,16 +89,15 @@
 .masthead__nav-link {
   font-family: var(--f-sans);
   font-size: var(--fs-tiny);
-  font-weight: var(--fw-regular);
+  font-weight: var(--fw-medium);
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
-  color: rgba(242, 235, 221, 0.80);
-  transition: color var(--t-slow) var(--ease-standard);
+  color: var(--c-secondary);
+  transition: color var(--t-base) var(--ease-standard);
   position: relative;
-  padding-bottom: 2px;
+  padding: var(--sp-4) 0;
 }
 
-/* Underline indicator on hover */
 .masthead__nav-link::after {
   content: '';
   position: absolute;
@@ -120,76 +105,77 @@
   bottom: 0;
   width: 0;
   height: 1px;
-  background: currentColor;
+  background-color: var(--c-brass);
   transition: width var(--t-base) var(--ease-out);
 }
 
 .masthead__nav-link:hover {
-  color: rgba(242, 235, 221, 1);
-}
-
-.masthead__nav-link:hover::after {
-  width: 100%;
-}
-
-/* Scrolled: links go dark */
-.masthead.is-scrolled .masthead__nav-link {
-  color: var(--c-secondary);
-}
-
-.masthead.is-scrolled .masthead__nav-link:hover {
   color: var(--c-umber);
 }
 
-/* ── Mobile menu button ───────────────────────── */
+.masthead__nav-link:hover::after,
+.masthead__nav-link[aria-current="page"]::after {
+  width: 100%;
+}
+
+.masthead__nav-link[aria-current="page"] {
+  color: var(--c-umber);
+}
+
+/* ── Mobile menu toggle button ────────────────── */
 .masthead__menu-btn {
-  display: none;   /* shown via media query */
-  width: 36px;
-  height: 36px;
+  display: none;
   align-items: center;
   justify-content: center;
-  position: relative;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--c-umber);
 }
 
-.masthead__menu-icon,
-.masthead__menu-icon::before,
-.masthead__menu-icon::after {
+@media (max-width: 767px) {
+  .masthead__nav-list { display: none; }
+  .masthead__menu-btn { display: flex; }
+}
+
+/* Hamburger icon: two horizontal lines */
+.masthead__menu-icon {
+  position: relative;
   display: block;
   width: 22px;
-  height: 1px;
-  background: var(--c-cream);
+  height: 1.5px;
+  background-color: currentColor;
+  transition: background-color var(--t-fast);
+}
+
+.masthead__menu-icon::before,
+.masthead__menu-icon::after {
+  content: '';
   position: absolute;
-  transition:
-    transform  var(--t-base) var(--ease-out),
-    opacity    var(--t-base) var(--ease-out),
-    background var(--t-slow) var(--ease-standard);
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background-color: currentColor;
+  transition: transform var(--t-base) var(--ease-out);
 }
 
-.masthead__menu-icon::before { content: ''; top: -6px; }
-.masthead__menu-icon::after  { content: ''; top:  6px; }
+.masthead__menu-icon::before { top: -6px; }
+.masthead__menu-icon::after  { bottom: -6px; }
 
-/* Scrolled state — icon goes dark */
-.masthead.is-scrolled .masthead__menu-icon,
-.masthead.is-scrolled .masthead__menu-icon::before,
-.masthead.is-scrolled .masthead__menu-icon::after {
-  background: var(--c-umber);
-}
-
-/* Open state — becomes an X */
+/* Morph to X when open */
 .masthead__menu-btn[aria-expanded="true"] .masthead__menu-icon {
-  background: transparent;
+  background-color: transparent;
 }
+
 .masthead__menu-btn[aria-expanded="true"] .masthead__menu-icon::before {
   transform: translateY(6px) rotate(45deg);
 }
+
 .masthead__menu-btn[aria-expanded="true"] .masthead__menu-icon::after {
   transform: translateY(-6px) rotate(-45deg);
-}
-
-/* ── Responsive: hide links, show burger ─────── */
-@media (max-width: 768px) {
-  .masthead__nav-list  { display: none; }
-  .masthead__menu-btn  { display: flex; }
 }
 
 /* ── Mobile menu drawer ───────────────────────── */
@@ -199,14 +185,14 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--c-cream);
-  z-index: 199;
-  padding: var(--sp-48) var(--page-pad) var(--sp-64);
+  background-color: var(--c-ground);
+  border-top: 1px solid var(--c-divider);
+  padding: var(--sp-64) var(--page-pad) var(--sp-48);
   display: flex;
   flex-direction: column;
-  gap: var(--sp-40);
-  /* Animate open */
-  animation: drawer-in var(--t-slow) var(--ease-out) both;
+  justify-content: space-between;
+  z-index: 199;
+  animation: drawer-in var(--t-slow) var(--ease-out);
 }
 
 .masthead__mobile-menu[hidden] { display: none; }
@@ -220,26 +206,32 @@
   .masthead__mobile-menu { animation: none; }
 }
 
+.masthead__mobile-menu ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-32);
+}
+
 .mobile-link {
   font-family: var(--f-display);
-  font-size: clamp(2rem, 8vw, 3.5rem);
+  font-size: clamp(2.25rem, 8vw, 3.5rem);
   font-weight: var(--fw-light);
   letter-spacing: var(--ls-tight);
   color: var(--c-umber);
-  line-height: 1.1;
-  display: block;
+  display: inline-block;
   transition: color var(--t-fast);
 }
 
-.mobile-link:hover { color: var(--c-brass); }
+.mobile-link:hover {
+  color: var(--c-brass);
+}
 
 .mobile-meta {
   font-family: var(--f-sans);
-  font-size: var(--fs-tiny);
-  letter-spacing: var(--ls-wider);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-widest);
   text-transform: uppercase;
   color: var(--c-muted);
   border-top: 1px solid var(--c-divider);
   padding-top: var(--sp-24);
-  margin-top: auto;
 }

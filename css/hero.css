@@ -1,134 +1,134 @@
 /* ══════════════════════════════════════════════════
    PLINTH — Hero
-   Full-bleed architectural photograph with headline
-   and metadata. Occupies ~88vh below the masthead.
+   Monumental Dark Architectural Plate
+   Featured Project: Casa Mouraria, Lisbon
+   Tectonic scale, raking sunlight, and razor-thin telemetry.
 ══════════════════════════════════════════════════ */
 
-/* ── Section shell ────────────────────────────── */
+/* ── Section Shell ────────────────────────────── */
 .hero {
   position: relative;
-  /* 88% of viewport height, minus the masthead */
-  height: calc(88svh - var(--masthead-h));
-  /* Fallback for browsers without svh */
-  height: calc(88vh - var(--masthead-h));
-  min-height: 560px;
+  min-height: calc(90svh - var(--masthead-h));
+  min-height: calc(90vh - var(--masthead-h));
   margin-top: var(--masthead-h);
   overflow: hidden;
-  /* Scroll reveal for content inside */
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
+  background-color: var(--c-ground);
 }
 
-/* ── Full-bleed photograph ────────────────────── */
+/* ── Full-Bleed Architectural Photography ─────── */
 .hero__media {
   position: absolute;
   inset: 0;
+  z-index: 1;
 }
 
 .hero__photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Anchor photo to mid-left — preserves the architectural interior */
   object-position: 40% center;
-  /* Subtle entrance — only if motion is acceptable */
-  animation: photo-drift 18s ease-in-out infinite alternate;
+  display: block;
+  /* Stillness & Permanence: Zero hover zoom or drift */
+  transform: none;
+  filter: contrast(1.05) brightness(0.92);
 }
 
-@keyframes photo-drift {
-  from { transform: scale(1.00); }
-  to   { transform: scale(1.04); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero__photo { animation: none; }
-}
-
-/* ── Scrim — bottom-weighted, keeps image readable ─
-   Gradient runs from transparent at top to a
-   moderate dark at bottom-left where text sits.
-   Not a heavy overlay — the image must still breathe.
-──────────────────────────────────────────────── */
+/* ── Directional Architectural Light Scrim ─────── */
+/* Raking shadow falloff: preserves bright sunlight shaft while grounding copy */
 .hero__scrim {
   position: absolute;
   inset: 0;
   background:
-    /* Bottom-left darkening for text legibility */
+    /* Deep directional shadow anchor for lower left typography */
     linear-gradient(
-      155deg,
-      transparent           35%,
-      rgba(20, 13, 7, 0.55) 100%
+      175deg,
+      transparent 25%,
+      rgba(12, 11, 10, 0.45) 55%,
+      rgba(12, 11, 10, 0.90) 100%
     ),
-    /* Soft top vignette for the masthead area */
+    /* Soft masthead falloff */
     linear-gradient(
       to bottom,
-      rgba(20, 13, 7, 0.28) 0%,
-      transparent           22%
+      rgba(12, 11, 10, 0.70) 0%,
+      transparent 18%
     );
   pointer-events: none;
+  z-index: 2;
 }
 
-/* ── Content: headline + metadata ─────────────── */
+/* ── Hero Content Layer ───────────────────────── */
 .hero__content {
-  position: relative;   /* above the scrim */
-  flex: 1;
-  display: flex;
-  align-items: flex-end;
-  padding: 0 var(--page-pad) var(--sp-64);
-  max-width: var(--content-max);
+  position: relative;
+  z-index: 3;
   width: 100%;
+  max-width: var(--content-max);
   margin: 0 auto;
-}
-
-.hero__text-block {
+  padding: 0 var(--page-pad) var(--sp-64);
   display: flex;
   flex-direction: column;
   gap: var(--sp-32);
-  /* Limit text block to left portion of viewport */
-  max-width: min(620px, 72%);
 }
 
-/* ── Headline ─────────────────────────────────── */
+/* ── Technical Monograph Telemetry (Micro Scale) ─ */
+.hero__telemetry {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-12);
+  font-family: var(--f-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-telemetry);
+  text-transform: uppercase;
+  color: var(--c-brass);
+}
+
+.hero__telemetry-rule {
+  width: 32px;
+  height: 1px;
+  background-color: var(--c-brass);
+}
+
+/* ── Monumental Headline (Macro Scale) ────────── */
 .hero__headline {
   font-family: var(--f-display);
   font-size: var(--fs-d1);
   font-weight: var(--fw-light);
-  line-height: var(--lh-tight);
+  line-height: var(--lh-monumental);
   letter-spacing: var(--ls-tight);
-  color: #FAFAF8;             /* near-white, warmer than pure white */
-  /* Text shadow: subtle, directional — not a blurry halo */
-  text-shadow:
-    0 1px 0   rgba(0,0,0,0.15),
-    0 2px 16px rgba(0,0,0,0.20);
+  color: var(--c-umber);
+  max-width: 960px;
+  margin: 0;
+  text-shadow: 0 4px 32px rgba(0, 0, 0, 0.6);
 }
 
 .hero__headline em {
   font-style: italic;
   font-weight: var(--fw-light);
-  /* Slight warmth to the italic line */
-  color: #F5EEE2;
+  color: var(--c-brass-light);
 }
 
-/* ── Metadata ─────────────────────────────────── */
+/* ── Tectonic Metadata Bar ────────────────────── */
 .hero__meta {
   display: flex;
-  flex-direction: column;
-  gap: var(--sp-16);
-}
-
-/* Thin brass rule above metadata */
-.hero__meta-rule {
-  display: block;
-  width: 32px;
-  height: 1px;
-  background: var(--c-brass-light);
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-20) var(--sp-32);
+  padding-top: var(--sp-24);
+  border-top: 1px solid var(--c-divider-strong);
+  font-family: var(--f-sans);
+  font-size: var(--fs-tiny);
+  letter-spacing: var(--ls-wide);
+  color: var(--c-secondary);
 }
 
 .hero__meta-list {
   display: flex;
-  flex-direction: row;
-  gap: var(--sp-32);
   flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--sp-24) var(--sp-32);
 }
 
 .hero__meta-item {
@@ -138,33 +138,40 @@
 }
 
 .hero__meta-label {
-  font-family: var(--f-sans);
+  font-family: var(--f-mono);
   font-size: var(--fs-micro);
-  font-weight: var(--fw-regular);
-  letter-spacing: var(--ls-widest);
+  letter-spacing: var(--ls-wider);
   text-transform: uppercase;
-  color: rgba(200, 188, 168, 0.75);
+  color: var(--c-muted);
 }
 
 .hero__meta-value {
-  font-family: var(--f-sans);
-  font-size: var(--fs-small);
-  font-weight: var(--fw-light);
-  letter-spacing: var(--ls-wide);
-  color: rgba(242, 235, 221, 0.90);
+  color: var(--c-umber);
+  font-weight: var(--fw-regular);
+}
+
+/* ── Coordinate Telemetry Box ─────────────────── */
+.hero__coords {
+  font-family: var(--f-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-wider);
+  color: var(--c-brass);
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-8);
 }
 
 /* ── Scroll cue ───────────────────────────────── */
 .hero__scroll-cue {
   position: absolute;
-  bottom: 0;
+  bottom: var(--sp-48);
   right: var(--page-pad);
+  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--sp-8);
-  padding-bottom: var(--sp-40);
-  /* Writing mode: rotated 90° reading "Scroll" vertically */
   writing-mode: vertical-rl;
 }
 
@@ -173,14 +180,14 @@
   height: 48px;
   background: linear-gradient(
     to bottom,
-    rgba(242, 235, 221, 0.10),
-    rgba(242, 235, 221, 0.55)
+    var(--c-brass),
+    transparent
   );
-  animation: scroll-pulse 2.4s ease-in-out infinite;
+  animation: scroll-pulse 2.5s ease-in-out infinite;
 }
 
 @keyframes scroll-pulse {
-  0%, 100% { opacity: 0.4; transform: scaleY(0.85); }
+  0%, 100% { opacity: 0.3; transform: scaleY(0.85); }
   50%       { opacity: 1;   transform: scaleY(1);    }
 }
 
@@ -189,64 +196,47 @@
 }
 
 .hero__scroll-label {
-  font-family: var(--f-sans);
+  font-family: var(--f-mono);
   font-size: var(--fs-micro);
-  font-weight: var(--fw-regular);
   letter-spacing: var(--ls-widest);
   text-transform: uppercase;
-  color: rgba(242, 235, 221, 0.40);
-  /* Rotate text back so it reads naturally in vertical-rl context */
+  color: var(--c-muted);
   transform: rotate(180deg);
 }
 
 /* ── Responsive adjustments ───────────────────── */
 @media (max-width: 768px) {
   .hero {
-    height: calc(88svh - var(--masthead-h));
-    height: calc(88vh - var(--masthead-h));
-    min-height: 500px;
+    min-height: calc(88svh - var(--masthead-h));
+    min-height: calc(88vh - var(--masthead-h));
   }
 
   .hero__content {
-    padding-bottom: var(--sp-48);
-    align-items: flex-end;
-  }
-
-  .hero__text-block {
-    max-width: 100%;
-    gap: var(--sp-24);
+    padding-bottom: var(--sp-40);
+    gap: var(--sp-20);
   }
 
   .hero__scroll-cue {
-    /* Hide on mobile — not needed */
     display: none;
   }
 
-  .hero__meta-list {
-    gap: var(--sp-24);
+  .hero__meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-16);
   }
 }
 
-@media (max-width: 480px) {
-  .hero__content {
-    padding-bottom: var(--sp-40);
-  }
-}
-
-/* ── Hero entrance animation ─────────────────── */
-/*
-  Content is visible by default (Law 1 compliance).
-  Gentle subtle elevation on load without opacity gating.
-*/
+/* ── Entrance Animation (Law 1: Visible by default) ─ */
 .hero__content {
   opacity: 1;
-  animation: content-rise 1.1s var(--ease-out) 0.15s;
+  animation: hero-settle 0.9s var(--ease-out) 0.1s;
 }
 
-@keyframes content-rise {
+@keyframes hero-settle {
   from {
-    opacity: 0.85;
-    transform: translateY(8px);
+    opacity: 0.88;
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -257,7 +247,6 @@
 @media (prefers-reduced-motion: reduce) {
   .hero__content {
     animation: none;
-    opacity: 1;
     transform: none;
   }
 }

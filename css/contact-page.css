@@ -214,7 +214,7 @@
 .form-textarea:focus {
   outline: none;
   border-color: var(--c-brass);
-  background-color: rgba(233, 224, 207, 0.4);
+  background-color: var(--c-surface-raised);
 }
 
 .form-input::placeholder,
@@ -309,7 +309,7 @@
 .form-notice {
   padding: var(--sp-16) var(--sp-20);
   border: 1px solid var(--c-divider);
-  background-color: rgba(233, 224, 207, 0.5);
+  background-color: var(--c-surface);
   font-family: var(--f-sans);
   font-size: var(--fs-small);
   line-height: 1.6;
@@ -339,13 +339,13 @@
 }
 
 .form-notice--success {
-  border-left: 3px solid #4A7A55;
-  color: #2F5238;
+  border-left: 3px solid #68A678;
+  color: #D4ECD8;
 }
 
 .form-notice--error {
-  border-left: 3px solid #A34838;
-  color: #7A3326;
+  border-left: 3px solid #D96B5B;
+  color: #F7D5D0;
 }
 
 /* ── 3. Closing Composition ───────────────────── */

@@ -1,57 +1,65 @@
 /* ══════════════════════════════════════════════════
    PLINTH — Design Tokens
-   All colour, type, spacing and layout variables
-   live here. Nothing else imports raw values.
+   Monumental Dark Atmospheric Architecture System
+   Raw concrete, volcanic basalt, brushed aged brass.
+   Inspired by Peter Zumthor, Tadao Ando & Álvaro Siza.
 ══════════════════════════════════════════════════ */
 
 :root {
 
-  /* ── Colour ───────────────────────────────── */
-  --c-cream:        #F2EBDD;   /* page background          */
-  --c-cream-dark:   #E9E0CF;   /* subtle surface variant   */
-  --c-divider:      #D9D0C0;   /* thin rules & borders     */
-  --c-umber:        #30271F;   /* primary text             */
-  --c-umber-mid:    #4A3C30;   /* headings / strong text   */
-  --c-secondary:    #63574A;   /* secondary / body text    */
-  --c-muted:        #8C7D6E;   /* labels, captions         */
-  --c-brass:        #98764B;   /* accent                   */
-  --c-brass-light:  #B8966B;   /* hover / lighter accent   */
-  --c-overlay:      rgba(30, 20, 12, 0.38); /* hero image scrim */
+  /* ── Colour Palette: Dark Mineral & Raw Concrete ── */
+  --c-ground:         #0C0B0A;   /* deep basalt / volcanic charcoal ground */
+  --c-cream:          #0C0B0A;   /* unified page ground                    */
+  --c-surface:        #141312;   /* tectonic stone surface / plate backing */
+  --c-cream-dark:     #171615;   /* elevated surface variant               */
+  --c-surface-raised: #1C1B19;   /* floating card / interactive surface   */
+  --c-divider:        rgba(243, 239, 230, 0.12); /* hairline rules         */
+  --c-divider-strong: rgba(243, 239, 230, 0.24); /* structural frames      */
+  --c-umber:          #F3EFE6;   /* primary text: warm limestone ivory     */
+  --c-umber-mid:      #E5DFD3;   /* headings / strong text                 */
+  --c-secondary:      #ADA59A;   /* secondary / body text                  */
+  --c-muted:          #787065;   /* technical metadata, coordinates        */
+  --c-brass:          #C4A675;   /* weathered architectural brass accent   */
+  --c-brass-light:    #DEC396;   /* illuminated brass highlight            */
+  --c-overlay:        rgba(12, 11, 10, 0.65); /* directional scrim         */
 
-  /* ── Typography ───────────────────────────── */
+  /* ── Typography Pairing ───────────────────────── */
   --f-display: 'Cormorant Garamond', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
   --f-sans:    'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --f-mono:    'JetBrains Mono', 'SF Mono', 'Menlo', Consolas, monospace;
 
-  /* Type scale — fluid using clamp() */
-  --fs-micro:  0.625rem;   /* 10px */
-  --fs-tiny:   0.6875rem;  /* 11px */
-  --fs-small:  0.8125rem;  /* 13px */
-  --fs-body:   1rem;       /* 16px */
-  --fs-lead:   1.125rem;   /* 18px */
+  /* ── Type Scale: Dramatic Monumental Contrast ─── */
+  --fs-micro:  0.6875rem; /* 11px - razor-thin telemetry */
+  --fs-tiny:   0.75rem;   /* 12px - metadata labels     */
+  --fs-small:  0.875rem;  /* 14px - captions & UI       */
+  --fs-body:   1.0625rem; /* 17px - monograph narrative */
+  --fs-lead:   1.25rem;   /* 20px - editorial lead      */
 
-  /* Display sizes — fluid */
-  --fs-d1: clamp(3.25rem, 7vw, 6.5rem);   /* hero H1 */
-  --fs-d2: clamp(2.25rem, 4.5vw, 4rem);   /* section H2 */
-  --fs-d3: clamp(1.5rem,  3vw,  2.5rem);  /* card title */
+  /* Monumental Display Headings (Carved in stone) */
+  --fs-d1: clamp(3.75rem, 8.5vw, 7.5rem);   /* Hero H1 */
+  --fs-d2: clamp(2.5rem,  5.5vw, 4.75rem);  /* Section H2 */
+  --fs-d3: clamp(1.75rem, 3.2vw, 2.75rem);  /* Project titles */
 
-  /* Letter spacing */
-  --ls-tight:  -0.02em;
-  --ls-normal:  0;
-  --ls-wide:    0.08em;
-  --ls-wider:   0.14em;
-  --ls-widest:  0.22em;
+  /* Letter Spacing */
+  --ls-tight:       -0.03em;
+  --ls-normal:       0;
+  --ls-wide:         0.08em;
+  --ls-wider:        0.16em;
+  --ls-widest:       0.24em;
+  --ls-telemetry:    0.28em;
 
-  /* Line heights */
-  --lh-tight:   1.04;
-  --lh-heading: 1.12;
-  --lh-body:    1.70;
+  /* Line Heights */
+  --lh-monumental: 0.98;
+  --lh-tight:      1.08;
+  --lh-heading:    1.16;
+  --lh-body:       1.75;
 
-  /* Font weights */
+  /* Font Weights */
   --fw-light:   300;
   --fw-regular: 400;
   --fw-medium:  500;
 
-  /* ── Spacing ───────────────────────────────── */
+  /* ── Spacing Rhythm ────────────────────────────── */
   --sp-2:   0.125rem;
   --sp-4:   0.25rem;
   --sp-8:   0.5rem;
@@ -66,24 +74,25 @@
   --sp-80:  5rem;
   --sp-96:  6rem;
   --sp-128: 8rem;
+  --sp-160: 10rem;
 
-  /* Fluid page padding (horizontal) */
+  /* Fluid Page Padding */
   --page-pad: clamp(1.5rem, 5vw, 5rem);
 
-  /* Max content width */
-  --content-max: 1360px;
+  /* Max Content Width */
+  --content-max: 1380px;
 
-  /* ── Layout ────────────────────────────────── */
-  --masthead-h: 60px;
+  /* Layout */
+  --masthead-h: 68px;
 
-  /* ── Easing ────────────────────────────────── */
-  --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1);
+  /* ── Easing (Mathematical & Organic) ──────────── */
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
   --ease-standard: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-  /* ── Transitions ───────────────────────────── */
-  --t-fast:   150ms;
-  --t-base:   250ms;
-  --t-slow:   450ms;
-  --t-crawl:  700ms;
+  /* Transitions */
+  --t-fast:  160ms;
+  --t-base:  280ms;
+  --t-slow:  480ms;
+  --t-crawl: 800ms;
 }
