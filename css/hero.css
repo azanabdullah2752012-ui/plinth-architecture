@@ -1,79 +1,67 @@
 /* ══════════════════════════════════════════════════
    PLINTH — Hero
-   Monumental Dark Architectural Plate
-   Featured Project: Casa Mouraria, Lisbon
-   Tectonic scale, raking sunlight, and razor-thin telemetry.
+   Monumental Asymmetric Composition
+   Left: Editorial Monograph & Spatial Thesis
+   Right: Signature Focal Artifact (Interactive Solar Axonometric Engine)
 ══════════════════════════════════════════════════ */
 
-/* ── Section Shell ────────────────────────────── */
 .hero {
   position: relative;
-  min-height: calc(90svh - var(--masthead-h));
-  min-height: calc(90vh - var(--masthead-h));
+  min-height: calc(100vh - var(--masthead-h));
   margin-top: var(--masthead-h);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
   background-color: var(--c-ground);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--c-divider-strong);
+  overflow: hidden;
 }
 
-/* ── Full-Bleed Architectural Photography ─────── */
-.hero__media {
+/* Atmospheric subtle directional light beam */
+.hero::before {
+  content: "";
   position: absolute;
-  inset: 0;
-  z-index: 1;
-}
-
-.hero__photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 40% center;
-  display: block;
-  /* Stillness & Permanence: Zero hover zoom or drift */
-  transform: none;
-  filter: contrast(1.05) brightness(0.92);
-}
-
-/* ── Directional Architectural Light Scrim ─────── */
-/* Raking shadow falloff: preserves bright sunlight shaft while grounding copy */
-.hero__scrim {
-  position: absolute;
-  inset: 0;
-  background:
-    /* Deep directional shadow anchor for lower left typography */
-    linear-gradient(
-      175deg,
-      transparent 25%,
-      rgba(12, 11, 10, 0.45) 55%,
-      rgba(12, 11, 10, 0.90) 100%
-    ),
-    /* Soft masthead falloff */
-    linear-gradient(
-      to bottom,
-      rgba(12, 11, 10, 0.70) 0%,
-      transparent 18%
-    );
+  top: -20%;
+  left: 20%;
+  width: 60%;
+  height: 140%;
+  background: radial-gradient(
+    ellipse at 40% 30%,
+    rgba(197, 168, 128, 0.04) 0%,
+    transparent 65%
+  );
   pointer-events: none;
-  z-index: 2;
+  z-index: 0;
 }
 
-/* ── Hero Content Layer ───────────────────────── */
-.hero__content {
+.hero__inner {
   position: relative;
-  z-index: 3;
+  z-index: 1;
   width: 100%;
   max-width: var(--content-max);
   margin: 0 auto;
-  padding: 0 var(--page-pad) var(--sp-64);
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-32);
+  padding: var(--sp-48) var(--page-pad);
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  gap: var(--sp-64);
+  align-items: center;
 }
 
-/* ── Technical Monograph Telemetry (Micro Scale) ─ */
-.hero__telemetry {
+@media (max-width: 1080px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: var(--sp-48);
+    padding: var(--sp-32) var(--page-pad);
+  }
+}
+
+/* ── Left Column: Editorial Monograph ─────────── */
+.hero__monograph {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-24);
+}
+
+.hero__telemetry-bar {
   display: flex;
   align-items: center;
   gap: var(--sp-12);
@@ -84,169 +72,339 @@
   color: var(--c-brass);
 }
 
-.hero__telemetry-rule {
-  width: 32px;
-  height: 1px;
-  background-color: var(--c-brass);
-}
-
-/* ── Monumental Headline (Macro Scale) ────────── */
-.hero__headline {
-  font-family: var(--f-display);
-  font-size: var(--fs-d1);
-  font-weight: var(--fw-light);
-  line-height: var(--lh-monumental);
-  letter-spacing: var(--ls-tight);
-  color: var(--c-umber);
-  max-width: 960px;
-  margin: 0;
-  text-shadow: 0 4px 32px rgba(0, 0, 0, 0.6);
-}
-
-.hero__headline em {
-  font-style: italic;
-  font-weight: var(--fw-light);
+.hero__telemetry-bar span:first-child {
+  font-weight: var(--fw-bold);
   color: var(--c-brass-light);
 }
 
-/* ── Tectonic Metadata Bar ────────────────────── */
-.hero__meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--sp-20) var(--sp-32);
-  padding-top: var(--sp-24);
-  border-top: 1px solid var(--c-divider-strong);
+.hero__telemetry-line {
+  flex: 1;
+  max-width: 48px;
+  height: 1px;
+  background-color: var(--c-brass);
+  opacity: 0.6;
+}
+
+.hero__headline {
+  font-family: var(--f-display);
+  font-size: var(--fs-d1);
+  font-weight: 300;
+  line-height: var(--lh-monumental);
+  letter-spacing: var(--ls-tight);
+  color: var(--c-umber);
+}
+
+.hero__headline em {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--c-brass-light);
+}
+
+.hero__statement {
   font-family: var(--f-sans);
-  font-size: var(--fs-tiny);
-  letter-spacing: var(--ls-wide);
+  font-size: var(--fs-lead);
+  font-weight: var(--fw-light);
+  line-height: 1.6;
   color: var(--c-secondary);
+  max-width: 46ch;
 }
 
-.hero__meta-list {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--sp-24) var(--sp-32);
+/* Specimen Metadata Matrix */
+.hero__spec-matrix {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-16);
+  padding: var(--sp-20) 0;
+  border-top: 1px solid var(--c-divider);
+  border-bottom: 1px solid var(--c-divider);
 }
 
-.hero__meta-item {
+@media (max-width: 640px) {
+  .hero__spec-matrix {
+    grid-template-columns: 1fr;
+    gap: var(--sp-12);
+  }
+}
+
+.hero__spec-item {
   display: flex;
   flex-direction: column;
   gap: var(--sp-4);
 }
 
-.hero__meta-label {
+.hero__spec-label {
   font-family: var(--f-mono);
   font-size: var(--fs-micro);
-  letter-spacing: var(--ls-wider);
+  letter-spacing: var(--ls-wide);
   text-transform: uppercase;
   color: var(--c-muted);
 }
 
-.hero__meta-value {
-  color: var(--c-umber);
-  font-weight: var(--fw-regular);
+.hero__spec-value {
+  font-family: var(--f-sans);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  color: var(--c-umber-mid);
 }
 
-/* ── Coordinate Telemetry Box ─────────────────── */
-.hero__coords {
-  font-family: var(--f-mono);
-  font-size: var(--fs-micro);
-  letter-spacing: var(--ls-wider);
-  color: var(--c-brass);
-  font-variant-numeric: tabular-nums;
+.hero__actions {
   display: flex;
   align-items: center;
-  gap: var(--sp-8);
+  gap: var(--sp-24);
+  padding-top: var(--sp-8);
 }
 
-/* ── Scroll cue ───────────────────────────────── */
-.hero__scroll-cue {
-  position: absolute;
-  bottom: var(--sp-48);
-  right: var(--page-pad);
-  z-index: 3;
+.hero__cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-12);
+  padding: var(--sp-12) var(--sp-24);
+  background: var(--c-surface-raised);
+  border: 1px solid var(--c-divider-strong);
+  color: var(--c-umber);
+  font-family: var(--f-sans);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  transition: all var(--t-fast) var(--ease-out);
+}
+
+.hero__cta-primary:hover {
+  background: var(--c-surface-hover);
+  border-color: var(--c-brass);
+  color: var(--c-brass-light);
+}
+
+.hero__cta-primary:focus-visible {
+  outline: 2px solid var(--c-brass);
+  outline-offset: 3px;
+}
+
+.hero__cta-arrow {
+  color: var(--c-brass);
+  transition: transform var(--t-fast) var(--ease-out);
+}
+
+.hero__cta-primary:hover .hero__cta-arrow {
+  transform: translateY(2px);
+}
+
+.hero__coords-indicator {
+  font-family: var(--f-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-wide);
+  color: var(--c-muted);
+}
+
+/* ── Right Column: Signature Focal Artifact ──── */
+.hero__artifact-console {
   display: flex;
   flex-direction: column;
+  background: var(--c-surface);
+  border: 1px solid var(--c-divider-strong);
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* Console Header Bar */
+.artifact__header {
+  display: flex;
   align-items: center;
-  gap: var(--sp-8);
-  writing-mode: vertical-rl;
-}
-
-.hero__scroll-line {
-  width: 1px;
-  height: 48px;
-  background: linear-gradient(
-    to bottom,
-    var(--c-brass),
-    transparent
-  );
-  animation: scroll-pulse 2.5s ease-in-out infinite;
-}
-
-@keyframes scroll-pulse {
-  0%, 100% { opacity: 0.3; transform: scaleY(0.85); }
-  50%       { opacity: 1;   transform: scaleY(1);    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero__scroll-line { animation: none; opacity: 0.5; }
-}
-
-.hero__scroll-label {
+  justify-content: space-between;
+  padding: var(--sp-12) var(--sp-16);
+  background: var(--c-surface-raised);
+  border-bottom: 1px solid var(--c-divider);
   font-family: var(--f-mono);
   font-size: var(--fs-micro);
-  letter-spacing: var(--ls-widest);
+}
+
+.artifact__title-group {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-8);
+  color: var(--c-brass);
   text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+}
+
+.artifact__pulse-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--c-brass);
+  border-radius: 50%;
+}
+
+.artifact__modes {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+}
+
+.artifact__mode-btn {
+  padding: var(--sp-4) var(--sp-8);
+  font-family: var(--f-mono);
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
   color: var(--c-muted);
-  transform: rotate(180deg);
+  border: 1px solid transparent;
+  transition: all var(--t-fast);
 }
 
-/* ── Responsive adjustments ───────────────────── */
-@media (max-width: 768px) {
-  .hero {
-    min-height: calc(88svh - var(--masthead-h));
-    min-height: calc(88vh - var(--masthead-h));
-  }
-
-  .hero__content {
-    padding-bottom: var(--sp-40);
-    gap: var(--sp-20);
-  }
-
-  .hero__scroll-cue {
-    display: none;
-  }
-
-  .hero__meta {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--sp-16);
-  }
+.artifact__mode-btn:hover {
+  color: var(--c-umber);
 }
 
-/* ── Entrance Animation (Law 1: Visible by default) ─ */
-.hero__content {
-  opacity: 1;
-  animation: hero-settle 0.9s var(--ease-out) 0.1s;
+.artifact__mode-btn.is-active {
+  color: var(--c-brass-light);
+  border-color: var(--c-divider-strong);
+  background: rgba(197, 168, 128, 0.08);
 }
 
-@keyframes hero-settle {
-  from {
-    opacity: 0.88;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.artifact__mode-btn:focus-visible {
+  outline: 2px solid var(--c-brass);
+  outline-offset: 1px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero__content {
-    animation: none;
-    transform: none;
-  }
+/* Canvas Viewport */
+.artifact__viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  background: #060608;
+  overflow: hidden;
+  cursor: grab;
+}
+
+.artifact__viewport:active {
+  cursor: grabbing;
+}
+
+#solar-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.artifact__overlay-tag {
+  position: absolute;
+  top: var(--sp-12);
+  left: var(--sp-12);
+  font-family: var(--f-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-telemetry);
+  color: var(--c-muted);
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.artifact__hint {
+  position: absolute;
+  bottom: var(--sp-12);
+  right: var(--sp-12);
+  font-family: var(--f-mono);
+  font-size: 0.625rem;
+  letter-spacing: var(--ls-wide);
+  color: var(--c-muted);
+  pointer-events: none;
+  background: rgba(12, 11, 10, 0.7);
+  padding: 2px 6px;
+  border: 1px solid var(--c-divider);
+}
+
+/* Console Control Tray */
+.artifact__controls {
+  padding: var(--sp-16);
+  background: var(--c-surface);
+  border-top: 1px solid var(--c-divider);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-12);
+}
+
+.artifact__slider-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-16);
+}
+
+.artifact__slider-label {
+  font-family: var(--f-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-wide);
+  color: var(--c-muted);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.artifact__slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 3px;
+  background: var(--c-divider-strong);
+  outline: none;
+  border-radius: 0;
+}
+
+.artifact__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: var(--c-brass);
+  cursor: ew-resize;
+  border: 2px solid var(--c-ground);
+  transition: transform var(--t-fast);
+}
+
+.artifact__slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  background: var(--c-brass-light);
+}
+
+.artifact__slider:focus-visible {
+  outline: 2px solid var(--c-brass);
+  outline-offset: 4px;
+}
+
+.artifact__time-readout {
+  font-family: var(--f-mono);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
+  color: var(--c-brass-light);
+  min-width: 48px;
+  text-align: right;
+}
+
+/* Telemetry Grid */
+.artifact__telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-8);
+  padding-top: var(--sp-8);
+  border-top: 1px solid var(--c-divider);
+}
+
+.artifact__telemetry-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.artifact__telemetry-label {
+  font-family: var(--f-mono);
+  font-size: 0.625rem;
+  letter-spacing: var(--ls-wide);
+  color: var(--c-muted);
+  text-transform: uppercase;
+}
+
+.artifact__telemetry-value {
+  font-family: var(--f-mono);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-medium);
+  color: var(--c-umber);
 }

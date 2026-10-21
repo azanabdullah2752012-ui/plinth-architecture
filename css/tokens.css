@@ -2,30 +2,34 @@
    PLINTH — Design Tokens
    Monumental Dark Atmospheric Architecture System
    Raw concrete, volcanic basalt, brushed aged brass.
-   Inspired by Peter Zumthor, Tadao Ando & Álvaro Siza.
+   Strict adherence to BraveBrand, slop.md & HyperFrames protocols.
 ══════════════════════════════════════════════════ */
 
-:root {
+@import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@300,400,500,700,800&f[]=clash-display@200,300,400,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=JetBrains+Mono:wght@300;400;500&display=swap');
 
-  /* ── Colour Palette: Dark Mineral & Raw Concrete ── */
-  --c-ground:         #0C0B0A;   /* deep basalt / volcanic charcoal ground */
-  --c-cream:          #0C0B0A;   /* unified page ground                    */
-  --c-surface:        #141312;   /* tectonic stone surface / plate backing */
-  --c-cream-dark:     #171615;   /* elevated surface variant               */
-  --c-surface-raised: #1C1B19;   /* floating card / interactive surface   */
-  --c-divider:        rgba(243, 239, 230, 0.12); /* hairline rules         */
-  --c-divider-strong: rgba(243, 239, 230, 0.24); /* structural frames      */
-  --c-umber:          #F3EFE6;   /* primary text: warm limestone ivory     */
-  --c-umber-mid:      #E5DFD3;   /* headings / strong text                 */
-  --c-secondary:      #ADA59A;   /* secondary / body text                  */
-  --c-muted:          #787065;   /* technical metadata, coordinates        */
-  --c-brass:          #C4A675;   /* weathered architectural brass accent   */
-  --c-brass-light:    #DEC396;   /* illuminated brass highlight            */
-  --c-overlay:        rgba(12, 11, 10, 0.65); /* directional scrim         */
+:root {
+  /* ── Colour Palette: Volcanic Basalt, Raw Stone & Aged Brass ── */
+  --c-ground:         #09090b;   /* deep basalt / obsidian ground            */
+  --c-cream:          #09090b;   /* unified page foundation                  */
+  --c-surface:        #121216;   /* tectonic stone surface / plate backing   */
+  --c-surface-raised: #18191f;   /* interactive elevation                    */
+  --c-surface-hover:  #202129;   /* micro-hover feedback                     */
+  --c-divider:        rgba(243, 239, 230, 0.10); /* razor hairline rules    */
+  --c-divider-strong: rgba(243, 239, 230, 0.22); /* structural frames       */
+  --c-umber:          #F5F2EB;   /* primary text: warm limestone ivory       */
+  --c-umber-mid:      #E4DEC9;   /* headings / monumental typographic mass   */
+  --c-secondary:      #A8A092;   /* editorial body & narrative captions      */
+  --c-muted:          #736B5E;   /* technical metadata, coordinates, angles  */
+  --c-brass:          #C5A880;   /* weathered architectural brass accent     */
+  --c-brass-light:    #DEC396;   /* illuminated brass sun highlight          */
+  --c-brass-glow:     rgba(197, 168, 128, 0.15); /* directional focus ring   */
+  --c-blueprint:      #38bdf8;   /* architectural CAD cyan schematic stroke  */
 
   /* ── Typography Pairing ───────────────────────── */
-  --f-display: 'Cormorant Garamond', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
-  --f-sans:    'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --f-display: 'Clash Display', 'Cormorant Garamond', Georgia, serif;
+  --f-serif:   'Cormorant Garamond', Garamond, Georgia, serif;
+  --f-sans:    'Cabinet Grotesk', system-ui, -apple-system, sans-serif;
   --f-mono:    'JetBrains Mono', 'SF Mono', 'Menlo', Consolas, monospace;
 
   /* ── Type Scale: Dramatic Monumental Contrast ─── */
@@ -33,15 +37,15 @@
   --fs-tiny:   0.75rem;   /* 12px - metadata labels     */
   --fs-small:  0.875rem;  /* 14px - captions & UI       */
   --fs-body:   1.0625rem; /* 17px - monograph narrative */
-  --fs-lead:   1.25rem;   /* 20px - editorial lead      */
+  --fs-lead:   1.3125rem; /* 21px - editorial lead      */
 
-  /* Monumental Display Headings (Carved in stone) */
-  --fs-d1: clamp(3.75rem, 8.5vw, 7.5rem);   /* Hero H1 */
-  --fs-d2: clamp(2.5rem,  5.5vw, 4.75rem);  /* Section H2 */
-  --fs-d3: clamp(1.75rem, 3.2vw, 2.75rem);  /* Project titles */
+  /* Monumental Display Headings */
+  --fs-d1: clamp(3.5rem, 8vw, 7.25rem);   /* Hero H1 */
+  --fs-d2: clamp(2.25rem, 5vw, 4.5rem);   /* Section H2 */
+  --fs-d3: clamp(1.625rem, 3vw, 2.5rem);  /* Project titles */
 
   /* Letter Spacing */
-  --ls-tight:       -0.03em;
+  --ls-tight:       -0.035em;
   --ls-normal:       0;
   --ls-wide:         0.08em;
   --ls-wider:        0.16em;
@@ -49,15 +53,16 @@
   --ls-telemetry:    0.28em;
 
   /* Line Heights */
-  --lh-monumental: 0.98;
-  --lh-tight:      1.08;
-  --lh-heading:    1.16;
+  --lh-monumental: 0.94;
+  --lh-tight:      1.06;
+  --lh-heading:    1.18;
   --lh-body:       1.75;
 
   /* Font Weights */
   --fw-light:   300;
   --fw-regular: 400;
   --fw-medium:  500;
+  --fw-bold:    700;
 
   /* ── Spacing Rhythm ────────────────────────────── */
   --sp-2:   0.125rem;
@@ -80,10 +85,10 @@
   --page-pad: clamp(1.5rem, 5vw, 5rem);
 
   /* Max Content Width */
-  --content-max: 1380px;
+  --content-max: 1440px;
 
   /* Layout */
-  --masthead-h: 68px;
+  --masthead-h: 72px;
 
   /* ── Easing (Mathematical & Organic) ──────────── */
   --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);

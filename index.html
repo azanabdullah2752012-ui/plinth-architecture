@@ -6,51 +6,49 @@
   <title>PLINTH — Architecture &amp; Spatial Design, Lisbon</title>
   <meta name="description" content="An independent architecture and spatial design studio founded in Lisbon, 2018. We build with permanence, material honesty, and quiet confidence.">
 
-  <!-- Preconnect for font performance -->
+  <!-- Preconnect for typography CDN performance -->
+  <link rel="preconnect" href="https://api.fontshare.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!--
-    Cormorant Garamond: monumental display headings
-    DM Sans: body, UI, metadata
-  -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="css/tokens.css?v=dark">
-  <link rel="stylesheet" href="css/base.css?v=dark">
-  <link rel="stylesheet" href="css/masthead.css?v=dark">
-  <link rel="stylesheet" href="css/hero.css?v=dark">
-  <link rel="stylesheet" href="css/work.css?v=dark">
-  <link rel="stylesheet" href="css/studio.css?v=dark">
-  <link rel="stylesheet" href="css/contact.css?v=dark">
+  <link rel="stylesheet" href="css/tokens.css?v=redesign">
+  <link rel="stylesheet" href="css/base.css?v=redesign">
+  <link rel="stylesheet" href="css/masthead.css?v=redesign">
+  <link rel="stylesheet" href="css/hero.css?v=redesign">
+  <link rel="stylesheet" href="css/work.css?v=redesign">
+  <link rel="stylesheet" href="css/studio.css?v=redesign">
+  <link rel="stylesheet" href="css/contact.css?v=redesign">
 </head>
 <body>
 
+  <a href="#main-content" class="skip-link">Skip to architectural content</a>
+
   <!-- ════════════════════════════════════════════
-       MASTHEAD — editorial monograph header
+       MASTHEAD — Editorial Monograph Header
   ════════════════════════════════════════════ -->
   <header class="masthead is-scrolled" id="masthead" role="banner">
     <div class="masthead__inner">
 
-      <!-- Left: wordmark + discipline label -->
+      <!-- Left: Wordmark + Datum Coordinates -->
       <div class="masthead__brand">
         <a href="/" class="masthead__wordmark" aria-label="PLINTH — return to homepage">
           PLINTH
         </a>
         <span class="masthead__descriptor" aria-hidden="true">
-          Architecture &amp; Spatial Design · Lisboa
+          Architecture &amp; Spatial Design · Lisboa · 38°42′N
         </span>
       </div>
 
-      <!-- Right: navigation -->
+      <!-- Right: Navigation -->
       <nav class="masthead__nav" aria-label="Primary navigation">
         <ul class="masthead__nav-list" role="list">
-          <li><a href="#work"         class="masthead__nav-link" aria-current="page">Work</a></li>
-          <li><a href="studio.html"   class="masthead__nav-link">Studio</a></li>
-          <li><a href="contact.html"  class="masthead__nav-link">Contact</a></li>
+          <li><a href="#work" class="masthead__nav-link" aria-current="page">Selected Work</a></li>
+          <li><a href="#material-archaeology" class="masthead__nav-link">Materials</a></li>
+          <li><a href="studio.html" class="masthead__nav-link">Studio</a></li>
+          <li><a href="contact.html" class="masthead__nav-link">Contact</a></li>
         </ul>
 
-        <!-- Mobile menu toggle (visible <768px) -->
+        <!-- Mobile menu toggle -->
         <button
           class="masthead__menu-btn"
           aria-label="Open navigation menu"
@@ -64,14 +62,15 @@
 
     </div>
 
-    <!-- Mobile menu drawer -->
+    <!-- Mobile Drawer -->
     <div class="masthead__mobile-menu" id="mobile-menu" hidden>
       <ul role="list">
-        <li><a href="#work"         class="mobile-link">Work</a></li>
-        <li><a href="studio.html"   class="mobile-link">Studio</a></li>
-        <li><a href="contact.html"  class="mobile-link">Contact</a></li>
+        <li><a href="#work" class="mobile-link">Selected Work</a></li>
+        <li><a href="#material-archaeology" class="mobile-link">Materials</a></li>
+        <li><a href="studio.html" class="mobile-link">Studio</a></li>
+        <li><a href="contact.html" class="mobile-link">Contact</a></li>
       </ul>
-      <p class="mobile-meta">Lisbon &amp; Porto — Est. 2018</p>
+      <p class="mobile-meta">Lisbon &amp; Porto — Est. 2018 · 38°42′54″N 9°08′10″W</p>
     </div>
   </header>
 
@@ -81,295 +80,384 @@
   ════════════════════════════════════════════ -->
   <main id="main-content">
 
-    <!-- ── HERO: MONUMENTAL ARCHITECTURAL PLATE ─────
-         Featured project: Casa Mouraria, Lisbon
+    <!-- ── 1. HERO: ASYMMETRIC MONUMENTAL COMPOSITION ─
+         Left: Editorial Spatial Thesis
+         Right: Signature Focal Artifact (Solar Axonometric Engine)
     ─────────────────────────────────────────── -->
-    <section class="hero" aria-label="Featured project: Casa Mouraria">
+    <section class="hero" aria-label="Featured Monograph: Casa Mouraria">
+      <div class="hero__inner">
 
-      <!-- Full-bleed photograph with directional raking sunlight -->
-      <div class="hero__media">
-        <img
-          src="casa-mouraria-hero.jpg"
-          alt="Interior of Casa Mouraria — afternoon light falling across white plaster walls and raw concrete floor, Lisbon 2025"
-          class="hero__photo"
-          fetchpriority="high"
-          loading="eager"
-          decoding="async"
-        >
-        <div class="hero__scrim" aria-hidden="true"></div>
-      </div>
+        <!-- Left: Monograph Thesis -->
+        <div class="hero__monograph">
+          <div class="hero__telemetry-bar" aria-hidden="true">
+            <span>[ PL-01 ]</span>
+            <span class="hero__telemetry-line"></span>
+            <span>RESIDENTIAL MONOGRAPH · LISBOA</span>
+          </div>
 
-      <!-- Monumental headline and telemetry -->
-      <div class="hero__content">
-        <div class="hero__telemetry" aria-hidden="true">
-          <span>[ PL-01 ]</span>
-          <span class="hero__telemetry-rule"></span>
-          <span>FEATURED RESIDENTIAL MONOGRAPH · LISBOA</span>
-        </div>
+          <h1 class="hero__headline">
+            Buildings<br>
+            <em>that belong.</em>
+          </h1>
 
-        <h1 class="hero__headline">Buildings<br><em>that belong.</em></h1>
+          <p class="hero__statement">
+            Architecture shaped by quiet observation—responding to the permanence of place, material honesty, and the slow passage of raking sunlight across raw stone and concrete.
+          </p>
 
-        <div class="hero__meta" aria-label="Project details">
-          <div class="hero__meta-list">
-            <div class="hero__meta-item">
-              <span class="hero__meta-label">Commission</span>
-              <span class="hero__meta-value">Casa Mouraria</span>
+          <!-- Specimen Technical Matrix -->
+          <div class="hero__spec-matrix" aria-label="Casa Mouraria Technical Specifications">
+            <div class="hero__spec-item">
+              <span class="hero__spec-label">Typology</span>
+              <span class="hero__spec-value">Private Residence</span>
             </div>
-            <div class="hero__meta-item">
-              <span class="hero__meta-label">Location</span>
-              <span class="hero__meta-value">Lisbon, Portugal</span>
+            <div class="hero__spec-item">
+              <span class="hero__spec-label">Material Mass</span>
+              <span class="hero__spec-value">Cast Concrete · Travertine</span>
             </div>
-            <div class="hero__meta-item">
-              <span class="hero__meta-label">Year</span>
-              <span class="hero__meta-value">2025</span>
-            </div>
-            <div class="hero__meta-item">
-              <span class="hero__meta-label">Materiality</span>
-              <span class="hero__meta-value">Cast Concrete · White Plaster · Travertine</span>
+            <div class="hero__spec-item">
+              <span class="hero__spec-label">Solar Orientation</span>
+              <span class="hero__spec-value">South-Southwest 214°</span>
             </div>
           </div>
 
-          <div class="hero__coords" aria-hidden="true">
-            <span>COORD</span>
-            <span>38° 42′ 54″ N · 9° 08′ 10″ W</span>
+          <div class="hero__actions">
+            <a href="#work" class="hero__cta-primary">
+              <span>Inspect Monograph Folio</span>
+              <span class="hero__cta-arrow" aria-hidden="true">↓</span>
+            </a>
+            <span class="hero__coords-indicator" aria-hidden="true">
+              38° 42′ 54″ N · 9° 08′ 10″ W
+            </span>
           </div>
         </div>
-      </div>
 
-      <!-- Scroll indicator -->
-      <div class="hero__scroll-cue" aria-hidden="true">
-        <div class="hero__scroll-line"></div>
-        <span class="hero__scroll-label">Scroll</span>
-      </div>
+        <!-- Right: Signature Focal Artifact (2.5D Solar Axonometric Engine) -->
+        <div class="hero__artifact-console" aria-label="Interactive Axonometric Solar Study Simulator">
+          
+          <!-- Console Header -->
+          <div class="artifact__header">
+            <div class="artifact__title-group">
+              <span class="artifact__pulse-dot" aria-hidden="true"></span>
+              <span>CASA MOURARIA — TECTONIC SOLAR STUDY</span>
+            </div>
+            <div class="artifact__modes" role="group" aria-label="Display mode toggles">
+              <button type="button" class="artifact__mode-btn is-active" data-solar-mode="solar">Solar Arc</button>
+              <button type="button" class="artifact__mode-btn" data-solar-mode="wireframe">Wireframe</button>
+              <button type="button" class="artifact__mode-btn" data-solar-mode="mass">Mass</button>
+            </div>
+          </div>
 
+          <!-- Viewport Stage -->
+          <div class="artifact__viewport" id="viewport-stage">
+            <canvas id="solar-canvas" width="640" height="440" aria-label="Interactive 3D Axonometric Model of Casa Mouraria"></canvas>
+            <div class="artifact__overlay-tag" aria-hidden="true">AXONOMETRIC 30° / 30°</div>
+            <div class="artifact__hint" aria-hidden="true">Move cursor to orbit · Scrub daylight below</div>
+          </div>
+
+          <!-- Console Control Tray -->
+          <div class="artifact__controls">
+            <div class="artifact__slider-row">
+              <label for="solar-time-slider" class="artifact__slider-label">Solar Time (Lisbon):</label>
+              <input
+                type="range"
+                id="solar-time-slider"
+                class="artifact__slider"
+                min="6.5"
+                max="20.5"
+                step="0.1"
+                value="16.5"
+                aria-label="Scrub solar hour between 06:30 and 20:30"
+              >
+              <span class="artifact__time-readout" id="solar-time-val">16:30</span>
+            </div>
+
+            <!-- Real-Time Solar Telemetry -->
+            <div class="artifact__telemetry-grid" aria-live="polite">
+              <div class="artifact__telemetry-cell">
+                <span class="artifact__telemetry-label">Azimuth</span>
+                <span class="artifact__telemetry-value" id="solar-azimuth-val">241.5°</span>
+              </div>
+              <div class="artifact__telemetry-cell">
+                <span class="artifact__telemetry-label">Elevation</span>
+                <span class="artifact__telemetry-value" id="solar-elevation-val">28.4°</span>
+              </div>
+              <div class="artifact__telemetry-cell">
+                <span class="artifact__telemetry-label">Shadow Ratio</span>
+                <span class="artifact__telemetry-value" id="solar-shadow-val">1.84x</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
     </section>
 
 
-    <!-- ── SELECTED WORK: EXHIBITION GALLERY ───────── -->
-    <section class="section-work" id="work" aria-label="Selected Work">
+    <!-- ── 2. SELECTED WORK & MONOGRAPHS ────────────── -->
+    <section class="section-work" id="work" aria-label="Selected Architecture Monographs">
       <div class="work__inner">
 
-        <!-- Section Introduction -->
+        <!-- Curation Header -->
         <header class="work__intro">
-          <span class="work__eyebrow">SELECTED WORK</span>
-          <h2 class="work__heading">Five projects. Different contexts. One approach.</h2>
-          <p class="work__support">
-            Architecture shaped by quiet observation—responding to the permanence of place, material honesty, and the slow passage of light across raw stone and concrete.
-          </p>
+          <span class="work__eyebrow">MONOGRAPHS [01—05]</span>
+          <div class="work__header-content">
+            <h2 class="work__heading">Five commissions. Specific geologies. One tectonic rigor.</h2>
+            <p class="work__support">
+              We reject stylistic templates. Every project is an excavation of historical memory, structural mass, and daylight falloff.
+            </p>
+          </div>
         </header>
 
-        <!-- Project Grid: Strict Two-Column Exhibition Grid -->
-        <div class="projects-grid">
+        <!-- ── Interactive Material Archaeology Console ── -->
+        <div class="material-console" id="material-archaeology" aria-label="Material Archaeology Console">
+          <div class="material-console__nav" role="tablist" aria-label="Material specimens">
+            <button type="button" role="tab" class="material-tab-btn is-active" data-material-target="travertine" aria-selected="true">
+              01 · Lime Plaster &amp; Travertine
+            </button>
+            <button type="button" role="tab" class="material-tab-btn" data-material-target="concrete" aria-selected="false">
+              02 · Coffered Basalt Concrete
+            </button>
+            <button type="button" role="tab" class="material-tab-btn" data-material-target="marble" aria-selected="false">
+              03 · Estremoz Rosa Marble
+            </button>
+            <button type="button" role="tab" class="material-tab-btn" data-material-target="brass" aria-selected="false">
+              04 · Marine Architectural Brass
+            </button>
+          </div>
 
-          <!-- 01: Casa Mouraria -->
-          <article class="project-item" id="project-casa-mouraria">
-            <a href="projects/casa-mouraria.html" class="project-item__link" aria-label="Casa Mouraria — Residential project in Mouraria, Lisbon">
-              <div class="project-item__telemetry" aria-hidden="true">
-                <span class="project-item__code">[ PL-01 ] · RESIDENTIAL</span>
-                <span class="project-item__coords">38° 42′ 54″ N · 9° 08′ 10″ W</span>
+          <div class="material-console__body" role="tabpanel">
+            <div class="material-console__left">
+              <span class="material-console__meta-tag" id="mat-project">Casa Mouraria [PL-01]</span>
+              <h3 class="material-console__title" id="mat-title">In-Situ Lime Plaster &amp; Travertine</h3>
+              <p class="material-console__origin" id="mat-origin">Mouraria Old Quarter, Lisbon · Local Quarry Block 4</p>
+              <p class="material-console__desc" id="mat-desc">
+                Hand-troweled lime wash over hydrated calcium carbonate stone. Breathes with Atlantic coastal humidity and reflects shifting afternoon light without synthetic gloss.
+              </p>
+            </div>
+
+            <div class="material-console__metrics" aria-label="Physical properties">
+              <div class="metric-cell">
+                <span class="metric-cell__label">Compressive Strength</span>
+                <span class="metric-cell__value" id="mat-comp">18.4 MPa</span>
               </div>
-              <div class="project-item__visual">
-                <img
-                  src="images/casa-mouraria.jpg"
-                  alt="Minimalist private residence in Mouraria with white plaster walls, raw concrete floor, and warm afternoon light"
-                  class="project-item__image"
-                  loading="lazy"
-                  width="1600"
-                  height="1000"
-                >
+              <div class="metric-cell">
+                <span class="metric-cell__label">Water Permeability</span>
+                <span class="metric-cell__value" id="mat-abs">0.04 cm³/(cm²·h)</span>
               </div>
-              <div class="project-item__content">
-                <div class="project-item__header">
-                  <h3 class="project-item__title">
-                    Casa Mouraria
-                    <span class="project-item__arrow" aria-hidden="true">→</span>
-                  </h3>
-                  <div class="project-item__meta">
-                    <span class="project-item__location">Mouraria, Lisbon</span>
-                    <span class="project-item__separator" aria-hidden="true">·</span>
-                    <span class="project-item__category">Residential</span>
-                  </div>
-                </div>
-                <p class="project-item__description">
-                  A minimalist private home shaped by white plaster, concrete and afternoon light.
-                </p>
-                <div class="project-item__taxonomy">
-                  <div class="project-item__materials">
-                    <span class="project-item__materials-label">Materiality:</span>
-                    White lime plaster · In-situ concrete · Travertine
-                  </div>
-                </div>
+              <div class="metric-cell">
+                <span class="metric-cell__label">Embodied Carbon</span>
+                <span class="metric-cell__value" id="mat-carbon">42 kg CO₂e/m²</span>
               </div>
-            </a>
+              <div class="metric-cell">
+                <span class="metric-cell__label">Surface Texture</span>
+                <span class="metric-cell__value">Mineral Matte</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Monograph Stream: Asymmetric Exhibition ── -->
+        <div class="monographs-stream">
+
+          <!-- 01: CASA MOURARIA (Monumental Gatefold Feature with CAD Blueprint Switcher) -->
+          <article class="project-monograph project-monograph--featured" id="project-casa-mouraria">
+            <div class="monograph__header">
+              <span class="monograph__index">[ PL-01 ] · RESIDENTIAL MONOGRAPH · COMPLETED 2025</span>
+              <span class="monograph__coords">38° 42′ 54″ N · 9° 08′ 10″ W</span>
+            </div>
+
+            <!-- Visual Stage with Interactive Blueprint Overlay -->
+            <div class="monograph__visual-stage">
+              <img
+                src="casa-mouraria-hero.jpg"
+                alt="Interior of Casa Mouraria — afternoon light falling across white plaster walls and raw concrete floor, Lisbon 2025"
+                class="monograph__photo"
+                width="1600"
+                height="900"
+                loading="eager"
+              >
+              <!-- CAD Blueprint Cutaway Layer -->
+              <div class="monograph__schematic" aria-hidden="true">
+                <svg class="monograph__schematic-svg" viewBox="0 0 800 450">
+                  <!-- Elevation Datum Lines -->
+                  <line x1="40" y1="380" x2="760" y2="380" stroke-width="1.5" stroke="#38bdf8"/>
+                  <text x="50" y="370" fill="#38bdf8" font-family="JetBrains Mono" font-size="10">DATUM LEVEL ±0.00m (BEDROCK BASALT)</text>
+                  <!-- Structural Volume Outlines -->
+                  <rect x="180" y="160" width="440" height="220" stroke-width="1.5" stroke="#38bdf8"/>
+                  <rect x="260" y="80" width="280" height="80" stroke-width="1.5" stroke="#38bdf8" stroke-dasharray="4,4"/>
+                  <!-- Light Shaft Cut -->
+                  <line x1="380" y1="80" x2="380" y2="380" stroke-width="1" stroke="#38bdf8" stroke-dasharray="2,4"/>
+                  <text x="390" y="110" fill="#DEC396" font-family="JetBrains Mono" font-size="9">SOLAR LIGHT SHAFT (SOUTH 28°)</text>
+                  <!-- Dimension Strings -->
+                  <line x1="180" y1="410" x2="620" y2="410" stroke-width="0.75" stroke="#38bdf8"/>
+                  <text x="360" y="425" fill="#38bdf8" font-family="JetBrains Mono" font-size="9" text-anchor="middle">SPAN 14.80m [POST-TENSIONED]</text>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Blueprint Action Toolbar -->
+            <div class="monograph__toolbar">
+              <button type="button" class="blueprint-toggle-btn" data-blueprint-toggle="true" aria-pressed="false">
+                <span class="blueprint-toggle__icon" aria-hidden="true">◩</span>
+                <span class="blueprint-toggle__label">Inspect Structural Blueprint</span>
+              </button>
+              <span class="monograph__coords">Scale 1:50 · Transverse Section A-A'</span>
+            </div>
+
+            <!-- Monograph Content Footer -->
+            <div class="monograph__details">
+              <div>
+                <a href="projects/casa-mouraria.html" class="monograph__title-link">
+                  <span>Casa Mouraria</span>
+                  <span class="monograph__link-arrow" aria-hidden="true">→</span>
+                </a>
+              </div>
+              <p class="monograph__narrative">
+                A private home excavated into the historic Mouraria hillside. Organized around a central light court that pulls maritime daylight three levels down into cast concrete bedrock.
+              </p>
+              <div class="monograph__material-taxonomy">
+                <span class="taxonomy-strong">Material Spec:</span>
+                <span>In-Situ Concrete · Lime Wash · Honed Travertine</span>
+              </div>
+            </div>
           </article>
 
-          <!-- 02: Biblioteca Central -->
-          <article class="project-item" id="project-biblioteca-central">
-            <a href="projects/biblioteca-central.html" class="project-item__link" aria-label="Biblioteca Central — Cultural project in Porto">
-              <div class="project-item__telemetry" aria-hidden="true">
-                <span class="project-item__code">[ PL-02 ] · CULTURAL</span>
-                <span class="project-item__coords">41° 09′ 00″ N · 8° 37′ 00″ W</span>
+
+          <!-- 02 & 03: ASYMMETRIC PAIR (Biblioteca Central & Pátio das Flores) -->
+          <div class="monographs-pair">
+
+            <!-- 02: Biblioteca Central -->
+            <article class="project-monograph project-monograph--compact" id="project-biblioteca-central">
+              <div class="monograph__header">
+                <span class="monograph__index">[ PL-02 ] · CULTURAL · PORTO</span>
+                <span class="monograph__coords">41° 09′ N · 8° 37′ W</span>
               </div>
-              <div class="project-item__visual">
+              <div class="monograph__visual-stage">
                 <img
                   src="images/biblioteca-central.jpg"
-                  alt="Monumental brutalist interior of Biblioteca Central in Porto with coffered concrete ceiling and timber reading tables"
-                  class="project-item__image"
+                  alt="Monumental brutalist interior of Biblioteca Central in Porto with coffered concrete ceiling"
+                  class="monograph__photo monograph__photo--pair"
+                  width="1200"
+                  height="750"
                   loading="lazy"
-                  width="1600"
-                  height="1000"
                 >
               </div>
-              <div class="project-item__content">
-                <div class="project-item__header">
-                  <h3 class="project-item__title">
-                    Biblioteca Central
-                    <span class="project-item__arrow" aria-hidden="true">→</span>
-                  </h3>
-                  <div class="project-item__meta">
-                    <span class="project-item__location">Porto</span>
-                    <span class="project-item__separator" aria-hidden="true">·</span>
-                    <span class="project-item__category">Cultural</span>
-                  </div>
-                </div>
-                <p class="project-item__description">
-                  A brutalist public library defined by coffered concrete, dark timber and clerestory light.
+              <div class="monograph__details" style="grid-template-columns: 1fr; gap: var(--sp-12);">
+                <a href="projects/biblioteca-central.html" class="monograph__title-link">
+                  <span>Biblioteca Central</span>
+                  <span class="monograph__link-arrow" aria-hidden="true">→</span>
+                </a>
+                <p class="monograph__narrative">
+                  A brutalist public library defined by coffered concrete ceilings and north-facing clerestory light shafts.
                 </p>
-                <div class="project-item__taxonomy">
-                  <div class="project-item__materials">
-                    <span class="project-item__materials-label">Materiality:</span>
-                    Coffered in-situ concrete · Oiled walnut · Clerestory glazing
-                  </div>
+                <div class="monograph__material-taxonomy">
+                  <span class="taxonomy-strong">Material Spec:</span>
+                  <span>Coffered Pozzolanic Concrete · Oiled Walnut</span>
                 </div>
               </div>
-            </a>
-          </article>
+            </article>
 
-          <!-- 03: Pátio das Flores -->
-          <article class="project-item" id="project-patio-flores">
-            <a href="projects/patio-flores.html" class="project-item__link" aria-label="Pátio das Flores — Heritage project in Évora">
-              <div class="project-item__telemetry" aria-hidden="true">
-                <span class="project-item__code">[ PL-03 ] · HERITAGE</span>
-                <span class="project-item__coords">38° 34′ 00″ N · 7° 54′ 00″ W</span>
+            <!-- 03: Pátio das Flores -->
+            <article class="project-monograph project-monograph--compact" id="project-patio-flores">
+              <div class="monograph__header">
+                <span class="monograph__index">[ PL-03 ] · HERITAGE · ÉVORA</span>
+                <span class="monograph__coords">38° 34′ N · 7° 54′ W</span>
               </div>
-              <div class="project-item__visual">
+              <div class="monograph__visual-stage">
                 <img
                   src="images/patio-flores.jpg"
-                  alt="Restored historic stone courtyard in Évora featuring arched stone openings, terracotta tiles and a fig tree"
-                  class="project-item__image"
+                  alt="Restored historic stone courtyard in Évora featuring arched stone openings"
+                  class="monograph__photo monograph__photo--pair"
+                  width="1200"
+                  height="750"
                   loading="lazy"
-                  width="1600"
-                  height="1000"
                 >
               </div>
-              <div class="project-item__content">
-                <div class="project-item__header">
-                  <h3 class="project-item__title">
-                    Pátio das Flores
-                    <span class="project-item__arrow" aria-hidden="true">→</span>
-                  </h3>
-                  <div class="project-item__meta">
-                    <span class="project-item__location">Évora</span>
-                    <span class="project-item__separator" aria-hidden="true">·</span>
-                    <span class="project-item__category">Heritage</span>
-                  </div>
-                </div>
-                <p class="project-item__description">
-                  A restored stone courtyard featuring arched openings, terracotta tiles and a fig tree.
+              <div class="monograph__details" style="grid-template-columns: 1fr; gap: var(--sp-12);">
+                <a href="projects/patio-flores.html" class="monograph__title-link">
+                  <span>Pátio das Flores</span>
+                  <span class="monograph__link-arrow" aria-hidden="true">→</span>
+                </a>
+                <p class="monograph__narrative">
+                  Restoration of an 18th-century cloistered courtyard using traditional lime mortars and terracotta pavers.
                 </p>
-                <div class="project-item__taxonomy">
-                  <div class="project-item__materials">
-                    <span class="project-item__materials-label">Materiality:</span>
-                    Restored limestone masonry · Hexagonal terracotta · Aged lime wash
-                  </div>
+                <div class="monograph__material-taxonomy">
+                  <span class="taxonomy-strong">Material Spec:</span>
+                  <span>Limestone Masonry · Hexagonal Terracotta</span>
                 </div>
               </div>
-            </a>
-          </article>
+            </article>
 
-          <!-- 04: Edifício Vento -->
-          <article class="project-item" id="project-edificio-vento">
-            <a href="projects/edificio-vento.html" class="project-item__link" aria-label="Edifício Vento — Commercial project in Cascais">
-              <div class="project-item__telemetry" aria-hidden="true">
-                <span class="project-item__code">[ PL-04 ] · COMMERCIAL</span>
-                <span class="project-item__coords">38° 41′ 50″ N · 9° 25′ 15″ W</span>
+          </div>
+
+
+          <!-- 04 & 05: INVERTED ASYMMETRIC PAIR (Edifício Vento & Pavilhão Sereno) -->
+          <div class="monographs-pair-inverted">
+
+            <!-- 04: Edifício Vento -->
+            <article class="project-monograph project-monograph--compact" id="project-edificio-vento">
+              <div class="monograph__header">
+                <span class="monograph__index">[ PL-04 ] · COMMERCIAL · CASCAIS</span>
+                <span class="monograph__coords">38° 41′ N · 9° 25′ W</span>
               </div>
-              <div class="project-item__visual">
+              <div class="monograph__visual-stage">
                 <img
                   src="images/edificio-vento.jpg"
-                  alt="Double-height commercial office atrium in Cascais with concrete mezzanine walkway and overhead skylight"
-                  class="project-item__image"
+                  alt="Double-height commercial office atrium in Cascais with concrete mezzanine walkway"
+                  class="monograph__photo monograph__photo--pair"
+                  width="1200"
+                  height="750"
                   loading="lazy"
-                  width="1600"
-                  height="1000"
                 >
               </div>
-              <div class="project-item__content">
-                <div class="project-item__header">
-                  <h3 class="project-item__title">
-                    Edifício Vento
-                    <span class="project-item__arrow" aria-hidden="true">→</span>
-                  </h3>
-                  <div class="project-item__meta">
-                    <span class="project-item__location">Cascais</span>
-                    <span class="project-item__separator" aria-hidden="true">·</span>
-                    <span class="project-item__category">Commercial</span>
-                  </div>
-                </div>
-                <p class="project-item__description">
-                  An office building organised around a double-height atrium, mezzanine walkway and skylight.
+              <div class="monograph__details" style="grid-template-columns: 1fr; gap: var(--sp-12);">
+                <a href="projects/edificio-vento.html" class="monograph__title-link">
+                  <span>Edifício Vento</span>
+                  <span class="monograph__link-arrow" aria-hidden="true">→</span>
+                </a>
+                <p class="monograph__narrative">
+                  Double-height civic atrium engineered for passive stack ventilation and natural marine air circulation.
                 </p>
-                <div class="project-item__taxonomy">
-                  <div class="project-item__materials">
-                    <span class="project-item__materials-label">Materiality:</span>
-                    Pale limestone panels · Blackened steel · Pale oak timber
-                  </div>
+                <div class="monograph__material-taxonomy">
+                  <span class="taxonomy-strong">Material Spec:</span>
+                  <span>Pale Limestone Panels · Blackened Steel</span>
                 </div>
               </div>
-            </a>
-          </article>
+            </article>
 
-          <!-- 05: Pavilhão Sereno -->
-          <article class="project-item" id="project-pavilhao-sereno">
-            <a href="projects/pavilhao-sereno.html" class="project-item__link" aria-label="Pavilhão Sereno — Installation project in Alentejo">
-              <div class="project-item__telemetry" aria-hidden="true">
-                <span class="project-item__code">[ PL-05 ] · INSTALLATION</span>
-                <span class="project-item__coords">38° 01′ 30″ N · 7° 52′ 40″ W</span>
+            <!-- 05: Pavilhão Sereno -->
+            <article class="project-monograph project-monograph--compact" id="project-pavilhao-sereno">
+              <div class="monograph__header">
+                <span class="monograph__index">[ PL-05 ] · INSTALLATION · ALENTEJO</span>
+                <span class="monograph__coords">38° 01′ N · 7° 52′ W</span>
               </div>
-              <div class="project-item__visual">
+              <div class="monograph__visual-stage">
                 <img
                   src="images/pavilhao-sereno.jpg"
-                  alt="Minimalist outdoor concrete pavilion in Alentejo resting quietly against open countryside and golden wheat fields"
-                  class="project-item__image"
+                  alt="Minimalist outdoor concrete pavilion in Alentejo resting quietly against open countryside"
+                  class="monograph__photo monograph__photo--pair"
+                  width="1200"
+                  height="750"
                   loading="lazy"
-                  width="1600"
-                  height="1000"
                 >
               </div>
-              <div class="project-item__content">
-                <div class="project-item__header">
-                  <h3 class="project-item__title">
-                    Pavilhão Sereno
-                    <span class="project-item__arrow" aria-hidden="true">→</span>
-                  </h3>
-                  <div class="project-item__meta">
-                    <span class="project-item__location">Alentejo</span>
-                    <span class="project-item__separator" aria-hidden="true">·</span>
-                    <span class="project-item__category">Installation</span>
-                  </div>
-                </div>
-                <p class="project-item__description">
-                  A minimalist outdoor concrete pavilion set against open countryside and golden wheat fields.
+              <div class="monograph__details" style="grid-template-columns: 1fr; gap: var(--sp-12);">
+                <a href="projects/pavilhao-sereno.html" class="monograph__title-link">
+                  <span>Pavilhão Sereno</span>
+                  <span class="monograph__link-arrow" aria-hidden="true">→</span>
+                </a>
+                <p class="monograph__narrative">
+                  A post-tensioned thin concrete canopy suspended over wild wheat fields. A pure horizon marker.
                 </p>
-                <div class="project-item__taxonomy">
-                  <div class="project-item__materials">
-                    <span class="project-item__materials-label">Materiality:</span>
-                    Post-tensioned concrete slab · Cylindrical steel columns · Open meadow
-                  </div>
+                <div class="monograph__material-taxonomy">
+                  <span class="taxonomy-strong">Material Spec:</span>
+                  <span>Post-Tensioned Concrete Slab · Cylindrical Steel</span>
                 </div>
               </div>
-            </a>
-          </article>
+            </article>
+
+          </div>
 
         </div>
 
@@ -377,8 +465,8 @@
     </section>
 
 
-    <!-- ── STUDIO & PHILOSOPHY ─────────────────── -->
-    <section class="section-studio" id="studio" aria-label="The Studio">
+    <!-- ── 3. STUDIO & TECTONIC PHILOSOPHY ─────────── -->
+    <section class="section-studio" id="studio" aria-label="Studio Ethos and Leadership">
       <div class="studio__inner">
 
         <!-- Manifesto -->
@@ -389,7 +477,7 @@
           </blockquote>
           <div class="studio__citation">
             <span class="studio__citation-line" aria-hidden="true"></span>
-            <span>Sofia Mendes &amp; Rui Carvalho, Lisbon 2022</span>
+            <span>Sofia Mendes &amp; Rui Carvalho · Lisbon Manifesto 2022</span>
           </div>
         </div>
 
@@ -403,7 +491,7 @@
               Founded in Lisbon in 2018, PLINTH operates as an integrated spatial studio encompassing architects, structural researchers, and conservation artisans. We maintain a deliberate ceiling of six active commissions per year to ensure partner immersion in every detail.
             </p>
             <p class="studio__paragraph">
-              Our working method draws equally from the Portuguese tectonic lineage of Álvaro Siza and Fernando Távora, alongside rigorous contemporary environmental modeling. We do not apply pre-determined aesthetics; the geology and culture of the site dictate the outcome.
+              Our working method draws directly from the Portuguese tectonic lineage of Álvaro Siza and Fernando Távora, alongside rigorous contemporary environmental modeling. We do not apply pre-determined aesthetics; the geology and culture of the site dictate the outcome.
             </p>
           </div>
         </div>
@@ -420,14 +508,16 @@
                 src="images/sofia-mendes.jpg"
                 alt="Portrait of Sofia Mendes, Founding Partner"
                 class="team-card__image"
+                width="600"
+                height="750"
                 loading="lazy"
               >
             </div>
             <div class="team-card__content">
               <h4 class="team-card__name">Sofia Mendes</h4>
-              <span class="team-card__role">Founding Partner · Design</span>
+              <span class="team-card__role">Founding Partner · Concept Design</span>
               <p class="team-card__bio">
-                FAUP Porto &amp; ETH Zürich. Prior associate at Álvaro Siza Vieira atelier. Oversees concept design and civic competitions.
+                FAUP Porto &amp; ETH Zürich. Prior associate at Álvaro Siza Vieira atelier. Oversees spatial concept design and civic competitions.
               </p>
             </div>
           </article>
@@ -438,6 +528,8 @@
                 src="images/rui-carvalho.jpg"
                 alt="Portrait of Rui Carvalho, Founding Partner"
                 class="team-card__image"
+                width="600"
+                height="750"
                 loading="lazy"
               >
             </div>
@@ -456,6 +548,8 @@
                 src="images/ana-ribeiro.jpg"
                 alt="Portrait of Ana Ribeiro, Heritage Director"
                 class="team-card__image"
+                width="600"
+                height="750"
                 loading="lazy"
               >
             </div>
@@ -469,12 +563,12 @@
           </article>
         </div>
 
-        <!-- Honors Archive -->
+        <!-- Recognition Archive -->
         <div class="studio__awards-section">
           <div class="studio__awards-header">
             <h4 class="studio__awards-title">Selected Recognition &amp; Exhibitions</h4>
           </div>
-          <div class="studio__awards-list" role="table" aria-label="Awards Archive">
+          <div class="studio__awards-list" role="table" aria-label="Recognition Archive">
             <div class="studio__award-item" role="row">
               <span class="studio__award-year" role="cell">2025</span>
               <span class="studio__award-prize" role="cell">European Mies Award</span>
@@ -506,8 +600,8 @@
     </section>
 
 
-    <!-- ── CONTACT & COLOPHON ─────────────────── -->
-    <section class="section-contact" id="contact" aria-label="Inquiries and Location">
+    <!-- ── 4. CONTACT & ATELIER ────────────────────── -->
+    <section class="section-contact" id="contact" aria-label="Inquiries and Atelier Location">
       <div class="contact__inner">
 
         <div class="contact__grid">
@@ -548,7 +642,8 @@
             <span>© 2018—2026 Plinth Arquitetura Lda · All rights reserved</span>
             <div class="colophon__links">
               <a href="#main-content" class="colophon__link">Top ↑</a>
-              <a href="#work" class="colophon__link">Work</a>
+              <a href="#work" class="colophon__link">Selected Work</a>
+              <a href="#material-archaeology" class="colophon__link">Materials</a>
               <a href="studio.html" class="colophon__link">Studio</a>
               <a href="contact.html" class="colophon__link">Contact</a>
             </div>
@@ -561,5 +656,7 @@
   </main>
 
   <script src="js/masthead.js"></script>
+  <script src="js/solar-engine.js"></script>
+  <script src="js/atelier.js"></script>
 </body>
 </html>

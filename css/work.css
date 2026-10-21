@@ -1,325 +1,431 @@
 /* ══════════════════════════════════════════════════
-   PLINTH — Selected Projects
-   Monumental Architectural Gallery & Exhibition Pacing
-   Strict two-column tectonic grid, raw stone backing,
-   monumental titles, and precision coordinate telemetry.
+   PLINTH — Selected Work & Material Archaeology Folio
+   Curated Asymmetric Monograph Architecture
+   Zero 3-card boilerplate. Dynamic spatial tension.
 ══════════════════════════════════════════════════ */
 
 .section-work {
-  padding-top: var(--sp-128);
-  padding-bottom: var(--sp-160);
-  border-top: 1px solid var(--c-divider);
+  position: relative;
   background-color: var(--c-ground);
+  padding: var(--sp-96) 0;
+  border-bottom: 1px solid var(--c-divider-strong);
 }
 
 .work__inner {
+  width: 100%;
   max-width: var(--content-max);
   margin: 0 auto;
   padding: 0 var(--page-pad);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-80);
 }
 
-/* ── Section Introduction ─────────────────────── */
+/* ── Section Curation Header ─────────────────── */
 .work__intro {
-  max-width: 920px;
-  margin-bottom: var(--sp-96);
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--sp-48);
+  align-items: baseline;
+  border-bottom: 1px solid var(--c-divider-strong);
+  padding-bottom: var(--sp-40);
+}
+
+@media (max-width: 860px) {
+  .work__intro {
+    grid-template-columns: 1fr;
+    gap: var(--sp-16);
+  }
 }
 
 .work__eyebrow {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-12);
   font-family: var(--f-mono);
   font-size: var(--fs-micro);
-  font-weight: var(--fw-medium);
   letter-spacing: var(--ls-telemetry);
   text-transform: uppercase;
   color: var(--c-brass);
-  margin-bottom: var(--sp-20);
 }
 
-.work__eyebrow::before {
-  content: "";
-  display: inline-block;
-  width: 24px;
-  height: 1px;
-  background-color: var(--c-brass);
+.work__header-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-16);
 }
 
 .work__heading {
   font-family: var(--f-display);
   font-size: var(--fs-d2);
-  font-weight: var(--fw-light);
+  font-weight: 300;
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-tight);
   color: var(--c-umber);
-  margin-bottom: var(--sp-24);
 }
 
 .work__support {
   font-family: var(--f-sans);
-  font-size: var(--fs-lead);
-  font-weight: var(--fw-light);
-  line-height: var(--lh-body);
+  font-size: var(--fs-body);
   color: var(--c-secondary);
-  max-width: 60ch;
+  max-width: 62ch;
+  line-height: 1.65;
 }
 
-/* ── Strict Two-Column Exhibition Grid ────────── */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: clamp(2.5rem, 5vw, 5rem);
-  row-gap: clamp(4.5rem, 8vw, 7.5rem);
-  align-items: start;
-}
-
-/* ── Project Item ─────────────────────────────── */
-.project-item {
+/* ── 1. Interactive Material Archaeology Console ── */
+.material-console {
+  background: var(--c-surface);
+  border: 1px solid var(--c-divider-strong);
   display: flex;
   flex-direction: column;
-  position: relative;
 }
 
-/* Accessible card link */
-.project-item__link {
+.material-console__nav {
   display: flex;
-  flex-direction: column;
-  gap: var(--sp-24);
-  color: inherit;
-  text-decoration: none;
-  outline: none;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--c-divider);
+  background: var(--c-surface-raised);
 }
 
-/* ── Telemetry Header ─────────────────────────── */
-.project-item__telemetry {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
+.material-tab-btn {
+  padding: var(--sp-12) var(--sp-20);
   font-family: var(--f-mono);
   font-size: var(--fs-micro);
-  letter-spacing: var(--ls-wider);
+  letter-spacing: var(--ls-wide);
   text-transform: uppercase;
   color: var(--c-muted);
-  border-bottom: 1px solid var(--c-divider);
-  padding-bottom: var(--sp-12);
+  border-right: 1px solid var(--c-divider);
+  background: none;
+  transition: all var(--t-fast);
 }
 
-.project-item__code {
-  color: var(--c-brass);
-  font-weight: var(--fw-medium);
+.material-tab-btn:hover {
+  color: var(--c-umber);
+  background: rgba(243, 239, 230, 0.02);
 }
 
-.project-item__coords {
-  font-variant-numeric: tabular-nums;
-  color: var(--c-muted);
+.material-tab-btn.is-active {
+  color: var(--c-brass-light);
+  background: var(--c-surface);
+  box-shadow: inset 0 -2px 0 var(--c-brass);
 }
 
-/* ── Photography Canvas ───────────────────────── */
-.project-item__visual {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  background-color: var(--c-surface);
-  border: 1px solid var(--c-divider);
-  border-radius: 0;
+.material-tab-btn:focus-visible {
+  outline: 2px solid var(--c-brass);
+  outline-offset: -2px;
 }
 
-.project-item__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  border-radius: 0;
-  /* Stillness & Permanence: NO ZOOM on hover */
-  transform: none;
-  transition: filter var(--t-base) var(--ease-standard);
-  filter: contrast(1.04) brightness(0.95);
+.material-console__body {
+  padding: var(--sp-32);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--sp-48);
+  align-items: center;
 }
 
-.project-item__link:hover .project-item__image {
-  filter: contrast(1.08) brightness(1.02);
+@media (max-width: 860px) {
+  .material-console__body {
+    grid-template-columns: 1fr;
+    gap: var(--sp-24);
+    padding: var(--sp-20);
+  }
 }
 
-/* Subtle architectural crosshair line on card edge */
-.project-item__visual::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--c-brass);
-  transition: width var(--t-slow) var(--ease-out);
-}
-
-.project-item__link:hover .project-item__visual::after,
-.project-item__link:focus-visible .project-item__visual::after {
-  width: 100%;
-}
-
-/* ── Project Details / Meta ───────────────────── */
-.project-item__content {
+.material-console__left {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-12);
-}
-
-.project-item__header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
   gap: var(--sp-16);
 }
 
-.project-item__title {
+.material-console__meta-tag {
+  font-family: var(--f-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-telemetry);
+  color: var(--c-brass);
+  text-transform: uppercase;
+}
+
+.material-console__title {
   font-family: var(--f-display);
-  font-size: clamp(1.85rem, 3.2vw, 2.5rem);
-  font-weight: var(--fw-light);
+  font-size: var(--fs-d3);
+  font-weight: 300;
+  line-height: var(--lh-tight);
+  color: var(--c-umber);
+}
+
+.material-console__origin {
+  font-family: var(--f-mono);
+  font-size: var(--fs-tiny);
+  color: var(--c-muted);
+}
+
+.material-console__desc {
+  font-family: var(--f-sans);
+  font-size: var(--fs-small);
+  line-height: 1.7;
+  color: var(--c-secondary);
+}
+
+/* Material Metrics Matrix */
+.material-console__metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-16);
+  padding: var(--sp-20);
+  background: var(--c-surface-raised);
+  border: 1px solid var(--c-divider);
+}
+
+.metric-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metric-cell__label {
+  font-family: var(--f-mono);
+  font-size: 0.625rem;
+  letter-spacing: var(--ls-wide);
+  color: var(--c-muted);
+  text-transform: uppercase;
+}
+
+.metric-cell__value {
+  font-family: var(--f-mono);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  color: var(--c-brass-light);
+}
+
+/* ── 2. Curated Monograph Exhibition ─────────── */
+.monographs-stream {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-96);
+}
+
+/* ── Primary Feature: Casa Mouraria Gatefold ─── */
+.project-monograph--featured {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-24);
+  background: var(--c-surface);
+  border: 1px solid var(--c-divider-strong);
+  padding: var(--sp-32);
+}
+
+@media (max-width: 640px) {
+  .project-monograph--featured {
+    padding: var(--sp-16);
+  }
+}
+
+.monograph__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--sp-12);
+  border-bottom: 1px solid var(--c-divider);
+  padding-bottom: var(--sp-16);
+}
+
+.monograph__index {
+  font-family: var(--f-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-telemetry);
+  color: var(--c-brass);
+}
+
+.monograph__coords {
+  font-family: var(--f-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-wide);
+  color: var(--c-muted);
+}
+
+/* Visual Stage with Blueprint Cutaway */
+.monograph__visual-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #08080a;
+  overflow: hidden;
+}
+
+.monograph__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity var(--t-slow) var(--ease-standard);
+}
+
+/* Blueprint CAD vector layer */
+.monograph__schematic {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #060913;
+  padding: var(--sp-24);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t-slow) var(--ease-standard);
+}
+
+.monograph__schematic-svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--c-blueprint);
+  fill: none;
+}
+
+/* Toggle state */
+.project-monograph.show-blueprint .monograph__photo {
+  opacity: 0.12;
+}
+
+.project-monograph.show-blueprint .monograph__schematic {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Blueprint Action Bar */
+.monograph__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-12) 0;
+  border-bottom: 1px solid var(--c-divider);
+}
+
+.blueprint-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-8);
+  font-family: var(--f-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--c-brass);
+  background: rgba(197, 168, 128, 0.08);
+  border: 1px solid var(--c-divider-strong);
+  padding: var(--sp-8) var(--sp-16);
+  transition: all var(--t-fast);
+}
+
+.blueprint-toggle-btn:hover {
+  background: rgba(197, 168, 128, 0.16);
+  color: var(--c-brass-light);
+}
+
+.blueprint-toggle-btn:focus-visible {
+  outline: 2px solid var(--c-brass);
+  outline-offset: 2px;
+}
+
+/* Monograph Content Footer */
+.monograph__details {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  gap: var(--sp-32);
+  align-items: start;
+  padding-top: var(--sp-16);
+}
+
+@media (max-width: 900px) {
+  .monograph__details {
+    grid-template-columns: 1fr;
+    gap: var(--sp-16);
+  }
+}
+
+.monograph__title-link {
+  font-family: var(--f-display);
+  font-size: var(--fs-d3);
+  font-weight: 300;
   line-height: var(--lh-tight);
   color: var(--c-umber);
   display: inline-flex;
   align-items: center;
-  gap: var(--sp-12);
-  transition: color var(--t-base) var(--ease-standard);
-}
-
-/* Understated interactive arrow */
-.project-item__arrow {
-  display: inline-block;
-  font-family: var(--f-sans);
-  font-size: 1.125rem;
-  line-height: 1;
-  color: var(--c-brass);
-  opacity: 0;
-  transform: translateX(-6px);
-  transition: opacity var(--t-base) var(--ease-standard),
-              transform var(--t-base) var(--ease-out);
-}
-
-.project-item__meta {
-  display: flex;
-  align-items: center;
   gap: var(--sp-8);
+  transition: color var(--t-fast);
+}
+
+.monograph__title-link:hover {
+  color: var(--c-brass-light);
+}
+
+.monograph__link-arrow {
+  color: var(--c-brass);
+  transition: transform var(--t-fast);
+}
+
+.monograph__title-link:hover .monograph__link-arrow {
+  transform: translateX(4px);
+}
+
+.monograph__narrative {
   font-family: var(--f-sans);
-  font-size: var(--fs-tiny);
-  letter-spacing: var(--ls-wide);
+  font-size: var(--fs-small);
+  line-height: 1.7;
+  color: var(--c-secondary);
+}
+
+.monograph__material-taxonomy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  font-family: var(--f-mono);
+  font-size: var(--fs-micro);
   color: var(--c-muted);
-  text-transform: uppercase;
 }
 
-.project-item__separator {
-  color: var(--c-divider-strong);
-  font-size: 0.6rem;
-}
-
-.project-item__category {
+.taxonomy-strong {
   color: var(--c-brass);
   font-weight: var(--fw-medium);
 }
 
-.project-item__description {
-  font-family: var(--f-sans);
-  font-size: var(--fs-small);
-  font-weight: var(--fw-light);
-  line-height: 1.65;
-  color: var(--c-secondary);
-  max-width: 52ch;
+/* ── Asymmetric Dual Monograph Pair (PL-02 & PL-03) ── */
+.monographs-pair {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr;
+  gap: var(--sp-48);
+  align-items: start;
 }
 
-/* ── Tectonic Taxonomy Specification ─────────── */
-.project-item__taxonomy {
+@media (max-width: 960px) {
+  .monographs-pair {
+    grid-template-columns: 1fr;
+    gap: var(--sp-48);
+  }
+}
+
+.project-monograph--compact {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-4);
-  padding-top: var(--sp-16);
-  margin-top: var(--sp-4);
-  border-top: 1px solid var(--c-divider);
-  font-family: var(--f-mono);
-  font-size: var(--fs-micro);
-  letter-spacing: var(--ls-wide);
-  color: var(--c-muted);
+  gap: var(--sp-16);
+  background: var(--c-surface);
+  border: 1px solid var(--c-divider-strong);
+  padding: var(--sp-24);
 }
 
-.project-item__materials {
-  color: var(--c-secondary);
-  display: flex;
-  gap: var(--sp-6);
-  flex-wrap: wrap;
+.monograph__photo--pair {
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  width: 100%;
 }
 
-.project-item__materials-label {
-  text-transform: uppercase;
-  color: var(--c-brass);
+/* ── Asymmetric Dual Monograph Pair (PL-04 & PL-05) ── */
+.monographs-pair-inverted {
+  display: grid;
+  grid-template-columns: 0.9fr 1.2fr;
+  gap: var(--sp-48);
+  align-items: start;
 }
 
-/* ── Interactive States ───────────────────────── */
-.project-item__link:hover .project-item__title {
-  color: var(--c-brass-light);
-}
-
-.project-item__link:hover .project-item__arrow {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.project-item__link:focus-visible {
-  outline: 2px solid var(--c-brass);
-  outline-offset: 8px;
-}
-
-.project-item__link:focus-visible .project-item__title {
-  color: var(--c-brass-light);
-}
-
-.project-item__link:focus-visible .project-item__arrow {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* ── Progressive Entrance (Law 1) ─────────────── */
-.project-item.will-reveal {
-  opacity: 0.88;
-  transform: translateY(8px);
-  transition: opacity 0.6s var(--ease-out),
-              transform 0.6s var(--ease-out);
-}
-
-.project-item.will-reveal.is-revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .project-item.will-reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-  .project-item__arrow {
-    transition: none;
-  }
-}
-
-/* ── Responsive adjustments ───────────────────── */
-@media (max-width: 767px) {
-  .section-work {
-    padding-top: var(--sp-80);
-    padding-bottom: var(--sp-96);
-  }
-
-  .work__intro {
-    margin-bottom: var(--sp-48);
-  }
-
-  .projects-grid {
+@media (max-width: 960px) {
+  .monographs-pair-inverted {
     grid-template-columns: 1fr;
-    row-gap: var(--sp-64);
-  }
-
-  .project-item__arrow {
-    opacity: 0.85;
-    transform: none;
+    gap: var(--sp-48);
   }
 }
