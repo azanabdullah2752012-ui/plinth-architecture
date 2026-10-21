@@ -80,215 +80,100 @@
   ════════════════════════════════════════════ -->
   <main id="main-content">
 
-    <!-- ── 1. MULTI-SCENE 650vh 3D SPATIAL FLIGHT JOURNEY ────────
-         Hardware GPU-Accelerated 120fps Transform Engine
-         Camera Flight through Z-Depth, All 5 Architectural Commissions
+    <!-- ── 1. CINEMATIC 3D ARCHITECTURAL ANIMATION (THREE.JS WEBGL) ──
+         Full Procedural Tectonic Construction & Solar Azimuth Engine
+         Zero "flying cards" — Real-time 3D geometry & solar falloff
     ─────────────────────────────────────────── -->
-    <section class="spatial-track" id="spatial-flight-track" aria-label="Interactive 3D Architectural Spatial Flight">
+    <section class="animation-track" id="spatial-flight-track" aria-label="Interactive 3D Architectural Animation">
       <div id="work" style="position: absolute; top: 0; left: 0; height: 1px; width: 1px; pointer-events: none;" aria-hidden="true"></div>
-      <div class="spatial-viewport">
+      
+      <!-- Pinned Sticky 3D Viewport -->
+      <div class="animation-viewport">
         
-        <!-- Atmospheric Lighting & Fog Falloff -->
-        <div class="spatial-environment" aria-hidden="true"></div>
+        <!-- WebGL 3D Canvas -->
+        <canvas id="architectural-3d-canvas" class="animation-canvas" aria-label="3D architectural structure animation"></canvas>
 
-        <!-- Flight Telemetry HUD (Fixed Viewport HUD) -->
-        <div class="flight-hud" aria-hidden="true">
-          <div class="flight-hud__top">
-            <span>PLINTH ARCHITECTURAL SPATIAL FLIGHT</span>
-            <div class="flight-hud__progress-ring">
-              <span>TRAJECTORY</span>
-              <div class="flight-hud__progress-bar">
-                <div class="flight-hud__progress-fill" id="flight-progress-fill"></div>
-              </div>
-              <span class="flight-hud__progress-text" id="flight-progress-text">00%</span>
-            </div>
-          </div>
+        <!-- Directional Vignette & Depth Scrim -->
+        <div class="animation-scrim" aria-hidden="true"></div>
 
-          <div class="flight-hud__bottom">
-            <div>
-              <span>LISBOA · 38°42′54″N 9°08′10″W</span>
-            </div>
-            <div class="flight-hud__scroll-cue">
-              <div class="flight-hud__cue-line"></div>
-              <span class="flight-hud__cue-label">Scroll to Fly Through Space</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3D Hardware World Stage -->
-        <div class="spatial-world" id="spatial-world">
+        <!-- Synchronized Architectural HUD Telemetry -->
+        <div class="animation-hud" aria-hidden="true">
           
-          <!-- Plate 1: Casa Mouraria (Monumental Hero) [Z: 0] -->
-          <article class="spatial-plate spatial-plate--hero" data-scene="1">
-            <div class="spatial-plate__frame">
-              <img src="casa-mouraria-hero.jpg" alt="Casa Mouraria interior with afternoon light across polished concrete and white plaster" class="spatial-plate__image" loading="eager" fetchpriority="high">
-              <div class="spatial-plate__scrim" aria-hidden="true"></div>
-              <div class="spatial-plate__overlay">
-                <div class="spatial-plate__badge">
-                  <span>[ SCENE 01 / PL-01 ]</span>
-                  <span class="spatial-plate__badge-line" aria-hidden="true"></span>
-                  <span>RESIDENTIAL MONOGRAPH · LISBOA</span>
-                </div>
-                <h1 class="spatial-plate__title">Buildings<br><em>that belong.</em></h1>
-                <div class="spatial-plate__meta">
-                  <div class="spatial-plate__meta-items">
-                    <div><span class="spatial-plate__meta-label">Commission</span>Casa Mouraria</div>
-                    <div><span class="spatial-plate__meta-label">Typology</span>Private Residence</div>
-                    <div><span class="spatial-plate__meta-label">Materiality</span>In-Situ Concrete · Plaster · Travertine</div>
-                  </div>
-                  <div class="spatial-plate__coords">38° 42′ 54″ N · 9° 08′ 10″ W</div>
-                </div>
-                <div class="spatial-plate__action">
-                  <a href="projects/casa-mouraria.html" class="spatial-cta-btn" aria-label="Open Casa Mouraria Monograph Folio">
-                    <span class="spatial-cta-btn__text">Open Monograph Folio</span>
-                    <span class="spatial-cta-btn__code">[PL-01]</span>
-                    <span class="spatial-cta-btn__arrow" aria-hidden="true">→</span>
-                  </a>
-                  <span class="spatial-plate__folio-hint">Full Drawings, Tectonics &amp; Photography</span>
-                </div>
-              </div>
+          <!-- Top HUD Header -->
+          <div class="animation-hud__top">
+            <div class="hud-brand">
+              <span class="hud-brand__dot"></span>
+              <span class="hud-brand__title">PLINTH TECTONIC ASSEMBLY ENGINE · WEBGL</span>
             </div>
-          </article>
+            <div class="hud-progress-block">
+              <span class="hud-progress-label">SCRUB TIMELINE</span>
+              <div class="hud-progress-track">
+                <div class="hud-progress-bar" id="hud-progress-fill"></div>
+              </div>
+              <span class="hud-progress-pct" id="hud-progress-text">00%</span>
+            </div>
+          </div>
 
-          <!-- Plate 2: The Spatial Light Void [Z: -1300] -->
-          <article class="spatial-plate spatial-plate--void" data-scene="2">
-            <div class="spatial-plate__frame">
-              <img src="images/casa-mouraria.jpg" alt="Interior detail of Casa Mouraria showing the spatial light well" class="spatial-plate__image" loading="lazy">
-              <div class="spatial-plate__scrim" aria-hidden="true"></div>
-              <div class="spatial-plate__overlay">
-                <div class="spatial-plate__badge">
-                  <span>[ SCENE 02 / VOID ]</span>
-                  <span class="spatial-plate__badge-line" aria-hidden="true"></span>
-                  <span>SPATIAL COMPRESSION &amp; LIGHT</span>
-                </div>
-                <h2 class="spatial-plate__title">Carved by<br><em>afternoon light.</em></h2>
-                <p class="spatial-plate__desc">
-                  Thick cast-concrete walls and cantilevers organized around negative space. The structure exists only to frame the passage of natural daylight across honest materials.
-                </p>
-                <div class="spatial-plate__meta">
-                  <div class="spatial-plate__meta-items">
-                    <div><span class="spatial-plate__meta-label">Azimuth</span>242° Low Portuguese Sun</div>
-                    <div><span class="spatial-plate__meta-label">Tectonics</span>Post-Tensioned Concrete Void</div>
-                  </div>
-                  <div class="spatial-plate__coords">ELEV +42.5M</div>
-                </div>
-                <div class="spatial-plate__action">
-                  <a href="projects/casa-mouraria.html" class="spatial-cta-btn" aria-label="Explore Casa Mouraria Solar & Tectonic Details">
-                    <span class="spatial-cta-btn__text">Explore Light Mechanics</span>
-                    <span class="spatial-cta-btn__code">[PL-01]</span>
-                    <span class="spatial-cta-btn__arrow" aria-hidden="true">→</span>
-                  </a>
-                  <span class="spatial-plate__folio-hint">Solar Orientation &amp; Apertures</span>
-                </div>
+          <!-- Live Stage Card (Dynamically updates with scroll) -->
+          <div class="hud-stage-card" id="hud-stage-card">
+            <div class="hud-stage-badge">
+              <span id="hud-phase-code">[ PHASE 01 / EXCAVATION ]</span>
+              <span class="hud-badge-sep">·</span>
+              <span id="hud-phase-sub">BEDROCK BASALT DATUM ±0.00M</span>
+            </div>
+            <h2 class="hud-stage-title" id="hud-stage-title">Excavating<br><em>the bedrock.</em></h2>
+            <p class="hud-stage-desc" id="hud-stage-desc">
+              Every commission begins with geological excavation. The stepped stone plinth anchors directly into coastal basalt bedrock.
+            </p>
+            
+            <!-- Real-Time Architectural Metrics -->
+            <div class="hud-telemetry-grid">
+              <div class="hud-telemetry-cell">
+                <span class="hud-cell-label">Solar Azimuth</span>
+                <span class="hud-cell-val" id="hud-val-sun">65.0° N</span>
+              </div>
+              <div class="hud-telemetry-cell">
+                <span class="hud-cell-label">Cantilever Span</span>
+                <span class="hud-cell-val" id="hud-val-span">14.80 m</span>
+              </div>
+              <div class="hud-telemetry-cell">
+                <span class="hud-cell-label">Tectonic Load</span>
+                <span class="hud-cell-val" id="hud-val-load">Bedrock Datum</span>
+              </div>
+              <div class="hud-telemetry-cell">
+                <span class="hud-cell-label">Material Spec</span>
+                <span class="hud-cell-val" id="hud-val-mat">Basalt &amp; Travertine</span>
               </div>
             </div>
-          </article>
 
-          <!-- Plate 3: Biblioteca Central (Porto) [Z: -2600] -->
-          <article class="spatial-plate spatial-plate--biblioteca" data-scene="3">
-            <div class="spatial-plate__frame">
-              <img src="images/biblioteca-central.jpg" alt="Brutalist interior of Biblioteca Central with coffered concrete ceiling" class="spatial-plate__image" loading="lazy">
-              <div class="spatial-plate__scrim" aria-hidden="true"></div>
-              <div class="spatial-plate__overlay">
-                <div class="spatial-plate__badge">
-                  <span>[ SCENE 03 / PL-02 ]</span>
-                  <span class="spatial-plate__badge-line" aria-hidden="true"></span>
-                  <span>CULTURAL MONUMENT · PORTO</span>
-                </div>
-                <h2 class="spatial-plate__title">Biblioteca<br><em>Central.</em></h2>
-                <p class="spatial-plate__desc">
-                  A monumental brutalist public library defined by a coffered exposed concrete ceiling, dark oiled walnut reading tables, and dramatic clerestory daylight.
-                </p>
-                <div class="spatial-plate__meta">
-                  <div class="spatial-plate__meta-items">
-                    <div><span class="spatial-plate__meta-label">Location</span>Porto, Portugal</div>
-                    <div><span class="spatial-plate__meta-label">Materiality</span>Coffered Concrete · Walnut Timber</div>
-                  </div>
-                  <div class="spatial-plate__coords">41° 09′ 00″ N · 8° 37′ 00″ W</div>
-                </div>
-                <div class="spatial-plate__action">
-                  <a href="projects/biblioteca-central.html" class="spatial-cta-btn" aria-label="Open Biblioteca Central Monograph Folio">
-                    <span class="spatial-cta-btn__text">Open Monograph Folio</span>
-                    <span class="spatial-cta-btn__code">[PL-02]</span>
-                    <span class="spatial-cta-btn__arrow" aria-hidden="true">→</span>
-                  </a>
-                  <span class="spatial-plate__folio-hint">Civic Archive &amp; Structural Studies</span>
-                </div>
-              </div>
+            <!-- Monograph Quick Portal -->
+            <div class="hud-stage-action">
+              <a href="projects/casa-mouraria.html" class="hud-portal-btn" id="hud-portal-link">
+                <span>Explore Casa Mouraria Folio [PL-01] →</span>
+              </a>
             </div>
-          </article>
+          </div>
 
-          <!-- Plate 4: Pátio das Flores (Évora) [Z: -3900] -->
-          <article class="spatial-plate spatial-plate--patio" data-scene="4">
-            <div class="spatial-plate__frame">
-              <img src="images/patio-flores.jpg" alt="Heritage courtyard in Évora with arched stone openings and terracotta tiles" class="spatial-plate__image" loading="lazy">
-              <div class="spatial-plate__scrim" aria-hidden="true"></div>
-              <div class="spatial-plate__overlay">
-                <div class="spatial-plate__badge">
-                  <span>[ SCENE 04 / PL-03 ]</span>
-                  <span class="spatial-plate__badge-line" aria-hidden="true"></span>
-                  <span>HERITAGE RESTORATION · ÉVORA</span>
-                </div>
-                <h2 class="spatial-plate__title">Pátio das<br><em>Flores.</em></h2>
-                <p class="spatial-plate__desc">
-                  Restored ancient limestone courtyard featuring monolithic arched openings, hexagonal terracotta tiles, aged lime wash, and a solitary fig tree.
-                </p>
-                <div class="spatial-plate__meta">
-                  <div class="spatial-plate__meta-items">
-                    <div><span class="spatial-plate__meta-label">Location</span>Évora, Portugal</div>
-                    <div><span class="spatial-plate__meta-label">Materiality</span>Limestone Masonry · Terracotta Pavers</div>
-                  </div>
-                  <div class="spatial-plate__coords">38° 34′ 00″ N · 7° 54′ 00″ W</div>
-                </div>
-                <div class="spatial-plate__action">
-                  <a href="projects/patio-flores.html" class="spatial-cta-btn" aria-label="Open Pátio das Flores Monograph Folio">
-                    <span class="spatial-cta-btn__text">Open Monograph Folio</span>
-                    <span class="spatial-cta-btn__code">[PL-03]</span>
-                    <span class="spatial-cta-btn__arrow" aria-hidden="true">→</span>
-                  </a>
-                  <span class="spatial-plate__folio-hint">Heritage Conservation &amp; Masonry Folio</span>
-                </div>
-              </div>
+          <!-- Bottom HUD Footer -->
+          <div class="animation-hud__bottom">
+            <div class="hud-coords">
+              <span>LISBOA · 38°42′54″N 9°08′10″W · ELEV +42.5M</span>
             </div>
-          </article>
+            
+            <!-- Interactive Phase Scrub Navigation -->
+            <div class="hud-phase-nav" role="navigation" aria-label="Animation Phase Navigation">
+              <button type="button" class="hud-dot-btn is-active" data-phase="0" aria-label="Phase 1: Excavation">01</button>
+              <button type="button" class="hud-dot-btn" data-phase="0.25" aria-label="Phase 2: Assembly">02</button>
+              <button type="button" class="hud-dot-btn" data-phase="0.55" aria-label="Phase 3: Cantilever">03</button>
+              <button type="button" class="hud-dot-btn" data-phase="0.78" aria-label="Phase 4: Solar Mechanics">04</button>
+              <button type="button" class="hud-dot-btn" data-phase="0.95" aria-label="Phase 5: Axonometric">05</button>
+            </div>
 
-          <!-- Plate 5: Dual Tectonic Works (Cascais & Alentejo) [Z: -5200] -->
-          <article class="spatial-plate spatial-plate--installations" data-scene="5">
-            <div class="spatial-dual-grid">
-              <div class="spatial-dual-card">
-                <img src="images/edificio-vento.jpg" alt="Edifício Vento commercial atrium with concrete bridge" class="spatial-plate__image" loading="lazy">
-                <div class="spatial-plate__scrim" aria-hidden="true"></div>
-                <div class="spatial-plate__overlay">
-                  <div class="spatial-plate__badge"><span>[ PL-04 ] · CASCAIS</span></div>
-                  <h3 class="spatial-plate__title" style="font-size: clamp(1.8rem, 3.2vw, 2.5rem);">Edifício Vento</h3>
-                  <p class="spatial-plate__desc" style="font-size: var(--fs-small);">Double-height atrium, mezzanine walkway, and passive ventilation.</p>
-                  <div class="spatial-plate__action">
-                    <a href="projects/edificio-vento.html" class="spatial-cta-btn spatial-cta-btn--compact" aria-label="Open Edifício Vento Monograph Folio">
-                      <span class="spatial-cta-btn__text">Open Monograph</span>
-                      <span class="spatial-cta-btn__code">[PL-04]</span>
-                      <span class="spatial-cta-btn__arrow" aria-hidden="true">→</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="spatial-dual-card">
-                <img src="images/pavilhao-sereno.jpg" alt="Pavilhão Sereno slender concrete pavilion in open meadow" class="spatial-plate__image" loading="lazy">
-                <div class="spatial-plate__scrim" aria-hidden="true"></div>
-                <div class="spatial-plate__overlay">
-                  <div class="spatial-plate__badge"><span>[ PL-05 ] · ALENTEJO</span></div>
-                  <h3 class="spatial-plate__title" style="font-size: clamp(1.8rem, 3.2vw, 2.5rem);">Pavilhão Sereno</h3>
-                  <p class="spatial-plate__desc" style="font-size: var(--fs-small);">Ultra-thin concrete roof resting on slender steel columns.</p>
-                  <div class="spatial-plate__action">
-                    <a href="projects/pavilhao-sereno.html" class="spatial-cta-btn spatial-cta-btn--compact" aria-label="Open Pavilhão Sereno Monograph Folio">
-                      <span class="spatial-cta-btn__text">Open Monograph</span>
-                      <span class="spatial-cta-btn__code">[PL-05]</span>
-                      <span class="spatial-cta-btn__arrow" aria-hidden="true">→</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
+            <div class="hud-scroll-indicator">
+              <div class="hud-scroll-needle"></div>
+              <span>Scroll to Scrub 3D Timeline</span>
             </div>
-          </article>
+          </div>
 
         </div>
 
@@ -554,7 +439,8 @@
   </main>
 
   <script src="js/masthead.js"></script>
-  <script src="js/spatial-flight.js"></script>
+  <script src="js/three.min.js"></script>
+  <script src="js/architectural-animation.js"></script>
   <script src="js/solar-engine.js"></script>
   <script src="js/atelier.js"></script>
 </body>
