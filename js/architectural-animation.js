@@ -1,9 +1,15 @@
 /**
  * ══════════════════════════════════════════════════════════════════════════
- * PLINTH — Continuous 3D Architectural Scrollytelling Engine (Three.js WebGL)
- * 100% Mathematically Continuous Catmull-Rom Camera Flight (Zero Scene Jumps)
- * Full-Site Kinetic Architecture: Excavation, Assembly, Light Arc & Axonometric
- * 120fps GPU Rendering · Delta-Time Decoupled Exponential Decay Smoothing
+ * PLINTH — 5-House Cinematic 3D Architectural Scrollytelling Engine
+ * Continuous Camera Flight across 5 Distinct Architectural Commissions:
+ * 01. Casa Mouraria (Lisbon Residential Hillside)
+ * 02. Biblioteca Central (Porto Brutalist Civic Hall)
+ * 03. Pátio das Flores (Évora Heritage Cloister)
+ * 04. Edifício Vento (Cascais Marine Atrium)
+ * 05. Pavilhão Sereno (Alentejo Horizon Canopy)
+ * 
+ * ZERO CARDS — Pure 3D Assembly + Floating Kinetic Typography
+ * 120fps GPU Rendering · Continuous Catmull-Rom Mathematical Spline
  * ══════════════════════════════════════════════════════════════════════════
  */
 
@@ -16,11 +22,12 @@
   }
 
   const canvas = document.getElementById('architectural-3d-canvas');
-  if (!canvas) return;
+  const track = document.getElementById('hero-scrolly') || document.getElementById('spatial-flight-track');
+  if (!canvas || !track) return;
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ── 1. PROCEDURAL ARCHITECTURAL PBR TEXTURE GENERATORS ─────
+  // ── 1. PROCEDURAL TEXTURES (ZERO LATENCY) ─────────────────
   function createConcreteTexture() {
     const cvs = document.createElement('canvas');
     cvs.width = 1024;
@@ -75,16 +82,6 @@
       ctx.fillRect(0, y, 1024, h);
     }
 
-    for (let i = 0; i < 600; i++) {
-      const x = Math.random() * 1024;
-      const y = Math.random() * 1024;
-      const r = 1 + Math.random() * 2.5;
-      ctx.fillStyle = 'rgba(12, 11, 10, 0.4)';
-      ctx.beginPath();
-      ctx.arc(x, y, r, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
     const tex = new THREE.CanvasTexture(cvs);
     tex.wrapS = THREE.RepeatWrapping;
     tex.wrapT = THREE.RepeatWrapping;
@@ -92,15 +89,50 @@
     return tex;
   }
 
+  function createTerracottaTexture() {
+    const cvs = document.createElement('canvas');
+    cvs.width = 1024;
+    cvs.height = 1024;
+    const ctx = cvs.getContext('2d');
+
+    // Warm terracotta red-orange clay
+    ctx.fillStyle = '#42281E';
+    ctx.fillRect(0, 0, 1024, 1024);
+
+    // Tile grid lines
+    const tileSize = 64;
+    ctx.strokeStyle = 'rgba(20, 12, 10, 0.7)';
+    ctx.lineWidth = 3;
+    for (let x = 0; x < 1024; x += tileSize) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, 1024);
+      ctx.stroke();
+    }
+    for (let y = 0; y < 1024; y += tileSize) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(1024, y);
+      ctx.stroke();
+    }
+
+    const tex = new THREE.CanvasTexture(cvs);
+    tex.wrapS = THREE.RepeatWrapping;
+    tex.wrapT = THREE.RepeatWrapping;
+    tex.repeat.set(4, 4);
+    return tex;
+  }
+
   const concreteTex = createConcreteTexture();
   const travertineTex = createTravertineTexture();
+  const terracottaTex = createTerracottaTexture();
 
   // ── 2. SCENE, CAMERA & RENDERER SETUP ──────────────────────
   const scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x0C0B0A, 0.013);
+  scene.fog = new THREE.FogExp2(0x09090B, 0.012);
 
-  const camera = new THREE.PerspectiveCamera(36, window.innerWidth / window.innerHeight, 0.1, 200);
-  camera.position.set(1.4, 3.2, 18.2);
+  const camera = new THREE.PerspectiveCamera(36, window.innerWidth / window.innerHeight, 0.1, 300);
+  camera.position.set(2.0, 3.2, 16.5);
 
   const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
@@ -115,23 +147,28 @@
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-  // ── 3. PBR MATERIALS ───────────────────────────────────────
+  // ── 3. MATERIALS ───────────────────────────────────────────
   const concreteMat = new THREE.MeshStandardMaterial({
     map: concreteTex,
-    color: 0xE0DBD2,
+    color: 0xE2DDD5,
     roughness: 0.88,
     metalness: 0.08,
     bumpMap: concreteTex,
-    bumpScale: 0.035
+    bumpScale: 0.03
   });
 
   const travertineMat = new THREE.MeshStandardMaterial({
     map: travertineTex,
     color: 0xF3EFE6,
     roughness: 0.65,
-    metalness: 0.05,
-    bumpMap: travertineTex,
-    bumpScale: 0.02
+    metalness: 0.05
+  });
+
+  const terracottaMat = new THREE.MeshStandardMaterial({
+    map: terracottaTex,
+    color: 0xB56548,
+    roughness: 0.82,
+    metalness: 0.04
   });
 
   const brassMat = new THREE.MeshStandardMaterial({
@@ -146,16 +183,20 @@
     metalness: 0.1
   });
 
+  const glassMat = new THREE.MeshPhysicalMaterial({
+    color: 0x88CCEE,
+    transparent: true,
+    opacity: 0.35,
+    roughness: 0.1,
+    metalness: 0.1,
+    transmission: 0.7,
+    ior: 1.5
+  });
+
   const cadLineMat = new THREE.LineBasicMaterial({
     color: 0xC4A675,
     transparent: true,
     opacity: 0.55
-  });
-
-  const cadLaserMat = new THREE.LineBasicMaterial({
-    color: 0x58D5F7,
-    transparent: true,
-    opacity: 0.75
   });
 
   function addEdges(mesh, mat = cadLineMat) {
@@ -165,101 +206,81 @@
     return line;
   }
 
-  // ── 4. ARCHITECTURAL ASSEMBLY MODEL ────────────────────────
-  const architectureRoot = new THREE.Group();
-  scene.add(architectureRoot);
+  function smoothStep(edge0, edge1, x) {
+    const t = Math.max(0, Math.min(1, (x - edge0) / (edge1 - edge0)));
+    return t * t * (3 - 2 * t);
+  }
 
-  // Basalt Bedrock Foundation Slab
-  const bedrockMesh = new THREE.Mesh(new THREE.BoxGeometry(22, 0.5, 22), basaltMat);
-  bedrockMesh.position.set(0, -1.85, 0);
-  bedrockMesh.receiveShadow = true;
-  architectureRoot.add(bedrockMesh);
+  // ── 4. CONTINUOUS GROUND PLANE & GRIDS ─────────────────────
+  // Vast basalt bedrock terrain stretching across the entire flight
+  const groundGeo = new THREE.BoxGeometry(40, 0.4, 200);
+  const groundMesh = new THREE.Mesh(groundGeo, basaltMat);
+  groundMesh.position.set(0, -1.8, -75);
+  groundMesh.receiveShadow = true;
+  scene.add(groundMesh);
 
-  // Laser CAD Coordinate Datum Grid
-  const gridHelper = new THREE.GridHelper(20, 40, 0xC4A675, 0x262320);
-  gridHelper.position.set(0, -1.58, 0);
-  architectureRoot.add(gridHelper);
+  const gridHelper = new THREE.GridHelper(200, 100, 0xC4A675, 0x222120);
+  gridHelper.position.set(0, -1.58, -75);
+  scene.add(gridHelper);
 
-  // Stepped Plinth (Excavation)
-  const plinthGroup = new THREE.Group();
-  const plinthStep1 = new THREE.Mesh(new THREE.BoxGeometry(6.4, 0.35, 5.6), travertineMat);
-  plinthStep1.position.set(0, -1.4, 0);
-  plinthStep1.receiveShadow = true;
-  plinthStep1.castShadow = true;
-  addEdges(plinthStep1);
-  plinthGroup.add(plinthStep1);
+  // ══════════════════════════════════════════════════════════
+  // 5 DISTINCT ARCHITECTURAL HOUSES
+  // ══════════════════════════════════════════════════════════
 
-  const plinthStep2 = new THREE.Mesh(new THREE.BoxGeometry(5.4, 0.35, 4.6), concreteMat);
-  plinthStep2.position.set(0, -1.05, 0);
-  plinthStep2.receiveShadow = true;
-  plinthStep2.castShadow = true;
-  addEdges(plinthStep2);
-  plinthGroup.add(plinthStep2);
-  architectureRoot.add(plinthGroup);
+  // ── HOUSE 1: CASA MOURARIA (at Z = 0) ──────────────────────
+  const house1 = new THREE.Group();
+  house1.position.set(1.4, -0.2, 0);
 
-  // Left Concrete Shear Wall
-  const wallLeftGroup = new THREE.Group();
-  const wallLeftMain = new THREE.Mesh(new THREE.BoxGeometry(0.55, 3.2, 4.4), concreteMat);
-  wallLeftMain.position.set(0, 0.75, 0);
-  wallLeftMain.castShadow = true;
-  wallLeftMain.receiveShadow = true;
-  addEdges(wallLeftMain);
-  wallLeftGroup.add(wallLeftMain);
-  architectureRoot.add(wallLeftGroup);
+  const h1_plinth1 = new THREE.Mesh(new THREE.BoxGeometry(6.4, 0.35, 5.6), travertineMat);
+  h1_plinth1.position.set(0, -1.4, 0);
+  h1_plinth1.receiveShadow = true;
+  h1_plinth1.castShadow = true;
+  addEdges(h1_plinth1);
+  house1.add(h1_plinth1);
 
-  // Right Concrete Shear Wall
-  const wallRightGroup = new THREE.Group();
-  const wallRightMain = new THREE.Mesh(new THREE.BoxGeometry(0.55, 3.2, 3.6), concreteMat);
-  wallRightMain.position.set(0, 0.75, 0);
-  wallRightMain.castShadow = true;
-  wallRightMain.receiveShadow = true;
-  addEdges(wallRightMain);
-  wallRightGroup.add(wallRightMain);
-  architectureRoot.add(wallRightGroup);
+  const h1_plinth2 = new THREE.Mesh(new THREE.BoxGeometry(5.4, 0.35, 4.6), concreteMat);
+  h1_plinth2.position.set(0, -1.05, 0);
+  h1_plinth2.receiveShadow = true;
+  addEdges(h1_plinth2);
+  house1.add(h1_plinth2);
 
-  // Rear Monolith Wall with Clerestory Slit
-  const wallRearGroup = new THREE.Group();
-  const wallRearMain = new THREE.Mesh(new THREE.BoxGeometry(4.8, 3.2, 0.45), concreteMat);
-  wallRearMain.position.set(0, 0.75, 0);
-  wallRearMain.castShadow = true;
-  wallRearMain.receiveShadow = true;
-  addEdges(wallRearMain);
-  wallRearGroup.add(wallRearMain);
-  architectureRoot.add(wallRearGroup);
+  const h1_wallLeft = new THREE.Mesh(new THREE.BoxGeometry(0.55, 3.2, 4.4), concreteMat);
+  h1_wallLeft.position.set(-2.1, 0.75, 0);
+  h1_wallLeft.castShadow = true;
+  h1_wallLeft.receiveShadow = true;
+  addEdges(h1_wallLeft);
+  house1.add(h1_wallLeft);
 
-  // Slender Marine Brass Column
-  const columnGroup = new THREE.Group();
-  const columnCylinder = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 3.2, 32), brassMat);
-  columnCylinder.position.set(0, 0.75, 0);
-  columnCylinder.castShadow = true;
-  columnGroup.add(columnCylinder);
+  const h1_wallRight = new THREE.Mesh(new THREE.BoxGeometry(0.55, 3.2, 3.6), concreteMat);
+  h1_wallRight.position.set(2.1, 0.75, 0.3);
+  h1_wallRight.castShadow = true;
+  addEdges(h1_wallRight);
+  house1.add(h1_wallRight);
 
-  const columnBase = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.08, 0.3), brassMat);
-  columnBase.position.set(0, -0.85, 0);
-  columnGroup.add(columnBase);
-  architectureRoot.add(columnGroup);
+  const h1_wallRear = new THREE.Mesh(new THREE.BoxGeometry(4.8, 3.2, 0.45), concreteMat);
+  h1_wallRear.position.set(0, 0.75, -2.0);
+  h1_wallRear.castShadow = true;
+  addEdges(h1_wallRear);
+  house1.add(h1_wallRear);
 
-  // Post-Tensioned Cantilever Roof Slab
-  const roofGroup = new THREE.Group();
-  const roofMesh = new THREE.Mesh(new THREE.BoxGeometry(6.0, 0.32, 5.2), concreteMat);
-  roofMesh.position.set(0, 0, 0);
-  roofMesh.castShadow = true;
-  roofMesh.receiveShadow = true;
-  addEdges(roofMesh, cadLaserMat);
-  roofGroup.add(roofMesh);
-  architectureRoot.add(roofGroup);
+  const h1_column = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 3.2, 32), brassMat);
+  h1_column.position.set(1.9, 0.75, 1.9);
+  h1_column.castShadow = true;
+  house1.add(h1_column);
 
-  // Interior Travertine Bench
-  const benchGroup = new THREE.Group();
-  const benchMesh = new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.35, 0.75), travertineMat);
-  benchMesh.position.set(-0.6, -0.7, -0.5);
-  benchMesh.castShadow = true;
-  benchMesh.receiveShadow = true;
-  addEdges(benchMesh);
-  benchGroup.add(benchMesh);
-  architectureRoot.add(benchGroup);
+  const h1_roof = new THREE.Mesh(new THREE.BoxGeometry(6.0, 0.32, 5.2), concreteMat);
+  h1_roof.position.set(0, 2.35, 0);
+  h1_roof.castShadow = true;
+  addEdges(h1_roof);
+  house1.add(h1_roof);
 
-  // Volumetric Sunbeam Cone (God-Ray)
+  const h1_bench = new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.35, 0.75), travertineMat);
+  h1_bench.position.set(-0.6, -0.7, -0.5);
+  h1_bench.castShadow = true;
+  addEdges(h1_bench);
+  house1.add(h1_bench);
+
+  // Volumetric Sunbeam & Dust Particles
   const beamGeo = new THREE.CylinderGeometry(0.4, 2.6, 6.2, 32, 1, true);
   const beamMat = new THREE.MeshBasicMaterial({
     color: 0xFFE0A0,
@@ -273,102 +294,280 @@
   sunBeam.position.set(0.6, 1.2, 0.3);
   sunBeam.rotation.z = -0.42;
   sunBeam.rotation.x = 0.25;
-  architectureRoot.add(sunBeam);
+  house1.add(sunBeam);
 
-  // 2,000 Floating Golden Dust Motes
-  const particleCount = 2000;
+  const particleCount = 1200;
   const particleGeo = new THREE.BufferGeometry();
   const particlePositions = new Float32Array(particleCount * 3);
-  const particleVelocities = [];
-
-  for (let i = 0; i < particleCount; i++) {
-    particlePositions[i * 3]     = (Math.random() - 0.5) * 5.0;
-    particlePositions[i * 3 + 1] = (Math.random() - 0.5) * 4.5 + 0.5;
-    particlePositions[i * 3 + 2] = (Math.random() - 0.5) * 5.0;
-    particleVelocities.push({
-      vx: (Math.random() - 0.5) * 0.003,
-      vy: Math.random() * 0.002 + 0.001,
-      vz: (Math.random() - 0.5) * 0.003
-    });
+  for (let i = 0; i < particleCount * 3; i += 3) {
+    particlePositions[i]     = (Math.random() - 0.5) * 4.5;
+    particlePositions[i + 1] = (Math.random() - 0.5) * 4.0 + 0.5;
+    particlePositions[i + 2] = (Math.random() - 0.5) * 4.5;
   }
   particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
-
   const particleMat = new THREE.PointsMaterial({
-    size: 0.038,
+    size: 0.035,
     color: 0xFFD89B,
     transparent: true,
     opacity: 0.0,
-    blending: THREE.AdditiveBlending,
-    depthWrite: false
+    blending: THREE.AdditiveBlending
   });
-  const dustParticles = new THREE.Points(particleGeo, particleMat);
-  architectureRoot.add(dustParticles);
+  const dustMotes = new THREE.Points(particleGeo, particleMat);
+  house1.add(dustMotes);
+
+  scene.add(house1);
+
+
+  // ── HOUSE 2: BIBLIOTECA CENTRAL (at Z = -38) ───────────────
+  const house2 = new THREE.Group();
+  house2.position.set(0, -0.2, -38);
+
+  // Monumental Pozzolanic Concrete Base
+  const h2_base = new THREE.Mesh(new THREE.BoxGeometry(11, 0.4, 9), concreteMat);
+  h2_base.position.set(0, -1.2, 0);
+  h2_base.receiveShadow = true;
+  addEdges(h2_base);
+  house2.add(h2_base);
+
+  // Brutalist Coffered Ceiling Matrix (4 x 3 recessed square bays)
+  const h2_ceilingSlab = new THREE.Mesh(new THREE.BoxGeometry(11, 0.45, 9), concreteMat);
+  h2_ceilingSlab.position.set(0, 3.4, 0);
+  h2_ceilingSlab.castShadow = true;
+  addEdges(h2_ceilingSlab);
+  house2.add(h2_ceilingSlab);
+
+  for (let cx = -3.5; cx <= 3.5; cx += 2.4) {
+    for (let cz = -2.6; cz <= 2.6; cz += 2.6) {
+      const coffer = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.35, 1.8), concreteMat);
+      coffer.position.set(cx, 3.2, cz);
+      addEdges(coffer);
+      house2.add(coffer);
+    }
+  }
+
+  // 4 Monumental Concrete Columns
+  const colPositions = [
+    [-4.5, -3.2], [4.5, -3.2],
+    [-4.5,  3.2], [4.5,  3.2]
+  ];
+  const h2_cols = [];
+  colPositions.forEach(([x, z]) => {
+    const col = new THREE.Mesh(new THREE.BoxGeometry(0.7, 4.4, 0.7), concreteMat);
+    col.position.set(x, 1.1, z);
+    col.castShadow = true;
+    col.receiveShadow = true;
+    addEdges(col);
+    house2.add(col);
+    h2_cols.push(col);
+  });
+
+  // Long Dark Walnut Reading Tables
+  [-2.2, 2.2].forEach(x => {
+    const table = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.15, 5.5), travertineMat);
+    table.position.set(x, -0.45, 0);
+    table.castShadow = true;
+    addEdges(table);
+    house2.add(table);
+
+    // Brass task lamp stem
+    const lamp = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 0.6), brassMat);
+    lamp.position.set(x, -0.1, 0);
+    house2.add(lamp);
+  });
+
+  scene.add(house2);
+
+
+  // ── HOUSE 3: PÁTIO DAS FLORES (at Z = -76) ─────────────────
+  const house3 = new THREE.Group();
+  house3.position.set(0, -0.2, -76);
+
+  // Terracotta Hexagonal Courtyard Floor
+  const h3_floor = new THREE.Mesh(new THREE.BoxGeometry(11, 0.25, 11), terracottaMat);
+  h3_floor.position.set(0, -1.3, 0);
+  h3_floor.receiveShadow = true;
+  addEdges(h3_floor);
+  house3.add(h3_floor);
+
+  // Monolithic Limestone Archway Portico (Columns + Lintels forming Romanesque cloister)
+  const h3_portico = new THREE.Group();
+  for (let ax = -4.0; ax <= 4.0; ax += 2.6) {
+    const pillar = new THREE.Mesh(new THREE.BoxGeometry(0.5, 3.4, 0.5), travertineMat);
+    pillar.position.set(ax, 0.5, -4.5);
+    pillar.castShadow = true;
+    addEdges(pillar);
+    h3_portico.add(pillar);
+  }
+  const archBeam = new THREE.Mesh(new THREE.BoxGeometry(9.2, 0.45, 0.6), travertineMat);
+  archBeam.position.set(0, 2.3, -4.5);
+  archBeam.castShadow = true;
+  addEdges(archBeam);
+  h3_portico.add(archBeam);
+
+  // Side perimeter walls
+  const wallS1 = new THREE.Mesh(new THREE.BoxGeometry(0.4, 2.8, 9.0), travertineMat);
+  wallS1.position.set(-4.5, 0.2, 0);
+  wallS1.castShadow = true;
+  addEdges(wallS1);
+  h3_portico.add(wallS1);
+
+  const wallS2 = new THREE.Mesh(new THREE.BoxGeometry(0.4, 2.8, 9.0), travertineMat);
+  wallS2.position.set(4.5, 0.2, 0);
+  wallS2.castShadow = true;
+  addEdges(wallS2);
+  h3_portico.add(wallS2);
+
+  // Solitary Dark Bronze Planter & Fig Tree Marker
+  const planter = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.45, 0.65, 16), brassMat);
+  planter.position.set(0, -0.9, 0);
+  planter.castShadow = true;
+  h3_portico.add(planter);
+
+  house3.add(h3_portico);
+  scene.add(house3);
+
+
+  // ── HOUSE 4: EDIFÍCIO VENTO (at Z = -114) ──────────────────
+  const house4 = new THREE.Group();
+  house4.position.set(0, -0.2, -114);
+
+  // Basalt Atrium Ground
+  const h4_floor = new THREE.Mesh(new THREE.BoxGeometry(11, 0.3, 9), concreteMat);
+  h4_floor.position.set(0, -1.2, 0);
+  h4_floor.receiveShadow = true;
+  addEdges(h4_floor);
+  house4.add(h4_floor);
+
+  // Double-Height Glass Curtain Facade
+  const h4_glass = new THREE.Mesh(new THREE.BoxGeometry(10.5, 4.8, 0.08), glassMat);
+  h4_glass.position.set(0, 1.4, -4.2);
+  house4.add(h4_glass);
+
+  // Steel Mullions
+  for (let mx = -4.5; mx <= 4.5; mx += 1.8) {
+    const mullion = new THREE.Mesh(new THREE.BoxGeometry(0.08, 4.8, 0.15), basaltMat);
+    mullion.position.set(mx, 1.4, -4.2);
+    house4.add(mullion);
+  }
+
+  // Mezzanine Walkway Bridge spanning across at y = 1.6
+  const h4_bridge = new THREE.Mesh(new THREE.BoxGeometry(10.5, 0.22, 1.4), concreteMat);
+  h4_bridge.position.set(0, 1.4, 0);
+  h4_bridge.castShadow = true;
+  addEdges(h4_bridge);
+  house4.add(h4_bridge);
+
+  // Angled Aerodynamic Louvers (Passive Stack Ventilation Fins)
+  for (let lx = -4.0; lx <= 4.0; lx += 1.2) {
+    const fin = new THREE.Mesh(new THREE.BoxGeometry(0.08, 4.6, 0.6), travertineMat);
+    fin.position.set(lx, 1.4, 4.2);
+    fin.rotation.y = 0.55;
+    fin.castShadow = true;
+    house4.add(fin);
+  }
+
+  // Roof Cap
+  const h4_roof = new THREE.Mesh(new THREE.BoxGeometry(11.2, 0.35, 9.4), concreteMat);
+  h4_roof.position.set(0, 3.8, 0);
+  addEdges(h4_roof);
+  house4.add(h4_roof);
+
+  scene.add(house4);
+
+
+  // ── HOUSE 5: PAVILHÃO SERENO (at Z = -152) ─────────────────
+  const house5 = new THREE.Group();
+  house5.position.set(0, -0.2, -152);
+
+  // Open Horizon Meadow Floor
+  const h5_floor = new THREE.Mesh(new THREE.BoxGeometry(18, 0.3, 16), basaltMat);
+  h5_floor.position.set(0, -1.3, 0);
+  h5_floor.receiveShadow = true;
+  house5.add(h5_floor);
+
+  // Razor-Thin Post-Tensioned Concrete Roof Canopy
+  const h5_canopy = new THREE.Mesh(new THREE.BoxGeometry(9.0, 0.16, 7.0), concreteMat);
+  h5_canopy.position.set(0, 2.4, 0);
+  h5_canopy.castShadow = true;
+  addEdges(h5_canopy);
+  house5.add(h5_canopy);
+
+  // 4 Ultra-Slender Cylindrical Brass Columns
+  const h5_cols = [
+    [-3.8, -2.8], [3.8, -2.8],
+    [-3.8,  2.8], [3.8,  2.8]
+  ];
+  h5_cols.forEach(([x, z]) => {
+    const col = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 3.6, 32), brassMat);
+    col.position.set(x, 0.6, z);
+    col.castShadow = true;
+    house5.add(col);
+  });
+
+  // Low Minimalist Horizon Bench
+  const h5_bench = new THREE.Mesh(new THREE.BoxGeometry(3.2, 0.22, 0.7), travertineMat);
+  h5_bench.position.set(0, -0.9, 0);
+  h5_bench.castShadow = true;
+  addEdges(h5_bench);
+  house5.add(h5_bench);
+
+  scene.add(house5);
 
   // ── 5. LIGHTING ────────────────────────────────────────────
   const ambientLight = new THREE.AmbientLight(0x0C0B0A, 1.4);
   scene.add(ambientLight);
 
   const sunLight = new THREE.DirectionalLight(0xFFE8D0, 4.0);
-  sunLight.position.set(12, 10, 9);
+  sunLight.position.set(14, 12, 10);
   sunLight.castShadow = true;
   sunLight.shadow.mapSize.width = 2048;
   sunLight.shadow.mapSize.height = 2048;
   sunLight.shadow.camera.near = 1.0;
-  sunLight.shadow.camera.far = 50;
-  sunLight.shadow.camera.left = -14;
-  sunLight.shadow.camera.right = 14;
-  sunLight.shadow.camera.top = 14;
-  sunLight.shadow.camera.bottom = -14;
+  sunLight.shadow.camera.far = 180;
+  sunLight.shadow.camera.left = -25;
+  sunLight.shadow.camera.right = 25;
+  sunLight.shadow.camera.top = 25;
+  sunLight.shadow.camera.bottom = -25;
   sunLight.shadow.bias = -0.0003;
   scene.add(sunLight);
 
-  const rimLight = new THREE.DirectionalLight(0xC4A675, 1.4);
-  rimLight.position.set(-8, 4, -5);
+  const rimLight = new THREE.DirectionalLight(0xC4A675, 1.2);
+  rimLight.position.set(-10, 6, -50);
   scene.add(rimLight);
 
-  // ── 6. 100% CONTINUOUS MATHEMATICAL SPLINE FLIGHT ──────────
-  // Guarantees C^2 continuous velocity and curvature across [0, 1] — Zero Scene Snaps
-  const targetOffsetX = window.innerWidth > 960 ? 1.4 : 0.0;
-  architectureRoot.position.set(targetOffsetX, -0.3, 0);
-
+  // ── 6. CONTINUOUS CATMULL-ROM CAMERA FLIGHT SPLINE ─────────
+  // Smoothly glides across all 5 houses from Z = 16.5 down to Z = -152
   const cameraSplinePoints = [
-    new THREE.Vector3(targetOffsetX,        3.2, 18.2), // 0.00 - Establishing foundation
-    new THREE.Vector3(targetOffsetX + 3.8,  3.6, 17.6), // 0.10 - Excavation & bedrock leveling
-    new THREE.Vector3(targetOffsetX + 6.5,  4.2, 16.5), // 0.20 - Wall assembly orbit
-    new THREE.Vector3(targetOffsetX + 5.2,  4.8, 15.6), // 0.30 - Canopy descent & docking
-    new THREE.Vector3(targetOffsetX + 1.2,  3.8, 15.0), // 0.40 - [PL-01] Casa Mouraria light court
-    new THREE.Vector3(targetOffsetX - 3.2,  4.4, 15.5), // 0.50 - [PL-02] Biblioteca coffered hall
-    new THREE.Vector3(targetOffsetX - 5.8,  3.2, 16.2), // 0.60 - [PL-03] Pátio das Flores archway
-    new THREE.Vector3(targetOffsetX - 1.5,  5.2, 15.8), // 0.70 - [PL-04] Edifício Vento atrium
-    new THREE.Vector3(targetOffsetX + 4.8,  3.4, 16.8), // 0.80 - [PL-05] Pavilhão Sereno horizon
-    new THREE.Vector3(targetOffsetX + 9.8,  6.8, 16.2), // 0.90 - Material lab & studio axonometric
-    new THREE.Vector3(targetOffsetX + 11.5, 8.5, 17.5)  // 1.00 - Atelier Lisbon dusk elevation
+    new THREE.Vector3( 2.2, 3.0,   16.5), // 0.00 - House 1: Casa Mouraria approach
+    new THREE.Vector3( 5.5, 3.5,    8.5), // 0.10 - House 1: Orbit & sunbeam
+    new THREE.Vector3( 3.2, 4.2,  -12.0), // 0.20 - Flight towards House 2
+    new THREE.Vector3(-4.5, 3.8,  -30.0), // 0.30 - House 2: Biblioteca Central coffered ceiling
+    new THREE.Vector3(-1.8, 4.4,  -50.0), // 0.40 - Flight towards House 3
+    new THREE.Vector3( 5.2, 3.4,  -70.0), // 0.50 - House 3: Pátio das Flores limestone cloister
+    new THREE.Vector3( 2.5, 4.5,  -90.0), // 0.60 - Flight towards House 4
+    new THREE.Vector3(-4.8, 3.8, -108.0), // 0.70 - House 4: Edifício Vento atrium bridge
+    new THREE.Vector3(-1.2, 4.8, -128.0), // 0.80 - Flight towards House 5
+    new THREE.Vector3( 6.8, 3.6, -148.0), // 0.90 - House 5: Pavilhão Sereno horizon canopy
+    new THREE.Vector3( 9.5, 6.5, -145.0)  // 1.00 - House 5: Elevated twilight horizon view
   ];
   const cameraSpline = new THREE.CatmullRomCurve3(cameraSplinePoints, false, 'catmullrom', 0.5);
 
   const lookSplinePoints = [
-    new THREE.Vector3(targetOffsetX,       0.4,  0.0), // 0.00
-    new THREE.Vector3(targetOffsetX,       0.5,  0.0), // 0.10
-    new THREE.Vector3(targetOffsetX,       0.7,  0.0), // 0.20
-    new THREE.Vector3(targetOffsetX,       0.8,  0.0), // 0.30
-    new THREE.Vector3(targetOffsetX + 0.3, 0.6, -0.4), // 0.40 - Casa Mouraria
-    new THREE.Vector3(targetOffsetX + 0.2, 1.1, -0.2), // 0.50 - Biblioteca
-    new THREE.Vector3(targetOffsetX,       0.5,  0.0), // 0.60 - Pátio das Flores
-    new THREE.Vector3(targetOffsetX,       0.9,  0.0), // 0.70 - Edifício Vento
-    new THREE.Vector3(targetOffsetX,       0.4,  0.0), // 0.80 - Pavilhão Sereno
-    new THREE.Vector3(targetOffsetX,       0.8,  0.0), // 0.90 - Studio
-    new THREE.Vector3(targetOffsetX,       0.6,  0.0)  // 1.00 - Contact
+    new THREE.Vector3( 1.4, 0.5,    0.0), // House 1
+    new THREE.Vector3( 1.4, 0.6,    0.0), // House 1
+    new THREE.Vector3( 0.0, 0.8,  -22.0), // Transition
+    new THREE.Vector3( 0.0, 1.2,  -38.0), // House 2
+    new THREE.Vector3( 0.0, 0.8,  -58.0), // Transition
+    new THREE.Vector3( 0.0, 0.6,  -76.0), // House 3
+    new THREE.Vector3( 0.0, 1.2,  -96.0), // Transition
+    new THREE.Vector3( 0.0, 1.4, -114.0), // House 4
+    new THREE.Vector3( 0.0, 0.8, -135.0), // Transition
+    new THREE.Vector3( 0.0, 0.6, -152.0), // House 5
+    new THREE.Vector3( 0.0, 0.6, -152.0)  // House 5
   ];
   const lookSpline = new THREE.CatmullRomCurve3(lookSplinePoints, false, 'catmullrom', 0.5);
 
-  // Smooth-step mathematical easing helper
-  function smoothStep(edge0, edge1, x) {
-    const t = Math.max(0, Math.min(1, (x - edge0) / (edge1 - edge0)));
-    return t * t * (3 - 2 * t);
-  }
-
-  // ── 7. SCROLL INTERACTION & SMOOTHING ──────────────────────
-  const track = document.getElementById('hero-scrolly') || document.getElementById('spatial-flight-track');
+  // ── 7. SCROLL INTERPOLATION & MOTION PHYSICS ───────────────
   let targetProgress = 0;
   let currentProgress = 0;
   let lastTime = performance.now();
@@ -379,7 +578,6 @@
   let currentMouseY = 0;
 
   function updateScroll() {
-    if (!track) return;
     const rect = track.getBoundingClientRect();
     const totalDist = rect.height - window.innerHeight;
     if (totalDist <= 0) return;
@@ -393,9 +591,6 @@
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-
-    const offset = window.innerWidth > 960 ? 1.4 : 0.0;
-    architectureRoot.position.x = offset;
     updateScroll();
   });
 
@@ -405,238 +600,136 @@
     targetMouseY = (e.clientY / window.innerHeight - 0.5) * 2;
   }, { passive: true });
 
-  // ── 8. HUD SYNCHRONIZATION ─────────────────────────────────
+  // ── 8. KINETIC TYPOGRAPHY OVERLAYS (ZERO CARDS) ────────────
+  const titleCards = document.querySelectorAll('.house-title-card');
   const hudProgressFill = document.getElementById('hud-progress-fill');
   const hudProgressText = document.getElementById('hud-progress-text');
-  const hudPhaseCode = document.getElementById('hud-phase-code');
-  const hudPhaseSub = document.getElementById('hud-phase-sub');
-  const hudStageTitle = document.getElementById('hud-stage-title');
-  const hudStageDesc = document.getElementById('hud-stage-desc');
-  const hudValSun = document.getElementById('hud-val-sun');
-  const hudValSpan = document.getElementById('hud-val-span');
-  const hudValLoad = document.getElementById('hud-val-load');
-  const hudValMat = document.getElementById('hud-val-mat');
-  const hudPortalLink = document.getElementById('hud-portal-link');
   const phaseDots = document.querySelectorAll('.hud-dot-btn');
 
-  const chapters = [
-    {
-      range: [0.00, 0.18],
-      code: '[ CHAPTER 01 / EXCAVATION ]',
-      sub: 'BEDROCK BASALT DATUM ±0.00M',
-      title: 'Excavating<br><em>the bedrock.</em>',
-      desc: 'Every commission begins with geological excavation. The stepped stone plinth anchors directly into coastal basalt bedrock.',
-      sun: '65.0° N Morning',
-      span: '14.80 m',
-      load: 'Bedrock Datum ±0.00m',
-      mat: 'Basalt & Travertine',
-      link: 'projects/casa-mouraria.html',
-      linkText: 'Explore Casa Mouraria Folio [PL-01] →'
-    },
-    {
-      range: [0.18, 0.38],
-      code: '[ CHAPTER 02 / STRUCTURE ]',
-      sub: 'IN-SITU SHEAR WALLS & CANOPY',
-      title: 'Tectonic mass<br><em>locks into place.</em>',
-      desc: 'Board-formed in-situ concrete walls slide into precision structural tracks as the 14.8m post-tensioned canopy descends into silence.',
-      sun: '52.4° W High Light',
-      span: '14.80 m Cantilever',
-      load: 'Compression 45.0 MPa',
-      mat: 'Pozzolanic Concrete',
-      link: 'projects/biblioteca-central.html',
-      linkText: 'Explore Biblioteca Central Folio [PL-02] →'
-    },
-    {
-      range: [0.38, 0.58],
-      code: '[ CHAPTER 03 / APERTURE ]',
-      sub: 'SOLAR LIGHT VOID · 28° AZIMUTH',
-      title: 'Carved by<br><em>afternoon light.</em>',
-      desc: 'Low Portuguese sunlight rakes across the clerestory slit at 28° azimuth, igniting suspended golden dust particles across the interior bench.',
-      sun: '28.4° Low Sun (242°)',
-      span: 'Internal Light Void',
-      load: 'Thermal Mass Activated',
-      mat: 'Honed Estremoz Travertine',
-      link: 'projects/patio-flores.html',
-      linkText: 'Explore Pátio das Flores Folio [PL-03] →'
-    },
-    {
-      range: [0.58, 0.78],
-      code: '[ CHAPTER 04 / COMMISSIONS ]',
-      sub: 'FIVE ARCHITECTURAL WORKS',
-      title: 'Specific geologies.<br><em>One rigor.</em>',
-      desc: 'From Porto brutalist library to Alentejo landscape pavilion: architecture responding directly to maritime light, stone, and wind.',
-      sun: 'Maritime Horizon Light',
-      span: 'Cascais & Alentejo',
-      load: 'Natural Stack Ventilation',
-      mat: 'Limestone & Marine Brass',
-      link: 'projects/edificio-vento.html',
-      linkText: 'Explore Edifício Vento Folio [PL-04] →'
-    },
-    {
-      range: [0.78, 1.00],
-      code: '[ CHAPTER 05 / ARCHAEOLOGY ]',
-      sub: 'EXPLODED AXONOMETRIC & ATELIER',
-      title: 'Structural truth<br><em>unfolded.</em>',
-      desc: 'The monument lifts into an exploded axonometric diagram, displaying load transfers and forensic material test results before docking into the atelier.',
-      sun: 'Solstice Calibrated',
-      span: 'Integrated System',
-      load: 'Perpetual Gravity Rigor',
-      mat: 'Basalt · Concrete · Brass',
-      link: 'projects/pavilhao-sereno.html',
-      linkText: 'Explore Pavilhão Sereno Folio [PL-05] →'
-    }
-  ];
-
-  let currentChapterIdx = -1;
-
-  function updateHUD(p) {
+  function updateTypography(p) {
     if (hudProgressFill) hudProgressFill.style.width = `${(p * 100).toFixed(1)}%`;
     if (hudProgressText) hudProgressText.textContent = `${String(Math.round(p * 100)).padStart(2, '0')}%`;
 
-    let activeIdx = chapters.findIndex(c => p >= c.range[0] && p <= c.range[1]);
-    if (activeIdx === -1) activeIdx = p >= 1 ? chapters.length - 1 : 0;
+    // 5 House Ranges:
+    // House 1: [0.00, 0.20]
+    // House 2: [0.20, 0.40]
+    // House 3: [0.40, 0.60]
+    // House 4: [0.60, 0.80]
+    // House 5: [0.80, 1.00]
+    let activeHouse = 1;
+    if (p >= 0.80) activeHouse = 5;
+    else if (p >= 0.60) activeHouse = 4;
+    else if (p >= 0.40) activeHouse = 3;
+    else if (p >= 0.20) activeHouse = 2;
+    else activeHouse = 1;
 
-    if (activeIdx !== currentChapterIdx) {
-      currentChapterIdx = activeIdx;
-      const ch = chapters[activeIdx];
+    titleCards.forEach(card => {
+      const hNum = parseInt(card.getAttribute('data-house'), 10);
+      card.classList.toggle('is-active', hNum === activeHouse);
+    });
 
-      if (hudPhaseCode) hudPhaseCode.textContent = ch.code;
-      if (hudPhaseSub) hudPhaseSub.textContent = ch.sub;
-      if (hudStageTitle) hudStageTitle.innerHTML = ch.title;
-      if (hudStageDesc) hudStageDesc.textContent = ch.desc;
-      if (hudValSun) hudValSun.textContent = ch.sun;
-      if (hudValSpan) hudValSpan.textContent = ch.span;
-      if (hudValLoad) hudValLoad.textContent = ch.load;
-      if (hudValMat) hudValMat.textContent = ch.mat;
-      if (hudPortalLink) {
-        hudPortalLink.setAttribute('href', ch.link);
-        hudPortalLink.innerHTML = `<span>${ch.linkText}</span>`;
-      }
-
-      phaseDots.forEach((dot, idx) => {
-        dot.classList.toggle('is-active', idx === activeIdx);
-      });
-    }
+    phaseDots.forEach((dot, idx) => {
+      dot.classList.toggle('is-active', idx + 1 === activeHouse);
+    });
   }
 
-  // Phase Click Buttons: Smooth Scroll to Normalized Milestones within Track
   phaseDots.forEach(dot => {
     dot.addEventListener('click', () => {
       const targetP = parseFloat(dot.getAttribute('data-phase') || '0');
-      if (!track) return;
       const totalDist = track.offsetHeight - window.innerHeight;
       const targetScroll = track.offsetTop + (targetP * totalDist);
       window.scrollTo({ top: targetScroll, behavior: 'smooth' });
     });
   });
 
-  // ── 9. MAIN RENDER & ANIMATION LOOP ────────────────────────
+  // ── 9. MAIN RENDER LOOP (120FPS GPU COMPOSITING) ───────────
   function tick(now) {
     requestAnimationFrame(tick);
 
     const dt = Math.min((now - lastTime) / 1000, 0.08);
     lastTime = now;
 
-    // Frame-rate independent exponential decay smoothing
     const decay = prefersReduced ? 30.0 : 9.5;
     const lerpAlpha = 1 - Math.exp(-decay * dt);
 
     const prevP = currentProgress;
     currentProgress += (targetProgress - currentProgress) * lerpAlpha;
 
-    // Velocity-based subtle dynamic pitch
     const velocity = (currentProgress - prevP) / (dt || 0.016);
     const dynamicPitch = Math.max(-4, Math.min(4, velocity * -1.2));
 
-    // Mouse parallax lerp
     currentMouseX += (targetMouseX - currentMouseX) * (1 - Math.exp(-8 * dt));
     currentMouseY += (targetMouseY - currentMouseY) * (1 - Math.exp(-8 * dt));
 
     const p = currentProgress;
 
-    // ── KINETIC ARCHITECTURAL CHOREOGRAPHY (SMOOTH STEPPED) ──
+    // ── KINETIC ASSEMBLY OF EACH HOUSE AS CAMERA APPROACHES ──
 
-    // 1. Foundation Emergence (p: 0.00 -> 0.18)
-    const plinthRise = smoothStep(0.00, 0.18, p);
-    plinthGroup.position.y = -2.2 + (plinthRise * 2.2);
+    // House 1 Assembly (p: 0.00 -> 0.18)
+    const h1_rise = smoothStep(0.00, 0.14, p);
+    h1_plinth1.position.y = -2.2 + (h1_rise * 0.8);
+    h1_wallLeft.position.x = -4.5 + (h1_rise * 2.4);
+    h1_wallRight.position.x = 4.5 - (h1_rise * 2.4);
+    const h1_roofDesc = smoothStep(0.06, 0.18, p);
+    h1_roof.position.y = 6.5 - (h1_roofDesc * 4.15);
 
-    // 2. Wall & Column Assembly (p: 0.16 -> 0.38)
-    const wallAssemble = smoothStep(0.16, 0.38, p);
-    wallLeftGroup.position.x = -5.2 + (wallAssemble * 3.1);
-    wallLeftGroup.position.z = -0.1;
-    wallRightGroup.position.x = 5.2 - (wallAssemble * 3.1);
-    wallRightGroup.position.z = 0.3;
-    wallRearGroup.position.z = -4.5 + (wallAssemble * 2.5);
-    columnGroup.position.set(1.9, -3.2 + (wallAssemble * 3.2), 1.9);
-
-    // 3. Post-Tensioned Roof Canopy Descent (p: 0.28 -> 0.48)
-    const roofDescent = smoothStep(0.28, 0.48, p);
-    roofGroup.position.y = 7.5 - (roofDescent * 5.15);
-    roofGroup.position.set(0.05, roofGroup.position.y, 0.05);
-
-    // 4. Volumetric Sunbeam & Dust Motes (Smooth Bell Curve over p: 0.35 -> 0.75)
-    let beamOpacity = 0;
-    if (p >= 0.32 && p <= 0.78) {
-      const bell = Math.sin(((p - 0.32) / 0.46) * Math.PI);
-      beamOpacity = bell * 0.34;
+    // House 1 Sunbeam (peaks around p = 0.10)
+    let b1 = 0;
+    if (p <= 0.22) {
+      b1 = Math.sin((p / 0.22) * Math.PI) * 0.32;
     }
-    beamMat.opacity = beamOpacity;
-    particleMat.opacity = beamOpacity * 2.6;
+    beamMat.opacity = b1;
+    particleMat.opacity = b1 * 2.5;
 
-    // Dust motes drift
-    const positions = particleGeo.attributes.position.array;
-    for (let i = 0; i < particleCount; i++) {
-      const vel = particleVelocities[i];
-      positions[i * 3 + 1] -= vel.vy;
-      positions[i * 3]     += Math.sin(now * 0.001 + i) * 0.001;
-      if (positions[i * 3 + 1] < -1.4) {
-        positions[i * 3 + 1] = 2.8;
-      }
-    }
-    particleGeo.attributes.position.needsUpdate = true;
+    // House 2 Assembly (p: 0.18 -> 0.38)
+    const h2_grow = smoothStep(0.18, 0.32, p);
+    h2_base.position.y = -2.4 + (h2_grow * 1.2);
+    h2_cols.forEach(col => {
+      col.scale.y = Math.max(0.01, h2_grow);
+    });
+    const h2_ceil = smoothStep(0.24, 0.38, p);
+    h2_ceilingSlab.position.y = 6.8 - (h2_ceil * 3.4);
 
-    // 5. Continuous Smooth Sunlight Arc (Zero Jumps)
-    // Dynamic Portuguese Solar Azimuth: continuous smooth sinusoidal progression
-    const sunAngle = 0.88 - (p * 0.65);
-    sunLight.position.x = Math.cos(sunAngle * Math.PI) * 11;
-    sunLight.position.y = 4.2 + Math.sin(sunAngle * Math.PI) * 4.2;
-    sunLight.position.z = 5.0 - (p * 3.2);
+    // House 3 Assembly (p: 0.38 -> 0.58)
+    const h3_grow = smoothStep(0.38, 0.52, p);
+    h3_floor.position.y = -2.5 + (h3_grow * 1.2);
+    h3_portico.position.y = -3.0 + (h3_grow * 3.0);
 
-    // 6. Exploded Axonometric Mode (p: 0.82 -> 1.00)
-    if (p > 0.82) {
-      const explode = smoothStep(0.82, 1.00, p);
-      roofGroup.position.y += explode * 1.8;
-      wallLeftGroup.position.x -= explode * 0.95;
-      wallRightGroup.position.x += explode * 0.95;
-      wallRearGroup.position.z -= explode * 0.95;
-      columnGroup.position.x += explode * 0.45;
-      columnGroup.position.z += explode * 0.45;
-    }
+    // House 4 Assembly (p: 0.58 -> 0.78)
+    const h4_grow = smoothStep(0.58, 0.72, p);
+    h4_bridge.position.x = -6.0 + (h4_grow * 6.0);
+    h4_roof.position.y = 7.2 - (h4_grow * 3.4);
 
-    // ── 7. MATHEMATICALLY CONTINUOUS CAMERA FLIGHT ─────────────
-    // Evaluates the continuous Catmull-Rom 3D spline — Mathematically impossible to jump
+    // House 5 Assembly (p: 0.78 -> 0.98)
+    const h5_grow = smoothStep(0.78, 0.94, p);
+    h5_canopy.position.y = 6.8 - (h5_grow * 4.4);
+
+    // Dynamic Sunlight sweeps across the terrain as camera moves down Z
+    sunLight.position.z = 10 - (p * 160);
+    sunLight.position.x = 14 + Math.sin(p * Math.PI * 4) * 6;
+
+    // ── CONTINUOUS MATHEMATICAL CAMERA FLIGHT ────────────────
     const camPos = cameraSpline.getPoint(p);
-    const lookTarget = lookSpline.getPoint(p);
+    const lookPos = lookSpline.getPoint(p);
 
     camera.position.set(
       camPos.x + (currentMouseX * 0.6),
       camPos.y - (currentMouseY * 0.4) + (dynamicPitch * 0.03),
       camPos.z
     );
-    camera.lookAt(lookTarget.x, lookTarget.y, lookTarget.z);
+    camera.lookAt(lookPos.x, lookPos.y, lookPos.z);
 
-    // Update Telemetry HUD
-    updateHUD(p);
+    // Update typography overlays
+    updateTypography(p);
 
-    // Render WebGL frame
     renderer.render(scene, camera);
   }
 
   // Initial paint
   updateScroll();
   currentProgress = targetProgress;
-  updateHUD(currentProgress);
+  updateTypography(currentProgress);
   requestAnimationFrame(tick);
 
-  console.log('[PLINTH 3D] Continuous Catmull-Rom architectural animation engine active.');
+  console.log('[PLINTH 3D] 5-House continuous architectural animation active.');
 })();
