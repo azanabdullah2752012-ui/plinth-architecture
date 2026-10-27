@@ -1,0 +1,15 @@
+# Dependency directories
+node_modules/
+.vite/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Environment and logs
+*.log
+.env
+.env.local
+
+# Sub-repositories
+nuvio/
